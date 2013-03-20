@@ -16,3 +16,7 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+
+/Bootstrapper/bootStrapper
+/Pods/
+/Podfile.lock
