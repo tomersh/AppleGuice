@@ -52,11 +52,13 @@
 }
 
 - (void) setImplementation:(Class)clazz withProtocol:(Protocol*)protocol withBindingType:(appleGuiceBindingType)bindingType {
+    if (!clazz) return;
     [self setImplementations:@[clazz] withProtocol:protocol withBindingType:bindingType];
 }
 
 -(void) setImplementations:(NSArray*)classes withProtocol:(Protocol*)protocol withBindingType:(appleGuiceBindingType)bindingType {
     if (!protocol || !classes) return;
+    if ([classes count] == 0) return;
     NSMutableSet* boundClasses = [self _getClassesForProtocol:protocol withBindingType:bindingType];
     if (!boundClasses) {
         boundClasses = [NSMutableSet set];
@@ -76,6 +78,7 @@
 }
 
 -(void) unsetImplementationOfProtocol:(Protocol*) protocol {
+    if (!protocol) return;
     [_cachedObjects removeObjectForKey:[self _storageKeyForProtocol:protocol]];
     [_userBoundObjects removeObjectForKey:[self _storageKeyForProtocol:protocol]];
 }
@@ -90,6 +93,7 @@
 }
 
 -(void) setImplementationFromString:(NSString*)classAsString withProtocolAsString:(NSString*)protocolAsString withBindingType:(appleGuiceBindingType)bindingType {
+    if (!classAsString) return;
     [self setImplementationsFromStrings:@[classAsString] withProtocolAsString:protocolAsString withBindingType:bindingType];
 }
 

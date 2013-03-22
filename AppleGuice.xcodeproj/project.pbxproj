@@ -23,6 +23,7 @@
 		F172DD4816F9141300BA754E /* AppleGuiceClassLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD3016F9141300BA754E /* AppleGuiceClassLinkedList.m */; };
 		F172DD4C16F9141300BA754E /* TheWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD3416F9141300BA754E /* TheWrapper.m */; };
 		F172DD6B16F920CB00BA754E /* AppleGuiceBindingBootstrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD6A16F920CA00BA754E /* AppleGuiceBindingBootstrapper.m */; };
+		F186369116FCF1C000C54340 /* MyTestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = F186369016FCF1C000C54340 /* MyTestObserver.m */; };
 		F18E722616F9135C000BD3CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
 		F18E723516F9135C000BD3CB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E723416F9135C000BD3CB /* SenTestingKit.framework */; };
 		F18E723716F9135C000BD3CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E723616F9135C000BD3CB /* UIKit.framework */; };
@@ -93,6 +94,8 @@
 		F172DD5416F9159200BA754E /* AppleGuiceBindingBootstrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceBindingBootstrapper.h; sourceTree = "<group>"; };
 		F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceBindingBootstrapperProtocol.h; sourceTree = "<group>"; };
 		F172DD6A16F920CA00BA754E /* AppleGuiceBindingBootstrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceBindingBootstrapper.m; sourceTree = "<group>"; };
+		F186368F16FCF1C000C54340 /* MyTestObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTestObserver.h; sourceTree = "<group>"; };
+		F186369016FCF1C000C54340 /* MyTestObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTestObserver.m; sourceTree = "<group>"; };
 		F18E722216F9135C000BD3CB /* libAppleGuice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppleGuice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18E722516F9135C000BD3CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F18E722916F9135C000BD3CB /* AppleGuice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuice-Prefix.pch"; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 		F18E723C16F9135C000BD3CB /* AppleGuiceTests */ = {
 			isa = PBXGroup;
 			children = (
+				F186368F16FCF1C000C54340 /* MyTestObserver.h */,
+				F186369016FCF1C000C54340 /* MyTestObserver.m */,
 				F14EF55E16FA59A600B8A620 /* TestBase.h */,
 				F14EF55F16FA59A600B8A620 /* TestBase.m */,
 				F18E724216F9135C000BD3CB /* AppleGuiceBindingServiceTests.h */,
@@ -382,6 +387,7 @@
 			files = (
 				F14EF56116FA5C4D00B8A620 /* AppleGuiceBindingServiceTests.m in Sources */,
 				F14EF56016FA59A600B8A620 /* TestBase.m in Sources */,
+				F186369116FCF1C000C54340 /* MyTestObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
