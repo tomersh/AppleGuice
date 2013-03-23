@@ -51,7 +51,6 @@
 
 /* Begin PBXFileReference section */
 		5087A1FEB79543489D3843C6 /* Pods-AppleGuiceUnitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceUnitTests.xcconfig"; path = "Pods/Pods-AppleGuiceUnitTests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		6ED8B3FF0C6440AFA3098A37 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		82A18D35C4084EA5A4DB388B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74C24A10D1344679015F52D /* libPods-AppleGuiceUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleGuiceUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A3285916FD1CCA00E007C1 /* AppleGuiceTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleGuiceTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +111,6 @@
 				F1A3288016FD1CCA00E007C1 /* AppleGuiceUnitTests */,
 				F1A3285B16FD1CCA00E007C1 /* Frameworks */,
 				F1A3285A16FD1CCA00E007C1 /* Products */,
-				6ED8B3FF0C6440AFA3098A37 /* Pods.xcconfig */,
 				5087A1FEB79543489D3843C6 /* Pods-AppleGuiceUnitTests.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -423,7 +421,6 @@
 		};
 		F1A3288C16FD1CCA00E007C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6ED8B3FF0C6440AFA3098A37 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -445,7 +442,6 @@
 		};
 		F1A3288D16FD1CCA00E007C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6ED8B3FF0C6440AFA3098A37 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
