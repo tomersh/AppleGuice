@@ -219,8 +219,8 @@
 				F1A3287416FD1CCA00E007C1 /* Sources */,
 				F1A3287516FD1CCA00E007C1 /* Frameworks */,
 				F1A3287616FD1CCA00E007C1 /* Resources */,
-				F1A3287716FD1CCA00E007C1 /* ShellScript */,
 				F46C45119897451FA048E291 /* Copy Pods Resources */,
+				F1A3287716FD1CCA00E007C1 /* ShellScript */,
 			);
 			buildRules = (
 			);
