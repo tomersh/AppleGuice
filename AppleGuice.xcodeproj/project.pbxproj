@@ -36,8 +36,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7F4BCECD128644CA83251BC5 /* Pods-AppleGuiceTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceTests.xcconfig"; path = "Pods/Pods-AppleGuiceTests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		9CF9B9A73BBE4365A4A4E92D /* libPods-AppleGuiceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleGuiceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AppleGuice.h"; sourceTree = "<group>"; };
 		F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AppleGuice.m"; sourceTree = "<group>"; };
 		F172DD1416F9141300BA754E /* AppleGuice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuice.h; sourceTree = "<group>"; };
@@ -76,8 +74,6 @@
 		F18E722216F9135C000BD3CB /* libAppleGuice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppleGuice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18E722516F9135C000BD3CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F18E722916F9135C000BD3CB /* AppleGuice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuice-Prefix.pch"; sourceTree = "<group>"; };
-		F18E723416F9135C000BD3CB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		F18E723616F9135C000BD3CB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +94,6 @@
 				F18E722716F9135C000BD3CB /* AppleGuice */,
 				F18E722416F9135C000BD3CB /* Frameworks */,
 				F18E722316F9135C000BD3CB /* Products */,
-				7F4BCECD128644CA83251BC5 /* Pods-AppleGuiceTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,9 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				F18E722516F9135C000BD3CB /* Foundation.framework */,
-				F18E723416F9135C000BD3CB /* SenTestingKit.framework */,
-				F18E723616F9135C000BD3CB /* UIKit.framework */,
-				9CF9B9A73BBE4365A4A4E92D /* libPods-AppleGuiceTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
