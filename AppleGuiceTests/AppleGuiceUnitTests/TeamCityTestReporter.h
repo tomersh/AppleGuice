@@ -8,6 +8,6 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface MyTestObserver : SenTestObserver
+@interface TeamCityTestReporter : SenTestObserver
 
 @end

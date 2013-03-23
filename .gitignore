@@ -20,3 +20,5 @@ DerivedData
 /Bootstrapper/bootStrapper
 /Pods/
 /Podfile.lock
+/AppleGuiceTests/Pods/
+/AppleGuiceTests/Podfile.lock
