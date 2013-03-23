@@ -1,6 +1,6 @@
 platform :ios
 
-	target :AppleGuiceTests do
+	target :AppleGuiceUnitTests do
 
 		pod 'OCMock','~> 2.0.1'
 		pod 'Expecta','~> 0.2.1'
