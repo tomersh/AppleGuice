@@ -62,6 +62,15 @@
     return classInstance;
 }
 
+-(void) injectImplementationsToInstance:(id<NSObject>) classInstance {
+    if (!classInstance) return;
+    Class clazz = [classInstance class];
+    while (clazz) {
+        [self _injectImplementationsToInstance:classInstance class:clazz];
+        clazz = class_getSuperclass(clazz);
+    }
+}
+
 -(id) _singletonForClass:(Class) clazz {
     if (![self.singletonRepository hasInstanceForClass:clazz]) {
         id classInstance = [self _newClassInstanceForClass:clazz];
@@ -73,17 +82,10 @@
 
 -(id) _newClassInstanceForClass:(Class) clazz {
     id classInstance = [[[clazz alloc] init] autorelease];
-    [self injectImplementationsToInstance:classInstance];
-    return classInstance;
-}
-
--(void) injectImplementationsToInstance:(id<NSObject>) classInstance {
-    if (!classInstance) return;
-    Class clazz = [classInstance class];
-    while (clazz) {
-        [self _injectImplementationsToInstance:classInstance class:clazz];
-        clazz = class_getSuperclass(clazz);
+    if (self.settingsProvider.methodInjectionPolicy == AppleGuiceMethodInjectionPolicyManual) {
+        [self injectImplementationsToInstance:classInstance];
     }
+    return classInstance;
 }
 
 -(void) _injectImplementationsToInstance:(id <NSObject>)classInstance class:(Class) clazz {
