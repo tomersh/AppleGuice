@@ -48,15 +48,17 @@
 
 -(id) instanceForClass:(Class) clazz {
     id<NSCopying> storageKey = [self _storageKeyForClass:clazz];
-    
     id instance = [self.singletons objectForKey:storageKey];
-    
-    if (!instance) {
-        instance = [[[clazz alloc] init] autorelease];
-        [self.singletons setObject:instance forKey:storageKey];
-    }
-    
     return instance;
+}
+
+-(void) setInstance:(id) instance forClass:(Class) clazz {
+    id<NSCopying> storageKey = [self _storageKeyForClass:clazz];
+    [self.singletons setObject:instance forKey:storageKey];
+}
+
+-(BOOL) hasInstanceForClass:(Class) clazz {
+    return [self instanceForClass:clazz] != nil;
 }
 
 -(id<NSCopying>) _storageKeyForClass:(Class) clazz {

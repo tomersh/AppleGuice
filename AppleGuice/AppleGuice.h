@@ -15,6 +15,7 @@
 #import "AppleGuiceSettingsProviderProtocol.h"
 #import "AppleGuiceMacros.h"
 #import "AppleGuiceInjectable.h"
+#import "AppleGuiceSingleton.h"
 #import "NSObject+AppleGuice.h"
 
 typedef enum AppleGuiceImplementationDiscoveryPolicy {

@@ -18,6 +18,7 @@
 #import "AppleGuiceSettingsProviderProtocol.h"
 #import <objc/runtime.h>
 #import "AppleGuiceInvocationProxy.h"
+#import "AppleGuiceSingleton.h"
 
 @implementation AppleGuiceInjector {
     id<AppleGuiceProtocolLocatorProtocol> _ioc_protocolLocator;
@@ -52,16 +53,27 @@
 
 -(id<NSObject>) instanceForClass:(Class) clazz {
     id classInstance;
-    
-    if ([self _shouldInjectSingletons]) {
-        classInstance = [self.singletonRepository instanceForClass:clazz];
+    if ([self _shouldInjectSingletonForClass:clazz]) {
+        classInstance = [self _singletonForClass:clazz];
     }
     else {
-        classInstance = [[[clazz alloc] init] autorelease];
+        classInstance = [self _newClassInstanceForClass:clazz];
     }
+    return classInstance;
+}
 
+-(id) _singletonForClass:(Class) clazz {
+    if (![self.singletonRepository hasInstanceForClass:clazz]) {
+        id classInstance = [self _newClassInstanceForClass:clazz];
+        [self.singletonRepository setInstance:classInstance forClass:clazz];
+        return classInstance;
+    }
+    return [self.singletonRepository instanceForClass:clazz];
+}
+
+-(id) _newClassInstanceForClass:(Class) clazz {
+    id classInstance = [[[clazz alloc] init] autorelease];
     [self injectImplementationsToInstance:classInstance];
-    
     return classInstance;
 }
 
@@ -110,8 +122,8 @@
     [instance setValue:ivarValue forKey:ivarName];
 }
 
--(BOOL) _shouldInjectSingletons {
-    return (self.settingsProvider.instanceCreateionPolicy & AppleGuiceInstanceCreationPolicySingletons);
+-(BOOL) _shouldInjectSingletonForClass:(Class) clazz {
+    return (self.settingsProvider.instanceCreateionPolicy & AppleGuiceInstanceCreationPolicySingletons) || [[self.protocolLocator getAllClassesByProtocolType:@protocol(AppleGuiceSingleton)] containsObject:clazz];
 }
 
 -(BOOL) _shouldLazyLoadObjects {

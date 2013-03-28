@@ -36,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingleton.h; sourceTree = "<group>"; };
 		F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AppleGuice.h"; sourceTree = "<group>"; };
 		F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AppleGuice.m"; sourceTree = "<group>"; };
 		F172DD1416F9141300BA754E /* AppleGuice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuice.h; sourceTree = "<group>"; };
@@ -118,6 +119,8 @@
 			children = (
 				F172DD1416F9141300BA754E /* AppleGuice.h */,
 				F172DD1516F9141300BA754E /* AppleGuice.m */,
+				F172DD1C16F9141300BA754E /* AppleGuiceInjectable.h */,
+				F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */,
 				F172DD5416F9159200BA754E /* AppleGuiceBindingBootstrapper.h */,
 				F172DD6A16F920CA00BA754E /* AppleGuiceBindingBootstrapper.m */,
 				F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */,
@@ -127,7 +130,6 @@
 				F172DD1916F9141300BA754E /* AppleGuiceBindingService.h */,
 				F172DD1A16F9141300BA754E /* AppleGuiceBindingService.m */,
 				F172DD1B16F9141300BA754E /* AppleGuiceBindingServiceProtocol.h */,
-				F172DD1C16F9141300BA754E /* AppleGuiceInjectable.h */,
 				F172DD1D16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.h */,
 				F172DD1E16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.m */,
 				F172DD1F16F9141300BA754E /* AppleGuiceInjector.h */,

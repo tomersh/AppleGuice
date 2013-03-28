@@ -12,10 +12,11 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@protocol AppleGuiceSingletonRepositoryProtocol <NSObject>
 
--(id) instanceForClass:(Class) clazz;
--(void) setInstance:(id) instance forClass:(Class) clazz;
--(BOOL) hasInstanceForClass:(Class) clazz;
+/*
+ All classes marked with AppleGuiceSingleton protocol will return the same class instance when injected with AppleGuice
+*/
+@protocol AppleGuiceSingleton <NSObject>
+
 
 @end
