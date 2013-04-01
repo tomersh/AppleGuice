@@ -167,7 +167,7 @@
 
 - (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__InvalidClassAndnilProtocol__NobindIsMade
 {
-    [serviceUnderTest setImplementationFromString:@"abcdefgh#" withProtocolAsString:nil withBindingType:appleGuiceBindingTypeUserBinding];
+    [serviceUnderTest setImplementationFromString:INVALID_CLASS_NAME withProtocolAsString:nil withBindingType:appleGuiceBindingTypeUserBinding];
     
     EXP_expect([[self _getCachedObjects] count]).to.equal(0);
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
@@ -183,7 +183,7 @@
 
 - (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__nilClassAndInvalidProtocol__NobindIsMade
 {
-    [serviceUnderTest setImplementationFromString:nil withProtocolAsString:@"abcdefgh#" withBindingType:appleGuiceBindingTypeUserBinding];
+    [serviceUnderTest setImplementationFromString:nil withProtocolAsString:INVALID_PROTOCOL_NAME withBindingType:appleGuiceBindingTypeUserBinding];
     
     EXP_expect([[self _getCachedObjects] count]).to.equal(0);
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
@@ -201,8 +201,8 @@
 
 - (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__invalidClassAndInvalidProtocol__NobindIsMade
 {
-    NSString* testProtocol = @"abcdefgh#";
-    [serviceUnderTest setImplementationFromString:@"abcdefgh#" withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
+    NSString* testProtocol = INVALID_PROTOCOL_NAME;
+    [serviceUnderTest setImplementationFromString:INVALID_CLASS_NAME withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
 
     EXP_expect([[self _getCachedObjects] count]).to.equal(0);
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
@@ -287,7 +287,7 @@
 - (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__validAndInvalidClassesAndValidProtocol__bindIsMadeOnlyToValidClasses
 {
     NSString* testProtocol = @"NSObject";
-    [serviceUnderTest setImplementationsFromStrings:@[@"NSArray", @"abcdefgh#"] withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
+    [serviceUnderTest setImplementationsFromStrings:@[@"NSArray", INVALID_CLASS_NAME] withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
     
     NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:@protocol(NSObject)];
     EXP_expect(returnedProtocols).notTo.beNil();
