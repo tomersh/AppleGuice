@@ -30,9 +30,11 @@
 
 
 -(NSArray*) allInstancesForProtocol:(Protocol*) protocol {
+    if (!protocol) return nil;
+    
     NSArray* classesForProtocol = [self.protocolLocator getAllClassesByProtocolType:protocol];
     if (!classesForProtocol || [classesForProtocol count] == 0) return nil;
-    NSMutableArray* instances = [[NSMutableArray alloc] initWithCapacity:[classesForProtocol count]];
+    NSMutableArray* instances = [[[NSMutableArray alloc] initWithCapacity:[classesForProtocol count]] autorelease];
     
     for (Class clazz in classesForProtocol) {
         id instance = [self instanceForClass:clazz];
@@ -41,10 +43,13 @@
         
         [instances addObject:instance];
     }
-    return [instances autorelease];
+    
+    return [NSArray arrayWithArray:instances];
 }
 
 -(id<NSObject>) instanceForProtocol:(Protocol*) protocol {
+    if (!protocol) return nil;
+    
     NSArray* classesForProtocol = [self.protocolLocator getAllClassesByProtocolType:protocol];
     if (!classesForProtocol || [classesForProtocol count] == 0) return nil;
     Class clazz = [classesForProtocol objectAtIndex:0];
@@ -52,12 +57,14 @@
 }
 
 -(id<NSObject>) instanceForClass:(Class) clazz {
+    if (!clazz) return nil;
+    
     id classInstance;
     if ([self _shouldInjectSingletonForClass:clazz]) {
         classInstance = [self _singletonForClass:clazz];
     }
     else {
-        classInstance = [self _newClassInstanceForClass:clazz];
+        classInstance = [self _newInstanceForClass:clazz];
     }
     return classInstance;
 }
@@ -73,14 +80,14 @@
 
 -(id) _singletonForClass:(Class) clazz {
     if (![self.singletonRepository hasInstanceForClass:clazz]) {
-        id classInstance = [self _newClassInstanceForClass:clazz];
+        id classInstance = [self _newInstanceForClass:clazz];
         [self.singletonRepository setInstance:classInstance forClass:clazz];
         return classInstance;
     }
     return [self.singletonRepository instanceForClass:clazz];
 }
 
--(id) _newClassInstanceForClass:(Class) clazz {
+-(id) _newInstanceForClass:(Class) clazz {
     id classInstance = [[[clazz alloc] init] autorelease];
     if (self.settingsProvider.methodInjectionPolicy == AppleGuiceMethodInjectionPolicyManual) {
         [self injectImplementationsToInstance:classInstance];
@@ -109,19 +116,17 @@
         return [self _getValueForIvar:ivar withName:ivarName];
     };
     
-    id ivarValue;
-    
     if ([self _shouldLazyLoadObjects]) {
-        ivarValue = [[AppleGuiceInvocationProxy alloc] autorelease];
+        id ivarValue = [[AppleGuiceInvocationProxy alloc] autorelease];
         ((AppleGuiceInvocationProxy*)ivarValue).createInstanceBlock = createInstanceBlock;
-    }
-    else {
-        ivarValue = createInstanceBlock();
+        [instance setValue:ivarValue forKey:ivarName];
+        return;
     }
     
-    NSAssert(ivarValue != nil, @"Unable to inject implementation to ivar %@ in class %@.", ivarName, NSStringFromClass([instance class]));
-    
-    [instance setValue:ivarValue forKey:ivarName];
+    id ivarValue = createInstanceBlock();
+    if ([ivarValue isKindOfClass:[NSObject class]]) {
+        [instance setValue:ivarValue forKey:ivarName];
+    }
 }
 
 -(BOOL) _shouldInjectSingletonForClass:(Class) clazz {
@@ -155,6 +160,8 @@
     else {
         ivarValue = [self instanceForClass:NSClassFromString(className)];
     }
+    
+    NSAssert(ivarValue != nil, @"Unable to inject implementation to ivar %@ with name %@.", ivarName, ivarName);
     
     return ivarValue;
 }
