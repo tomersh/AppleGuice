@@ -76,8 +76,8 @@
 		F1B7FBE116FD1F550079A485 /* TeamCityTestReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamCityTestReporter.m; path = AppleGuiceUnitTests/TeamCityTestReporter.m; sourceTree = SOURCE_ROOT; };
 		F1B7FBE216FD1F550079A485 /* TestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBase.h; path = AppleGuiceUnitTests/TestBase.h; sourceTree = SOURCE_ROOT; };
 		F1B7FBE316FD1F550079A485 /* TestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestBase.m; path = AppleGuiceUnitTests/TestBase.m; sourceTree = SOURCE_ROOT; };
-		F1DD37FA170A1F20002D464A /* AppleGuiceInjectorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceInjectorTests.h; path = AppleGuiceUnitTests/AppleGuiceInjectorTests.h; sourceTree = SOURCE_ROOT; };
-		F1DD37FB170A1F20002D464A /* AppleGuiceInjectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceInjectorTests.m; path = AppleGuiceUnitTests/AppleGuiceInjectorTests.m; sourceTree = SOURCE_ROOT; };
+		F1DD37F71704A037002D464A /* AppleGuiceInjectorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInjectorTests.h; sourceTree = SOURCE_ROOT; };
+		F1DD37F81704A037002D464A /* AppleGuiceInjectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInjectorTests.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +175,8 @@
 				F1B7FBE216FD1F550079A485 /* TestBase.h */,
 				F1B7FBE316FD1F550079A485 /* TestBase.m */,
 				F1A3288116FD1CCA00E007C1 /* Supporting Files */,
+				F1DD37F71704A037002D464A /* AppleGuiceInjectorTests.h */,
+				F1DD37F81704A037002D464A /* AppleGuiceInjectorTests.m */,
 			);
 			name = AppleGuiceUnitTests;
 			path = AppleGuiceTestsTests;
