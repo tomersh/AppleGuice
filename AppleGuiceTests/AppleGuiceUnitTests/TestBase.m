@@ -13,7 +13,8 @@
 - (void)setUp
 {
     [super setUp];
-    
+    yes = YES;
+    no = NO;
     // Set-up code here.
 }
 

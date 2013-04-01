@@ -23,6 +23,7 @@
 		F1B7FBE816FD1FA00079A485 /* TeamCityTestReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B7FBE116FD1F550079A485 /* TeamCityTestReporter.m */; };
 		F1B7FBE916FD1FA00079A485 /* TestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B7FBE316FD1F550079A485 /* TestBase.m */; };
 		F1B7FBF016FD28710079A485 /* libAppleGuice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A3289716FD1D0A00E007C1 /* libAppleGuice.a */; };
+		F1DD37F91704A037002D464A /* AppleGuiceInjectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DD37F81704A037002D464A /* AppleGuiceInjectorTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		F1B7FBE116FD1F550079A485 /* TeamCityTestReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamCityTestReporter.m; path = AppleGuiceUnitTests/TeamCityTestReporter.m; sourceTree = SOURCE_ROOT; };
 		F1B7FBE216FD1F550079A485 /* TestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBase.h; path = AppleGuiceUnitTests/TestBase.h; sourceTree = SOURCE_ROOT; };
 		F1B7FBE316FD1F550079A485 /* TestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestBase.m; path = AppleGuiceUnitTests/TestBase.m; sourceTree = SOURCE_ROOT; };
+		F1DD37F71704A037002D464A /* AppleGuiceInjectorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInjectorTests.h; sourceTree = SOURCE_ROOT; };
+		F1DD37F81704A037002D464A /* AppleGuiceInjectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInjectorTests.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 				F1B7FBE216FD1F550079A485 /* TestBase.h */,
 				F1B7FBE316FD1F550079A485 /* TestBase.m */,
 				F1A3288116FD1CCA00E007C1 /* Supporting Files */,
+				F1DD37F71704A037002D464A /* AppleGuiceInjectorTests.h */,
+				F1DD37F81704A037002D464A /* AppleGuiceInjectorTests.m */,
 			);
 			name = AppleGuiceUnitTests;
 			path = AppleGuiceTestsTests;
@@ -342,6 +347,7 @@
 				F1B7FBE716FD1FA00079A485 /* AppleGuiceBindingServiceTests.m in Sources */,
 				F1B7FBE816FD1FA00079A485 /* TeamCityTestReporter.m in Sources */,
 				F1B7FBE916FD1FA00079A485 /* TestBase.m in Sources */,
+				F1DD37F91704A037002D464A /* AppleGuiceInjectorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

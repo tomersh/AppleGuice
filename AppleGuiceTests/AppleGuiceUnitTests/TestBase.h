@@ -10,7 +10,15 @@
 #import "OCMock.h"
 #import "Expecta.h"
 
-@interface TestBase : SenTestCase
+#define INVALID_CLASS_NAME @"abcdefg#"
+#define INVALID_PROTOCOL_NAME @"abcdefg#"
+
+
+@interface TestBase : SenTestCase {
+    @package
+    BOOL yes;
+    BOOL no;
+}
 
 
 
