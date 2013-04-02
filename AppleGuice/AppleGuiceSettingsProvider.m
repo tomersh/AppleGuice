@@ -34,7 +34,7 @@
 -(void) _setDefaultValues {
     self.iocPrefix = @"ioc_";
     self.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
-    self.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyManual;
+    self.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyAutomatic;
 }
 
 -(void)dealloc {
