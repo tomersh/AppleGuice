@@ -13,61 +13,18 @@
 //limitations under the License.
 
 #import "AppleGuiceInjector.h"
-#import "AppleGuiceProtocolLocatorProtocol.h"
-#import "AppleGuiceSingletonRepository.h"
 #import "AppleGuiceSettingsProviderProtocol.h"
 #import <objc/runtime.h>
 #import "AppleGuiceInvocationProxy.h"
-#import "AppleGuiceSingleton.h"
+#import "AppleGuiceInstanceCreatorProtocol.h"
 
 @implementation AppleGuiceInjector {
-    id<AppleGuiceProtocolLocatorProtocol> _ioc_protocolLocator;
-    id<AppleGuiceSingletonRepositoryProtocol> _ioc_singletonRepository;
     id<AppleGuiceSettingsProviderProtocol> _ioc_settingsProvider;
+    id<AppleGuiceInstanceCreatorProtocol> _ioc_instanceCreator;
 }
 
-@synthesize protocolLocator = _ioc_protocolLocator, settingsProvider = _ioc_settingsProvider, singletonRepository = _ioc_singletonRepository;
+@synthesize settingsProvider = _ioc_settingsProvider, instanceCreator = _ioc_instanceCreator;
 
-
--(NSArray*) allInstancesForProtocol:(Protocol*) protocol {
-    if (!protocol) return nil;
-    
-    NSArray* classesForProtocol = [self.protocolLocator getAllClassesByProtocolType:protocol];
-    if (!classesForProtocol || [classesForProtocol count] == 0) return nil;
-    NSMutableArray* instances = [[[NSMutableArray alloc] initWithCapacity:[classesForProtocol count]] autorelease];
-    
-    for (Class clazz in classesForProtocol) {
-        id instance = [self instanceForClass:clazz];
-        
-        if (!instance) continue;
-        
-        [instances addObject:instance];
-    }
-    
-    return [NSArray arrayWithArray:instances];
-}
-
--(id<NSObject>) instanceForProtocol:(Protocol*) protocol {
-    if (!protocol) return nil;
-    
-    NSArray* classesForProtocol = [self.protocolLocator getAllClassesByProtocolType:protocol];
-    if (!classesForProtocol || [classesForProtocol count] == 0) return nil;
-    Class clazz = [classesForProtocol objectAtIndex:0];
-    return [self instanceForClass:clazz];
-}
-
--(id<NSObject>) instanceForClass:(Class) clazz {
-    if (!clazz) return nil;
-    
-    id classInstance;
-    if ([self _shouldInjectSingletonForClass:clazz]) {
-        classInstance = [self _singletonForClass:clazz];
-    }
-    else {
-        classInstance = [self _newInstanceForClass:clazz];
-    }
-    return classInstance;
-}
 
 -(void) injectImplementationsToInstance:(id<NSObject>) classInstance {
     if (!classInstance) return;
@@ -76,23 +33,6 @@
         [self _injectImplementationsToInstance:classInstance class:clazz];
         clazz = class_getSuperclass(clazz);
     }
-}
-
--(id) _singletonForClass:(Class) clazz {
-    if (![self.singletonRepository hasInstanceForClass:clazz]) {
-        id classInstance = [self _newInstanceForClass:clazz];
-        [self.singletonRepository setInstance:classInstance forClass:clazz];
-        return classInstance;
-    }
-    return [self.singletonRepository instanceForClass:clazz];
-}
-
--(id) _newInstanceForClass:(Class) clazz {
-    id classInstance = [[[clazz alloc] init] autorelease];
-    if (self.settingsProvider.methodInjectionPolicy == AppleGuiceMethodInjectionPolicyManual) {
-        [self injectImplementationsToInstance:classInstance];
-    }
-    return classInstance;
 }
 
 -(void) _injectImplementationsToInstance:(id <NSObject>)classInstance class:(Class) clazz {
@@ -129,10 +69,6 @@
     }
 }
 
--(BOOL) _shouldInjectSingletonForClass:(Class) clazz {
-    return (self.settingsProvider.instanceCreateionPolicy & AppleGuiceInstanceCreationPolicySingletons) || [[self.protocolLocator getAllClassesByProtocolType:@protocol(AppleGuiceSingleton)] containsObject:clazz];
-}
-
 -(BOOL) _shouldLazyLoadObjects {
     return (self.settingsProvider.instanceCreateionPolicy & AppleGuiceInstanceCreationPolicyLazyLoad);
 }
@@ -151,14 +87,14 @@
     
     if ([self _isProtocol:className]) {
         NSString* protocolName = [self _protocolNameFromType:className];
-        ivarValue = [self instanceForProtocol:NSProtocolFromString(protocolName)];
+        ivarValue = [self.instanceCreator instanceForProtocol:NSProtocolFromString(protocolName)];
     }
     else if ([self _isArray:ivarTypeEncoding]) {
         NSString* protocolNameFromIvarName = [ivarName substringFromIndex:[self.settingsProvider.iocPrefix length]];
-        ivarValue = [self allInstancesForProtocol:NSProtocolFromString(protocolNameFromIvarName)];
+        ivarValue = [self.instanceCreator allInstancesForProtocol:NSProtocolFromString(protocolNameFromIvarName)];
     }
     else {
-        ivarValue = [self instanceForClass:NSClassFromString(className)];
+        ivarValue = [self.instanceCreator instanceForClass:NSClassFromString(className)];
     }
     
     NSAssert(ivarValue != nil, @"Unable to inject implementation to ivar %@ with name %@.", ivarName, ivarName);
@@ -205,9 +141,8 @@
 }
 
 - (void) dealloc {
-    [_ioc_singletonRepository release];
-    [_ioc_protocolLocator release];
     [_ioc_settingsProvider release];
+    [_ioc_instanceCreator release];
     [super dealloc];
 }
 

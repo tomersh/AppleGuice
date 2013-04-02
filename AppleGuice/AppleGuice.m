@@ -21,6 +21,8 @@
 #import "AppleGuiceSettingsProvider.h"
 #import "AppleGuiceSingletonRepository.h"
 #import "AppleGuiceBindingBootstrapper.h"
+#import "AppleGuiceInstanceCreator.h"
+#import "AppleGuiceInstanceCreator.h"
 
 @implementation AppleGuice
 
@@ -30,6 +32,7 @@ static id<AppleGuiceProtocolLocatorProtocol> protocolLocator;
 static id<AppleGuiceSingletonRepositoryProtocol> singletonRepository;
 static id<AppleGuiceSettingsProviderProtocol> settingsProvider;
 static id<AppleGuiceAutoInjectorProtocol> autoInjector;
+static id<AppleGuiceInstanceCreatorProtocol> instanceCreator;
 static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
 +(void)initialize {
@@ -40,14 +43,22 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     injector = [[AppleGuiceInjector alloc] init];
     singletonRepository = [[AppleGuiceSingletonRepository alloc] init];
     autoInjector = [[AppleGuiceAutoInjector alloc] init];
+    instanceCreator = [[AppleGuiceInstanceCreator alloc] init];
     bootstrapper = [[AppleGuiceBindingBootstrapper alloc] init];
-    
+
     protocolLocator.bindingService = bindingService;
-    injector.protocolLocator = protocolLocator;
+
+    instanceCreator.protocolLocator = protocolLocator;
+    instanceCreator.settingsProvider = settingsProvider;
+    instanceCreator.injector = injector;
+    instanceCreator.singletonRepository = singletonRepository;
+
     injector.settingsProvider = settingsProvider;
-    injector.singletonRepository = singletonRepository;
+    injector.instanceCreator = instanceCreator;
+
     autoInjector.injector = injector;
     autoInjector.settingsProvider = settingsProvider;
+
     bootstrapper.bindingService = bindingService;
 
     [protocolLocator setFilterProtocol:@protocol(AppleGuiceInjectable)];
@@ -77,14 +88,14 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 #pragma mark - Injection
 
 +(id<NSObject>) instanceForClass:(Class) clazz {
-    return [injector instanceForClass:clazz];
+    return [instanceCreator instanceForClass:clazz];
 }
 
 +(id<NSObject>) instanceForProtocol:(Protocol*) protocol {
-    return [injector instanceForProtocol:protocol];
+    return [instanceCreator instanceForProtocol:protocol];
 }
 +(NSArray*) allInstancesForProtocol:(Protocol*) protocol {
-    return [injector allInstancesForProtocol:protocol];
+    return [instanceCreator allInstancesForProtocol:protocol];
 }
 
 +(void) injectImplementationsToInstance:(id<NSObject>) classInstance {

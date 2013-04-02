@@ -1,5 +1,5 @@
 //
-//  AppleGuiceInjectorTests.h
+//  AppleGuiceInstanceCreatorTests.h
 //  AppleGuiceTests
 //
 //  Created by Tomer Shiri on 4/2/13.
@@ -8,6 +8,6 @@
 
 #import "TestBase.h"
 
-@interface AppleGuiceInjectorTests : TestBase
+@interface AppleGuiceInstanceCreatorTests : TestBase
 
 @end

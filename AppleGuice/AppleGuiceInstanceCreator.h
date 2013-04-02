@@ -12,16 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@protocol AppleGuiceProtocolLocatorProtocol;
-@protocol AppleGuiceSettingsProviderProtocol;
-@protocol AppleGuiceSingletonRepositoryProtocol;
-@protocol AppleGuiceInstanceCreatorProtocol;
+#import "AppleGuiceInstanceCreatorProtocol.h"
 
-@protocol AppleGuiceInjectorProtocol <NSObject>
-
-@property (nonatomic, retain) id<AppleGuiceInstanceCreatorProtocol> instanceCreator;
-@property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
-
--(void) injectImplementationsToInstance:(id<NSObject>) classInstance;
-
+@interface AppleGuiceInstanceCreator : NSObject<AppleGuiceInstanceCreatorProtocol>
 @end

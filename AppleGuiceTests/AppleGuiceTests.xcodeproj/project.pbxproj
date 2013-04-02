@@ -23,7 +23,9 @@
 		F1B7FBE816FD1FA00079A485 /* TeamCityTestReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B7FBE116FD1F550079A485 /* TeamCityTestReporter.m */; };
 		F1B7FBE916FD1FA00079A485 /* TestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B7FBE316FD1F550079A485 /* TestBase.m */; };
 		F1B7FBF016FD28710079A485 /* libAppleGuice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A3289716FD1D0A00E007C1 /* libAppleGuice.a */; };
-		F1DD37FC170A1F20002D464A /* AppleGuiceInjectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DD37FB170A1F20002D464A /* AppleGuiceInjectorTests.m */; };
+		F1DD380D170A27A8002D464A /* AppleGuiceProtocolLocatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DD380C170A27A8002D464A /* AppleGuiceProtocolLocatorTests.m */; };
+		F1DD3814170B6773002D464A /* AppleGuiceInstanceCreatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3813170B6773002D464A /* AppleGuiceInstanceCreatorTests.m */; };
+		F1DD3817170B717D002D464A /* AppleGuiceInjectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3816170B717D002D464A /* AppleGuiceInjectorTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +70,6 @@
 		F1A3287216FD1CCA00E007C1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F1A3287916FD1CCA00E007C1 /* AppleGuiceUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleGuiceUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A3287A16FD1CCA00E007C1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		F1A3288216FD1CCA00E007C1 /* AppleGuiceTestsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppleGuiceTestsTests-Info.plist"; sourceTree = "<group>"; };
 		F1A3289116FD1D0A00E007C1 /* AppleGuice.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppleGuice.xcodeproj; path = ../AppleGuice.xcodeproj; sourceTree = "<group>"; };
 		F1B7FBDE16FD1F550079A485 /* AppleGuiceBindingServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceBindingServiceTests.h; path = AppleGuiceUnitTests/AppleGuiceBindingServiceTests.h; sourceTree = SOURCE_ROOT; };
 		F1B7FBDF16FD1F550079A485 /* AppleGuiceBindingServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceBindingServiceTests.m; path = AppleGuiceUnitTests/AppleGuiceBindingServiceTests.m; sourceTree = SOURCE_ROOT; };
@@ -76,8 +77,12 @@
 		F1B7FBE116FD1F550079A485 /* TeamCityTestReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamCityTestReporter.m; path = AppleGuiceUnitTests/TeamCityTestReporter.m; sourceTree = SOURCE_ROOT; };
 		F1B7FBE216FD1F550079A485 /* TestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestBase.h; path = AppleGuiceUnitTests/TestBase.h; sourceTree = SOURCE_ROOT; };
 		F1B7FBE316FD1F550079A485 /* TestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestBase.m; path = AppleGuiceUnitTests/TestBase.m; sourceTree = SOURCE_ROOT; };
-		F1DD37F71704A037002D464A /* AppleGuiceInjectorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInjectorTests.h; sourceTree = SOURCE_ROOT; };
-		F1DD37F81704A037002D464A /* AppleGuiceInjectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInjectorTests.m; sourceTree = SOURCE_ROOT; };
+		F1DD380B170A27A8002D464A /* AppleGuiceProtocolLocatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceProtocolLocatorTests.h; path = AppleGuiceUnitTests/AppleGuiceProtocolLocatorTests.h; sourceTree = SOURCE_ROOT; };
+		F1DD380C170A27A8002D464A /* AppleGuiceProtocolLocatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceProtocolLocatorTests.m; path = AppleGuiceUnitTests/AppleGuiceProtocolLocatorTests.m; sourceTree = SOURCE_ROOT; };
+		F1DD3812170B6773002D464A /* AppleGuiceInstanceCreatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceInstanceCreatorTests.h; path = AppleGuiceUnitTests/AppleGuiceInstanceCreatorTests.h; sourceTree = SOURCE_ROOT; };
+		F1DD3813170B6773002D464A /* AppleGuiceInstanceCreatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceInstanceCreatorTests.m; path = AppleGuiceUnitTests/AppleGuiceInstanceCreatorTests.m; sourceTree = SOURCE_ROOT; };
+		F1DD3815170B717D002D464A /* AppleGuiceInjectorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceInjectorTests.h; path = AppleGuiceUnitTests/AppleGuiceInjectorTests.h; sourceTree = SOURCE_ROOT; };
+		F1DD3816170B717D002D464A /* AppleGuiceInjectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceInjectorTests.m; path = AppleGuiceUnitTests/AppleGuiceInjectorTests.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,8 +171,8 @@
 		F1A3288016FD1CCA00E007C1 /* AppleGuiceUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				F1DD37FA170A1F20002D464A /* AppleGuiceInjectorTests.h */,
-				F1DD37FB170A1F20002D464A /* AppleGuiceInjectorTests.m */,
+				F1DD380B170A27A8002D464A /* AppleGuiceProtocolLocatorTests.h */,
+				F1DD380C170A27A8002D464A /* AppleGuiceProtocolLocatorTests.m */,
 				F1B7FBDE16FD1F550079A485 /* AppleGuiceBindingServiceTests.h */,
 				F1B7FBDF16FD1F550079A485 /* AppleGuiceBindingServiceTests.m */,
 				F1B7FBE016FD1F550079A485 /* TeamCityTestReporter.h */,
@@ -175,8 +180,10 @@
 				F1B7FBE216FD1F550079A485 /* TestBase.h */,
 				F1B7FBE316FD1F550079A485 /* TestBase.m */,
 				F1A3288116FD1CCA00E007C1 /* Supporting Files */,
-				F1DD37F71704A037002D464A /* AppleGuiceInjectorTests.h */,
-				F1DD37F81704A037002D464A /* AppleGuiceInjectorTests.m */,
+				F1DD3812170B6773002D464A /* AppleGuiceInstanceCreatorTests.h */,
+				F1DD3813170B6773002D464A /* AppleGuiceInstanceCreatorTests.m */,
+				F1DD3815170B717D002D464A /* AppleGuiceInjectorTests.h */,
+				F1DD3816170B717D002D464A /* AppleGuiceInjectorTests.m */,
 			);
 			name = AppleGuiceUnitTests;
 			path = AppleGuiceTestsTests;
@@ -185,7 +192,6 @@
 		F1A3288116FD1CCA00E007C1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F1A3288216FD1CCA00E007C1 /* AppleGuiceTestsTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -349,7 +355,9 @@
 				F1B7FBE716FD1FA00079A485 /* AppleGuiceBindingServiceTests.m in Sources */,
 				F1B7FBE816FD1FA00079A485 /* TeamCityTestReporter.m in Sources */,
 				F1B7FBE916FD1FA00079A485 /* TestBase.m in Sources */,
-				F1DD37FC170A1F20002D464A /* AppleGuiceInjectorTests.m in Sources */,
+				F1DD380D170A27A8002D464A /* AppleGuiceProtocolLocatorTests.m in Sources */,
+				F1DD3814170B6773002D464A /* AppleGuiceInstanceCreatorTests.m in Sources */,
+				F1DD3817170B717D002D464A /* AppleGuiceInjectorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

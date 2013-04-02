@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		696C177FE2F5176C78F1F535 /* AppleGuiceInstanceCreator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */; };
+		696C18D4C34FD833E551D9FC /* AppleGuiceInstanceCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */; };
+		696C1FAD993CECD47292E592 /* AppleGuiceInstanceCreatorProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */; };
 		F162136516F9D95C00563E38 /* NSObject+AppleGuice.m in Sources */ = {isa = PBXBuildFile; fileRef = F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */; };
 		F172DD3516F9141300BA754E /* AppleGuice.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD1516F9141300BA754E /* AppleGuice.m */; };
 		F172DD3716F9141300BA754E /* AppleGuiceAutoInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD1716F9141300BA754E /* AppleGuiceAutoInjector.m */; };
@@ -30,12 +33,17 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				696C177FE2F5176C78F1F535 /* AppleGuiceInstanceCreator.h in CopyFiles */,
+				696C1FAD993CECD47292E592 /* AppleGuiceInstanceCreatorProtocol.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInstanceCreator.m; sourceTree = "<group>"; };
+		696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInstanceCreatorProtocol.h; sourceTree = "<group>"; };
+		696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInstanceCreator.h; sourceTree = "<group>"; };
 		F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingleton.h; sourceTree = "<group>"; };
 		F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AppleGuice.h"; sourceTree = "<group>"; };
 		F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AppleGuice.m"; sourceTree = "<group>"; };
@@ -135,6 +143,9 @@
 				F172DD1F16F9141300BA754E /* AppleGuiceInjector.h */,
 				F172DD2016F9141300BA754E /* AppleGuiceInjector.m */,
 				F172DD2116F9141300BA754E /* AppleGuiceInjectorProtocol.h */,
+				696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */,
+				696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */,
+				696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */,
 				F172DD2216F9141300BA754E /* AppleGuiceInvocationProxy.h */,
 				F172DD2316F9141300BA754E /* AppleGuiceInvocationProxy.m */,
 				F172DD2416F9141300BA754E /* AppleGuiceMacros.h */,
@@ -248,6 +259,7 @@
 				F172DD4C16F9141300BA754E /* TheWrapper.m in Sources */,
 				F172DD6B16F920CB00BA754E /* AppleGuiceBindingBootstrapper.m in Sources */,
 				F162136516F9D95C00563E38 /* NSObject+AppleGuice.m in Sources */,
+				696C18D4C34FD833E551D9FC /* AppleGuiceInstanceCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

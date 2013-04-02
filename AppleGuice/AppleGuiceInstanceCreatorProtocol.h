@@ -15,13 +15,19 @@
 @protocol AppleGuiceProtocolLocatorProtocol;
 @protocol AppleGuiceSettingsProviderProtocol;
 @protocol AppleGuiceSingletonRepositoryProtocol;
-@protocol AppleGuiceInstanceCreatorProtocol;
+@protocol AppleGuiceInjectorProtocol;
 
-@protocol AppleGuiceInjectorProtocol <NSObject>
+@protocol AppleGuiceInstanceCreatorProtocol <NSObject>
 
-@property (nonatomic, retain) id<AppleGuiceInstanceCreatorProtocol> instanceCreator;
+@property (nonatomic, retain) id<AppleGuiceProtocolLocatorProtocol> protocolLocator;
+@property (nonatomic, retain) id<AppleGuiceSingletonRepositoryProtocol> singletonRepository;
 @property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
+@property (nonatomic, retain) id<AppleGuiceInjectorProtocol> injector;
 
--(void) injectImplementationsToInstance:(id<NSObject>) classInstance;
+-(id<NSObject>) instanceForClass:(Class) clazz;
+
+-(id<NSObject>) instanceForProtocol:(Protocol*) protocol;
+
+-(NSArray*) allInstancesForProtocol:(Protocol*) protocol;
 
 @end
