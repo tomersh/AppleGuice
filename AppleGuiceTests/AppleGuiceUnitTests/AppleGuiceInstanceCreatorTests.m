@@ -110,31 +110,31 @@
 }
 
 -(void) test__instanceForClass__validClassSeenForTheFirstTimeWithSingletonInstanceCreationPolicyAndAutomaticInjectionPolicy__NewInstanceIsReturned {
+    Class mockedClass = [TestClass class];
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicySingletons;
     settingsProvider.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyAutomatic;
-    [[[singletonRepository expect] andReturnValue:OCMOCK_VALUE(no)] hasInstanceForClass:OCMOCK_ANY];
-    [[singletonRepository expect] setInstance:OCMOCK_ANY forClass:OCMOCK_ANY];
-    [[singletonRepository reject]  instanceForClass:OCMOCK_ANY];
+    [[singletonRepository expect] setInstance:OCMOCK_ANY forClass:mockedClass];
+    [[[singletonRepository expect] andReturn:nil] instanceForClass:mockedClass];
     
-    id classInstance = [serviceUnderTest instanceForClass:[TestClass class]];
+    id classInstance = [serviceUnderTest instanceForClass:mockedClass];
     
     [singletonRepository verify];
-    EXP_expect(classInstance).to.beInstanceOf([TestClass class]);
+    EXP_expect(classInstance).to.beInstanceOf(mockedClass);
 }
 
 -(void) test__instanceForClass__validClassSeenForTheFirstTimeWithSingletonInstanceCreationPolicyAndManualInjectionPolicy__NewInstanceIsReturned {
+    Class mockedClass = [TestClass class];
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicySingletons;
     settingsProvider.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyManual;
-    [[[singletonRepository expect] andReturnValue:OCMOCK_VALUE(no)] hasInstanceForClass:OCMOCK_ANY];
-    [[singletonRepository expect] setInstance:OCMOCK_ANY forClass:[TestClass class]];
-    [[singletonRepository reject]  instanceForClass:OCMOCK_ANY];
+    [[singletonRepository expect] setInstance:OCMOCK_ANY forClass:mockedClass];
+    [[[singletonRepository expect] andReturn:nil] instanceForClass:mockedClass];
     [[injector expect] injectImplementationsToInstance:OCMOCK_ANY];
     
-    id classInstance = [serviceUnderTest instanceForClass:[TestClass class]];
+    id classInstance = [serviceUnderTest instanceForClass:mockedClass];
     
     [injector verify];
     [singletonRepository verify];
-    EXP_expect(classInstance).to.beInstanceOf([TestClass class]);
+    EXP_expect(classInstance).to.beInstanceOf(mockedClass);
 }
 
 -(void) test__instanceForClass__validClassSeenForTheFirstTimeWithSingletonProtocolAndAutomaticInjectionPolicy__NewInstanceIsReturned {
@@ -144,9 +144,8 @@
     Class injectedClass = [TestClass class];
     
     [[[protocolLocator expect] andReturn:@[ injectedClass ]] getAllClassesByProtocolType:@protocol(AppleGuiceSingleton)];
-    [[[singletonRepository expect] andReturnValue:OCMOCK_VALUE(no)] hasInstanceForClass:OCMOCK_ANY];
     [[singletonRepository expect] setInstance:OCMOCK_ANY forClass:injectedClass];
-    [[singletonRepository reject]  instanceForClass:OCMOCK_ANY];
+    [[[singletonRepository expect] andReturn:nil] instanceForClass:OCMOCK_ANY];
     
     id classInstance = [serviceUnderTest instanceForClass:injectedClass];
     
@@ -160,9 +159,8 @@
     settingsProvider.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyManual;
     
     [[[protocolLocator expect] andReturn:@[ injectedClass ]] getAllClassesByProtocolType:@protocol(AppleGuiceSingleton)];
-    [[[singletonRepository expect] andReturnValue:OCMOCK_VALUE(no)] hasInstanceForClass:OCMOCK_ANY];
     [[singletonRepository expect] setInstance:OCMOCK_ANY forClass:OCMOCK_ANY];
-    [[singletonRepository reject]  instanceForClass:OCMOCK_ANY];
+    [[[singletonRepository expect] andReturn:nil] instanceForClass:OCMOCK_ANY];
     [[injector expect] injectImplementationsToInstance:OCMOCK_ANY];
     
     id classInstance = [serviceUnderTest instanceForClass:injectedClass];
@@ -177,8 +175,7 @@
     Class injectedClass = [TestClass class];
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicySingletons;
     settingsProvider.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyAutomatic;
-    
-    [[[singletonRepository expect] andReturnValue:OCMOCK_VALUE(yes)] hasInstanceForClass:OCMOCK_ANY];
+
     [[singletonRepository reject] setInstance:OCMOCK_ANY forClass:OCMOCK_ANY];
     [[[singletonRepository expect] andReturn:[[injectedClass alloc] init]] instanceForClass:OCMOCK_ANY];
     
@@ -192,8 +189,7 @@
     Class injectedClass = [TestClass class];
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicySingletons;
     settingsProvider.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyManual;
-    
-    [[[singletonRepository expect] andReturnValue:OCMOCK_VALUE(yes)] hasInstanceForClass:OCMOCK_ANY];
+
     [[singletonRepository reject] setInstance:OCMOCK_ANY forClass:OCMOCK_ANY];
     [[[singletonRepository expect] andReturn:[[injectedClass alloc] init]] instanceForClass:OCMOCK_ANY];
     [[injector reject] injectImplementationsToInstance:OCMOCK_ANY];
@@ -212,7 +208,6 @@
     Class injectedClass = [TestClass class];
     
     [[[protocolLocator expect] andReturn:@[ injectedClass ]] getAllClassesByProtocolType:@protocol(AppleGuiceSingleton)];
-    [[[singletonRepository expect] andReturnValue:OCMOCK_VALUE(yes)] hasInstanceForClass:OCMOCK_ANY];
     [[singletonRepository reject] setInstance:OCMOCK_ANY forClass:OCMOCK_ANY];
     [[[singletonRepository expect] andReturn:[[injectedClass alloc] init]] instanceForClass:OCMOCK_ANY];
     
@@ -229,7 +224,6 @@
     
     Class injectedClass = [TestClass class];
     [[[protocolLocator expect] andReturn:@[ injectedClass ]] getAllClassesByProtocolType:@protocol(AppleGuiceSingleton)];
-    [[[singletonRepository expect] andReturnValue:OCMOCK_VALUE(yes)] hasInstanceForClass:OCMOCK_ANY];
     [[singletonRepository reject] setInstance:OCMOCK_ANY forClass:OCMOCK_ANY];
     [[[singletonRepository expect] andReturn:[[injectedClass alloc] init]] instanceForClass:OCMOCK_ANY];
     [[injector reject] injectImplementationsToInstance:OCMOCK_ANY];
