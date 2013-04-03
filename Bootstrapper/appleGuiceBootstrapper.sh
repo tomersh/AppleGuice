@@ -29,14 +29,7 @@ then
     make EXENAME=${bootstrapper}
 fi
 
-interfaceDeclerations="";
-
-shouldPreCompile=$(grep -srh --include=*.m --regexp='\[[ \t]*AppleGuice[ \t]*startServiceWithImplementationDiscoveryPolicy[ \t]*:[ \t]*AppleGuiceImplementationDiscoveryPolicyPreCompile[ \t]*\]' ${path});
-
-if [ -n "$shouldPreCompile" ]
-then
-    interfaceDeclerations=$(grep -sirhE --include=*.h --regexp='((@interface[^:]+:\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${path});
-fi
+interfaceDeclerations=$(grep -sirhE --include=*.h --regexp='((@interface[^:]+:\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${path});
 
 result=$(echo "${interfaceDeclerations}" | ${scriptDir}/${bootstrapper});
 
