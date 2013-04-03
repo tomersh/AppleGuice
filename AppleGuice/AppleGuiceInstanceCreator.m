@@ -72,12 +72,13 @@
 }
 
 -(id) _singletonForClass:(Class) clazz {
-    if (![self.singletonRepository hasInstanceForClass:clazz]) {
-        id classInstance = [self _newInstanceForClass:clazz];
-        [self.singletonRepository setInstance:classInstance forClass:clazz];
-        return classInstance;
+    if ([self.singletonRepository hasInstanceForClass:clazz]) {
+        return [self.singletonRepository instanceForClass:clazz];
     }
-    return [self.singletonRepository instanceForClass:clazz];
+    
+    id classInstance = [self _newInstanceForClass:clazz];
+    [self.singletonRepository setInstance:classInstance forClass:clazz];
+    return classInstance;
 }
 
 -(id) _newInstanceForClass:(Class) clazz {

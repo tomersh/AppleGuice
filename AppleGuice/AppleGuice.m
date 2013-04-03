@@ -22,7 +22,6 @@
 #import "AppleGuiceSingletonRepository.h"
 #import "AppleGuiceBindingBootstrapper.h"
 #import "AppleGuiceInstanceCreator.h"
-#import "AppleGuiceInstanceCreator.h"
 
 @implementation AppleGuice
 

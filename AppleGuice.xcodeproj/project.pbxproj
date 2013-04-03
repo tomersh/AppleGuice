@@ -7,9 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		696C177FE2F5176C78F1F535 /* AppleGuiceInstanceCreator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */; };
 		696C18D4C34FD833E551D9FC /* AppleGuiceInstanceCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */; };
-		696C1FAD993CECD47292E592 /* AppleGuiceInstanceCreatorProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */; };
+		F150E875170C57B900938549 /* AppleGuice.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1416F9141300BA754E /* AppleGuice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F150E876170C57B900938549 /* AppleGuiceInjectable.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1C16F9141300BA754E /* AppleGuiceInjectable.h */; };
+		F150E877170C57B900938549 /* AppleGuiceSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */; };
+		F150E878170C57B900938549 /* AppleGuiceBindingBootstrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD5416F9159200BA754E /* AppleGuiceBindingBootstrapper.h */; };
+		F150E879170C57B900938549 /* AppleGuiceBindingBootstrapperProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */; };
+		F150E87A170C57B900938549 /* AppleGuiceAutoInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1616F9141300BA754E /* AppleGuiceAutoInjector.h */; };
+		F150E87B170C57B900938549 /* AppleGuiceAutoInjectorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1816F9141300BA754E /* AppleGuiceAutoInjectorProtocol.h */; };
+		F150E87C170C57B900938549 /* AppleGuiceBindingService.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1916F9141300BA754E /* AppleGuiceBindingService.h */; };
+		F150E87D170C57B900938549 /* AppleGuiceBindingServiceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1B16F9141300BA754E /* AppleGuiceBindingServiceProtocol.h */; };
+		F150E87E170C57B900938549 /* AppleGuiceInjectableImplementationNotFoundException.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1D16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.h */; };
+		F150E87F170C57B900938549 /* AppleGuiceInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1F16F9141300BA754E /* AppleGuiceInjector.h */; };
+		F150E880170C57B900938549 /* AppleGuiceInjectorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2116F9141300BA754E /* AppleGuiceInjectorProtocol.h */; };
+		F150E881170C57B900938549 /* AppleGuiceInstanceCreatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */; };
+		F150E882170C57B900938549 /* AppleGuiceInstanceCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = 696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */; };
+		F150E883170C57B900938549 /* AppleGuiceInvocationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2216F9141300BA754E /* AppleGuiceInvocationProxy.h */; };
+		F150E884170C57B900938549 /* AppleGuiceMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2416F9141300BA754E /* AppleGuiceMacros.h */; };
+		F150E885170C57B900938549 /* AppleGuiceProtocolLocator.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2516F9141300BA754E /* AppleGuiceProtocolLocator.h */; };
+		F150E886170C57B900938549 /* AppleGuiceProtocolLocatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2716F9141300BA754E /* AppleGuiceProtocolLocatorProtocol.h */; };
+		F150E887170C57B900938549 /* AppleGuiceSettingsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2816F9141300BA754E /* AppleGuiceSettingsProvider.h */; };
+		F150E888170C57B900938549 /* AppleGuiceSettingsProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2A16F9141300BA754E /* AppleGuiceSettingsProviderProtocol.h */; };
+		F150E889170C57B900938549 /* AppleGuiceSingletonRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2B16F9141300BA754E /* AppleGuiceSingletonRepository.h */; };
+		F150E88A170C57B900938549 /* AppleGuiceSingletonRepositoryProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2D16F9141300BA754E /* AppleGuiceSingletonRepositoryProtocol.h */; };
+		F150E88B170C57B900938549 /* AppleGuiceClassLinkedList.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2F16F9141300BA754E /* AppleGuiceClassLinkedList.h */; };
+		F150E88C170C57B900938549 /* NSObject+AppleGuice.h in Headers */ = {isa = PBXBuildFile; fileRef = F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */; };
+		F150E88D170C57B900938549 /* TheWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD3316F9141300BA754E /* TheWrapper.h */; };
 		F162136516F9D95C00563E38 /* NSObject+AppleGuice.m in Sources */ = {isa = PBXBuildFile; fileRef = F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */; };
 		F172DD3516F9141300BA754E /* AppleGuice.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD1516F9141300BA754E /* AppleGuice.m */; };
 		F172DD3716F9141300BA754E /* AppleGuiceAutoInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD1716F9141300BA754E /* AppleGuiceAutoInjector.m */; };
@@ -25,20 +48,6 @@
 		F172DD6B16F920CB00BA754E /* AppleGuiceBindingBootstrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD6A16F920CA00BA754E /* AppleGuiceBindingBootstrapper.m */; };
 		F18E722616F9135C000BD3CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F18E722016F9135C000BD3CB /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/${PRODUCT_NAME}";
-			dstSubfolderSpec = 16;
-			files = (
-				696C177FE2F5176C78F1F535 /* AppleGuiceInstanceCreator.h in CopyFiles */,
-				696C1FAD993CECD47292E592 /* AppleGuiceInstanceCreatorProtocol.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInstanceCreator.m; sourceTree = "<group>"; };
@@ -179,6 +188,41 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		F150E874170C579E00938549 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F150E875170C57B900938549 /* AppleGuice.h in Headers */,
+				F150E876170C57B900938549 /* AppleGuiceInjectable.h in Headers */,
+				F150E877170C57B900938549 /* AppleGuiceSingleton.h in Headers */,
+				F150E878170C57B900938549 /* AppleGuiceBindingBootstrapper.h in Headers */,
+				F150E879170C57B900938549 /* AppleGuiceBindingBootstrapperProtocol.h in Headers */,
+				F150E87A170C57B900938549 /* AppleGuiceAutoInjector.h in Headers */,
+				F150E87B170C57B900938549 /* AppleGuiceAutoInjectorProtocol.h in Headers */,
+				F150E87C170C57B900938549 /* AppleGuiceBindingService.h in Headers */,
+				F150E87D170C57B900938549 /* AppleGuiceBindingServiceProtocol.h in Headers */,
+				F150E87E170C57B900938549 /* AppleGuiceInjectableImplementationNotFoundException.h in Headers */,
+				F150E87F170C57B900938549 /* AppleGuiceInjector.h in Headers */,
+				F150E880170C57B900938549 /* AppleGuiceInjectorProtocol.h in Headers */,
+				F150E881170C57B900938549 /* AppleGuiceInstanceCreatorProtocol.h in Headers */,
+				F150E882170C57B900938549 /* AppleGuiceInstanceCreator.h in Headers */,
+				F150E883170C57B900938549 /* AppleGuiceInvocationProxy.h in Headers */,
+				F150E884170C57B900938549 /* AppleGuiceMacros.h in Headers */,
+				F150E885170C57B900938549 /* AppleGuiceProtocolLocator.h in Headers */,
+				F150E886170C57B900938549 /* AppleGuiceProtocolLocatorProtocol.h in Headers */,
+				F150E887170C57B900938549 /* AppleGuiceSettingsProvider.h in Headers */,
+				F150E888170C57B900938549 /* AppleGuiceSettingsProviderProtocol.h in Headers */,
+				F150E889170C57B900938549 /* AppleGuiceSingletonRepository.h in Headers */,
+				F150E88A170C57B900938549 /* AppleGuiceSingletonRepositoryProtocol.h in Headers */,
+				F150E88B170C57B900938549 /* AppleGuiceClassLinkedList.h in Headers */,
+				F150E88C170C57B900938549 /* NSObject+AppleGuice.h in Headers */,
+				F150E88D170C57B900938549 /* TheWrapper.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		F18E722116F9135C000BD3CB /* AppleGuice */ = {
 			isa = PBXNativeTarget;
@@ -187,7 +231,7 @@
 				F172DD7916F924C500BA754E /* Bootstrap project */,
 				F18E721E16F9135C000BD3CB /* Sources */,
 				F18E721F16F9135C000BD3CB /* Frameworks */,
-				F18E722016F9135C000BD3CB /* CopyFiles */,
+				F150E874170C579E00938549 /* Headers */,
 			);
 			buildRules = (
 			);
