@@ -47,14 +47,14 @@ Create your injectable service
 Inject
 ```objectivec
 @implementation MyClass {
-  id<MyServiceProtocol> ioc_myService;
+  id<MyServiceProtocol> _ioc_myService;
 }
 
-//use ioc_myService anywhere. Even in the init function!
+//use _ioc_myService anywhere. Even in the init function!
 
 -(id) init {
   self = [super init];
-  [ioc_myService doStuff];
+  [_ioc_myService doStuff];
   return self;
 }
 @end
