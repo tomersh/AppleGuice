@@ -12,6 +12,9 @@
 
 //OCMock doesn't play well when swizzeling constructors.
 
+@interface AutoInjectorTestsTestClass : NSObject
+@end
+
 @interface MockedInjector : NSObject<AppleGuiceInjectorProtocol> {
     @public
     BOOL didCallInjector;
@@ -28,38 +31,42 @@ static MockedInjector* mockedInjector;
 
 +(void)initialize {
     mockedInjector = [[MockedInjector alloc] init];
-    [AppleGuiceAutoInjector setInjector:mockedInjector];
+    
 }
 
 -(void)setUp {
     [super setUp];
     [mockedInjector reset];
+    [AppleGuiceAutoInjector setInjector:mockedInjector];
 }
 
 -(void)tearDown {
     [super tearDown];
     [AppleGuiceAutoInjector stopAutoInjector]; //just in case
+    
 }
 
 -(void) test__startAutoInjector__call__startsTheService {
-    Class injectedClassType = [NSArray class];
+    Class injectedClassType = [AutoInjectorTestsTestClass class];
     [AppleGuiceAutoInjector startAutoInjector];
     
-    __block id result;
-    EXP_expect(^{ result = [[[injectedClassType alloc] init] autorelease]; }).toNot.raiseAny();
+    id result = [[[injectedClassType alloc] init] autorelease];
+    [AppleGuiceAutoInjector setInjector:nil];
+    
+    STAssertEquals([result retainCount], (NSUInteger)2, @"AutoInjector should not retain");
     EXP_expect(result).to.beInstanceOf(injectedClassType);
     EXP_expect(mockedInjector->didCallInjector).to.beTruthy();
     EXP_expect(mockedInjector->calledArg).to.equal(result);
 }
 
 -(void) test__stopAutoInjector__call__stopsTheService {
-    Class injectedClassType = [NSArray class];
+    Class injectedClassType = [AutoInjectorTestsTestClass class];
     
     [AppleGuiceAutoInjector startAutoInjector];
     [AppleGuiceAutoInjector stopAutoInjector];
 
-    __block id result;
-    EXP_expect(^{ result = [[[injectedClassType alloc] init] autorelease]; }).toNot.raiseAny();
+    id result = [[[injectedClassType alloc] init] autorelease];
+    [AppleGuiceAutoInjector setInjector:nil];
     
     EXP_expect(result).to.beInstanceOf(injectedClassType);
     EXP_expect(mockedInjector->didCallInjector).to.beFalsy();
@@ -71,14 +78,14 @@ static MockedInjector* mockedInjector;
 }
 
 -(void) test__stopsAutoInjector__callTwice__serviceIsWorkingProperly {
-    Class injectedClassType = [NSArray class];
+    Class injectedClassType = [AutoInjectorTestsTestClass class];
     
     [AppleGuiceAutoInjector startAutoInjector];
     [AppleGuiceAutoInjector stopAutoInjector];
     [AppleGuiceAutoInjector stopAutoInjector];
     
-    __block id result;
-    EXP_expect(^{ result = [[[injectedClassType alloc] init] autorelease]; }).toNot.raiseAny();
+    id result = [[[AutoInjectorTestsTestClass alloc] init] autorelease];
+    [AppleGuiceAutoInjector setInjector:nil];
     
     EXP_expect(result).to.beInstanceOf(injectedClassType);
     EXP_expect(mockedInjector->didCallInjector).to.beFalsy();
@@ -105,5 +112,7 @@ static MockedInjector* mockedInjector;
     [calledArg release];
     calledArg = [classInstance retain];
 }
+@end
 
+@implementation AutoInjectorTestsTestClass
 @end
