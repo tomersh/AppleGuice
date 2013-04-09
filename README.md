@@ -80,6 +80,9 @@ Instead of messing your code with shared instance declerations or macros, you ca
 @end
 ```
 
+### Circular dependency support ###
+AppleGuice can handle circular depenency between injected classes as long as the dependent classes conforms to `AppleGuiceSingleton`.
+
 ### LazyLoad objects ###
 You can configure AppleGuice to inject a proxy object instead of the real service. Once the service is needed (A method in the service is called) the proxy will be replaced with the real object.
 ```objectivec
