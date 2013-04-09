@@ -30,7 +30,7 @@ Start AppleGuice
 Create your injectable service
 ```objectivec
 
-@protocol MyServiceProtocol <AppleJuiceInjectable>
+@protocol MyServiceProtocol <AppleGuiceInjectable>
 
 -(void) doStuff;
 
@@ -76,7 +76,7 @@ You can injection comes in three flavours:
 ### Singletons in a snap ###
 Instead of messing your code with shared instance declerations or macros, you can just add `AppleGuiceSingleton` to the implemented protocols list and AppleGuice will always return the same instance.
 ```objectivec
-@protocol MyServiceProtocol <AppleJuiceInjectable, AppleGuiceSingleton>
+@protocol MyServiceProtocol <AppleGuiceInjectable, AppleGuiceSingleton>
 @end
 ```
 
