@@ -32,7 +32,7 @@
 }
 
 -(void) _setDefaultValues {
-    self.iocPrefix = @"ioc_";
+    self.iocPrefix = @"_ioc_";
     self.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
     self.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyAutomatic;
 }
