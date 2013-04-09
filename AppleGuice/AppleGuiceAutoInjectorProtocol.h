@@ -15,14 +15,12 @@
 
 
 @protocol AppleGuiceInjectorProtocol;
-@protocol AppleGuiceSettingsProviderProtocol;
 
 @protocol AppleGuiceAutoInjectorProtocol <NSObject>
 
-@property (nonatomic, retain) id<AppleGuiceInjectorProtocol> injector;
-@property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
++(void) setInjector:(id<AppleGuiceInjectorProtocol>) injector;
 
--(void) startAutoInjector;
--(void) stopAutoInjector;
++(void) startAutoInjector;
++(void) stopAutoInjector;
 
 @end

@@ -13,50 +13,49 @@
 //limitations under the License.
 
 #import "AppleGuiceAutoInjector.h"
-
-#import "AppleGuiceSettingsProviderProtocol.h"
 #import "AppleGuiceInjectorProtocol.h"
-#import "TheWrapper.h"
 #import <objc/runtime.h>
 
-@implementation AppleGuiceAutoInjector {
-    id<AppleGuiceInjectorProtocol> _ioc_injector;
-    id<AppleGuiceSettingsProviderProtocol> _ioc_settingsProvider;
-    Class _targetClass;
-    SEL _targetSelector;
+@implementation AppleGuiceAutoInjector
+
+static IMP _originalInitMethodImp;
+static id<AppleGuiceInjectorProtocol> _injector;
+static BOOL _didStart;
+static Class _targetClass;
+static SEL _targetSelector;
+
++(void) setInjector:(id<AppleGuiceInjectorProtocol>) injector {
+    [_injector release];
+    _injector = [injector retain];
 }
 
-@synthesize injector = _ioc_injector, settingsProvider = _ioc_settingsProvider;
-
--(id) init {
-    self = [super init];
-    if (!self) return self;
++(void)initialize {
     _targetClass = [NSObject class];
     _targetSelector = @selector(init);
-    return self;
+    _didStart = NO;
 }
 
--(void) startAutoInjector {
-    [self _addInjectionWrapperToClass:_targetClass andSelector:_targetSelector];
-}
--(void) stopAutoInjector {
-    [TheWrapper removeWrapperFromClass:_targetClass andSelector:_targetSelector];
-}
-
--(void) _addInjectionWrapperToClass:(Class) clazz andSelector:(SEL) selector {
-    [TheWrapper addWrappertoClass:_targetClass andSelector:_targetSelector withPostRunBlock:^id(id<NSObject> zelf, id functionReturnValue, id firstArg, ...) {
-        if (self.settingsProvider.methodInjectionPolicy == AppleGuiceMethodInjectionPolicyAutomatic) {
-             [self.injector injectImplementationsToInstance:functionReturnValue];
-        }
-        return functionReturnValue;
-    }];
++(void) startAutoInjector {
+    if (_didStart) return;
+    _didStart = YES;
+    
+    _originalInitMethodImp = class_replaceMethod(_targetClass, _targetSelector, (IMP)_appleGuiceInjectionInitWrapper, @encode(id));
 }
 
--(void)dealloc {
-    [self stopAutoInjector];
-    [_ioc_injector release];
-    [_ioc_settingsProvider release];
-    [super dealloc];
++(void) stopAutoInjector {
+    if (!_didStart) return;
+    _didStart = NO;
+
+    class_replaceMethod(_targetClass, _targetSelector, _originalInitMethodImp, @encode(id));
+}
+
+static id _appleGuiceInjectionInitWrapper(id self, SEL _cmd) {
+    id returnValue = nil;
+    NSAutoreleasePool* autoReleasePool = [[NSAutoreleasePool alloc] init];
+    returnValue = _originalInitMethodImp(self, _cmd);
+    [_injector injectImplementationsToInstance:returnValue];
+    [autoReleasePool drain];
+    return returnValue;
 }
 
 @end

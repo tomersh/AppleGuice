@@ -30,7 +30,6 @@ static id<AppleGuiceInjectorProtocol> injector;
 static id<AppleGuiceProtocolLocatorProtocol> protocolLocator;
 static id<AppleGuiceSingletonRepositoryProtocol> singletonRepository;
 static id<AppleGuiceSettingsProviderProtocol> settingsProvider;
-static id<AppleGuiceAutoInjectorProtocol> autoInjector;
 static id<AppleGuiceInstanceCreatorProtocol> instanceCreator;
 static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
@@ -41,7 +40,6 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     protocolLocator = [[AppleGuiceProtocolLocator alloc] init];
     injector = [[AppleGuiceInjector alloc] init];
     singletonRepository = [[AppleGuiceSingletonRepository alloc] init];
-    autoInjector = [[AppleGuiceAutoInjector alloc] init];
     instanceCreator = [[AppleGuiceInstanceCreator alloc] init];
     bootstrapper = [[AppleGuiceBindingBootstrapper alloc] init];
 
@@ -55,11 +53,10 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     injector.settingsProvider = settingsProvider;
     injector.instanceCreator = instanceCreator;
 
-    autoInjector.injector = injector;
-    autoInjector.settingsProvider = settingsProvider;
-
     bootstrapper.bindingService = bindingService;
 
+    [AppleGuiceAutoInjector setInjector:injector];
+    
     [protocolLocator setFilterProtocol:@protocol(AppleGuiceInjectable)];
 }
 
@@ -81,7 +78,7 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
         default:
             break;
     }
-    [autoInjector startAutoInjector];
+    [AppleGuice _changeAutoInjectorStateIfNeeded];
 }
 
 #pragma mark - Injection
@@ -125,10 +122,22 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
 +(void) setMethodInjectionPolicy:(AppleGuiceMethodInjectionPolicy)methodInjectionPolicy {
     [settingsProvider setMethodInjectionPolicy:methodInjectionPolicy];
+    [AppleGuice _changeAutoInjectorStateIfNeeded];
 }
 
 +(void) setInstanceCreationPolicy:(AppleGuiceInstanceCreationPolicy)instanceCreationPolicy {
     [settingsProvider setInstanceCreateionPolicy:instanceCreationPolicy];
+}
+
++(void) _changeAutoInjectorStateIfNeeded {
+    switch (settingsProvider.methodInjectionPolicy) {
+        case AppleGuiceMethodInjectionPolicyAutomatic:
+            [AppleGuiceAutoInjector startAutoInjector];
+            break;
+        case AppleGuiceMethodInjectionPolicyManual:
+        default:
+            [AppleGuiceAutoInjector stopAutoInjector];
+    }
 }
 
 @end
