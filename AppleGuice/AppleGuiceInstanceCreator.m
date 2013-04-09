@@ -74,18 +74,25 @@
 -(id) _singletonForClass:(Class) clazz {
     id classInstance = [self.singletonRepository instanceForClass:clazz];
     if (!classInstance) {
-        classInstance = [self _newInstanceForClass:clazz];
+        classInstance = [clazz alloc];
         [self.singletonRepository setInstance:classInstance forClass:clazz];
+        [[classInstance init] autorelease];
+        [self _injectImplementationsToInstanceIfneeded:classInstance];
     }
     return classInstance;
 }
 
 -(id) _newInstanceForClass:(Class) clazz {
-    id classInstance = [[[clazz alloc] init] autorelease];
-    if (self.settingsProvider.methodInjectionPolicy == AppleGuiceMethodInjectionPolicyManual) {
+    id classInstance = [[clazz alloc] init];
+    [self _injectImplementationsToInstanceIfneeded:classInstance];
+    return [classInstance autorelease];
+}
+
+-(void) _injectImplementationsToInstanceIfneeded:(id<NSObject>) classInstance {
+    BOOL shouldInject = self.settingsProvider.methodInjectionPolicy == AppleGuiceMethodInjectionPolicyManual;
+    if (shouldInject) {
         [self.injector injectImplementationsToInstance:classInstance];
     }
-    return classInstance;
 }
 
 -(BOOL) _shouldReturnSingletonInstanceForClass:(Class) clazz {
