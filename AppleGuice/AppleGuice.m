@@ -61,7 +61,6 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     bootstrapper.bindingService = bindingService;
 
     [protocolLocator setFilterProtocol:@protocol(AppleGuiceInjectable)];
-    [autoInjector startAutoInjector];
 }
 
 #pragma mark - Bootstrap
@@ -82,6 +81,7 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
         default:
             break;
     }
+    [autoInjector startAutoInjector];
 }
 
 #pragma mark - Injection
