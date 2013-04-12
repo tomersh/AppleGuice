@@ -54,8 +54,6 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     injector.instanceCreator = instanceCreator;
 
     bootstrapper.bindingService = bindingService;
-
-    [AppleGuiceAutoInjector setInjector:injector];
     
     [protocolLocator setFilterProtocol:@protocol(AppleGuiceInjectable)];
 }
@@ -78,7 +76,15 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
         default:
             break;
     }
+    [AppleGuiceAutoInjector setInjector:injector];
     [AppleGuice _changeAutoInjectorStateIfNeeded];
+}
+
++(void) stopService {
+    [AppleGuiceAutoInjector stopAutoInjector];
+    [bindingService unsetAllImplementationsWithType:appleGuiceBindingTypeCachedBinding];
+    [bindingService unsetAllImplementationsWithType:appleGuiceBindingTypeUserBinding];
+    [singletonRepository clearRepository];
 }
 
 #pragma mark - Injection

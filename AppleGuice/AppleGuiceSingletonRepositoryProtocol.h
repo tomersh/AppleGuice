@@ -18,4 +18,5 @@
 -(void) setInstance:(id) instance forClass:(Class) clazz;
 -(BOOL) hasInstanceForClass:(Class) clazz;
 
+-(void) clearRepository;
 @end

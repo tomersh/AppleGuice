@@ -65,6 +65,10 @@
     return [NSNumber numberWithUnsignedInt:[clazz hash]];
 }
 
+-(void) clearRepository {
+    [self.singletons removeAllObjects];
+}
+
 -(void) dealloc {
     [_singletons release];
     [super dealloc];

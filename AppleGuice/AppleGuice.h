@@ -48,6 +48,10 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
 */
 +(void) startServiceWithImplementationDiscoveryPolicy:(AppleGuiceImplementationDiscoveryPolicy) implementationDiscoveryPolicy;
 
+/**
+ Stops the service. AutoInjector will stop and all binding will be removed.
+ */
++(void) stopService;
 
 ///-----------------------------
 /// @name Inject Implementations
