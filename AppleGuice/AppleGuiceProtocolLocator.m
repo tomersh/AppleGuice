@@ -16,7 +16,6 @@
 #import "AppleGuiceBindingServiceProtocol.h"
 #import "AppleGuiceInjectable.h"
 #import "AppleGuiceClassLinkedList.h"
-#import "AppleGuiceInjectableImplementationNotFoundException.h"
 #import <objc/runtime.h>
 
 
@@ -83,8 +82,7 @@
         [self.bindingService setImplementations:allMatchingClasses withProtocol:protocol withBindingType:appleGuiceBindingTypeCachedBinding];
         return allMatchingClasses;
     }
-    
-    @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithProtocol:protocol];
+    return allMatchingClasses;
 }
 
 -(NSArray*) _filterAllClassesWithProtocol:(Protocol*) filterProtocol {

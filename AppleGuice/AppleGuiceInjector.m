@@ -17,6 +17,7 @@
 #import <objc/runtime.h>
 #import "AppleGuiceInvocationProxy.h"
 #import "AppleGuiceInstanceCreatorProtocol.h"
+#import "AppleGuiceInjectableImplementationNotFoundException.h"
 
 @implementation AppleGuiceInjector {
     id<AppleGuiceSettingsProviderProtocol> _ioc_settingsProvider;
@@ -88,6 +89,9 @@
     if ([self _isProtocol:className]) {
         NSString* protocolName = [self _protocolNameFromType:className];
         ivarValue = [self.instanceCreator instanceForProtocol:NSProtocolFromString(protocolName)];
+        if (!ivarValue) {
+            @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithProtocol:NSProtocolFromString(protocolName)];
+        }
     }
     else if ([self _isArray:ivarTypeEncoding]) {
         NSString* protocolNameFromIvarName = [ivarName substringFromIndex:[self.settingsProvider.iocPrefix length]];
