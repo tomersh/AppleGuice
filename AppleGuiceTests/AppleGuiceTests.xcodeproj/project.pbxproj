@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		602AD3A9ABA148069493E232 /* libPods-AppleGuiceUnitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74C24A10D1344679015F52D /* libPods-AppleGuiceUnitTests.a */; };
 		F1075AAB17148FAC0054FC76 /* AppleGuiceAutoInjectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1075AAA17148FAC0054FC76 /* AppleGuiceAutoInjectorTests.m */; };
+		F123D8B31714CA5F00CC7C26 /* AppleGuiceSanity.m in Sources */ = {isa = PBXBuildFile; fileRef = F123D8B21714CA5F00CC7C26 /* AppleGuiceSanity.m */; };
+		F19691ED171785B6002B81E0 /* EXPMatchers+conformsToProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = F19691EB171785B6002B81E0 /* EXPMatchers+conformsToProtocol.m */; };
 		F1A3285D16FD1CCA00E007C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A3285C16FD1CCA00E007C1 /* UIKit.framework */; };
 		F1A3285F16FD1CCA00E007C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A3285E16FD1CCA00E007C1 /* Foundation.framework */; };
 		F1A3286116FD1CCA00E007C1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A3286016FD1CCA00E007C1 /* CoreGraphics.framework */; };
@@ -59,6 +61,10 @@
 		A74C24A10D1344679015F52D /* libPods-AppleGuiceUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleGuiceUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1075AA917148FAC0054FC76 /* AppleGuiceAutoInjectorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceAutoInjectorTests.h; path = AppleGuiceUnitTests/AppleGuiceAutoInjectorTests.h; sourceTree = SOURCE_ROOT; };
 		F1075AAA17148FAC0054FC76 /* AppleGuiceAutoInjectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceAutoInjectorTests.m; path = AppleGuiceUnitTests/AppleGuiceAutoInjectorTests.m; sourceTree = SOURCE_ROOT; };
+		F123D8B11714CA5F00CC7C26 /* AppleGuiceSanity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceSanity.h; path = AppleGuiceUnitTests/AppleGuiceSanity.h; sourceTree = SOURCE_ROOT; };
+		F123D8B21714CA5F00CC7C26 /* AppleGuiceSanity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceSanity.m; path = AppleGuiceUnitTests/AppleGuiceSanity.m; sourceTree = SOURCE_ROOT; };
+		F19691EA171785B6002B81E0 /* EXPMatchers+conformsToProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+conformsToProtocol.h"; sourceTree = SOURCE_ROOT; };
+		F19691EB171785B6002B81E0 /* EXPMatchers+conformsToProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+conformsToProtocol.m"; sourceTree = SOURCE_ROOT; };
 		F1A3285916FD1CCA00E007C1 /* AppleGuiceTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleGuiceTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A3285C16FD1CCA00E007C1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F1A3285E16FD1CCA00E007C1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -189,6 +195,10 @@
 				F1DD3816170B717D002D464A /* AppleGuiceInjectorTests.m */,
 				F1075AA917148FAC0054FC76 /* AppleGuiceAutoInjectorTests.h */,
 				F1075AAA17148FAC0054FC76 /* AppleGuiceAutoInjectorTests.m */,
+				F123D8B11714CA5F00CC7C26 /* AppleGuiceSanity.h */,
+				F123D8B21714CA5F00CC7C26 /* AppleGuiceSanity.m */,
+				F19691EA171785B6002B81E0 /* EXPMatchers+conformsToProtocol.h */,
+				F19691EB171785B6002B81E0 /* EXPMatchers+conformsToProtocol.m */,
 			);
 			name = AppleGuiceUnitTests;
 			path = AppleGuiceTestsTests;
@@ -364,6 +374,8 @@
 				F1DD3814170B6773002D464A /* AppleGuiceInstanceCreatorTests.m in Sources */,
 				F1DD3817170B717D002D464A /* AppleGuiceInjectorTests.m in Sources */,
 				F1075AAB17148FAC0054FC76 /* AppleGuiceAutoInjectorTests.m in Sources */,
+				F123D8B31714CA5F00CC7C26 /* AppleGuiceSanity.m in Sources */,
+				F19691ED171785B6002B81E0 /* EXPMatchers+conformsToProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

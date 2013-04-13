@@ -10,11 +10,7 @@
 #import "AppleGuiceInjector.h"
 #import "AppleguiceSettingsProvider.h"
 #import "AppleGuiceInstanceCreatorProtocol.h"
-
-#define testIocPrefix @"test_"
-#define iocIvar(__clazz, __name) __clazz* test_##__name
-#define iocPrimitive(__type, __name) __type test_##__name
-#define iocProtocol(__type, __name) id<__type> test_##__name
+#import "AppleGuiceInjectableImplementationNotFoundException.h"
 
 @protocol InjectedProtocol <NSObject>
 @end
@@ -220,6 +216,20 @@
     EXP_expect([instanceToInjectTo->test_injectableProtocolInSuperclass isProxy]).to.beFalsy();
 }
 
+-(void) test__injectImplementationsToInstance__InstanceInjectableWithNoProtocolImplementation__throwsException {
+    settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
+    ClassWithInjectableProtocol* instanceToInjectTo = [[ClassWithInjectableProtocol alloc] init];
+    
+    [[[instanceCreator expect] andReturn:nil] instanceForProtocol:@protocol(InjectedProtocol)];
+    
+    [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
+    [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
+    
+    EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).to.raise(NSStringFromClass([AppleGuiceInjectableImplementationNotFoundException class]));
+    [instanceCreator verify];
+}
+
+
 -(void) test__injectImplementationsToInstance__InstanceInjectableArrayAndWithLazyLoadInstanceCreationPolicy__proxiesAreInjected {
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyLazyLoad;
     ClassWithInjectableArray* instanceToInjectTo = [[ClassWithInjectableArray alloc] init];
@@ -244,5 +254,6 @@
     EXP_expect(instanceToInjectTo->test_InjectedProtocol).to.beKindOf([NSArray class]);
     EXP_expect([instanceToInjectTo->test_InjectedProtocol isProxy]).to.beFalsy();
 }
+
 
 @end
