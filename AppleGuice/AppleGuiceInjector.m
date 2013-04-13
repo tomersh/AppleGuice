@@ -19,13 +19,7 @@
 #import "AppleGuiceInstanceCreatorProtocol.h"
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
 
-@implementation AppleGuiceInjector {
-    id<AppleGuiceSettingsProviderProtocol> _ioc_settingsProvider;
-    id<AppleGuiceInstanceCreatorProtocol> _ioc_instanceCreator;
-}
-
-@synthesize settingsProvider = _ioc_settingsProvider, instanceCreator = _ioc_instanceCreator;
-
+@implementation AppleGuiceInjector 
 
 -(void) injectImplementationsToInstance:(id<NSObject>) classInstance {
     if (!classInstance) return;
@@ -145,8 +139,8 @@
 }
 
 - (void) dealloc {
-    [_ioc_settingsProvider release];
-    [_ioc_instanceCreator release];
+    [_settingsProvider release];
+    [_instanceCreator release];
     [super dealloc];
 }
 

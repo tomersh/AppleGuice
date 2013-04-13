@@ -20,15 +20,10 @@
 
 
 @implementation AppleGuiceProtocolLocator {
-
     unsigned int _allClassCount;
     Class* _allClassesMemoization;
     NSArray* _filteredClasses;
-    id<AppleGuiceBindingServiceProtocol> _ioc_bindingService;
 }
-
-@synthesize bindingService = _ioc_bindingService;
-
 
 -(id) init {
     self = [super init];
@@ -126,7 +121,7 @@
 
 
 -(void) dealloc {
-    [_ioc_bindingService release];
+    [_bindingService release];
     [_filteredClasses release];
     free(_allClassesMemoization);
     [super dealloc];

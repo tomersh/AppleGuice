@@ -25,13 +25,13 @@
 
 @implementation AppleGuice
 
-static id<AppleGuiceBindingServiceProtocol> bindingService;
-static id<AppleGuiceInjectorProtocol> injector;
-static id<AppleGuiceProtocolLocatorProtocol> protocolLocator;
-static id<AppleGuiceSingletonRepositoryProtocol> singletonRepository;
-static id<AppleGuiceSettingsProviderProtocol> settingsProvider;
-static id<AppleGuiceInstanceCreatorProtocol> instanceCreator;
-static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
+static AppleGuiceBindingService* bindingService;
+static AppleGuiceInjector* injector;
+static AppleGuiceProtocolLocator* protocolLocator;
+static AppleGuiceSingletonRepository* singletonRepository;
+static AppleGuiceSettingsProvider* settingsProvider;
+static AppleGuiceInstanceCreator* instanceCreator;
+static AppleGuiceBindingBootstrapper* bootstrapper;
 
 +(void)initialize {
 

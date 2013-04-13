@@ -16,5 +16,4 @@
 
 @interface AppleGuiceSingletonRepository : NSObject<AppleGuiceSingletonRepositoryProtocol>
 
-
 @end

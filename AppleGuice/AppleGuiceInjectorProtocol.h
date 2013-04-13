@@ -19,9 +19,6 @@
 
 @protocol AppleGuiceInjectorProtocol <NSObject>
 
-@property (nonatomic, retain) id<AppleGuiceInstanceCreatorProtocol> instanceCreator;
-@property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
-
 -(void) injectImplementationsToInstance:(id<NSObject>) classInstance;
 
 @end

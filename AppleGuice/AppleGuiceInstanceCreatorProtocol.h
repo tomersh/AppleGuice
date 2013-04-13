@@ -19,11 +19,6 @@
 
 @protocol AppleGuiceInstanceCreatorProtocol <NSObject>
 
-@property (nonatomic, retain) id<AppleGuiceProtocolLocatorProtocol> protocolLocator;
-@property (nonatomic, retain) id<AppleGuiceSingletonRepositoryProtocol> singletonRepository;
-@property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
-@property (nonatomic, retain) id<AppleGuiceInjectorProtocol> injector;
-
 -(id<NSObject>) instanceForClass:(Class) clazz;
 
 -(id<NSObject>) instanceForProtocol:(Protocol*) protocol;

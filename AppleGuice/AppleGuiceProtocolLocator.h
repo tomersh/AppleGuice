@@ -16,4 +16,6 @@
 
 @interface AppleGuiceProtocolLocator : NSObject<AppleGuiceProtocolLocatorProtocol>
 
+@property (nonatomic, retain) id<AppleGuiceBindingServiceProtocol> bindingService;
+
 @end

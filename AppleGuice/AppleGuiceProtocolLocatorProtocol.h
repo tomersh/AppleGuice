@@ -17,8 +17,6 @@
 
 @protocol AppleGuiceProtocolLocatorProtocol <NSObject>
 
-@property (nonatomic, retain) id<AppleGuiceBindingServiceProtocol> bindingService;
-
 -(void) bootstrapAutomaticImplementationDiscovery;
 
 -(NSArray*) getAllClassesByProtocolType:(Protocol*) protocol;

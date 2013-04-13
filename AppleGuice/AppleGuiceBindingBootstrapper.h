@@ -19,4 +19,6 @@
     id<AppleGuiceBindingServiceProtocol> _ioc_bindingService;
 }
 
+@property (nonatomic, retain) id<AppleGuiceBindingServiceProtocol> bindingService;
+
 @end

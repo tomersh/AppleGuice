@@ -16,8 +16,6 @@
 
 @protocol AppleGuiceBindingBootstrapperProtocol <NSObject>
 
-@property (nonatomic, retain) id<AppleGuiceBindingServiceProtocol> bindingService;
-
 -(void) bootstrap;
 
 @end

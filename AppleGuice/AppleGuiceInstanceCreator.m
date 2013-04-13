@@ -21,15 +21,7 @@
 #import "AppleGuiceSingleton.h"
 
 
-@implementation AppleGuiceInstanceCreator {
-    id<AppleGuiceProtocolLocatorProtocol> _ioc_protocolLocator;
-    id<AppleGuiceSingletonRepositoryProtocol> _ioc_singletonRepository;
-    id<AppleGuiceSettingsProviderProtocol> _ioc_settingsProvider;
-    id<AppleGuiceInjectorProtocol> _ioc_injector;
-}
-
-@synthesize protocolLocator = _ioc_protocolLocator, settingsProvider = _ioc_settingsProvider, singletonRepository = _ioc_singletonRepository, injector = _ioc_injector;
-
+@implementation AppleGuiceInstanceCreator 
 
 -(NSArray*) allInstancesForProtocol:(Protocol*) protocol {
     if (!protocol) return nil;
@@ -100,10 +92,10 @@
 }
 
 - (void)dealloc {
-    [_ioc_protocolLocator release];
-    [_ioc_settingsProvider release];
-    [_ioc_singletonRepository release];
-    [_ioc_injector release];
+    [_protocolLocator release];
+    [_settingsProvider release];
+    [_singletonRepository release];
+    [_injector release];
     [super dealloc];
 }
 
