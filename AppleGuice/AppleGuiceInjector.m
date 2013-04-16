@@ -84,7 +84,7 @@
         NSString* protocolName = [self _protocolNameFromType:className];
         ivarValue = [self.instanceCreator instanceForProtocol:NSProtocolFromString(protocolName)];
         if (!ivarValue) {
-            @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithProtocol:NSProtocolFromString(protocolName)];
+            @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithProtocolName:protocolName];
         }
     }
     else if ([self _isArray:ivarTypeEncoding]) {

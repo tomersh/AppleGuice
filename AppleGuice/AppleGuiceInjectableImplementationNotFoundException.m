@@ -16,13 +16,13 @@
 
 @implementation AppleGuiceInjectableImplementationNotFoundException
 
--(id)initWithProtocol:(Protocol*) protocol {
-    self = [super initWithName:@"AppleGuiceInjectableImplementationNotFoundException" reason:[NSString stringWithFormat:@"Unable to locate an implementation for the protocol %@. please set it up or enable auto implementation discovery.", NSStringFromProtocol(protocol)] userInfo:nil];
+-(id)initWithProtocolName:(NSString*) protocolName {
+    self = [super initWithName:@"AppleGuiceInjectableImplementationNotFoundException" reason:[NSString stringWithFormat:@"Unable to locate an implementation for the protocol %@. please set it up or enable auto implementation discovery.", protocolName] userInfo:nil];
     return self;
 }
 
-+(AppleGuiceInjectableImplementationNotFoundException*) exceptionWithProtocol:(Protocol*) protocol {
-    return [[[AppleGuiceInjectableImplementationNotFoundException alloc] initWithProtocol:protocol] autorelease];
++(AppleGuiceInjectableImplementationNotFoundException*) exceptionWithProtocolName:(NSString*) protocolName {
+    return [[[AppleGuiceInjectableImplementationNotFoundException alloc] initWithProtocolName:protocolName] autorelease];
 }
 
 @end
