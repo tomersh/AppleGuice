@@ -16,13 +16,22 @@
 
 @implementation AppleGuiceInjectableImplementationNotFoundException
 
--(id)initWithProtocolName:(NSString*) protocolName {
-    self = [super initWithName:@"AppleGuiceInjectableImplementationNotFoundException" reason:[NSString stringWithFormat:@"Unable to locate an implementation for the protocol %@. please set it up or enable auto implementation discovery.", protocolName] userInfo:nil];
+-(id)initWithIvarName:(NSString*) ivarName andProtocolName:(NSString*) protocolName {
+    self = [super initWithName:@"AppleGuiceInjectableImplementationNotFoundException" reason:[NSString stringWithFormat:@"Unable to locate an implementation of protocol %@ for ivar %@. please set it up or enable auto implementation discovery.", protocolName, ivarName] userInfo:nil];
     return self;
 }
 
-+(AppleGuiceInjectableImplementationNotFoundException*) exceptionWithProtocolName:(NSString*) protocolName {
-    return [[[AppleGuiceInjectableImplementationNotFoundException alloc] initWithProtocolName:protocolName] autorelease];
+-(id)initWithIvarName:(NSString*) ivarName andClassName:(NSString*) className {
+    self = [super initWithName:@"AppleGuiceInjectableImplementationNotFoundException" reason:[NSString stringWithFormat:@"Unable to locate an implementation of class %@ for ivar %@. please set it up or enable auto implementation discovery.", className, ivarName] userInfo:nil];
+    return self;
+}
+
++(AppleGuiceInjectableImplementationNotFoundException*) exceptionWithIvarName:(NSString*) ivarName andProtocolName:(NSString*) protocolName {
+    return [[[AppleGuiceInjectableImplementationNotFoundException alloc] initWithIvarName:ivarName andProtocolName:protocolName] autorelease];
+}
+
++(AppleGuiceInjectableImplementationNotFoundException*) exceptionWithIvarName:(NSString*) ivarName andClassName:(NSString*) className {
+    return [[[AppleGuiceInjectableImplementationNotFoundException alloc] initWithIvarName:ivarName andClassName:className] autorelease];
 }
 
 @end

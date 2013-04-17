@@ -84,18 +84,20 @@
         NSString* protocolName = [self _protocolNameFromType:className];
         ivarValue = [self.instanceCreator instanceForProtocol:NSProtocolFromString(protocolName)];
         if (!ivarValue) {
-            @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithProtocolName:protocolName];
+            @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithIvarName:ivarName andProtocolName:protocolName];
         }
     }
     else if ([self _isArray:ivarTypeEncoding]) {
         NSString* protocolNameFromIvarName = [ivarName substringFromIndex:[self.settingsProvider.iocPrefix length]];
         ivarValue = [self.instanceCreator allInstancesForProtocol:NSProtocolFromString(protocolNameFromIvarName)];
+        //array can be nil.
     }
     else {
         ivarValue = [self.instanceCreator instanceForClass:NSClassFromString(className)];
+        if (!ivarValue) {
+            @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithIvarName:ivarName andClassName:className];
+        }
     }
-    
-    NSAssert(ivarValue != nil, @"Unable to inject implementation to ivar %@ with name %@.", ivarName, ivarName);
     
     return ivarValue;
 }

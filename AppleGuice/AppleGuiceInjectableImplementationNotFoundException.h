@@ -14,8 +14,9 @@
 
 @interface AppleGuiceInjectableImplementationNotFoundException : NSException
 
--(id)initWithProtocolName:(NSString*) protocolName;
+-(id)initWithIvarName:(NSString*) ivarName andProtocolName:(NSString*) protocolName;
++(AppleGuiceInjectableImplementationNotFoundException*) exceptionWithIvarName:(NSString*) ivarName andProtocolName:(NSString*) protocolName;
 
-+(AppleGuiceInjectableImplementationNotFoundException*) exceptionWithProtocolName:(NSString*) protocolName;
-
+-(id)initWithIvarName:(NSString*) ivarName andClassName:(NSString*) className;
++(AppleGuiceInjectableImplementationNotFoundException*) exceptionWithIvarName:(NSString*) ivarName andClassName:(NSString*) className;
 @end
