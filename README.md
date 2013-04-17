@@ -1,7 +1,7 @@
 AppleGuice
 ==========
 
-A powerful convention over configuration driven dependency injection framework for Objective-C
+Effortless dependency injection framework for Objective-C
 
 
 ## What AppleGuice does for you? ##
