@@ -110,3 +110,5 @@ You can configure AppleGuice to inject a proxy object instead of the real servic
 
 ## Ready to start? ##
 Check out the quick [installation guide](https://github.com/tomersh/AppleGuice/wiki/AppleGuice-Installation-Guide).
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/e73586a87135304cb47ff18e519b75f6 "githalytics.com")](http://githalytics.com/tomersh/AppleGuice)
