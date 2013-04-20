@@ -140,6 +140,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
     - AppleGuiceInstanceCreationPolicyDefault No instance manipulation
     - AppleGuiceInstanceCreationPolicySingletons Will always return the same instance of the object
     - AppleGuiceInstanceCreationPolicyLazyLoad Upon injection, a proxy object will be returned. The ivar will be initialized just before its first use.
+    - AppleGuiceInstanceCreationPolicyCreateMocks if OCMock is available, a mock will be injected instead of a real object. Use this option for unit tests only.
  default is AppleGuiceInstanceCreationPolicyDefault. Policies can be combined with |
  @param instanceCreationPolicy AppleGuiceInstanceCreationPolicy
  */

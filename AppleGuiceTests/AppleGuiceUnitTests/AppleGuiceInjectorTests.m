@@ -11,6 +11,7 @@
 #import "AppleguiceSettingsProvider.h"
 #import "AppleGuiceInstanceCreatorProtocol.h"
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
+#import "AppleGuiceMockProviderProtocol.h"
 
 @protocol InjectedProtocol <NSObject>
 @end
@@ -97,6 +98,7 @@
     AppleGuiceInjector* serviceUnderTest;
     AppleGuiceSettingsProvider* settingsProvider;
     id instanceCreator;
+    id mockProvider;
 }
 
 -(void)setUp
@@ -106,9 +108,10 @@
     
     settingsProvider = [[AppleGuiceSettingsProvider alloc] init];
     instanceCreator = [OCMockObject mockForProtocol:@protocol(AppleGuiceInstanceCreatorProtocol)];
-    
+    mockProvider = [OCMockObject mockForProtocol:@protocol(AppleGuiceMockProviderProtocol)];
     serviceUnderTest.settingsProvider = settingsProvider;
     serviceUnderTest.instanceCreator = instanceCreator;
+    serviceUnderTest.mockProvoider = mockProvider;
     
     settingsProvider.iocPrefix = testIocPrefix;
 }
@@ -179,9 +182,12 @@
     [[[instanceCreator expect] andReturn:[[injectedClass alloc] init]] instanceForClass:injectedClass];
     [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
     [[instanceCreator reject] instanceForProtocol:OCMOCK_ANY];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     [instanceCreator verify];
+    [mockProvider verify];
     EXP_expect(instanceToInjectTo->test_injectableObject).to.beKindOf([injectedClass class]);
     EXP_expect(instanceToInjectTo->test_injectableObjectInSuperclass).to.beKindOf([injectedClass class]);
     EXP_expect([instanceToInjectTo->test_injectableObject isProxy]).to.beFalsy();
@@ -191,9 +197,12 @@
 -(void) test__injectImplementationsToInstance__InstanceInjectableProtocolAndWithLazyLoadInstanceCreationPolicy__proxiesAreInjected {
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyLazyLoad;
     ClassWithInjectableProtocol* instanceToInjectTo = [[ClassWithInjectableProtocol alloc] init];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     
+    [mockProvider verify];
     EXP_expect([instanceToInjectTo->test_injectableProtocol isProxy]).to.beTruthy();
     EXP_expect([instanceToInjectTo->test_injectableProtocolInSuperclass isProxy]).to.beTruthy();
 }
@@ -207,9 +216,12 @@
     [[[instanceCreator expect] andReturn:[[injectedClass alloc] init]] instanceForProtocol:@protocol(InjectedProtocol)];
     [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
     [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     [instanceCreator verify];
+    [mockProvider verify];
     EXP_expect(instanceToInjectTo->test_injectableProtocol).to.beKindOf([injectedClass class]);
     EXP_expect(instanceToInjectTo->test_injectableProtocolInSuperclass).to.beKindOf([injectedClass class]);
     EXP_expect([instanceToInjectTo->test_injectableProtocol isProxy]).to.beFalsy();
@@ -224,9 +236,13 @@
     
     [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
     [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).to.raise(NSStringFromClass([AppleGuiceInjectableImplementationNotFoundException class]));
+    
     [instanceCreator verify];
+    [mockProvider verify];
 }
 
 
@@ -234,8 +250,12 @@
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyLazyLoad;
     ClassWithInjectableArray* instanceToInjectTo = [[ClassWithInjectableArray alloc] init];
     
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
+    
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     
+    [mockProvider verify];
     EXP_expect([instanceToInjectTo->test_InjectedProtocol isProxy]).to.beTruthy();
     EXP_expect([instanceToInjectTo->test_InjectedProtocolDoesNotExist isProxy]).to.beTruthy();
 }
@@ -248,12 +268,74 @@
     [[[instanceCreator expect] andReturn:[NSArray array]] allInstancesForProtocol:nil];
     [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
     [[instanceCreator reject] instanceForProtocol:OCMOCK_ANY];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     [instanceCreator verify];
+    [mockProvider verify];
     EXP_expect(instanceToInjectTo->test_InjectedProtocol).to.beKindOf([NSArray class]);
     EXP_expect([instanceToInjectTo->test_InjectedProtocol isProxy]).to.beFalsy();
 }
 
+-(void) test__injectImplementationsToInstance__InstanceWithInjectableClassAndWithCreateMockInstanceCreationPolicy__mocksAreInjected {
+    Class injectedClass = [ClassWithNoIvars class];
+    settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyCreateMocks;
+    ClassWithInjectableClass* instanceToInjectTo = [[ClassWithInjectableClass alloc] init];
+    
+    [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
+    [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
+    [[instanceCreator reject] instanceForProtocol:OCMOCK_ANY];
+    [[[mockProvider expect] andReturn:[[injectedClass alloc] init]] mockForClass:injectedClass];
+    [[[mockProvider expect] andReturn:[[injectedClass alloc] init]] mockForClass:injectedClass];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
+    
+    EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
+    [instanceCreator verify];
+    [mockProvider verify];
+    EXP_expect(instanceToInjectTo->test_injectableObject).to.beKindOf([injectedClass class]);
+    EXP_expect(instanceToInjectTo->test_injectableObjectInSuperclass).to.beKindOf([injectedClass class]);
+    EXP_expect([instanceToInjectTo->test_injectableObject isProxy]).to.beFalsy();
+    EXP_expect([instanceToInjectTo->test_injectableObjectInSuperclass isProxy]).to.beFalsy();
+}
+
+-(void) test__injectImplementationsToInstance__InstanceWithInjectableProtocolAndWithCreateMockInstanceCreationPolicy__mocksAreInjected {
+    Class injectedClass = [ClassWithNoIvars class];
+    settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyCreateMocks;
+    ClassWithInjectableProtocol* instanceToInjectTo = [[ClassWithInjectableProtocol alloc] init];
+    
+    [[instanceCreator reject] instanceForProtocol:OCMOCK_ANY];
+    [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
+    [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[[mockProvider expect] andReturn:[[injectedClass alloc] init]]mockForProtocol:@protocol(InjectedProtocol)];
+    [[[mockProvider expect] andReturn:[[injectedClass alloc] init]]mockForProtocol:@protocol(InjectedProtocol)];
+    
+    EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
+    [instanceCreator verify];
+    [mockProvider verify];
+    EXP_expect(instanceToInjectTo->test_injectableProtocol).to.beKindOf([injectedClass class]);
+    EXP_expect(instanceToInjectTo->test_injectableProtocolInSuperclass).to.beKindOf([injectedClass class]);
+    EXP_expect([instanceToInjectTo->test_injectableProtocol isProxy]).to.beFalsy();
+    EXP_expect([instanceToInjectTo->test_injectableProtocolInSuperclass isProxy]).to.beFalsy();
+}
+
+-(void) test__injectImplementationsToInstance__InstanceInjectableArrayAndWithCreateMockInstanceCreationPolicy__mocksAreInjected {
+    settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyCreateMocks;
+    ClassWithInjectableArray* instanceToInjectTo = [[ClassWithInjectableArray alloc] init];
+    
+    [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
+    [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
+    [[instanceCreator reject] instanceForProtocol:OCMOCK_ANY];
+    [[[mockProvider expect] andReturn:@"string"] mockForProtocol:@protocol(InjectedProtocol)];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[[mockProvider expect] andReturn:@"string"] mockForProtocol:nil];
+    
+    EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
+    [instanceCreator verify];
+    [mockProvider verify];
+    EXP_expect(instanceToInjectTo->test_InjectedProtocol).to.beKindOf([NSArray class]);
+    EXP_expect([instanceToInjectTo->test_InjectedProtocol isProxy]).to.beFalsy();
+}
 
 @end

@@ -22,6 +22,7 @@
 #import "AppleGuiceSingletonRepository.h"
 #import "AppleGuiceBindingBootstrapper.h"
 #import "AppleGuiceInstanceCreator.h"
+#import "AppleGuiceOCMockMockProvider.h"
 
 @implementation AppleGuice
 
@@ -32,6 +33,7 @@ static AppleGuiceSingletonRepository* singletonRepository;
 static AppleGuiceSettingsProvider* settingsProvider;
 static AppleGuiceInstanceCreator* instanceCreator;
 static AppleGuiceBindingBootstrapper* bootstrapper;
+static AppleGuiceOCMockMockProvider* mockProvider;
 
 +(void)initialize {
 
@@ -42,7 +44,8 @@ static AppleGuiceBindingBootstrapper* bootstrapper;
     singletonRepository = [[AppleGuiceSingletonRepository alloc] init];
     instanceCreator = [[AppleGuiceInstanceCreator alloc] init];
     bootstrapper = [[AppleGuiceBindingBootstrapper alloc] init];
-
+    mockProvider = [[AppleGuiceOCMockMockProvider alloc] init];
+    
     protocolLocator.bindingService = bindingService;
 
     instanceCreator.protocolLocator = protocolLocator;
@@ -52,7 +55,8 @@ static AppleGuiceBindingBootstrapper* bootstrapper;
 
     injector.settingsProvider = settingsProvider;
     injector.instanceCreator = instanceCreator;
-
+    injector.mockProvoider = mockProvider;
+    
     bootstrapper.bindingService = bindingService;
     
     [protocolLocator setFilterProtocol:@protocol(AppleGuiceInjectable)];

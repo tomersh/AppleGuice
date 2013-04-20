@@ -14,9 +14,14 @@
 
 #import "AppleGuiceInjectorProtocol.h"
 
+@protocol AppleGuiceSettingsProviderProtocol;
+@protocol AppleGuiceSingletonRepositoryProtocol;
+@protocol AppleGuiceInstanceCreatorProtocol;
+@protocol AppleGuiceMockProviderProtocol;
+
 @interface AppleGuiceInjector : NSObject<AppleGuiceInjectorProtocol>
 
 @property (nonatomic, retain) id<AppleGuiceInstanceCreatorProtocol> instanceCreator;
 @property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
-
+@property (nonatomic, retain) id<AppleGuiceMockProviderProtocol> mockProvoider;
 @end

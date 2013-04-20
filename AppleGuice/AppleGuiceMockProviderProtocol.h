@@ -12,8 +12,11 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@protocol AppleGuiceInjectorProtocol <NSObject>
 
--(void) injectImplementationsToInstance:(id<NSObject>) classInstance;
+@protocol AppleGuiceMockProviderProtocol <NSObject>
+
+-(id) mockForClass:(Class)aClass;
+
+-(id) mockForProtocol:(Protocol *)aProtocol;
 
 @end

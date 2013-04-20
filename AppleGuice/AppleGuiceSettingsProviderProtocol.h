@@ -21,7 +21,8 @@ typedef enum AppleGuiceMethodInjectionPolicy {
 typedef enum AppleGuiceInstanceCreationPolicy {
     AppleGuiceInstanceCreationPolicyDefault = 0,
     AppleGuiceInstanceCreationPolicySingletons = 1 << 0,
-    AppleGuiceInstanceCreationPolicyLazyLoad = 1 << 1
+    AppleGuiceInstanceCreationPolicyLazyLoad = 1 << 1,
+    AppleGuiceInstanceCreationPolicyCreateMocks = 1 << 2
 } AppleGuiceInstanceCreationPolicy;
 
 @protocol AppleGuiceSettingsProviderProtocol <NSObject>
