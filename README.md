@@ -12,9 +12,9 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 
 ## Show Me ##
 
-Inject your first injectable instance with 3 simple steps:
+### Inject your first injectable instance with 3 simple steps: ###
 
-Start AppleGuice
+#### Start AppleGuice ####
 ```objectivec
 
 //AppDelegate.m
@@ -27,7 +27,7 @@ Start AppleGuice
 //More Code
 }
 ```
-Create your injectable service
+#### Create your injectable service ####
 ```objectivec
 
 @protocol MyServiceProtocol <AppleGuiceInjectable>
@@ -44,13 +44,13 @@ Create your injectable service
 @end
 ```
 
-Inject
+#### Enjoy automatic injection while coding ####
 ```objectivec
 @implementation MyClass {
   id<MyServiceProtocol> _ioc_myService;
 }
 
-//use _ioc_myService anywhere. Even in the init function!
+//Now, you can use _ioc_myService anywhere. Even in the init function!
 
 -(id) init {
   self = [super init];
@@ -59,6 +59,24 @@ Inject
 }
 @end
 ```
+AppleGuice initialized `_ioc_myService`  without any manual binding!
+
+#### Stub with ease while testing ####
+```objectivec
+@implementation MyClassTests {
+    MyClass* classUnderTest;
+    id myServiceMock;
+}
+
+-(void)setUp
+{
+    [super setUp];
+    classUnderTest = [[MyClass alloc] init];
+    myServiceMock = [OCMockObject mockForProtocol:@protocol(MyServiceProtocol)];
+    classUnderTest->_ioc_myService = myServiceMock;
+}
+```
+*When testing, AppleGuice works best with [OCMock](http://ocmock.org/).
 
 ## Inject In every flavour ##
 Injecting a service is done by declering an ivar in a class. You can add it in the interface, implementation, as a property or even inside a private category. AppleGuice will find it.
