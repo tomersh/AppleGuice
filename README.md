@@ -46,15 +46,21 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 
 #### Enjoy automatic injection while coding ####
 ```objectivec
-@implementation MyClass {
-  id<MyServiceProtocol> _ioc_myService;
-}
+//MyClass.h
+@interface MyClass : NSObject
+
+@property (nonatomic, strong) id<MyServiceProtocol> ioc_myService;
+
+@end
+
+//MyClass.m
+@implementation MyClass
 
 //Now, you can use _ioc_myService anywhere. Even in the init function!
 
 -(id) init {
   self = [super init];
-  [_ioc_myService doStuff];
+  [self.ioc_myService doStuff];
   return self;
 }
 @end
@@ -63,17 +69,27 @@ AppleGuice initialized `_ioc_myService`  without any manual binding!
 
 #### Stub with ease while testing ####
 ```objectivec
+#import <AppleGuice/AppleGuice.h>
+
 @implementation MyClassTests {
     MyClass* classUnderTest;
-    id myServiceMock;
 }
 
 -(void)setUp
 {
     [super setUp];
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
     classUnderTest = [[MyClass alloc] init];
-    myServiceMock = [OCMockObject mockForProtocol:@protocol(MyServiceProtocol)];
-    classUnderTest->_ioc_myService = myServiceMock;
+}
+
+-(void) test_foo_returnsValue {
+  //the injectable ivar is initialized with a mock. You can stub methods on it as you normally do with OCMock.
+  [[[classUnderTest.ioc_myService expect] andReturn:@"someString"] doStuff:OCMOCK_ANY];
+  
+  [classUnderTest foo];
+  
+  [classUnderTest.ioc_myService verify];
 }
 ```
 *When testing, AppleGuice works best with [OCMock](http://ocmock.org/).
