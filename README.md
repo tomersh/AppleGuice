@@ -28,6 +28,7 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 }
 ```
 #### Create your injectable service ####
+Mark your injectable service with the protocol `AppleGuiceInjectable` so AppleGuice will find it.
 ```objectivec
 
 @protocol MyServiceProtocol <AppleGuiceInjectable>
@@ -45,6 +46,8 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 ```
 
 #### Enjoy automatic injection while coding ####
+Create an ivar prefixed with the ioc prefix (the default is `_ioc_`).
+AppleGuice will automatically inject the proper implementation when calling the init method.
 ```objectivec
 //MyClass.h
 @interface MyClass : NSObject
