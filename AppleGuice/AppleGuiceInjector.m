@@ -60,7 +60,7 @@
     }
     
     id ivarValue = createInstanceBlock();
-    if ([ivarValue isKindOfClass:[NSObject class]]) {
+    if (ivarValue != nil) {
         [instance setValue:ivarValue forKey:ivarName];
     }
 }
@@ -74,7 +74,7 @@
     const char* ivarTypeEncoding = ivar_getTypeEncoding(ivar);
     
     if ([self _isPrimitiveType:ivarTypeEncoding]) {
-        return 0;
+        return nil;
     }
     
     NSString* className = [self _classNameFromType:ivarTypeEncoding];
