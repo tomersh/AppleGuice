@@ -6,7 +6,7 @@ Effortless dependency injection framework for Objective-C
 
 ## What AppleGuice does for you? ##
 
-AppleGuice lets you write clean, reuseable and testable code by allowing you to easily inject your services to any class.
+AppleGuice helps you write clean, reuseable and testable code by allowing you to easily inject your services to any class.
 Other dependency injection frameworks require binding, xml editing or initializing your classes with a special method.
 With AppleGuice all you have to do is declare the injected type and thats it. As a bonus, you will still be able to initialize classes with `[[MyClass alloc] init]` so it is even easier to integrate it with your existing code base.
 
@@ -28,6 +28,7 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 }
 ```
 #### Create your injectable service ####
+Mark your injectable service with the protocol `AppleGuiceInjectable` so AppleGuice will find it.
 ```objectivec
 
 @protocol MyServiceProtocol <AppleGuiceInjectable>
@@ -45,6 +46,8 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 ```
 
 #### Enjoy automatic injection while coding ####
+Create an ivar prefixed with the ioc prefix (the default is `_ioc_`).
+AppleGuice will automatically inject the proper implementation when calling the init method.
 ```objectivec
 //MyClass.h
 @interface MyClass : NSObject
@@ -96,7 +99,7 @@ AppleGuice initialized `_ioc_myService`  without any manual binding!
 
 ## Inject In every flavour ##
 Injecting a service is done by declering an ivar in a class. You can add it in the interface, implementation, as a property or even inside a private category. AppleGuice will find it.
-You can injection comes in three flavours:
+Injection comes in three flavours:
 ```objectivec
 @interface MyClass () {
     MyService* _ioc_MyService; //will create an instance of MyService.
