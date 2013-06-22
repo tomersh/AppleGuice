@@ -147,7 +147,10 @@ void parseInterfaceEntry(string &entry,unordered_map <string, string> &classToSu
 
 	if (superClassEnd == string::npos) {
 		hasProtocolList = false;
-		superClassEnd = entry.length();
+		superClassEnd = entry.find('{'); //might be a variable list here!
+		if (superClassEnd == string::npos) {
+			superClassEnd = entry.length();
+		}
 	}
 
 	string superClassName = entry.substr(classNameEnd + 1, superClassEnd - classNameEnd - 1);
