@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		602AD3A9ABA148069493E232 /* libPods-AppleGuiceUnitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74C24A10D1344679015F52D /* libPods-AppleGuiceUnitTests.a */; };
 		F1075AAB17148FAC0054FC76 /* AppleGuiceAutoInjectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1075AAA17148FAC0054FC76 /* AppleGuiceAutoInjectorTests.m */; };
+		F10913A9180C978200F463B5 /* libAppleGuice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1223891180C7B1700F95995 /* libAppleGuice.a */; };
 		F123D8B31714CA5F00CC7C26 /* AppleGuiceSanity.m in Sources */ = {isa = PBXBuildFile; fileRef = F123D8B21714CA5F00CC7C26 /* AppleGuiceSanity.m */; };
 		F19691ED171785B6002B81E0 /* EXPMatchers+conformsToProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = F19691EB171785B6002B81E0 /* EXPMatchers+conformsToProtocol.m */; };
 		F1A3285D16FD1CCA00E007C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A3285C16FD1CCA00E007C1 /* UIKit.framework */; };
@@ -25,23 +26,22 @@
 		F1B7FBE716FD1FA00079A485 /* AppleGuiceBindingServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B7FBDF16FD1F550079A485 /* AppleGuiceBindingServiceTests.m */; };
 		F1B7FBE816FD1FA00079A485 /* TeamCityTestReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B7FBE116FD1F550079A485 /* TeamCityTestReporter.m */; };
 		F1B7FBE916FD1FA00079A485 /* TestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B7FBE316FD1F550079A485 /* TestBase.m */; };
-		F1B7FBF016FD28710079A485 /* libAppleGuice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A3289716FD1D0A00E007C1 /* libAppleGuice.a */; };
 		F1DD380D170A27A8002D464A /* AppleGuiceProtocolLocatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DD380C170A27A8002D464A /* AppleGuiceProtocolLocatorTests.m */; };
 		F1DD3814170B6773002D464A /* AppleGuiceInstanceCreatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3813170B6773002D464A /* AppleGuiceInstanceCreatorTests.m */; };
 		F1DD3817170B717D002D464A /* AppleGuiceInjectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DD3816170B717D002D464A /* AppleGuiceInjectorTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F1A3289616FD1D0A00E007C1 /* PBXContainerItemProxy */ = {
+		F1223890180C7B1700F95995 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F1A3289116FD1D0A00E007C1 /* AppleGuice.xcodeproj */;
+			containerPortal = F122388C180C7B1600F95995 /* AppleGuice.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = F18E722216F9135C000BD3CB;
 			remoteInfo = AppleGuice;
 		};
-		F1A3289A16FD1D4700E007C1 /* PBXContainerItemProxy */ = {
+		F1223892180C7B2E00F95995 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F1A3289116FD1D0A00E007C1 /* AppleGuice.xcodeproj */;
+			containerPortal = F122388C180C7B1600F95995 /* AppleGuice.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = F18E722116F9135C000BD3CB;
 			remoteInfo = AppleGuice;
@@ -61,6 +61,7 @@
 		A74C24A10D1344679015F52D /* libPods-AppleGuiceUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleGuiceUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1075AA917148FAC0054FC76 /* AppleGuiceAutoInjectorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceAutoInjectorTests.h; path = AppleGuiceUnitTests/AppleGuiceAutoInjectorTests.h; sourceTree = SOURCE_ROOT; };
 		F1075AAA17148FAC0054FC76 /* AppleGuiceAutoInjectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceAutoInjectorTests.m; path = AppleGuiceUnitTests/AppleGuiceAutoInjectorTests.m; sourceTree = SOURCE_ROOT; };
+		F122388C180C7B1600F95995 /* AppleGuice.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppleGuice.xcodeproj; path = ../AppleGuice.xcodeproj; sourceTree = "<group>"; };
 		F123D8B11714CA5F00CC7C26 /* AppleGuiceSanity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceSanity.h; path = AppleGuiceUnitTests/AppleGuiceSanity.h; sourceTree = SOURCE_ROOT; };
 		F123D8B21714CA5F00CC7C26 /* AppleGuiceSanity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceSanity.m; path = AppleGuiceUnitTests/AppleGuiceSanity.m; sourceTree = SOURCE_ROOT; };
 		F19691EA171785B6002B81E0 /* EXPMatchers+conformsToProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+conformsToProtocol.h"; sourceTree = SOURCE_ROOT; };
@@ -79,7 +80,6 @@
 		F1A3287216FD1CCA00E007C1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F1A3287916FD1CCA00E007C1 /* AppleGuiceUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleGuiceUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1A3287A16FD1CCA00E007C1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		F1A3289116FD1D0A00E007C1 /* AppleGuice.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppleGuice.xcodeproj; path = ../AppleGuice.xcodeproj; sourceTree = "<group>"; };
 		F1B7FBDE16FD1F550079A485 /* AppleGuiceBindingServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleGuiceBindingServiceTests.h; path = AppleGuiceUnitTests/AppleGuiceBindingServiceTests.h; sourceTree = SOURCE_ROOT; };
 		F1B7FBDF16FD1F550079A485 /* AppleGuiceBindingServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppleGuiceBindingServiceTests.m; path = AppleGuiceUnitTests/AppleGuiceBindingServiceTests.m; sourceTree = SOURCE_ROOT; };
 		F1B7FBE016FD1F550079A485 /* TeamCityTestReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamCityTestReporter.h; path = AppleGuiceUnitTests/TeamCityTestReporter.h; sourceTree = SOURCE_ROOT; };
@@ -99,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F10913A9180C978200F463B5 /* libAppleGuice.a in Frameworks */,
 				F1A3285D16FD1CCA00E007C1 /* UIKit.framework in Frameworks */,
 				F1A3285F16FD1CCA00E007C1 /* Foundation.framework in Frameworks */,
 				F1A3286116FD1CCA00E007C1 /* CoreGraphics.framework in Frameworks */,
@@ -109,7 +110,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1B7FBF016FD28710079A485 /* libAppleGuice.a in Frameworks */,
 				F1A3287B16FD1CCA00E007C1 /* SenTestingKit.framework in Frameworks */,
 				F1A3287C16FD1CCA00E007C1 /* UIKit.framework in Frameworks */,
 				F1A3287D16FD1CCA00E007C1 /* Foundation.framework in Frameworks */,
@@ -120,10 +120,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F122388D180C7B1600F95995 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1223891180C7B1700F95995 /* libAppleGuice.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F1A3285016FD1CCA00E007C1 = {
 			isa = PBXGroup;
 			children = (
-				F1A3289116FD1D0A00E007C1 /* AppleGuice.xcodeproj */,
+				F122388C180C7B1600F95995 /* AppleGuice.xcodeproj */,
 				F1A3286216FD1CCA00E007C1 /* AppleGuiceTests */,
 				F1A3288016FD1CCA00E007C1 /* AppleGuiceUnitTests */,
 				F1A3285B16FD1CCA00E007C1 /* Frameworks */,
@@ -211,14 +219,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F1A3289216FD1D0A00E007C1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F1A3289716FD1D0A00E007C1 /* libAppleGuice.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -233,7 +233,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F1A3289B16FD1D4700E007C1 /* PBXTargetDependency */,
+				F1223893180C7B2E00F95995 /* PBXTargetDependency */,
 			);
 			name = AppleGuiceTests;
 			productName = AppleGuiceTests;
@@ -266,7 +266,7 @@
 		F1A3285116FD1CCA00E007C1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Tomer Shiri";
 			};
 			buildConfigurationList = F1A3285416FD1CCA00E007C1 /* Build configuration list for PBXProject "AppleGuiceTests" */;
@@ -281,8 +281,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = F1A3289216FD1D0A00E007C1 /* Products */;
-					ProjectRef = F1A3289116FD1D0A00E007C1 /* AppleGuice.xcodeproj */;
+					ProductGroup = F122388D180C7B1600F95995 /* Products */;
+					ProjectRef = F122388C180C7B1600F95995 /* AppleGuice.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -294,11 +294,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		F1A3289716FD1D0A00E007C1 /* libAppleGuice.a */ = {
+		F1223891180C7B1700F95995 /* libAppleGuice.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libAppleGuice.a;
-			remoteRef = F1A3289616FD1D0A00E007C1 /* PBXContainerItemProxy */;
+			remoteRef = F1223890180C7B1700F95995 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -382,10 +382,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F1A3289B16FD1D4700E007C1 /* PBXTargetDependency */ = {
+		F1223893180C7B2E00F95995 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AppleGuice;
-			targetProxy = F1A3289A16FD1D4700E007C1 /* PBXContainerItemProxy */;
+			targetProxy = F1223892180C7B2E00F95995 /* PBXContainerItemProxy */;
 		};
 		F1B7FBF516FD37CB0079A485 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -420,10 +420,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 			};
 			name = Debug;
 		};
@@ -445,18 +445,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 			};
 			name = Release;
 		};
 		F1A3288C16FD1CCA00E007C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuiceTests/AppleGuiceTests-Prefix.pch";
 				INFOPLIST_FILE = "AppleGuiceTests/AppleGuiceTests-Info.plist";
@@ -469,7 +469,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -477,7 +477,6 @@
 		F1A3288D16FD1CCA00E007C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuiceTests/AppleGuiceTests-Prefix.pch";
 				INFOPLIST_FILE = "AppleGuiceTests/AppleGuiceTests-Info.plist";
@@ -489,7 +488,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -498,7 +497,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5087A1FEB79543489D3843C6 /* Pods-AppleGuiceUnitTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AppleGuiceTests.app/AppleGuiceTests";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -507,11 +505,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuiceTests/AppleGuiceTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"${PODS_HEADERS_SEARCH_PATHS}",
+					"${PROJECT_DIR}/Pods/Headers/**",
 					"${PROJECT_DIR}/../AppleGuice",
 				);
 				INFOPLIST_FILE = "AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist";
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
@@ -521,7 +519,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -530,7 +528,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5087A1FEB79543489D3843C6 /* Pods-AppleGuiceUnitTests.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AppleGuiceTests.app/AppleGuiceTests";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -539,10 +536,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuiceTests/AppleGuiceTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"${PODS_HEADERS_SEARCH_PATHS}",
+					"${PROJECT_DIR}/Pods/Headers/**",
 					"${PROJECT_DIR}/../AppleGuice",
 				);
 				INFOPLIST_FILE = "AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
@@ -552,7 +550,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT) i386";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
