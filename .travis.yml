@@ -1,1 +1,3 @@
 language: objective-c
+scheme: "AppleGuice"
+Configuration: "Debug"
