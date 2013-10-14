@@ -1,3 +1,5 @@
 language: objective-c
 scheme: "AppleGuice"
 Configuration: "Debug"
+before_install:
+ - "cd AppleGuiceTests"
