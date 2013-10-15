@@ -48,7 +48,31 @@
 		F185E1C81722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */; };
 		F185E1C91722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */; };
 		F18E722616F9135C000BD3CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
+		F1C775A6180D7E5F00329CCA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
+		F1C775B2180D7E9800329CCA /* appleGuiceBootstrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1C775B1180D7E9800329CCA /* appleGuiceBootstrapper.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F1C775B3180D820600329CCA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F18E721A16F9135C000BD3CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1C775A4180D7E5F00329CCA;
+			remoteInfo = AppleGuiceBootsrapper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F1C775A3180D7E5F00329CCA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInstanceCreator.m; sourceTree = "<group>"; };
@@ -94,6 +118,9 @@
 		F18E722216F9135C000BD3CB /* libAppleGuice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppleGuice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18E722516F9135C000BD3CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F18E722916F9135C000BD3CB /* AppleGuice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuice-Prefix.pch"; sourceTree = "<group>"; };
+		F1C775A5180D7E5F00329CCA /* AppleGuiceBootsrapper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppleGuiceBootsrapper; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1C775AB180D7E6000329CCA /* AppleGuiceBootsrapper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuiceBootsrapper-Prefix.pch"; sourceTree = "<group>"; };
+		F1C775B1180D7E9800329CCA /* appleGuiceBootstrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appleGuiceBootstrapper.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +132,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1C775A2180D7E5F00329CCA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1C775A6180D7E5F00329CCA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -112,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				F18E722716F9135C000BD3CB /* AppleGuice */,
+				F1C775A7180D7E5F00329CCA /* AppleGuiceBootsrapper */,
 				F18E722416F9135C000BD3CB /* Frameworks */,
 				F18E722316F9135C000BD3CB /* Products */,
 			);
@@ -121,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				F18E722216F9135C000BD3CB /* libAppleGuice.a */,
+				F1C775A5180D7E5F00329CCA /* AppleGuiceBootsrapper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,6 +226,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F1C775A7180D7E5F00329CCA /* AppleGuiceBootsrapper */ = {
+			isa = PBXGroup;
+			children = (
+				F1C775B1180D7E9800329CCA /* appleGuiceBootstrapper.cpp */,
+				F1C775AA180D7E6000329CCA /* Supporting Files */,
+			);
+			path = AppleGuiceBootsrapper;
+			sourceTree = "<group>";
+		};
+		F1C775AA180D7E6000329CCA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1C775AB180D7E6000329CCA /* AppleGuiceBootsrapper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -240,11 +294,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				F1C775B4180D820600329CCA /* PBXTargetDependency */,
 			);
 			name = AppleGuice;
 			productName = AppleGuice;
 			productReference = F18E722216F9135C000BD3CB /* libAppleGuice.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		F1C775A4180D7E5F00329CCA /* AppleGuiceBootsrapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1C775B0180D7E6000329CCA /* Build configuration list for PBXNativeTarget "AppleGuiceBootsrapper" */;
+			buildPhases = (
+				F1C775A1180D7E5F00329CCA /* Sources */,
+				F1C775A2180D7E5F00329CCA /* Frameworks */,
+				F1C775A3180D7E5F00329CCA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppleGuiceBootsrapper;
+			productName = AppleGuiceBootsrapper;
+			productReference = F1C775A5180D7E5F00329CCA /* AppleGuiceBootsrapper */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -268,6 +340,7 @@
 			projectRoot = "";
 			targets = (
 				F18E722116F9135C000BD3CB /* AppleGuice */,
+				F1C775A4180D7E5F00329CCA /* AppleGuiceBootsrapper */,
 			);
 		};
 /* End PBXProject section */
@@ -285,7 +358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PROJECT_ROOT=${PROJECT_DIR}\nbash ${PROJECT_DIR}/Bootstrapper/appleGuiceBootstrapper.sh ${PROJECT_ROOT} ${PROJECT_DIR}/AppleGuice/AppleGuiceBindingBootstrapper.m";
+			shellScript = "interfaceDeclerations=$(grep -sirhE --include=*.h --regexp='((@interface[^:]+:\\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${PROJECT_DIR});\nresult=$(echo \"${interfaceDeclerations}\" | ${BUILD_DIR}/Debug/AppleGuiceBootsrapper);\necho \"${result}\" > ${PROJECT_DIR}/AppleGuice/AppleGuiceBindingBootstrapper.m;";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -311,7 +384,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1C775A1180D7E5F00329CCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1C775B2180D7E9800329CCA /* appleGuiceBootstrapper.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F1C775B4180D820600329CCA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1C775A4180D7E5F00329CCA /* AppleGuiceBootsrapper */;
+			targetProxy = F1C775B3180D820600329CCA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F18E724516F9135C000BD3CB /* Debug */ = {
@@ -399,6 +488,66 @@
 			};
 			name = Release;
 		};
+		F1C775AE180D7E6000329CCA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AppleGuiceBootsrapper/AppleGuiceBootsrapper-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				OBJROOT = build;
+				OTHER_CPLUSPLUSFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SYMROOT = build;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
+			};
+			name = Debug;
+		};
+		F1C775AF180D7E6000329CCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AppleGuiceBootsrapper/AppleGuiceBootsrapper-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = "";
+				OBJROOT = build;
+				OTHER_CPLUSPLUSFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SYMROOT = build;
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -416,6 +565,15 @@
 			buildConfigurations = (
 				F18E724816F9135C000BD3CB /* Debug */,
 				F18E724916F9135C000BD3CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1C775B0180D7E6000329CCA /* Build configuration list for PBXNativeTarget "AppleGuiceBootsrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1C775AE180D7E6000329CCA /* Debug */,
+				F1C775AF180D7E6000329CCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
