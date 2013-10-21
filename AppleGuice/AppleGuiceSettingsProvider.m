@@ -36,7 +36,7 @@
     self.iocPrefix = @"_ioc_";
     self.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
     self.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyAutomatic;
-    self.bootstrapperClassName = @"AppleGuiceBootstrapper";
+    self.bootstrapperClassName = @"AppleGuiceBindingBootstrapper";
 }
 
 -(void)dealloc {
