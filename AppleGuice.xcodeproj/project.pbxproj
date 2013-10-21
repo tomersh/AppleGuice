@@ -11,7 +11,6 @@
 		F150E875170C57B900938549 /* AppleGuice.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1416F9141300BA754E /* AppleGuice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F150E876170C57B900938549 /* AppleGuiceInjectable.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1C16F9141300BA754E /* AppleGuiceInjectable.h */; };
 		F150E877170C57B900938549 /* AppleGuiceSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */; };
-		F150E878170C57B900938549 /* AppleGuiceBindingBootstrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD5416F9159200BA754E /* AppleGuiceBindingBootstrapper.h */; };
 		F150E879170C57B900938549 /* AppleGuiceBindingBootstrapperProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */; };
 		F150E87A170C57B900938549 /* AppleGuiceAutoInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1616F9141300BA754E /* AppleGuiceAutoInjector.h */; };
 		F150E87B170C57B900938549 /* AppleGuiceAutoInjectorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1816F9141300BA754E /* AppleGuiceAutoInjectorProtocol.h */; };
@@ -43,7 +42,6 @@
 		F172DD4316F9141300BA754E /* AppleGuiceSettingsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD2916F9141300BA754E /* AppleGuiceSettingsProvider.m */; };
 		F172DD4516F9141300BA754E /* AppleGuiceSingletonRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD2C16F9141300BA754E /* AppleGuiceSingletonRepository.m */; };
 		F172DD4816F9141300BA754E /* AppleGuiceClassLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD3016F9141300BA754E /* AppleGuiceClassLinkedList.m */; };
-		F172DD6B16F920CB00BA754E /* AppleGuiceBindingBootstrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD6A16F920CA00BA754E /* AppleGuiceBindingBootstrapper.m */; };
 		F185E1C51722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F185E1C41722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h */; };
 		F185E1C81722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */; };
 		F185E1C91722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */; };
@@ -85,9 +83,7 @@
 		F172DD2D16F9141300BA754E /* AppleGuiceSingletonRepositoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepositoryProtocol.h; sourceTree = "<group>"; };
 		F172DD2F16F9141300BA754E /* AppleGuiceClassLinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceClassLinkedList.h; sourceTree = "<group>"; };
 		F172DD3016F9141300BA754E /* AppleGuiceClassLinkedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceClassLinkedList.m; sourceTree = "<group>"; };
-		F172DD5416F9159200BA754E /* AppleGuiceBindingBootstrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceBindingBootstrapper.h; sourceTree = "<group>"; };
 		F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceBindingBootstrapperProtocol.h; sourceTree = "<group>"; };
-		F172DD6A16F920CA00BA754E /* AppleGuiceBindingBootstrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceBindingBootstrapper.m; sourceTree = "<group>"; };
 		F185E1C41722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderProtocol.h; sourceTree = "<group>"; };
 		F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceOCMockMockProvider.h; sourceTree = "<group>"; };
 		F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceOCMockMockProvider.m; sourceTree = "<group>"; };
@@ -140,8 +136,6 @@
 				F172DD1516F9141300BA754E /* AppleGuice.m */,
 				F172DD1C16F9141300BA754E /* AppleGuiceInjectable.h */,
 				F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */,
-				F172DD5416F9159200BA754E /* AppleGuiceBindingBootstrapper.h */,
-				F172DD6A16F920CA00BA754E /* AppleGuiceBindingBootstrapper.m */,
 				F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */,
 				F172DD1616F9141300BA754E /* AppleGuiceAutoInjector.h */,
 				F172DD1716F9141300BA754E /* AppleGuiceAutoInjector.m */,
@@ -199,7 +193,6 @@
 				F150E875170C57B900938549 /* AppleGuice.h in Headers */,
 				F150E876170C57B900938549 /* AppleGuiceInjectable.h in Headers */,
 				F150E877170C57B900938549 /* AppleGuiceSingleton.h in Headers */,
-				F150E878170C57B900938549 /* AppleGuiceBindingBootstrapper.h in Headers */,
 				F150E879170C57B900938549 /* AppleGuiceBindingBootstrapperProtocol.h in Headers */,
 				F150E87A170C57B900938549 /* AppleGuiceAutoInjector.h in Headers */,
 				F150E87B170C57B900938549 /* AppleGuiceAutoInjectorProtocol.h in Headers */,
@@ -304,7 +297,6 @@
 				F172DD4316F9141300BA754E /* AppleGuiceSettingsProvider.m in Sources */,
 				F172DD4516F9141300BA754E /* AppleGuiceSingletonRepository.m in Sources */,
 				F172DD4816F9141300BA754E /* AppleGuiceClassLinkedList.m in Sources */,
-				F172DD6B16F920CB00BA754E /* AppleGuiceBindingBootstrapper.m in Sources */,
 				F162136516F9D95C00563E38 /* NSObject+AppleGuice.m in Sources */,
 				696C18D4C34FD833E551D9FC /* AppleGuiceInstanceCreator.m in Sources */,
 				F185E1C91722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m in Sources */,

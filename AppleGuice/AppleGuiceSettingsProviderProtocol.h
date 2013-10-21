@@ -30,6 +30,8 @@ typedef enum AppleGuiceInstanceCreationPolicy {
 
 @property (nonatomic, retain) NSString* iocPrefix;
 
+@property (nonatomic, retain) NSString* bootstrapperClassName;
+
 @property (nonatomic, assign) AppleGuiceInstanceCreationPolicy instanceCreateionPolicy;
 
 @property (nonatomic, assign) AppleGuiceMethodInjectionPolicy methodInjectionPolicy;

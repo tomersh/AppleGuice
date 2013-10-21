@@ -15,10 +15,10 @@
 #import "AppleGuiceBindingBootstrapperProtocol.h"
 
 @interface AppleGuiceBindingBootstrapper : NSObject<AppleGuiceBindingBootstrapperProtocol> {
-    @private
+@private
     id<AppleGuiceBindingServiceProtocol> _ioc_bindingService;
 }
 
-@property (nonatomic, retain) id<AppleGuiceBindingServiceProtocol> bindingService;
+@property (nonatomic, strong) id<AppleGuiceBindingServiceProtocol> bindingService;
 
 @end
