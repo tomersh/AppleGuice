@@ -110,7 +110,7 @@ void parseProtocolEntry(string &entry, unordered_map<string, set<string> > &prot
 	
 	//cout << "parsing line: " << entry << " ";
 
-	int protocolLength = (int)string(protocolLabel).length();
+	int protocolLength = string(protocolLabel).length();
 	
 	size_t protocolNameEnd = entry.find('<');
 	if (protocolNameEnd == string::npos) return; // bad entry syntax
@@ -135,7 +135,7 @@ void parseInterfaceEntry(string &entry,unordered_map <string, string> &classToSu
 	
 	//cout << "parsing line: " << entry << " ";
 	
-	int interfaceLength = (int)string(interfaceLabel).length();
+	int interfaceLength = string(interfaceLabel).length();
 
 	size_t classNameEnd = entry.find(':');
 	if (classNameEnd == string::npos) return; // bad entry syntax
@@ -264,7 +264,7 @@ void generateAppleGuiceCodeForEntry(string &protocolName, set<string> &implement
 
     stringBuilder << "[self.bindingService setImplementationsFromStrings:@[";
 
-    int setSize = (int)implementingClasses.size();
+    int setSize = implementingClasses.size();
     for(set<string>::const_iterator implementedProtocolsIterator = implementingClasses.begin(); implementedProtocolsIterator != implementingClasses.end(); implementedProtocolsIterator++ ) {
 		string implementationName = *implementedProtocolsIterator;
 		stringBuilder << "@\"" << implementationName << "\"";
