@@ -20,9 +20,9 @@
 #import "AppleGuiceProtocolLocator.h"
 #import "AppleGuiceSettingsProvider.h"
 #import "AppleGuiceSingletonRepository.h"
-#import "AppleGuiceBindingBootstrapper.h"
 #import "AppleGuiceInstanceCreator.h"
 #import "AppleGuiceOCMockMockProvider.h"
+#import "AppleGuiceBindingBootstrapperProtocol.h"
 
 @implementation AppleGuice
 
@@ -32,7 +32,7 @@ static AppleGuiceProtocolLocator* protocolLocator;
 static AppleGuiceSingletonRepository* singletonRepository;
 static AppleGuiceSettingsProvider* settingsProvider;
 static AppleGuiceInstanceCreator* instanceCreator;
-static AppleGuiceBindingBootstrapper* bootstrapper;
+static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 static AppleGuiceOCMockMockProvider* mockProvider;
 
 +(void)initialize {
@@ -43,7 +43,6 @@ static AppleGuiceOCMockMockProvider* mockProvider;
     injector = [[AppleGuiceInjector alloc] init];
     singletonRepository = [[AppleGuiceSingletonRepository alloc] init];
     instanceCreator = [[AppleGuiceInstanceCreator alloc] init];
-    bootstrapper = [[AppleGuiceBindingBootstrapper alloc] init];
     mockProvider = [[AppleGuiceOCMockMockProvider alloc] init];
     
     protocolLocator.bindingService = bindingService;
@@ -57,6 +56,8 @@ static AppleGuiceOCMockMockProvider* mockProvider;
     injector.instanceCreator = instanceCreator;
     injector.mockProvoider = mockProvider;
     
+    Class bootstrapperClass = NSClassFromString(settingsProvider.bootstrapperClassName);
+    bootstrapper = [[bootstrapperClass alloc] init];
     bootstrapper.bindingService = bindingService;
     
     [protocolLocator setFilterProtocol:@protocol(AppleGuiceInjectable)];
@@ -128,6 +129,10 @@ static AppleGuiceOCMockMockProvider* mockProvider;
 
 +(void) setIocPrefix:(NSString*) iocPrefix {
     settingsProvider.iocPrefix = iocPrefix;
+}
+
++(void) setBootstrapperClassName:(NSString*) bootstrapperClassName {
+    settingsProvider.bootstrapperClassName = bootstrapperClassName;
 }
 
 +(void) setMethodInjectionPolicy:(AppleGuiceMethodInjectionPolicy)methodInjectionPolicy {

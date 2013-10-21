@@ -18,11 +18,12 @@
 
 @implementation AppleGuiceSettingsProvider {
     NSString* _iocPrefix;
+    NSString* _bootstrapperClassName;
     AppleGuiceInstanceCreationPolicy _instanceCreateionPolicy;
     AppleGuiceMethodInjectionPolicy _methodInjectionPolicy;
 }
 
-@synthesize iocPrefix = _iocPrefix, instanceCreateionPolicy = _instanceCreateionPolicy, methodInjectionPolicy = _methodInjectionPolicy;
+@synthesize iocPrefix = _iocPrefix, instanceCreateionPolicy = _instanceCreateionPolicy, methodInjectionPolicy = _methodInjectionPolicy, bootstrapperClassName = _bootstrapperClassName;
 
 - (id)init {
     self = [super init];
@@ -35,6 +36,7 @@
     self.iocPrefix = @"_ioc_";
     self.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
     self.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyAutomatic;
+    self.bootstrapperClassName = @"AppleGuiceBootstrapper";
 }
 
 -(void)dealloc {
