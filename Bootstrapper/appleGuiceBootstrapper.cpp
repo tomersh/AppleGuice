@@ -12,13 +12,23 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+// NOTE(acm): Before gcc-4.7, __cplusplus is always defined to be 1, so we can't reliably
+// detect C++11 support by exclusively checking the value of __cplusplus.  Additionaly, libc++,
+// whether in C++11 or C++03 mode, doesn't use TR1 and drops things into std instead.
+#if __cplusplus >= 201103L
+#include <unordered_map>
+#else
+#include <tr1/unordered_map>
+using namespace std::tr1;
+#endif
+
 #include <iostream>
 #include <sstream>
 
 #include <unistd.h>
 #include <stdio.h>
 
-#include <tr1/unordered_map>
+
 #include <string>
 #include <vector>
 #include <set>
@@ -26,7 +36,6 @@
 #include <algorithm>
 
 using namespace std;
-using namespace std::tr1;
 
 const static string protocolLabel = "@protocol";
 const static string interfaceLabel = "@interface";

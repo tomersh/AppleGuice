@@ -14,7 +14,6 @@
 # limitations under the License.                                           #
 ############################################################################
 SHELL = /bin/sh
-CC=g++
 
 EXENAME = bootStrapper
 
@@ -26,10 +25,10 @@ clean:
 	$(RM) -f $(EXENAME)
 %.o : %.cpp
 	$(info * [Creating $@ from $<])
-	$(CC) -c $(CCFLAGS) $< -o $@
+	$(CXX) -c $(CXXFLAGS) $< -o $@
 link:
 	$(info * [Linking])
-	$(CC) -o $(EXENAME) appleGuiceBootstrapper.cpp $(CCFLAGS)
+	$(CXX) -o $(EXENAME) appleGuiceBootstrapper.cpp -std=c++11 -stdlib=libc++ $(CXXFLAGS)
 end:
 	$(info * [Build successful. $(EXENAME) was created])
 .PHONY: all init clean mkdir link end
