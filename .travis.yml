@@ -1,7 +1,10 @@
 language: objective-c
 scheme: "AppleGuice"
 Configuration: "Debug"
-before_install: 
+before_install:
+ - rvm use ruby-2.0.0-p247
+ - brew install ios-sim
+ - gem install cocoapods
  - cd AppleGuiceTests
  - pod install
 script: "xcodebuild -sdk iphonesimulator -workspace AppleGuiceTests.xcworkspace -scheme AppleGuiceUnitTests -configuration Debug RUN_APPLICATION_TESTS_WITH_IOS_SIM=YES ONLY_ACTIVE_ARCH=NO clean build 2>&1"
