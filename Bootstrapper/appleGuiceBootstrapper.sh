@@ -26,7 +26,7 @@ scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ ! -f ${scriptDir}/${bootstrapper} ]
 then
     cd ${scriptDir};
-    make EXENAME=${bootstrapper}
+    make EXENAME=${bootstrapper} CXXFLAGS=-mios-version-min=7.0.0
 fi
 
 interfaceDeclerations=$(grep -sirhE --include=*.h --regexp='((@interface[^:]+:\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${path});
