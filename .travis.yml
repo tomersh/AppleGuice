@@ -7,5 +7,5 @@ before_install:
  - brew install xctool
  - gem install cocoapods
  - cd AppleGuiceTests
- - pod install
+ - pod install --no-doc
 script: "xctool test -sdk iphonesimulator -workspace AppleGuiceTests.xcworkspace -scheme AppleGuiceUnitTests -configuration Debug"
