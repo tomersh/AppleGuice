@@ -25,6 +25,11 @@ typedef enum AppleGuiceInstanceCreationPolicy {
     AppleGuiceInstanceCreationPolicyCreateMocks = 1 << 2
 } AppleGuiceInstanceCreationPolicy;
 
+typedef enum AppleGuiceImplementationAvailabilityPolicy {
+    AppleGuiceImplementationAvailabilityPolicyRequired = 0,
+    AppleGuiceImplementationAvailabilityPolicyOptional = 1
+} AppleGuiceImplementationAvailabilityPolicy;
+
 @protocol AppleGuiceSettingsProviderProtocol <NSObject>
 
 
@@ -35,5 +40,7 @@ typedef enum AppleGuiceInstanceCreationPolicy {
 @property (nonatomic, assign) AppleGuiceInstanceCreationPolicy instanceCreateionPolicy;
 
 @property (nonatomic, assign) AppleGuiceMethodInjectionPolicy methodInjectionPolicy;
+
+@property (nonatomic, assign) AppleGuiceImplementationAvailabilityPolicy implementationAvailabilityPolicy;
 
 @end

@@ -19,8 +19,10 @@
 #import "AppleGuiceInstanceCreatorProtocol.h"
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
 #import "AppleGuiceMockProviderProtocol.h"
+#import "AppleGuiceOptional.h"
 
-@implementation AppleGuiceInjector 
+@implementation AppleGuiceInjector
+
 
 -(void) injectImplementationsToInstance:(id<NSObject>) classInstance {
     if (!classInstance) return;
@@ -127,12 +129,17 @@
         ivarValue = [self.mockProvoider mockForProtocol:protocol];
     }
     else {
-        ivarValue = [self.instanceCreator instanceForProtocol:NSProtocolFromString(protocolName)];
+        ivarValue = [self.instanceCreator instanceForProtocol:protocol];
     }
-    if (!ivarValue) {
+    if (!ivarValue && [self _shouldThrowOnFailedInjection:protocol]) {
         @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithIvarName:ivarName andProtocolName:protocolName];
     }
     return ivarValue;
+}
+
+-(BOOL) _shouldThrowOnFailedInjection:(Protocol*) protocol {
+    return self.settingsProvider.implementationAvailabilityPolicy != AppleGuiceImplementationAvailabilityPolicyOptional
+    && !(protocol && protocol_conformsToProtocol(protocol, @protocol(AppleGuiceOptional)));
 }
 
 -(BOOL) _shouldInjectMocks {

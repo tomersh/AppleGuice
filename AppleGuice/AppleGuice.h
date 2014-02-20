@@ -17,6 +17,7 @@
 #import "AppleGuiceInjectable.h"
 #import "AppleGuiceSingleton.h"
 #import "NSObject+AppleGuice.h"
+#import "AppleGuiceOptional.h"
 
 typedef enum AppleGuiceImplementationDiscoveryPolicy {
     AppleGuiceImplementationDiscoveryPolicyNoAutoDiscovery = 0,
@@ -79,6 +80,14 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  */
 +(NSArray*) allInstancesForProtocol:(Protocol*) protocol;
 
+
+/**
+ Returns an array containing classes of all implementations of protocol.
+ @param protocol protocol type
+ @return an array containing classes type of Protocol protocol, an empty array will be returned if @param protocol is nil.
+*/
++(NSArray*) allClassesForProtocol:(Protocol*) protocol;
+
 /**
  Initialize all ivar's with the IOC prefix.
  @param classInstance an instance of a class
@@ -87,7 +96,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
 
 
 ///-----------------------------
-/// @name Inject Implementations
+/// @name Manual bindings
 ///-----------------------------
 
 /**
@@ -116,7 +125,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
 +(void) unsetAllImplementations;
 
 ///-----------------------------
-/// @name Inject Implementations
+/// @name Settings
 ///-----------------------------
 
 /**
@@ -152,5 +161,14 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param instanceCreationPolicy AppleGuiceInstanceCreationPolicy
  */
 +(void) setInstanceCreationPolicy:(AppleGuiceInstanceCreationPolicy) instanceCreationPolicy;
+
+/**
+ Set implementation availability policy.
+ - AppleGuiceImplementationAvailabilityPolicyRequired throws an AppleGuiceInjectableImplementationNotFoundException if there is no injectable implemntation present for a given ivar during object init.
+ - AppleGuiceImplementationAvailabilityPolicyOptional set an injectable ivar to nil if there is no injectable implemntation present during object init.
+
+ @param instanceCreationPolicy AppleGuiceImplementationAvailabilityPolicy
+ */
++(void) setImplementationAvailabilityPolicy:(AppleGuiceImplementationAvailabilityPolicy) implementationAvailabilityPolicy;
 
 @end

@@ -12,6 +12,11 @@
 #import "AppleGuiceInstanceCreatorProtocol.h"
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
 #import "AppleGuiceMockProviderProtocol.h"
+#import "AppleGuiceOptional.h"
+
+@protocol OptionalProtocolWithNoImplementation <AppleGuiceOptional>
+
+@end
 
 @protocol InjectedProtocol <NSObject>
 @end
@@ -92,6 +97,14 @@
 }
 @end
 @implementation ClassWithInjectableArray
+@end
+
+@interface ClassWithInjectableOptionalProtocol : NSObject {
+@public
+    iocProtocol(OptionalProtocolWithNoImplementation, optionalObject);
+}
+@end
+@implementation ClassWithInjectableOptionalProtocol
 @end
 
 @implementation AppleGuiceInjectorTests {
@@ -245,6 +258,49 @@
     [mockProvider verify];
 }
 
+-(void) test__injectImplementationsToInstance__InstanceInjectableWithNoProtocolImplementationAndOptionalImplementationAvailability__returnsNil {
+    settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
+    settingsProvider.implementationAvailabilityPolicy = AppleGuiceImplementationAvailabilityPolicyOptional;
+    ClassWithInjectableProtocol* instanceToInjectTo = [[ClassWithInjectableProtocol alloc] init];
+    
+    [[[instanceCreator expect] andReturn:nil] instanceForProtocol:@protocol(InjectedProtocol)];
+    [[[instanceCreator expect] andReturn:nil] instanceForProtocol:@protocol(InjectedProtocol)];
+    
+    [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
+    [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
+    
+    
+    EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
+    
+    
+    EXP_expect(instanceToInjectTo->test_injectableProtocol).to.beNil;
+    EXP_expect(instanceToInjectTo->test_injectableProtocol).to.beNil;
+    [instanceCreator verify];
+    [mockProvider verify];
+}
+
+-(void) test__injectImplementationsToInstance__InstanceInjectableWithNoProtocolImplementationWithAppleGuiceOptionalProtocol__returnsNil {
+    settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
+    settingsProvider.implementationAvailabilityPolicy = AppleGuiceImplementationAvailabilityPolicyRequired;
+    ClassWithInjectableOptionalProtocol* instanceToInjectTo = [[ClassWithInjectableOptionalProtocol alloc] init];
+    
+    [[[instanceCreator expect] andReturn:nil] instanceForProtocol:@protocol(OptionalProtocolWithNoImplementation)];
+    
+    [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
+    [[instanceCreator reject] allInstancesForProtocol:OCMOCK_ANY];
+    [[mockProvider reject] mockForClass:OCMOCK_ANY];
+    [[mockProvider reject] mockForProtocol:OCMOCK_ANY];
+    
+    
+    EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
+    
+    
+    EXP_expect(instanceToInjectTo->test_optionalObject).to.beNil;
+    [instanceCreator verify];
+    [mockProvider verify];
+}
 
 -(void) test__injectImplementationsToInstance__InstanceInjectableArrayAndWithLazyLoadInstanceCreationPolicy__proxiesAreInjected {
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyLazyLoad;

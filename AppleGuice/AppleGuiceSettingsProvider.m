@@ -21,9 +21,10 @@
     NSString* _bootstrapperClassName;
     AppleGuiceInstanceCreationPolicy _instanceCreateionPolicy;
     AppleGuiceMethodInjectionPolicy _methodInjectionPolicy;
+    AppleGuiceImplementationAvailabilityPolicy _implementationAvailabilityPolicy;
 }
 
-@synthesize iocPrefix = _iocPrefix, instanceCreateionPolicy = _instanceCreateionPolicy, methodInjectionPolicy = _methodInjectionPolicy, bootstrapperClassName = _bootstrapperClassName;
+@synthesize iocPrefix = _iocPrefix, instanceCreateionPolicy = _instanceCreateionPolicy, methodInjectionPolicy = _methodInjectionPolicy, bootstrapperClassName = _bootstrapperClassName, implementationAvailabilityPolicy = _implementationAvailabilityPolicy;
 
 - (id)init {
     self = [super init];
@@ -36,6 +37,7 @@
     self.iocPrefix = @"_ioc_";
     self.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
     self.methodInjectionPolicy = AppleGuiceMethodInjectionPolicyAutomatic;
+    self.implementationAvailabilityPolicy = AppleGuiceImplementationAvailabilityPolicyRequired;
     self.bootstrapperClassName = @"AppleGuiceBindingBootstrapper";
 }
 

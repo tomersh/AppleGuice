@@ -105,6 +105,11 @@ static AppleGuiceOCMockMockProvider* mockProvider;
     return [instanceCreator allInstancesForProtocol:protocol];
 }
 
++(NSArray*) allClassesForProtocol:(Protocol*) protocol {
+    if (!protocol) return @[];
+    return [protocolLocator getAllClassesByProtocolType:protocol];
+}
+
 +(void) injectImplementationsToInstance:(id<NSObject>) classInstance {
     [injector injectImplementationsToInstance:classInstance];
 }
@@ -136,12 +141,17 @@ static AppleGuiceOCMockMockProvider* mockProvider;
 }
 
 +(void) setMethodInjectionPolicy:(AppleGuiceMethodInjectionPolicy)methodInjectionPolicy {
-    [settingsProvider setMethodInjectionPolicy:methodInjectionPolicy];
+    settingsProvider.methodInjectionPolicy = methodInjectionPolicy;
+    
     [AppleGuice _changeAutoInjectorStateIfNeeded];
 }
 
 +(void) setInstanceCreationPolicy:(AppleGuiceInstanceCreationPolicy)instanceCreationPolicy {
-    [settingsProvider setInstanceCreateionPolicy:instanceCreationPolicy];
+    settingsProvider.instanceCreateionPolicy = instanceCreationPolicy;
+}
+
++(void) setImplementationAvailabilityPolicy:(AppleGuiceImplementationAvailabilityPolicy) implementationAvailabilityPolicy {
+    settingsProvider.implementationAvailabilityPolicy = implementationAvailabilityPolicy;
 }
 
 +(void) _changeAutoInjectorStateIfNeeded {
