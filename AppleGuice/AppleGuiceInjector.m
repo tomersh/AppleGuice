@@ -138,8 +138,9 @@
 }
 
 -(BOOL) _shouldThrowOnFailedInjection:(Protocol*) protocol {
-    return self.settingsProvider.implementationAvailabilityPolicy != AppleGuiceImplementationAvailabilityPolicyOptional
-    && !(protocol && protocol_conformsToProtocol(protocol, @protocol(AppleGuiceOptional)));
+    return protocol
+    && self.settingsProvider.implementationAvailabilityPolicy != AppleGuiceImplementationAvailabilityPolicyOptional
+    && !protocol_conformsToProtocol(protocol, @protocol(AppleGuiceOptional));
 }
 
 -(BOOL) _shouldInjectMocks {
