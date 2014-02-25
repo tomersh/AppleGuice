@@ -58,7 +58,7 @@
         classInstance = [self _singletonForClass:clazz];
     }
     else {
-        classInstance = [self _newInstanceForClass:clazz];
+        classInstance = [self _createInstanceForClass:clazz];
     }
     return classInstance;
 }
@@ -74,7 +74,7 @@
     return classInstance;
 }
 
--(id) _newInstanceForClass:(Class) clazz {
+-(id) _createInstanceForClass:(Class) clazz {
     id classInstance = [[clazz alloc] init];
     [self _injectImplementationsToInstanceIfneeded:classInstance];
     return [classInstance autorelease];

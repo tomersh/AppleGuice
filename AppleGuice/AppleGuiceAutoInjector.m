@@ -24,6 +24,16 @@ static BOOL _didStart;
 static Class _targetClass;
 static SEL _targetSelector;
 
+
+static id _appleGuiceInjectionInitWrapper(id self, SEL _cmd) {
+    id returnValue = nil;
+    NSAutoreleasePool* autoReleasePool = [[NSAutoreleasePool alloc] init];
+    returnValue = _originalInitMethodImp(self, _cmd);
+    [_injector injectImplementationsToInstance:returnValue];
+    [autoReleasePool drain];
+    return returnValue;
+}
+
 +(void) setInjector:(id<AppleGuiceInjectorProtocol>) injector {
     [_injector release];
     _injector = [injector retain];
@@ -47,15 +57,6 @@ static SEL _targetSelector;
     _didStart = NO;
 
     class_replaceMethod(_targetClass, _targetSelector, _originalInitMethodImp, @encode(id));
-}
-
-static id _appleGuiceInjectionInitWrapper(id self, SEL _cmd) {
-    id returnValue = nil;
-    NSAutoreleasePool* autoReleasePool = [[NSAutoreleasePool alloc] init];
-    returnValue = _originalInitMethodImp(self, _cmd);
-    [_injector injectImplementationsToInstance:returnValue];
-    [autoReleasePool drain];
-    return returnValue;
 }
 
 @end

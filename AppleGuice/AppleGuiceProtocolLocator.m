@@ -14,13 +14,12 @@
 
 #import "AppleGuiceProtocolLocator.h"
 #import "AppleGuiceBindingServiceProtocol.h"
-#import "AppleGuiceInjectable.h"
 #import "AppleGuiceClassLinkedList.h"
 #import <objc/runtime.h>
 
 
 @implementation AppleGuiceProtocolLocator {
-    unsigned int _allClassCount;
+    int _allClassCount;
     Class* _allClassesMemoization;
     NSArray* _filteredClasses;
 }

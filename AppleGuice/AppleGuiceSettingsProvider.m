@@ -43,6 +43,7 @@
 
 -(void)dealloc {
     [_iocPrefix release];
+    [_bootstrapperClassName release];
     [super dealloc];
 }
 
