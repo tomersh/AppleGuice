@@ -13,12 +13,23 @@
 //limitations under the License.
 
 #import "AppleGuiceSingletonRepository.h"
+#import <pthread.h>
+
+#if __cplusplus >= 201103L
+#import <unordered_map>
+#else
+#import <tr1/unordered_map>
+using namespace std::tr1;
+#endif
+
+using namespace std;
+
+#define SYNC(...) pthread_mutex_lock(&_mutex); __VA_ARGS__; pthread_mutex_unlock(&_mutex);
 
 @interface AppleGuiceSingletonRepository () {
-    NSMutableDictionary* _singletons;
+    pthread_mutex_t _mutex;
+    unordered_map<unsigned long, id > _singletons;
 }
-
-@property (nonatomic, retain) NSMutableDictionary* singletons;
 
 @end
 
@@ -27,50 +38,44 @@
 -(id) init {
     self = [super init];
     if (!self) return self;
-    _singletons = [[NSMutableDictionary alloc] init];
+    _singletons = unordered_map<unsigned long, id >();
+    pthread_mutex_init(&_mutex, PTHREAD_MUTEX_NORMAL);
     return self;
 }
 
--(void) setSingletons:(NSMutableDictionary *) singletons {
-    @synchronized(_singletons) {
-        [_singletons release];
-        _singletons = [singletons retain];
-    }
-}
-
--(NSMutableDictionary*) singletons {
-    NSMutableDictionary* synchronizedSingletons;
-    @synchronized(_singletons) {
-        synchronizedSingletons = _singletons;
-    }
-    return synchronizedSingletons;
+unsigned long _storageKeyForClass(Class clazz) {
+    return (unsigned long)[clazz hash];
 }
 
 -(id) instanceForClass:(Class) clazz {
-    id<NSCopying> storageKey = [self _storageKeyForClass:clazz];
-    id instance = [self.singletons objectForKey:storageKey];
+    if (![self hasInstanceForClass:clazz]) {
+        return nil;
+    }
+    
+    NSUInteger storageKey = _storageKeyForClass(clazz);
+    
+    id instance = nil;
+    SYNC(instance = _singletons[storageKey]);
     return instance;
 }
 
 -(void) setInstance:(id) instance forClass:(Class) clazz {
-    id<NSCopying> storageKey = [self _storageKeyForClass:clazz];
-    [self.singletons setObject:instance forKey:storageKey];
+    unsigned long storageKey = _storageKeyForClass(clazz);
+    SYNC(_singletons[storageKey] = instance);
 }
 
 -(BOOL) hasInstanceForClass:(Class) clazz {
-    return [self instanceForClass:clazz] != nil;
-}
-
--(id<NSCopying>) _storageKeyForClass:(Class) clazz {
-    return [NSNumber numberWithUnsignedInteger:[clazz hash]];
+    NSUInteger storageKey = _storageKeyForClass(clazz);
+    return _singletons.find(storageKey) != _singletons.end();
 }
 
 -(void) clearRepository {
-    [self.singletons removeAllObjects];
+    SYNC(_singletons.clear());
 }
 
 -(void) dealloc {
-    [_singletons release];
+    pthread_mutex_unlock(&_mutex);
+    pthread_mutex_destroy(&_mutex);
     [super dealloc];
 }
 
