@@ -166,7 +166,7 @@
 
 -(NSString*) _classNameFromType:(const char*) typeEncoding {
     //@"xxx"
-    int objectNameLength = strlen(typeEncoding) - 2;
+    size_t objectNameLength = strlen(typeEncoding) - 2;
     char* classNameAsCString = malloc(sizeof(char) * strlen(typeEncoding));
     strcpy( classNameAsCString, typeEncoding + (sizeof(char) * 2));
     classNameAsCString[objectNameLength - 1] = '\0';

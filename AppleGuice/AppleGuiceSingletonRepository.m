@@ -62,7 +62,7 @@
 }
 
 -(id<NSCopying>) _storageKeyForClass:(Class) clazz {
-    return [NSNumber numberWithUnsignedInt:[clazz hash]];
+    return [NSNumber numberWithUnsignedInteger:[clazz hash]];
 }
 
 -(void) clearRepository {
