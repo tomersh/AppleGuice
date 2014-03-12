@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tomer Shiri. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "OCMock.h"
 #import "Expecta.h"
 #import "EXPMatchers+conformsToProtocol.h"
@@ -19,7 +19,7 @@
 #define iocPrimitive(__type, __name) __type test_##__name
 #define iocProtocol(__type, __name) id<__type> test_##__name
 
-@interface TestBase : SenTestCase {
+@interface TestBase : XCTestCase {
     @package
     BOOL yes;
     BOOL no;

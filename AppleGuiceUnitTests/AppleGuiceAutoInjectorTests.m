@@ -23,6 +23,7 @@
 -(void) reset;
 @end
 
+
 @implementation AppleGuiceAutoInjectorTests {
     
 }
@@ -53,7 +54,7 @@ static MockedInjector* mockedInjector;
     id result = [[[injectedClassType alloc] init] autorelease];
     [AppleGuiceAutoInjector setInjector:nil];
     
-    STAssertEquals([result retainCount], (NSUInteger)2, @"AutoInjector should not retain");
+    XCTAssertEqual([result retainCount], (NSUInteger)2, @"AutoInjector should not retain");
     EXP_expect(result).to.beInstanceOf(injectedClassType);
     EXP_expect(mockedInjector->didCallInjector).to.beTruthy();
     EXP_expect(mockedInjector->calledArg).to.equal(result);

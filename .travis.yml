@@ -7,4 +7,4 @@ before_install:
  - gem install cocoapods --no-doc
  - cd AppleGuiceTests
  - pod install
-script: "xctool test -freshInstall -sdk iphonesimulator -workspace AppleGuiceTests.xcworkspace -scheme AppleGuiceUnitTests -configuration Debug"
+script: "xctool clean test -freshInstall -sdk iphonesimulator7.0 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug"

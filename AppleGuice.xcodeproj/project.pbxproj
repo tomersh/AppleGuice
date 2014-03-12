@@ -1,422 +1,2157 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		696C18D4C34FD833E551D9FC /* AppleGuiceInstanceCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */; };
-		F150E875170C57B900938549 /* AppleGuice.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1416F9141300BA754E /* AppleGuice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F150E876170C57B900938549 /* AppleGuiceInjectable.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1C16F9141300BA754E /* AppleGuiceInjectable.h */; };
-		F150E877170C57B900938549 /* AppleGuiceSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */; };
-		F150E879170C57B900938549 /* AppleGuiceBindingBootstrapperProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */; };
-		F150E87A170C57B900938549 /* AppleGuiceAutoInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1616F9141300BA754E /* AppleGuiceAutoInjector.h */; };
-		F150E87B170C57B900938549 /* AppleGuiceAutoInjectorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1816F9141300BA754E /* AppleGuiceAutoInjectorProtocol.h */; };
-		F150E87C170C57B900938549 /* AppleGuiceBindingService.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1916F9141300BA754E /* AppleGuiceBindingService.h */; };
-		F150E87D170C57B900938549 /* AppleGuiceBindingServiceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1B16F9141300BA754E /* AppleGuiceBindingServiceProtocol.h */; };
-		F150E87E170C57B900938549 /* AppleGuiceInjectableImplementationNotFoundException.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1D16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.h */; };
-		F150E87F170C57B900938549 /* AppleGuiceInjector.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1F16F9141300BA754E /* AppleGuiceInjector.h */; };
-		F150E880170C57B900938549 /* AppleGuiceInjectorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2116F9141300BA754E /* AppleGuiceInjectorProtocol.h */; };
-		F150E881170C57B900938549 /* AppleGuiceInstanceCreatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */; };
-		F150E882170C57B900938549 /* AppleGuiceInstanceCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = 696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */; };
-		F150E883170C57B900938549 /* AppleGuiceInvocationProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2216F9141300BA754E /* AppleGuiceInvocationProxy.h */; };
-		F150E884170C57B900938549 /* AppleGuiceMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2416F9141300BA754E /* AppleGuiceMacros.h */; };
-		F150E885170C57B900938549 /* AppleGuiceProtocolLocator.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2516F9141300BA754E /* AppleGuiceProtocolLocator.h */; };
-		F150E886170C57B900938549 /* AppleGuiceProtocolLocatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2716F9141300BA754E /* AppleGuiceProtocolLocatorProtocol.h */; };
-		F150E887170C57B900938549 /* AppleGuiceSettingsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2816F9141300BA754E /* AppleGuiceSettingsProvider.h */; };
-		F150E888170C57B900938549 /* AppleGuiceSettingsProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2A16F9141300BA754E /* AppleGuiceSettingsProviderProtocol.h */; };
-		F150E889170C57B900938549 /* AppleGuiceSingletonRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2B16F9141300BA754E /* AppleGuiceSingletonRepository.h */; };
-		F150E88A170C57B900938549 /* AppleGuiceSingletonRepositoryProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2D16F9141300BA754E /* AppleGuiceSingletonRepositoryProtocol.h */; };
-		F150E88B170C57B900938549 /* AppleGuiceClassLinkedList.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD2F16F9141300BA754E /* AppleGuiceClassLinkedList.h */; };
-		F150E88C170C57B900938549 /* NSObject+AppleGuice.h in Headers */ = {isa = PBXBuildFile; fileRef = F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */; };
-		F159661418B6111B0041E6E5 /* AppleGuiceOptional.h in Headers */ = {isa = PBXBuildFile; fileRef = F159661318B6111B0041E6E5 /* AppleGuiceOptional.h */; };
-		F162136516F9D95C00563E38 /* NSObject+AppleGuice.m in Sources */ = {isa = PBXBuildFile; fileRef = F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */; };
-		F172DD3516F9141300BA754E /* AppleGuice.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD1516F9141300BA754E /* AppleGuice.m */; };
-		F172DD3716F9141300BA754E /* AppleGuiceAutoInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD1716F9141300BA754E /* AppleGuiceAutoInjector.m */; };
-		F172DD3916F9141300BA754E /* AppleGuiceBindingService.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD1A16F9141300BA754E /* AppleGuiceBindingService.m */; };
-		F172DD3B16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD1E16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.m */; };
-		F172DD3D16F9141300BA754E /* AppleGuiceInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD2016F9141300BA754E /* AppleGuiceInjector.m */; };
-		F172DD3F16F9141300BA754E /* AppleGuiceInvocationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD2316F9141300BA754E /* AppleGuiceInvocationProxy.m */; };
-		F172DD4116F9141300BA754E /* AppleGuiceProtocolLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD2616F9141300BA754E /* AppleGuiceProtocolLocator.m */; };
-		F172DD4316F9141300BA754E /* AppleGuiceSettingsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD2916F9141300BA754E /* AppleGuiceSettingsProvider.m */; };
-		F172DD4516F9141300BA754E /* AppleGuiceSingletonRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD2C16F9141300BA754E /* AppleGuiceSingletonRepository.m */; };
-		F172DD4816F9141300BA754E /* AppleGuiceClassLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = F172DD3016F9141300BA754E /* AppleGuiceClassLinkedList.m */; };
-		F185E1C51722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F185E1C41722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h */; };
-		F185E1C81722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */; };
-		F185E1C91722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */; };
-		F18E722616F9135C000BD3CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXFileReference section */
-		696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInstanceCreator.m; sourceTree = "<group>"; };
-		696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInstanceCreatorProtocol.h; sourceTree = "<group>"; };
-		696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInstanceCreator.h; sourceTree = "<group>"; };
-		F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingleton.h; sourceTree = "<group>"; };
-		F159661318B6111B0041E6E5 /* AppleGuiceOptional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceOptional.h; sourceTree = "<group>"; };
-		F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AppleGuice.h"; sourceTree = "<group>"; };
-		F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AppleGuice.m"; sourceTree = "<group>"; };
-		F172DD1416F9141300BA754E /* AppleGuice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuice.h; sourceTree = "<group>"; };
-		F172DD1516F9141300BA754E /* AppleGuice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuice.m; sourceTree = "<group>"; };
-		F172DD1616F9141300BA754E /* AppleGuiceAutoInjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceAutoInjector.h; sourceTree = "<group>"; };
-		F172DD1716F9141300BA754E /* AppleGuiceAutoInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceAutoInjector.m; sourceTree = "<group>"; };
-		F172DD1816F9141300BA754E /* AppleGuiceAutoInjectorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceAutoInjectorProtocol.h; sourceTree = "<group>"; };
-		F172DD1916F9141300BA754E /* AppleGuiceBindingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceBindingService.h; sourceTree = "<group>"; };
-		F172DD1A16F9141300BA754E /* AppleGuiceBindingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceBindingService.m; sourceTree = "<group>"; };
-		F172DD1B16F9141300BA754E /* AppleGuiceBindingServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceBindingServiceProtocol.h; sourceTree = "<group>"; };
-		F172DD1C16F9141300BA754E /* AppleGuiceInjectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInjectable.h; sourceTree = "<group>"; };
-		F172DD1D16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInjectableImplementationNotFoundException.h; sourceTree = "<group>"; };
-		F172DD1E16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInjectableImplementationNotFoundException.m; sourceTree = "<group>"; };
-		F172DD1F16F9141300BA754E /* AppleGuiceInjector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInjector.h; sourceTree = "<group>"; };
-		F172DD2016F9141300BA754E /* AppleGuiceInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInjector.m; sourceTree = "<group>"; };
-		F172DD2116F9141300BA754E /* AppleGuiceInjectorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInjectorProtocol.h; sourceTree = "<group>"; };
-		F172DD2216F9141300BA754E /* AppleGuiceInvocationProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInvocationProxy.h; sourceTree = "<group>"; };
-		F172DD2316F9141300BA754E /* AppleGuiceInvocationProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInvocationProxy.m; sourceTree = "<group>"; };
-		F172DD2416F9141300BA754E /* AppleGuiceMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMacros.h; sourceTree = "<group>"; };
-		F172DD2516F9141300BA754E /* AppleGuiceProtocolLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceProtocolLocator.h; sourceTree = "<group>"; };
-		F172DD2616F9141300BA754E /* AppleGuiceProtocolLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceProtocolLocator.m; sourceTree = "<group>"; };
-		F172DD2716F9141300BA754E /* AppleGuiceProtocolLocatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceProtocolLocatorProtocol.h; sourceTree = "<group>"; };
-		F172DD2816F9141300BA754E /* AppleGuiceSettingsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSettingsProvider.h; sourceTree = "<group>"; };
-		F172DD2916F9141300BA754E /* AppleGuiceSettingsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSettingsProvider.m; sourceTree = "<group>"; };
-		F172DD2A16F9141300BA754E /* AppleGuiceSettingsProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSettingsProviderProtocol.h; sourceTree = "<group>"; };
-		F172DD2B16F9141300BA754E /* AppleGuiceSingletonRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepository.h; sourceTree = "<group>"; };
-		F172DD2C16F9141300BA754E /* AppleGuiceSingletonRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSingletonRepository.m; sourceTree = "<group>"; };
-		F172DD2D16F9141300BA754E /* AppleGuiceSingletonRepositoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepositoryProtocol.h; sourceTree = "<group>"; };
-		F172DD2F16F9141300BA754E /* AppleGuiceClassLinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceClassLinkedList.h; sourceTree = "<group>"; };
-		F172DD3016F9141300BA754E /* AppleGuiceClassLinkedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceClassLinkedList.m; sourceTree = "<group>"; };
-		F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceBindingBootstrapperProtocol.h; sourceTree = "<group>"; };
-		F185E1C41722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderProtocol.h; sourceTree = "<group>"; };
-		F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceOCMockMockProvider.h; sourceTree = "<group>"; };
-		F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceOCMockMockProvider.m; sourceTree = "<group>"; };
-		F18E722216F9135C000BD3CB /* libAppleGuice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppleGuice.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F18E722516F9135C000BD3CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F18E722916F9135C000BD3CB /* AppleGuice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuice-Prefix.pch"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		F18E721F16F9135C000BD3CB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F18E722616F9135C000BD3CB /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		F18E721916F9135C000BD3CB = {
-			isa = PBXGroup;
-			children = (
-				F18E722716F9135C000BD3CB /* AppleGuice */,
-				F18E722416F9135C000BD3CB /* Frameworks */,
-				F18E722316F9135C000BD3CB /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		F18E722316F9135C000BD3CB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F18E722216F9135C000BD3CB /* libAppleGuice.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F18E722416F9135C000BD3CB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F18E722516F9135C000BD3CB /* Foundation.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F18E722716F9135C000BD3CB /* AppleGuice */ = {
-			isa = PBXGroup;
-			children = (
-				F172DD1416F9141300BA754E /* AppleGuice.h */,
-				F172DD1516F9141300BA754E /* AppleGuice.m */,
-				F172DD1C16F9141300BA754E /* AppleGuiceInjectable.h */,
-				F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */,
-				F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */,
-				F172DD1616F9141300BA754E /* AppleGuiceAutoInjector.h */,
-				F172DD1716F9141300BA754E /* AppleGuiceAutoInjector.m */,
-				F172DD1816F9141300BA754E /* AppleGuiceAutoInjectorProtocol.h */,
-				F172DD1916F9141300BA754E /* AppleGuiceBindingService.h */,
-				F172DD1A16F9141300BA754E /* AppleGuiceBindingService.m */,
-				F172DD1B16F9141300BA754E /* AppleGuiceBindingServiceProtocol.h */,
-				F172DD1D16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.h */,
-				F172DD1E16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.m */,
-				F172DD1F16F9141300BA754E /* AppleGuiceInjector.h */,
-				F172DD2016F9141300BA754E /* AppleGuiceInjector.m */,
-				F172DD2116F9141300BA754E /* AppleGuiceInjectorProtocol.h */,
-				696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */,
-				696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */,
-				696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */,
-				F172DD2216F9141300BA754E /* AppleGuiceInvocationProxy.h */,
-				F172DD2316F9141300BA754E /* AppleGuiceInvocationProxy.m */,
-				F172DD2416F9141300BA754E /* AppleGuiceMacros.h */,
-				F172DD2516F9141300BA754E /* AppleGuiceProtocolLocator.h */,
-				F172DD2616F9141300BA754E /* AppleGuiceProtocolLocator.m */,
-				F172DD2716F9141300BA754E /* AppleGuiceProtocolLocatorProtocol.h */,
-				F172DD2816F9141300BA754E /* AppleGuiceSettingsProvider.h */,
-				F172DD2916F9141300BA754E /* AppleGuiceSettingsProvider.m */,
-				F172DD2A16F9141300BA754E /* AppleGuiceSettingsProviderProtocol.h */,
-				F172DD2B16F9141300BA754E /* AppleGuiceSingletonRepository.h */,
-				F172DD2C16F9141300BA754E /* AppleGuiceSingletonRepository.m */,
-				F172DD2D16F9141300BA754E /* AppleGuiceSingletonRepositoryProtocol.h */,
-				F172DD2F16F9141300BA754E /* AppleGuiceClassLinkedList.h */,
-				F172DD3016F9141300BA754E /* AppleGuiceClassLinkedList.m */,
-				F185E1C41722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h */,
-				F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */,
-				F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */,
-				F159661318B6111B0041E6E5 /* AppleGuiceOptional.h */,
-				F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */,
-				F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */,
-				F18E722816F9135C000BD3CB /* Supporting Files */,
-			);
-			path = AppleGuice;
-			sourceTree = "<group>";
-		};
-		F18E722816F9135C000BD3CB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F18E722916F9135C000BD3CB /* AppleGuice-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		F150E874170C579E00938549 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F150E875170C57B900938549 /* AppleGuice.h in Headers */,
-				F150E876170C57B900938549 /* AppleGuiceInjectable.h in Headers */,
-				F150E877170C57B900938549 /* AppleGuiceSingleton.h in Headers */,
-				F150E879170C57B900938549 /* AppleGuiceBindingBootstrapperProtocol.h in Headers */,
-				F150E87A170C57B900938549 /* AppleGuiceAutoInjector.h in Headers */,
-				F159661418B6111B0041E6E5 /* AppleGuiceOptional.h in Headers */,
-				F150E87B170C57B900938549 /* AppleGuiceAutoInjectorProtocol.h in Headers */,
-				F150E87C170C57B900938549 /* AppleGuiceBindingService.h in Headers */,
-				F150E87D170C57B900938549 /* AppleGuiceBindingServiceProtocol.h in Headers */,
-				F150E87E170C57B900938549 /* AppleGuiceInjectableImplementationNotFoundException.h in Headers */,
-				F150E87F170C57B900938549 /* AppleGuiceInjector.h in Headers */,
-				F150E880170C57B900938549 /* AppleGuiceInjectorProtocol.h in Headers */,
-				F150E881170C57B900938549 /* AppleGuiceInstanceCreatorProtocol.h in Headers */,
-				F150E882170C57B900938549 /* AppleGuiceInstanceCreator.h in Headers */,
-				F150E883170C57B900938549 /* AppleGuiceInvocationProxy.h in Headers */,
-				F150E884170C57B900938549 /* AppleGuiceMacros.h in Headers */,
-				F150E885170C57B900938549 /* AppleGuiceProtocolLocator.h in Headers */,
-				F150E886170C57B900938549 /* AppleGuiceProtocolLocatorProtocol.h in Headers */,
-				F150E887170C57B900938549 /* AppleGuiceSettingsProvider.h in Headers */,
-				F150E888170C57B900938549 /* AppleGuiceSettingsProviderProtocol.h in Headers */,
-				F150E889170C57B900938549 /* AppleGuiceSingletonRepository.h in Headers */,
-				F150E88A170C57B900938549 /* AppleGuiceSingletonRepositoryProtocol.h in Headers */,
-				F150E88B170C57B900938549 /* AppleGuiceClassLinkedList.h in Headers */,
-				F150E88C170C57B900938549 /* NSObject+AppleGuice.h in Headers */,
-				F185E1C51722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h in Headers */,
-				F185E1C81722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		F18E722116F9135C000BD3CB /* AppleGuice */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F18E724716F9135C000BD3CB /* Build configuration list for PBXNativeTarget "AppleGuice" */;
-			buildPhases = (
-				F172DD7916F924C500BA754E /* Bootstrap project */,
-				F18E721E16F9135C000BD3CB /* Sources */,
-				F18E721F16F9135C000BD3CB /* Frameworks */,
-				F150E874170C579E00938549 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AppleGuice;
-			productName = AppleGuice;
-			productReference = F18E722216F9135C000BD3CB /* libAppleGuice.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		F18E721A16F9135C000BD3CB /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "Tomer Shiri";
-			};
-			buildConfigurationList = F18E721D16F9135C000BD3CB /* Build configuration list for PBXProject "AppleGuice" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = F18E721916F9135C000BD3CB;
-			productRefGroup = F18E722316F9135C000BD3CB /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				F18E722116F9135C000BD3CB /* AppleGuice */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F172DD7916F924C500BA754E /* Bootstrap project */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bootstrap project";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "PROJECT_ROOT=${PROJECT_DIR}\nbash ${PROJECT_DIR}/Bootstrapper/appleGuiceBootstrapper.sh ${PROJECT_ROOT} ${PROJECT_DIR}/AppleGuice/AppleGuiceBindingBootstrapper.m";
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		F18E721E16F9135C000BD3CB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F172DD3516F9141300BA754E /* AppleGuice.m in Sources */,
-				F172DD3716F9141300BA754E /* AppleGuiceAutoInjector.m in Sources */,
-				F172DD3916F9141300BA754E /* AppleGuiceBindingService.m in Sources */,
-				F172DD3B16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.m in Sources */,
-				F172DD3D16F9141300BA754E /* AppleGuiceInjector.m in Sources */,
-				F172DD3F16F9141300BA754E /* AppleGuiceInvocationProxy.m in Sources */,
-				F172DD4116F9141300BA754E /* AppleGuiceProtocolLocator.m in Sources */,
-				F172DD4316F9141300BA754E /* AppleGuiceSettingsProvider.m in Sources */,
-				F172DD4516F9141300BA754E /* AppleGuiceSingletonRepository.m in Sources */,
-				F172DD4816F9141300BA754E /* AppleGuiceClassLinkedList.m in Sources */,
-				F162136516F9D95C00563E38 /* NSObject+AppleGuice.m in Sources */,
-				696C18D4C34FD833E551D9FC /* AppleGuiceInstanceCreator.m in Sources */,
-				F185E1C91722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin XCBuildConfiguration section */
-		F18E724516F9135C000BD3CB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
-				GCC_WARN_PEDANTIC = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-			};
-			name = Debug;
-		};
-		F18E724616F9135C000BD3CB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
-				GCC_WARN_PEDANTIC = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-			};
-			name = Release;
-		};
-		F18E724816F9135C000BD3CB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DSTROOT = /tmp/AppleGuice.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppleGuice/AppleGuice-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-			};
-			name = Debug;
-		};
-		F18E724916F9135C000BD3CB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DSTROOT = /tmp/AppleGuice.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AppleGuice/AppleGuice-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		F18E721D16F9135C000BD3CB /* Build configuration list for PBXProject "AppleGuice" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F18E724516F9135C000BD3CB /* Debug */,
-				F18E724616F9135C000BD3CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F18E724716F9135C000BD3CB /* Build configuration list for PBXNativeTarget "AppleGuice" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F18E724816F9135C000BD3CB /* Debug */,
-				F18E724916F9135C000BD3CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = F18E721A16F9135C000BD3CB /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>0AA0ABDBF39945E89FF31BB4</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>392C9521977347E6A8A05659</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-AppleGuiceUnitTests.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>3B0B2F8529754A7BA2AE2627</key>
+		<dict>
+			<key>fileRef</key>
+			<string>392C9521977347E6A8A05659</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4FA7C2F6DC2343AA8DB3B290</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-AppleGuiceUnitTests.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Pods-AppleGuiceUnitTests.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>696C132EABBD3AA90781B1C5</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceInstanceCreator.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>696C18D4C34FD833E551D9FC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>696C132EABBD3AA90781B1C5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>696C1AFB2DB967C5ECCA9957</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInstanceCreatorProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>696C1E88F5F8FC4C3E9F8540</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInstanceCreator.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>96B7C4D1674F4D26B75542AB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Pods-AppleGuiceUnitTests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>F11BE113170432DE00E71B99</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceSingleton.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA5E18D0BCE40050864F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F133DA9118D0BE2A0050864F</string>
+				<string>F133DA8218D0BE130050864F</string>
+				<string>F133DA8F18D0BE2A0050864F</string>
+				<string>F133DA7E18D0BDEC0050864F</string>
+				<string>F133DA7A18D0BD570050864F</string>
+				<string>F133DA9018D0BE2A0050864F</string>
+				<string>F133DA9318D0BE2A0050864F</string>
+				<string>F133DA9418D0BE2A0050864F</string>
+				<string>F133DA9218D0BE2A0050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>F133DA5F18D0BCE40050864F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F133DA7618D0BCEC0050864F</string>
+				<string>F133DA6418D0BCE40050864F</string>
+				<string>F133DA6718D0BCE40050864F</string>
+				<string>F133DA6518D0BCE40050864F</string>
+				<string>3B0B2F8529754A7BA2AE2627</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>F133DA6018D0BCE40050864F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F133DA6D18D0BCE40050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>F133DA6118D0BCE40050864F</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>F133DA7518D0BCE40050864F</string>
+			<key>buildPhases</key>
+			<array>
+				<string>0AA0ABDBF39945E89FF31BB4</string>
+				<string>F133DA5E18D0BCE40050864F</string>
+				<string>F133DA5F18D0BCE40050864F</string>
+				<string>F133DA6018D0BCE40050864F</string>
+				<string>F133DA9518D0BE550050864F</string>
+				<string>96B7C4D1674F4D26B75542AB</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>F133DA7218D0BCE40050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>AppleGuiceUnitTests</string>
+			<key>productName</key>
+			<string>AppleGuiceUnitTests</string>
+			<key>productReference</key>
+			<string>F133DA6218D0BCE40050864F</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>F133DA6218D0BCE40050864F</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>AppleGuiceUnitTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>F133DA6318D0BCE40050864F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>F133DA6418D0BCE40050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA6318D0BCE40050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA6518D0BCE40050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F18E722516F9135C000BD3CB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA6618D0BCE40050864F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>F133DA6718D0BCE40050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA6618D0BCE40050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA6818D0BCE40050864F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F133DA8318D0BE2A0050864F</string>
+				<string>F133DA8418D0BE2A0050864F</string>
+				<string>F133DA8518D0BE2A0050864F</string>
+				<string>F133DA8618D0BE2A0050864F</string>
+				<string>F133DA8718D0BE2A0050864F</string>
+				<string>F133DA8818D0BE2A0050864F</string>
+				<string>F133DA8918D0BE2A0050864F</string>
+				<string>F133DA8A18D0BE2A0050864F</string>
+				<string>F133DA8B18D0BE2A0050864F</string>
+				<string>F133DA8C18D0BE2A0050864F</string>
+				<string>F133DA8D18D0BE2A0050864F</string>
+				<string>F133DA8E18D0BE2A0050864F</string>
+				<string>F133DA7F18D0BDFE0050864F</string>
+				<string>F133DA7B18D0BDCE0050864F</string>
+				<string>F133DA7718D0BD420050864F</string>
+				<string>F133DA6918D0BCE40050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>AppleGuiceUnitTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA6918D0BCE40050864F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F133DA6A18D0BCE40050864F</string>
+				<string>F133DA6B18D0BCE40050864F</string>
+				<string>F133DA7018D0BCE40050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA6A18D0BCE40050864F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>AppleGuiceUnitTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA6B18D0BCE40050864F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F133DA6C18D0BCE40050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA6C18D0BCE40050864F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA6D18D0BCE40050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA6B18D0BCE40050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA7018D0BCE40050864F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceUnitTests-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA7118D0BCE40050864F</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>F18E721A16F9135C000BD3CB</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>F18E722116F9135C000BD3CB</string>
+			<key>remoteInfo</key>
+			<string>AppleGuice</string>
+		</dict>
+		<key>F133DA7218D0BCE40050864F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>F18E722116F9135C000BD3CB</string>
+			<key>targetProxy</key>
+			<string>F133DA7118D0BCE40050864F</string>
+		</dict>
+		<key>F133DA7318D0BCE40050864F</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>4FA7C2F6DC2343AA8DB3B290</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>NO</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AppleGuiceUnitTests/AppleGuiceUnitTests-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_PEDANTIC</key>
+				<string>NO</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>F133DA7418D0BCE40050864F</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>4FA7C2F6DC2343AA8DB3B290</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>NO</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AppleGuiceUnitTests/AppleGuiceUnitTests-Prefix.pch</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_PEDANTIC</key>
+				<string>NO</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>F133DA7518D0BCE40050864F</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>F133DA7318D0BCE40050864F</string>
+				<string>F133DA7418D0BCE40050864F</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>F133DA7618D0BCEC0050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F18E722216F9135C000BD3CB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA7718D0BD420050864F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F133DA7818D0BD570050864F</string>
+				<string>F133DA7918D0BD570050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Setup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA7818D0BD570050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceBindingBootstrapper.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA7918D0BD570050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceBindingBootstrapper.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA7A18D0BD570050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA7918D0BD570050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA7B18D0BDCE0050864F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F133DA7C18D0BDEC0050864F</string>
+				<string>F133DA7D18D0BDEC0050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Matchers</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA7C18D0BDEC0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>EXPMatchers+conformsToProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA7D18D0BDEC0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>EXPMatchers+conformsToProtocol.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA7E18D0BDEC0050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA7D18D0BDEC0050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA7F18D0BDFE0050864F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F133DA8018D0BE130050864F</string>
+				<string>F133DA8118D0BE130050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>TestBase</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8018D0BE130050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>TestBase.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8118D0BE130050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>TestBase.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8218D0BE130050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA8118D0BE130050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA8318D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceAutoInjectorTests.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8418D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceAutoInjectorTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8518D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceBindingServiceTests.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8618D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceBindingServiceTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8718D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInjectorTests.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8818D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceInjectorTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8918D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInstanceCreatorTests.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8A18D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceInstanceCreatorTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8B18D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceProtocolLocatorTests.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8C18D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceProtocolLocatorTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8D18D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceSanity.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8E18D0BE2A0050864F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceSanity.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F133DA8F18D0BE2A0050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA8418D0BE2A0050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA9018D0BE2A0050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA8618D0BE2A0050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA9118D0BE2A0050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA8818D0BE2A0050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA9218D0BE2A0050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA8A18D0BE2A0050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA9318D0BE2A0050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA8C18D0BE2A0050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA9418D0BE2A0050864F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F133DA8E18D0BE2A0050864F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F133DA9518D0BE550050864F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Bootstrap project</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>PROJECT_ROOT=${PROJECT_DIR}
+bash ${PROJECT_DIR}/Bootstrapper/appleGuiceBootstrapper.sh ${PROJECT_ROOT} ${PROJECT_DIR}/AppleGuiceUnitTests/Setup/AppleGuiceBindingBootstrapper.m</string>
+		</dict>
+		<key>F150E874170C579E00938549</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F150E875170C57B900938549</string>
+				<string>F150E876170C57B900938549</string>
+				<string>F150E877170C57B900938549</string>
+				<string>F150E879170C57B900938549</string>
+				<string>F150E87A170C57B900938549</string>
+				<string>F159661418B6111B0041E6E5</string>
+				<string>F150E87B170C57B900938549</string>
+				<string>F150E87C170C57B900938549</string>
+				<string>F150E87D170C57B900938549</string>
+				<string>F150E87E170C57B900938549</string>
+				<string>F150E87F170C57B900938549</string>
+				<string>F150E880170C57B900938549</string>
+				<string>F150E881170C57B900938549</string>
+				<string>F150E882170C57B900938549</string>
+				<string>F150E883170C57B900938549</string>
+				<string>F150E884170C57B900938549</string>
+				<string>F150E885170C57B900938549</string>
+				<string>F150E886170C57B900938549</string>
+				<string>F150E887170C57B900938549</string>
+				<string>F150E888170C57B900938549</string>
+				<string>F150E889170C57B900938549</string>
+				<string>F150E88A170C57B900938549</string>
+				<string>F150E88B170C57B900938549</string>
+				<string>F150E88C170C57B900938549</string>
+				<string>F185E1C51722A13A00D12DE4</string>
+				<string>F185E1C81722A20A00D12DE4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>F150E875170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1416F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>F150E876170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1C16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E877170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F11BE113170432DE00E71B99</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E879170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD5616F9159200BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E87A170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1616F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E87B170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1816F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E87C170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1916F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E87D170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1B16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E87E170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1D16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E87F170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1F16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E880170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2116F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E881170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>696C1AFB2DB967C5ECCA9957</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E882170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>696C1E88F5F8FC4C3E9F8540</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E883170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2216F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E884170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2416F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E885170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2516F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E886170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2716F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E887170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2816F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E888170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2A16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E889170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2B16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E88A170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2D16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E88B170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2F16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F150E88C170C57B900938549</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F162136316F9D95C00563E38</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F159661318B6111B0041E6E5</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceOptional.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F159661418B6111B0041E6E5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F159661318B6111B0041E6E5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F162136316F9D95C00563E38</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>NSObject+AppleGuice.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F162136416F9D95C00563E38</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>NSObject+AppleGuice.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F162136516F9D95C00563E38</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F162136416F9D95C00563E38</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD1416F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuice.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1516F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuice.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1616F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceAutoInjector.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1716F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceAutoInjector.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1816F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceAutoInjectorProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1916F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceBindingService.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1A16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceBindingService.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1B16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceBindingServiceProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1C16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInjectable.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1D16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInjectableImplementationNotFoundException.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1E16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceInjectableImplementationNotFoundException.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD1F16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInjector.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2016F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceInjector.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2116F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInjectorProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2216F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceInvocationProxy.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2316F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceInvocationProxy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2416F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceMacros.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2516F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceProtocolLocator.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2616F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceProtocolLocator.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2716F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceProtocolLocatorProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2816F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceSettingsProvider.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2916F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceSettingsProvider.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2A16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceSettingsProviderProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2B16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceSingletonRepository.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2C16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceSingletonRepository.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2D16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceSingletonRepositoryProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD2F16F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceClassLinkedList.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD3016F9141300BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceClassLinkedList.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD3516F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1516F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD3716F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1716F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD3916F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1A16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD3B16F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD1E16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD3D16F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2016F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD3F16F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2316F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD4116F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2616F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD4316F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2916F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD4516F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD2C16F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD4816F9141300BA754E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F172DD3016F9141300BA754E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F172DD5616F9159200BA754E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceBindingBootstrapperProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F172DD7916F924C500BA754E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Bootstrap project</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>PROJECT_ROOT=${PROJECT_DIR}
+bash ${PROJECT_DIR}/Bootstrapper/appleGuiceBootstrapper.sh ${PROJECT_ROOT} ${PROJECT_DIR}/AppleGuice/AppleGuiceBindingBootstrapper.m</string>
+		</dict>
+		<key>F185E1C41722A13A00D12DE4</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceMockProviderProtocol.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F185E1C51722A13A00D12DE4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F185E1C41722A13A00D12DE4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F185E1C61722A20900D12DE4</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuiceOCMockMockProvider.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F185E1C71722A20A00D12DE4</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>AppleGuiceOCMockMockProvider.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F185E1C81722A20A00D12DE4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F185E1C61722A20900D12DE4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F185E1C91722A20A00D12DE4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F185E1C71722A20A00D12DE4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F18E721916F9135C000BD3CB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F18E722716F9135C000BD3CB</string>
+				<string>F133DA6818D0BCE40050864F</string>
+				<string>F18E722416F9135C000BD3CB</string>
+				<string>F18E722316F9135C000BD3CB</string>
+				<string>4FA7C2F6DC2343AA8DB3B290</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F18E721A16F9135C000BD3CB</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0500</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Tomer Shiri</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>F133DA6118D0BCE40050864F</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>F18E722116F9135C000BD3CB</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>F18E721D16F9135C000BD3CB</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>F18E721916F9135C000BD3CB</string>
+			<key>productRefGroup</key>
+			<string>F18E722316F9135C000BD3CB</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>F18E722116F9135C000BD3CB</string>
+				<string>F133DA6118D0BCE40050864F</string>
+			</array>
+		</dict>
+		<key>F18E721D16F9135C000BD3CB</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>F18E724516F9135C000BD3CB</string>
+				<string>F18E724616F9135C000BD3CB</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>F18E721E16F9135C000BD3CB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F172DD3516F9141300BA754E</string>
+				<string>F172DD3716F9141300BA754E</string>
+				<string>F172DD3916F9141300BA754E</string>
+				<string>F172DD3B16F9141300BA754E</string>
+				<string>F172DD3D16F9141300BA754E</string>
+				<string>F172DD3F16F9141300BA754E</string>
+				<string>F172DD4116F9141300BA754E</string>
+				<string>F172DD4316F9141300BA754E</string>
+				<string>F172DD4516F9141300BA754E</string>
+				<string>F172DD4816F9141300BA754E</string>
+				<string>F162136516F9D95C00563E38</string>
+				<string>696C18D4C34FD833E551D9FC</string>
+				<string>F185E1C91722A20A00D12DE4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>F18E721F16F9135C000BD3CB</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F18E722616F9135C000BD3CB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>F18E722116F9135C000BD3CB</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>F18E724716F9135C000BD3CB</string>
+			<key>buildPhases</key>
+			<array>
+				<string>F172DD7916F924C500BA754E</string>
+				<string>F18E721E16F9135C000BD3CB</string>
+				<string>F18E721F16F9135C000BD3CB</string>
+				<string>F150E874170C579E00938549</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>AppleGuice</string>
+			<key>productName</key>
+			<string>AppleGuice</string>
+			<key>productReference</key>
+			<string>F18E722216F9135C000BD3CB</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>F18E722216F9135C000BD3CB</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libAppleGuice.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>F18E722316F9135C000BD3CB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F18E722216F9135C000BD3CB</string>
+				<string>F133DA6218D0BCE40050864F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F18E722416F9135C000BD3CB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F18E722516F9135C000BD3CB</string>
+				<string>F133DA6318D0BCE40050864F</string>
+				<string>F133DA6618D0BCE40050864F</string>
+				<string>392C9521977347E6A8A05659</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F18E722516F9135C000BD3CB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>F18E722616F9135C000BD3CB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F18E722516F9135C000BD3CB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F18E722716F9135C000BD3CB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F172DD1416F9141300BA754E</string>
+				<string>F172DD1516F9141300BA754E</string>
+				<string>F172DD1C16F9141300BA754E</string>
+				<string>F11BE113170432DE00E71B99</string>
+				<string>F172DD5616F9159200BA754E</string>
+				<string>F172DD1616F9141300BA754E</string>
+				<string>F172DD1716F9141300BA754E</string>
+				<string>F172DD1816F9141300BA754E</string>
+				<string>F172DD1916F9141300BA754E</string>
+				<string>F172DD1A16F9141300BA754E</string>
+				<string>F172DD1B16F9141300BA754E</string>
+				<string>F172DD1D16F9141300BA754E</string>
+				<string>F172DD1E16F9141300BA754E</string>
+				<string>F172DD1F16F9141300BA754E</string>
+				<string>F172DD2016F9141300BA754E</string>
+				<string>F172DD2116F9141300BA754E</string>
+				<string>696C1AFB2DB967C5ECCA9957</string>
+				<string>696C132EABBD3AA90781B1C5</string>
+				<string>696C1E88F5F8FC4C3E9F8540</string>
+				<string>F172DD2216F9141300BA754E</string>
+				<string>F172DD2316F9141300BA754E</string>
+				<string>F172DD2416F9141300BA754E</string>
+				<string>F172DD2516F9141300BA754E</string>
+				<string>F172DD2616F9141300BA754E</string>
+				<string>F172DD2716F9141300BA754E</string>
+				<string>F172DD2816F9141300BA754E</string>
+				<string>F172DD2916F9141300BA754E</string>
+				<string>F172DD2A16F9141300BA754E</string>
+				<string>F172DD2B16F9141300BA754E</string>
+				<string>F172DD2C16F9141300BA754E</string>
+				<string>F172DD2D16F9141300BA754E</string>
+				<string>F172DD2F16F9141300BA754E</string>
+				<string>F172DD3016F9141300BA754E</string>
+				<string>F185E1C41722A13A00D12DE4</string>
+				<string>F185E1C61722A20900D12DE4</string>
+				<string>F185E1C71722A20A00D12DE4</string>
+				<string>F159661318B6111B0041E6E5</string>
+				<string>F162136316F9D95C00563E38</string>
+				<string>F162136416F9D95C00563E38</string>
+				<string>F18E722816F9135C000BD3CB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>AppleGuice</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F18E722816F9135C000BD3CB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>F18E722916F9135C000BD3CB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F18E722916F9135C000BD3CB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>AppleGuice-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F18E724516F9135C000BD3CB</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_TREAT_WARNINGS_AS_ERRORS</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_INHIBIT_ALL_WARNINGS</key>
+				<string>NO</string>
+				<key>GCC_WARN_PEDANTIC</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>5.0</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALID_ARCHS</key>
+				<string>$(ARCHS_STANDARD_32_BIT)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>F18E724616F9135C000BD3CB</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_TREAT_WARNINGS_AS_ERRORS</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_INHIBIT_ALL_WARNINGS</key>
+				<string>NO</string>
+				<key>GCC_WARN_PEDANTIC</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>5.0</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+				<key>VALID_ARCHS</key>
+				<string>$(ARCHS_STANDARD_32_BIT)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>F18E724716F9135C000BD3CB</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>F18E724816F9135C000BD3CB</string>
+				<string>F18E724916F9135C000BD3CB</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>F18E724816F9135C000BD3CB</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>DSTROOT</key>
+				<string>/tmp/AppleGuice.dst</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AppleGuice/AppleGuice-Prefix.pch</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>-ObjC</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>VALID_ARCHS</key>
+				<string>$(ARCHS_STANDARD_32_BIT)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>F18E724916F9135C000BD3CB</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>DSTROOT</key>
+				<string>/tmp/AppleGuice.dst</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>AppleGuice/AppleGuice-Prefix.pch</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>-ObjC</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>VALID_ARCHS</key>
+				<string>$(ARCHS_STANDARD_32_BIT)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>F18E721A16F9135C000BD3CB</string>
+</dict>
+</plist>

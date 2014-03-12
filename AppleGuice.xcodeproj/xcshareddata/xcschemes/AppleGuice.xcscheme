@@ -32,11 +32,16 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F18E723216F9135C000BD3CB"
-               BuildableName = "AppleGuiceTests.octest"
-               BlueprintName = "AppleGuiceTests"
+               BlueprintIdentifier = "F133DA6118D0BCE40050864F"
+               BuildableName = "AppleGuiceUnitTests.xctest"
+               BlueprintName = "AppleGuiceUnitTests"
                ReferencedContainer = "container:AppleGuice.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "TestBase">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

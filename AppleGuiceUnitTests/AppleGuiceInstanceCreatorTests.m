@@ -63,7 +63,7 @@
     
     [protocolLocator verify];
     [injector verify];
-    STAssertEquals([classInstance retainCount], (NSUInteger)1, @"object should be returned autoreleased");
+    XCTAssertEqual([classInstance retainCount], (NSUInteger)1, @"object should be returned autoreleased");
     EXP_expect(classInstance).to.beInstanceOf([TestClass class]);
 }
 
@@ -77,7 +77,7 @@
     
     [injector verify];
     [protocolLocator verify];
-    STAssertEquals([classInstance retainCount], (NSUInteger)1, @"object should be returned autoreleased");
+    XCTAssertEqual([classInstance retainCount], (NSUInteger)1, @"object should be returned autoreleased");
     EXP_expect(classInstance).to.beInstanceOf([TestClass class]);
 }
 
@@ -91,7 +91,7 @@
     
     [protocolLocator verify];
     [injector verify];
-    STAssertEquals([classInstance retainCount], (NSUInteger)1, @"object should be returned autoreleased");
+    XCTAssertEqual([classInstance retainCount], (NSUInteger)1, @"object should be returned autoreleased");
     EXP_expect(classInstance).to.beInstanceOf([TestClass class]);
 }
 
@@ -105,7 +105,7 @@
     
     [protocolLocator verify];
     [injector verify];
-    STAssertEquals([classInstance retainCount], (NSUInteger)1, @"object should be returned autoreleased");
+    XCTAssertEqual([classInstance retainCount], (NSUInteger)1, @"object should be returned autoreleased");
     EXP_expect(classInstance).to.beInstanceOf([TestClass class]);
 }
 
