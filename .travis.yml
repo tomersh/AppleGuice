@@ -4,7 +4,4 @@ Configuration: "Debug"
 before_install:
  - rvm use ruby-2.0.0-p247
  - brew install xctool
- - gem install cocoapods --no-doc
- - cd AppleGuiceTests
- - pod install
 script: "xctool clean test -freshInstall -sdk iphonesimulator7.0 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug"
