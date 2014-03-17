@@ -62,6 +62,7 @@
 		F185E1C81722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */; };
 		F185E1C91722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */; };
 		F18E722616F9135C000BD3CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
+		F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,8 @@
 		F18E722216F9135C000BD3CB /* libAppleGuice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppleGuice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18E722516F9135C000BD3CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F18E722916F9135C000BD3CB /* AppleGuice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuice-Prefix.pch"; sourceTree = "<group>"; };
+		F1FEDFB718D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepositoryTests.h; sourceTree = "<group>"; };
+		F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSingletonRepositoryTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				F133DA8C18D0BE2A0050864F /* AppleGuiceProtocolLocatorTests.m */,
 				F133DA8D18D0BE2A0050864F /* AppleGuiceSanity.h */,
 				F133DA8E18D0BE2A0050864F /* AppleGuiceSanity.m */,
+				F1FEDFB718D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.h */,
+				F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */,
 				F133DA7F18D0BDFE0050864F /* TestBase */,
 				F133DA7B18D0BDCE0050864F /* Matchers */,
 				F133DA7718D0BD420050864F /* Setup */,
@@ -504,6 +509,7 @@
 			files = (
 				F133DA9118D0BE2A0050864F /* AppleGuiceInjectorTests.m in Sources */,
 				F133DA8218D0BE130050864F /* TestBase.m in Sources */,
+				F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */,
 				F133DA8F18D0BE2A0050864F /* AppleGuiceAutoInjectorTests.m in Sources */,
 				F133DA7E18D0BDEC0050864F /* EXPMatchers+conformsToProtocol.m in Sources */,
 				F133DA7A18D0BD570050864F /* AppleGuiceBindingBootstrapper.m in Sources */,

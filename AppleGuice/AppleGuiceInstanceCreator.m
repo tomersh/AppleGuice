@@ -67,7 +67,7 @@
     id classInstance = [self.singletonRepository instanceForClass:clazz];
     if (!classInstance) {
         classInstance = [clazz alloc];
-        [self.singletonRepository setInstance:classInstance forClass:clazz];
+        [self.singletonRepository setInstance:classInstance];
         [[classInstance init] autorelease];
         [self _injectImplementationsToInstanceIfneeded:classInstance];
     }

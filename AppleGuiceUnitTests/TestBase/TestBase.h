@@ -19,6 +19,8 @@
 #define iocPrimitive(__type, __name) __type test_##__name
 #define iocProtocol(__type, __name) id<__type> test_##__name
 
+#define OCMArgOfKind(__clazz) [OCMArg checkWithBlock:^BOOL(id object) { return [object isKindOfClass:__clazz]; }]
+
 @interface TestBase : XCTestCase {
     @package
     BOOL yes;

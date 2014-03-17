@@ -15,8 +15,7 @@
 @protocol AppleGuiceSingletonRepositoryProtocol <NSObject>
 
 -(id) instanceForClass:(Class) clazz;
--(void) setInstance:(id) instance forClass:(Class) clazz;
--(BOOL) hasInstanceForClass:(Class) clazz;
+-(void) setInstance:(id) instance;
 
 -(void) clearRepository;
 @end

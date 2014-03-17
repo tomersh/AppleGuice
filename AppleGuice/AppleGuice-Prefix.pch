@@ -1,6 +1,14 @@
 //
 // Prefix header for all source files of the 'AppleGuice' target in the 'AppleGuice' project
 //
+#ifdef __cplusplus
+    #if __cplusplus >= 201103L
+        #import <unordered_map>
+    #else
+        #import <tr1/unordered_map>
+        using namespace std::tr1;
+    #endif
+#endif
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>

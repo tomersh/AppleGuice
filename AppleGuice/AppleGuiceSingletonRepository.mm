@@ -15,13 +15,6 @@
 #import "AppleGuiceSingletonRepository.h"
 #import <pthread.h>
 
-#if __cplusplus >= 201103L
-#import <unordered_map>
-#else
-#import <tr1/unordered_map>
-using namespace std::tr1;
-#endif
-
 using namespace std;
 
 #define SYNC(...) pthread_mutex_lock(&_mutex); __VA_ARGS__; pthread_mutex_unlock(&_mutex);
@@ -48,32 +41,48 @@ unsigned long _storageKeyForClass(Class clazz) {
 }
 
 -(id) instanceForClass:(Class) clazz {
-    if (![self hasInstanceForClass:clazz]) {
-        return nil;
-    }
-    
-    NSUInteger storageKey = _storageKeyForClass(clazz);
-    
     id instance = nil;
-    SYNC(instance = _singletons[storageKey]);
+    unsigned long storageKey = _storageKeyForClass(clazz);
+
+    SYNC(
+    if ([self _hasInstanceForStorageKey:storageKey]) {
+        instance = _singletons[storageKey];
+    }
+    );
     return instance;
 }
 
--(void) setInstance:(id) instance forClass:(Class) clazz {
-    unsigned long storageKey = _storageKeyForClass(clazz);
-    SYNC(_singletons[storageKey] = instance);
+-(void) setInstance:(id) instance {
+    if (!instance) return;
+    
+    unsigned long storageKey = _storageKeyForClass([instance class]);
+    SYNC(
+    if ([self _hasInstanceForStorageKey:storageKey]) {
+        id oldInstance = _singletons[storageKey];
+        [oldInstance release];
+        oldInstance = nil;
+    }
+    _singletons[storageKey] = [instance retain];
+    );
 }
 
--(BOOL) hasInstanceForClass:(Class) clazz {
-    NSUInteger storageKey = _storageKeyForClass(clazz);
+-(BOOL) _hasInstanceForStorageKey:(unsigned long) storageKey {
     return _singletons.find(storageKey) != _singletons.end();
 }
 
 -(void) clearRepository {
-    SYNC(_singletons.clear());
+    SYNC(
+    for (auto it = _singletons.begin(); it != _singletons.end();) {
+        id instance = it->second;
+        [instance release];
+        instance = nil;
+        it = _singletons.erase(it);
+    }
+    );
 }
 
 -(void) dealloc {
+    [self clearRepository];
     pthread_mutex_unlock(&_mutex);
     pthread_mutex_destroy(&_mutex);
     [super dealloc];
