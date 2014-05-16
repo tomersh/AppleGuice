@@ -2,7 +2,6 @@ language: objective-c
 scheme: "AppleGuice"
 Configuration: "Debug"
 before_install:
- - rvm use ruby-2.0.0-p247
  - brew install xctool
  - gem install cocoapods --no-doc
  - pod install
