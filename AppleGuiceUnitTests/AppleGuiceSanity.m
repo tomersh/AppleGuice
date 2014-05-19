@@ -189,8 +189,8 @@
     EXP_expect(result).to.beInstanceOf([AppleGuiceSanityTestClass class]);
     EXP_expect(result->test_standAloneClass).to.beInstanceOf([TestInjectableClass class]);
     EXP_expect(result->test_standAloneClassInSuperClass).to.beInstanceOf([TestInjectableSuperClass class]);
-    EXP_expect(result->test_classFromProtocol).to.conformToProtocol(@protocol(TestInjectableSuperProtocol));
-    EXP_expect(result->test_classFromSuperProtocol).to.conformToProtocol(@protocol(TestInjectableSuperProtocol));
+    EXP_expect(result->test_classFromProtocol).to.conformTo(@protocol(TestInjectableSuperProtocol));
+    EXP_expect(result->test_classFromSuperProtocol).to.conformTo(@protocol(TestInjectableSuperProtocol));
     EXP_expect(result->test_TestInjectableProtocol).to.beKindOf(NSClassFromString(@"__NSArrayI"));
     EXP_expect(result->test_TestInjectableSuperProtocol).to.beKindOf(NSClassFromString(@"__NSArrayI"));
     EXP_expect([result->test_TestInjectableProtocol count]).to.equal(2);

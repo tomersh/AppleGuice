@@ -16,7 +16,7 @@
 {
     [super setUp];
     serviceUnderTest = [[AppleGuiceBindingService alloc] init];
-    
+    serviceUnderTest.classGenerator = [OCMockObject mockForProtocol:@protocol(AppleGuiceClassGeneratorProtocol)];
 }
 
 - (void)tests__setImplementation_withProtocol_withBindingType__nilImplementation__noBindingIsMade
@@ -211,9 +211,15 @@
 - (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__validClassAndValidProtocol__bindIsMade
 {
     NSString* testProtocol = @"NSObject";
-    [serviceUnderTest setImplementationFromString:@"NSArray" withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
+    NSString* testClass = @"NSArray";
+    [[[(id)serviceUnderTest.classGenerator expect] andReturn:@[ NSClassFromString(testClass) ]] safeGetClassesFromStrings:@[ testClass ]];
+    [serviceUnderTest setImplementationFromString:testClass withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
     
-    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:@protocol(NSObject)];
+    
+    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:NSProtocolFromString(testProtocol)];
+    
+    
+    [(id)serviceUnderTest.classGenerator verify];
     EXP_expect(returnedProtocols).notTo.beNil();
     EXP_expect([returnedProtocols count]).to.equal(1);
     EXP_expect(returnedProtocols).to.contain([NSArray class]);
@@ -224,9 +230,17 @@
 - (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__validClassAndValidProtocol__bindIsMadeToCachedObjects
 {
     NSString* testProtocol = @"NSObject";
-    [serviceUnderTest setImplementationFromString:@"NSArray" withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
+    NSString* testClass = @"NSArray";
     
-    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:@protocol(NSObject)];
+    [[[(id)serviceUnderTest.classGenerator expect] andReturn:@[ NSClassFromString(testClass) ]] safeGetClassesFromStrings:@[ testClass ]];
+    
+    [serviceUnderTest setImplementationFromString:testClass withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
+    
+    
+    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:NSProtocolFromString(testProtocol)];
+    
+    
+    [(id)serviceUnderTest.classGenerator verify];
     EXP_expect(returnedProtocols).notTo.beNil();
     EXP_expect([returnedProtocols count]).to.equal(1);
     EXP_expect(returnedProtocols).to.contain([NSArray class]);
@@ -237,9 +251,14 @@
 - (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__nilAsClasses__noBindIsMade
 {
     NSString* testProtocol = @"NSObject";
+    [[[(id)serviceUnderTest.classGenerator expect] andReturn:nil] safeGetClassesFromStrings:OCMOCK_ANY];
     [serviceUnderTest setImplementationsFromStrings:nil withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
     
-    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:@protocol(NSObject)];
+    
+    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:NSProtocolFromString(testProtocol)];
+    
+    
+    [(id)serviceUnderTest.classGenerator verify];
     EXP_expect(returnedProtocols).to.beNil();
     EXP_expect([[self _getCachedObjects] count]).to.equal(0);
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
@@ -248,9 +267,14 @@
 - (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__emptyClassesArray__noBindIsMade
 {
     NSString* testProtocol = @"NSObject";
+    [[[(id)serviceUnderTest.classGenerator expect] andReturn:@[]] safeGetClassesFromStrings:OCMOCK_ANY];
     [serviceUnderTest setImplementationsFromStrings:@[] withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
     
-    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:@protocol(NSObject)];
+    
+    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:NSProtocolFromString(testProtocol)];
+    
+    
+    [(id)serviceUnderTest.classGenerator verify];
     EXP_expect(returnedProtocols).to.beNil();
     EXP_expect([[self _getCachedObjects] count]).to.equal(0);
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
@@ -259,13 +283,20 @@
 - (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__multipleValidClassesAndValidProtocol__bindIsMadeToCachedObjects
 {
     NSString* testProtocol = @"NSObject";
-    [serviceUnderTest setImplementationsFromStrings:@[@"NSArray", @"NSObject"] withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
+    NSArray* testClassesAsStrings = @[ @"NSArray", @"NSSet" ];
+    NSArray* testClasses = @[NSClassFromString(testClassesAsStrings[0]), NSClassFromString(testClassesAsStrings[1])];
+    [[[(id)serviceUnderTest.classGenerator expect] andReturn:testClasses] safeGetClassesFromStrings:testClassesAsStrings];
+    [serviceUnderTest setImplementationsFromStrings:testClassesAsStrings withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
     
-    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:@protocol(NSObject)];
+    
+    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:NSProtocolFromString(testProtocol)];
+    
+    
+    [(id)serviceUnderTest.classGenerator verify];
     EXP_expect(returnedProtocols).notTo.beNil();
     EXP_expect([returnedProtocols count]).to.equal(2);
-    EXP_expect(returnedProtocols).to.contain([NSObject class]);
-    EXP_expect(returnedProtocols).to.contain([NSArray class]);
+    EXP_expect(returnedProtocols).to.contain(testClasses[0]);
+    EXP_expect(returnedProtocols).to.contain(testClasses[1]);
     EXP_expect([[self _getCachedObjects] count]).to.equal(1);
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
@@ -273,26 +304,22 @@
 - (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__multipleValidClassesAndValidProtocol__bindIsMadeToUserObjects
 {
     NSString* testProtocol = @"NSObject";
-    [serviceUnderTest setImplementationsFromStrings:@[@"NSArray", @"NSObject"] withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
+    NSArray* testClassesAsStrings = @[ @"NSArray", @"NSSet" ];
+    NSArray* testClasses = @[NSClassFromString(testClassesAsStrings[0]), NSClassFromString(testClassesAsStrings[1])];
+    [[[(id)serviceUnderTest.classGenerator expect] andReturn:testClasses] safeGetClassesFromStrings:testClassesAsStrings];
+    [serviceUnderTest setImplementationsFromStrings:testClassesAsStrings withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
     
-    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:@protocol(NSObject)];
+    
+    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:NSProtocolFromString(testProtocol)];
+    
+    
+    [(id)serviceUnderTest.classGenerator verify];
     EXP_expect(returnedProtocols).notTo.beNil();
     EXP_expect([returnedProtocols count]).to.equal(2);
-    EXP_expect(returnedProtocols).to.contain([NSObject class]);
-    EXP_expect(returnedProtocols).to.contain([NSArray class]);
+    EXP_expect(returnedProtocols).to.contain(testClasses[0]);
+    EXP_expect(returnedProtocols).to.contain(testClasses[1]);
     EXP_expect([[self _getCachedObjects] count]).to.equal(0);
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(1);
-}
-
-- (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__validAndInvalidClassesAndValidProtocol__bindIsMadeOnlyToValidClasses
-{
-    NSString* testProtocol = @"NSObject";
-    [serviceUnderTest setImplementationsFromStrings:@[@"NSArray", INVALID_CLASS_NAME] withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
-    
-    NSArray* returnedProtocols = [serviceUnderTest getClassesForProtocol:@protocol(NSObject)];
-    EXP_expect(returnedProtocols).notTo.beNil();
-    EXP_expect([returnedProtocols count]).to.equal(1);
-    EXP_expect(returnedProtocols).to.contain([NSArray class]);
 }
 
 -(void) test__unsetImplementationOfProtocol__nilProtocol_doesNotUnset {

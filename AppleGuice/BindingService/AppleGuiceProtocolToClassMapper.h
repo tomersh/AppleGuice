@@ -12,8 +12,18 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "AppleGuiceBindingServiceProtocol.h"
+#import <Foundation/Foundation.h>
 
-@interface AppleGuiceBindingService : NSObject<AppleGuiceBindingServiceProtocol>
+@interface AppleGuiceProtocolToClassMapper : NSObject
+
+-(NSSet*) getClassesForProtocol:(Protocol*) protocol;
+
+-(void) setImplementations:(NSArray*)classes withProtocol:(Protocol*)protocol;
+
+-(void) unsetImplementationOfProtocol:(Protocol*) protocol;
+
+-(void) unsetAllImplementations;
+
+-(NSUInteger) count;
 
 @end

@@ -3,13 +3,17 @@
 //
 #ifdef __cplusplus
     #if __cplusplus >= 201103L
-        #import <unordered_map>
+        #include <unordered_map>
     #else
-        #import <tr1/unordered_map>
+        #include <tr1/unordered_map>
         using namespace std::tr1;
     #endif
+
+    using namespace std;
 #endif
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
 #endif
+
+#define SYNC(...) pthread_mutex_lock(&_mutex); __VA_ARGS__; pthread_mutex_unlock(&_mutex);

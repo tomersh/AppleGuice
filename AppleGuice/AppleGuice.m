@@ -23,6 +23,7 @@
 #import "AppleGuiceInstanceCreator.h"
 #import "AppleGuiceOCMockMockProvider.h"
 #import "AppleGuiceBindingBootstrapperProtocol.h"
+#import "AppleGuiceClassGenerator.h"
 
 @implementation AppleGuice
 
@@ -32,8 +33,8 @@ static AppleGuiceProtocolLocator* protocolLocator;
 static AppleGuiceSingletonRepository* singletonRepository;
 static AppleGuiceSettingsProvider* settingsProvider;
 static AppleGuiceInstanceCreator* instanceCreator;
+
 static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
-static AppleGuiceOCMockMockProvider* mockProvider;
 
 +(void)initialize {
 
@@ -43,7 +44,8 @@ static AppleGuiceOCMockMockProvider* mockProvider;
     injector = [[AppleGuiceInjector alloc] init];
     singletonRepository = [[AppleGuiceSingletonRepository alloc] init];
     instanceCreator = [[AppleGuiceInstanceCreator alloc] init];
-    mockProvider = [[AppleGuiceOCMockMockProvider alloc] init];
+    
+    bindingService.classGenerator = [[[AppleGuiceClassGenerator alloc] init] autorelease];
     
     protocolLocator.bindingService = bindingService;
 
@@ -54,7 +56,7 @@ static AppleGuiceOCMockMockProvider* mockProvider;
 
     injector.settingsProvider = settingsProvider;
     injector.instanceCreator = instanceCreator;
-    injector.mockProvoider = mockProvider;
+    injector.mockProvoider = [[[AppleGuiceOCMockMockProvider alloc] init] autorelease];
     
     Class bootstrapperClass = NSClassFromString(settingsProvider.bootstrapperClassName);
     bootstrapper = [[bootstrapperClass alloc] init];

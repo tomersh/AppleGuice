@@ -9,7 +9,6 @@
 #import <XCTest/XCTest.h>
 #import "OCMock.h"
 #import "Expecta.h"
-#import "EXPMatchers+conformsToProtocol.h"
 
 #define INVALID_CLASS_NAME @"abcdefg#"
 #define INVALID_PROTOCOL_NAME @"abcdefg#"

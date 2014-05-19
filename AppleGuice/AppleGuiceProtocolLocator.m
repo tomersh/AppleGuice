@@ -21,7 +21,7 @@
 @implementation AppleGuiceProtocolLocator {
     int _allClassCount;
     Class* _allClassesMemoization;
-    NSArray* _filteredClasses;
+    NSArray* _injectableClasses;
 }
 
 -(id) init {
@@ -46,13 +46,13 @@
 
 -(void) setFilterProtocol:(Protocol*) filterProtocol {
 
-    [_filteredClasses release];
-    _filteredClasses = nil;
+    [_injectableClasses release];
+    _injectableClasses = nil;
     [self.bindingService unsetAllImplementationsWithType:appleGuiceBindingTypeCachedBinding];
 
     if (!filterProtocol) return;
 
-    _filteredClasses = [[self _filterAllClassesWithProtocol:filterProtocol] retain];
+    _injectableClasses = [[self _filterAllClassesWithProtocol:filterProtocol] retain];
 }
 
 -(NSArray *) getAllClassesByProtocolType:(Protocol*) protocol {
@@ -63,7 +63,7 @@
         return allMatchingClasses;
     }
     
-    allMatchingClasses = [self _filterAllFilteredClassesProtocol:protocol];
+    allMatchingClasses = [self _filterAllFilteredClassesWithProtocol:protocol];
     
     if (allMatchingClasses) {
         [self.bindingService setImplementations:allMatchingClasses withProtocol:protocol withBindingType:appleGuiceBindingTypeCachedBinding];
@@ -100,8 +100,8 @@
     return [NSArray arrayWithArray:[filteredClasses allObjects]];
 }
 
--(NSArray*) _filterAllFilteredClassesProtocol:(Protocol*) protocol {
-    return [self _filterClassesArray:_filteredClasses withProtocol:protocol];
+-(NSArray*) _filterAllFilteredClassesWithProtocol:(Protocol*) protocol {
+    return [self _filterClassesArray:_injectableClasses withProtocol:protocol];
 }
 
 -(NSArray*) _filterClassesArray:(NSArray*) classesArray withProtocol:(Protocol*) protocol {
@@ -121,7 +121,7 @@
 
 -(void) dealloc {
     [_bindingService release];
-    [_filteredClasses release];
+    [_injectableClasses release];
     free(_allClassesMemoization);
     [super dealloc];
 }

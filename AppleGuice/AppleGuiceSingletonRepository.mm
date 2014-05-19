@@ -13,27 +13,25 @@
 //limitations under the License.
 
 #import "AppleGuiceSingletonRepository.h"
-#import <pthread.h>
+#include "AppleGuiceTypedDictionary.h"
+#include <pthread.h>
 
-using namespace std;
-
-#define SYNC(...) pthread_mutex_lock(&_mutex); __VA_ARGS__; pthread_mutex_unlock(&_mutex);
-
-@interface AppleGuiceSingletonRepository () {
+@implementation AppleGuiceSingletonRepository {
     pthread_mutex_t _mutex;
-    unordered_map<unsigned long, id > _singletons;
+    AppleGuice::AppleGuiceTypedDictionary<unsigned long, id> _singletons;
 }
 
-@end
-
-@implementation AppleGuiceSingletonRepository
-
--(id) init {
+-(id)init {
     self = [super init];
     if (!self) return self;
-    _singletons = unordered_map<unsigned long, id >();
     pthread_mutex_init(&_mutex, PTHREAD_MUTEX_NORMAL);
     return self;
+}
+
+-(void)dealloc {
+    pthread_mutex_unlock(&_mutex);
+    pthread_mutex_destroy(&_mutex);
+    [super dealloc];
 }
 
 unsigned long _storageKeyForClass(Class clazz) {
@@ -42,50 +40,16 @@ unsigned long _storageKeyForClass(Class clazz) {
 
 -(id) instanceForClass:(Class) clazz {
     id instance = nil;
-    unsigned long storageKey = _storageKeyForClass(clazz);
-
-    SYNC(
-    if ([self _hasInstanceForStorageKey:storageKey]) {
-        instance = _singletons[storageKey];
-    }
-    );
+    SYNC(instance = _singletons.objectForKey(_storageKeyForClass(clazz)));
     return instance;
 }
 
 -(void) setInstance:(id) instance {
-    if (!instance) return;
-    
-    unsigned long storageKey = _storageKeyForClass([instance class]);
-    SYNC(
-    if ([self _hasInstanceForStorageKey:storageKey]) {
-        id oldInstance = _singletons[storageKey];
-        [oldInstance release];
-        oldInstance = nil;
-    }
-    _singletons[storageKey] = [instance retain];
-    );
-}
-
--(BOOL) _hasInstanceForStorageKey:(unsigned long) storageKey {
-    return _singletons.find(storageKey) != _singletons.end();
+    SYNC(_singletons.setObject(_storageKeyForClass([instance class]), instance));
 }
 
 -(void) clearRepository {
-    SYNC(
-    for (auto it = _singletons.begin(); it != _singletons.end();) {
-        id instance = it->second;
-        [instance release];
-        instance = nil;
-        it = _singletons.erase(it);
-    }
-    );
-}
-
--(void) dealloc {
-    [self clearRepository];
-    pthread_mutex_unlock(&_mutex);
-    pthread_mutex_destroy(&_mutex);
-    [super dealloc];
+    SYNC(_singletons.removeAllObjects());
 }
 
 @end

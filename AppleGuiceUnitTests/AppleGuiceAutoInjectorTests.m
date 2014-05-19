@@ -43,6 +43,7 @@ static MockedInjector* mockedInjector;
 
 -(void)tearDown {
     [super tearDown];
+    [mockedInjector reset];
     [AppleGuiceAutoInjector stopAutoInjector]; //just in case
     
 }
