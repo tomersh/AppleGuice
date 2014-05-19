@@ -1,7 +1,6 @@
 language: objective-c
-scheme: "AppleGuice"
-Configuration: "Debug"
 before_install:
+ - export LANG=en_US.UTF-8
  - brew update
  - brew upgrade xctool
  - gem install cocoapods --no-doc
