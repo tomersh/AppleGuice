@@ -2,7 +2,8 @@ language: objective-c
 scheme: "AppleGuice"
 Configuration: "Debug"
 before_install:
- - brew install xctool
+ - brew update
+ - brew upgrade xctool
  - gem install cocoapods --no-doc
  - pod install
 script: "xctool clean test -freshInstall -sdk iphonesimulator7.0 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug"
