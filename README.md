@@ -104,7 +104,7 @@ Injection comes in three flavours:
 ```objectivec
 @interface MyClass () {
     MyService* _ioc_MyService; //will create an instance of MyService.
-    id<MyServiceProtocol> _ioc_MyService //will create an instance of the first class conforming to MyProtocol.
+    id<MyServiceProtocol> _ioc_MyService //will create an instance of the first class conforming to MyServiceProtocol.
     NSArray* _ioc_MyProtocol //will return an array containing instances of all classes conforming to MyProtocol
 }
 ```

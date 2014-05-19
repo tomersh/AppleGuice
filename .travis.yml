@@ -1,9 +1,8 @@
 language: objective-c
-scheme: "AppleGuice"
-Configuration: "Debug"
 before_install:
- - rvm use ruby-2.0.0-p247
- - brew install xctool
+ - export LANG=en_US.UTF-8
+ - brew update
+ - brew upgrade xctool
  - gem install cocoapods --no-doc
  - pod install
 script: "xctool clean test -freshInstall -sdk iphonesimulator7.0 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug"
