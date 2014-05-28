@@ -11,6 +11,14 @@ AppleGuice helps you write clean, reuseable and testable code by allowing you to
 Other dependency injection frameworks require binding, xml editing or initializing your classes with a special method.
 With AppleGuice all you have to do is declare the injected type and thats it. As a bonus, you will still be able to initialize classes with `[[MyClass alloc] init]` so it is even easier to integrate it with your existing code base.
 
+## Who is using it? ##
+
+[![Flashcards+](http://i61.tinypic.com/30ib6hi.jpg)FlashCards+](https://itunes.apple.com/app/id408490162)
+
+[![CheggApp](http://oi59.tinypic.com/517m9c.jpg)Chegg – Textbooks, eTextbooks & Study Tools](https://itunes.apple.com/app/id408490162)
+
+Are you using AppleGuice and your app is not in the list? [Drop me a line](mailto:tomer@shiri.info).
+
 ## Show Me ##
 
 ### Inject your first injectable instance with 3 simple steps: ###
