@@ -17,7 +17,7 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 
 [![CheggApp](http://oi59.tinypic.com/517m9c.jpg)Chegg – Textbooks, eTextbooks & Study Tools](https://itunes.apple.com/app/id408490162)
 
-Are you using AppleGuice and your app is not in the list? [Drop me a line](mailto:tomer@shiri.info).
+Are you using AppleGuice and your app is not on the list? [Drop me a line](mailto:tomer@shiri.info).
 
 ## Show Me ##
 
