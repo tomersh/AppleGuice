@@ -13,11 +13,11 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 
 ## Who is using it? ##
 
-[![Flashcards+](http://i61.tinypic.com/30ib6hi.jpg)FlashCards+](https://itunes.apple.com/app/id408490162)
+[![Flashcards+](http://i61.tinypic.com/30ib6hi.jpg) FlashCards+](https://itunes.apple.com/app/id408490162)
 
-[![CheggApp](http://oi59.tinypic.com/517m9c.jpg)Chegg – Textbooks, eTextbooks & Study Tools](https://itunes.apple.com/app/id408490162)
+[![CheggApp](http://oi59.tinypic.com/517m9c.jpg) Chegg – Textbooks, eTextbooks & Study Tools](https://itunes.apple.com/app/id408490162)
 
-Are you using AppleGuice and your app is not on the list? [Drop me a line](mailto:tomer@shiri.info).
+Are you using AppleGuice and your app is not on the list? [Drop me a line](mailto:github@shiri.info).
 
 ## Show Me ##
 
