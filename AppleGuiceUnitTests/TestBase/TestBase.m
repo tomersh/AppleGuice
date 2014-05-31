@@ -7,6 +7,9 @@
 //
 
 #import "TestBase.h"
+#include <stdio.h>
+
+extern void __gcov_flush();
 
 @implementation TestBase
 
@@ -20,7 +23,7 @@
 
 - (void)tearDown
 {
-    // Tear-down code here.
+    __gcov_flush();
     
     [super tearDown];
 }
