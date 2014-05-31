@@ -9,4 +9,4 @@ before_install:
 script:
  - xctool clean test -freshInstall -sdk iphonesimulator7.0 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO
 after_success:
- - sudo ./coveralls.rb --exclude-folder AppleGuicePreCompileBinder --exclude-folder Bootstrapper --exclude-folder AppleGuiceUnitTests
+ - ruby ./coveralls.rb --exclude-folder AppleGuicePreCompileBinder --exclude-folder Bootstrapper --exclude-folder AppleGuiceUnitTests
