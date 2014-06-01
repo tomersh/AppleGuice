@@ -26,6 +26,7 @@
 - (void)tearDown
 {
     [serviceUnderTest release];
+    serviceUnderTest = nil;
     [super tearDown];
 }
 

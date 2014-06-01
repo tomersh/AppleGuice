@@ -45,6 +45,11 @@
     serviceUnderTest.injector = injector;
 }
 
+-(void)tearDown {
+    [serviceUnderTest release];
+    serviceUnderTest = nil;
+    [super tearDown];
+}
 
 //instanceForClass
 

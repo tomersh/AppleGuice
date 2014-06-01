@@ -19,6 +19,12 @@
     serviceUnderTest.classGenerator = [OCMockObject mockForProtocol:@protocol(AppleGuiceClassGeneratorProtocol)];
 }
 
+-(void)tearDown {
+    [serviceUnderTest release];
+    serviceUnderTest = nil;
+    [super tearDown];
+}
+
 - (void)tests__setImplementation_withProtocol_withBindingType__nilImplementation__noBindingIsMade
 {
     Protocol* testProtocol = @protocol(NSObject);

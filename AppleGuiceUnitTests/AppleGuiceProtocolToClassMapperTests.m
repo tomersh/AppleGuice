@@ -26,6 +26,7 @@
 - (void)tearDown
 {
     [classUnderTest release];
+    classUnderTest = nil;
     [super tearDown];
 }
 

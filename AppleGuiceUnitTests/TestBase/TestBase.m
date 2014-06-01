@@ -9,7 +9,9 @@
 #import "TestBase.h"
 #include <stdio.h>
 
+#ifdef GCC_GENERATE_TEST_COVERAGE_FILES
 extern void __gcov_flush();
+#endif
 
 @implementation TestBase
 
@@ -23,8 +25,9 @@ extern void __gcov_flush();
 
 - (void)tearDown
 {
+#ifdef GCC_GENERATE_TEST_COVERAGE_FILES
     __gcov_flush();
-    
+#endif
     [super tearDown];
 }
 

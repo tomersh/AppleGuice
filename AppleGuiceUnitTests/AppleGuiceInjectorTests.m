@@ -129,6 +129,12 @@
     settingsProvider.iocPrefix = testIocPrefix;
 }
 
+-(void)tearDown {
+    [serviceUnderTest release];
+    serviceUnderTest = nil;
+    [super tearDown];
+}
+
 -(void) test__injectImplementationsToInstance__classInstanceIsNil__doesNotThrow {
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:nil]; }).toNot.raiseAny();
 }

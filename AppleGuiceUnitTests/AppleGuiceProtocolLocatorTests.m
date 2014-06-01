@@ -23,6 +23,12 @@
     protocolLocator.bindingService = bindingService;
 }
 
+-(void)tearDown {
+    [protocolLocator release];
+    protocolLocator = nil;
+    [super tearDown];
+}
+
 /*
  -(void) bootstrapAutomaticImplementationDiscovery;
  

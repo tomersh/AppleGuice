@@ -28,6 +28,12 @@
     serviceUnderTest = [[AppleGuiceSingletonRepository alloc] init];
 }
 
+-(void)tearDown {
+    [serviceUnderTest release];
+    serviceUnderTest = nil;
+    [super tearDown];
+}
+
 -(void) test_instanceForClass_nilClass_returnsNil {
     id instance = [serviceUnderTest instanceForClass:NSClassFromString(@"+clazz")];
     
