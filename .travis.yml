@@ -2,7 +2,8 @@ language: objective-c
 before_install:
  - export LANG=en_US.UTF-8
  - brew update
- - brew upgrade xctool
+ - brew rm xctool
+ - brew install xctool
  - sudo easy_install cpp-coveralls
  - gem install cocoapods --no-doc
  - pod install
