@@ -156,7 +156,10 @@
 }
 
 -(BOOL) _isProtocol:(NSString*) iVarType {
-    return iVarType && [iVarType hasPrefix:@"<"] && [iVarType hasSuffix:@">"];
+    if (!iVarType) return NO;
+    NSUInteger leftParenPos = [iVarType rangeOfString:@"<"].location;
+    NSUInteger rightParenPos = [iVarType rangeOfString:@">"].location;
+    return  leftParenPos != NSNotFound && rightParenPos != NSNotFound && leftParenPos < rightParenPos;
 }
 
 -(NSString*) _protocolNameFromType:(NSString*) iVarType {
