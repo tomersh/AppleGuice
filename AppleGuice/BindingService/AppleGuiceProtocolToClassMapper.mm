@@ -14,7 +14,6 @@
 
 #import "AppleGuiceProtocolToClassMapper.h"
 #import "AppleGuiceTypedDictionary.h"
-#import <objc/runtime.h>
 #import <pthread.h>
 #import <string>
 

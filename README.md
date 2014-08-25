@@ -4,6 +4,7 @@ AppleGuice
 Effortless dependency injection framework for Objective-C
 
 [![Build Status](https://travis-ci.org/tomersh/AppleGuice.png?branch=master)](https://travis-ci.org/tomersh/AppleGuice)
+[![Coverage Status](https://coveralls.io/repos/tomersh/AppleGuice/badge.png?branch=master)](https://coveralls.io/r/tomersh/AppleGuice?branch=master)
 
 ## Who is using it? ##
 

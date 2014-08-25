@@ -44,8 +44,8 @@ unsigned long _storageKeyForClass(Class clazz) {
     return instance;
 }
 
--(void) setInstance:(id) instance {
-    SYNC(_singletons.setObject(_storageKeyForClass([instance class]), instance));
+-(void) setInstance:(id) instance forClass:(Class) clazz {
+    SYNC(_singletons.setObject(_storageKeyForClass(clazz), instance));
 }
 
 -(void) clearRepository {

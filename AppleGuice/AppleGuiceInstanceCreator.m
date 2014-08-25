@@ -19,31 +19,44 @@
 #import "AppleGuiceSingletonRepositoryProtocol.h"
 #import "AppleGuiceInjectorProtocol.h"
 #import "AppleGuiceSingleton.h"
+#import "AppleGuiceMockProviderProtocol.h"
 
 
-@implementation AppleGuiceInstanceCreator 
+@implementation AppleGuiceInstanceCreator
 
 -(NSArray*) allInstancesForProtocol:(Protocol*) protocol {
     if (!protocol) return nil;
-
+    
+    if ([self _shouldInjectMocks]) {
+        id mock = [self instanceForProtocol:protocol];
+        return @[ mock ];
+    }
+    
     NSArray* classesForProtocol = [self.protocolLocator getAllClassesByProtocolType:protocol];
+    
     if (!classesForProtocol || [classesForProtocol count] == 0) return nil;
+    
     NSMutableArray* instances = [[[NSMutableArray alloc] initWithCapacity:[classesForProtocol count]] autorelease];
-
+    
     for (Class clazz in classesForProtocol) {
         id instance = [self instanceForClass:clazz];
-
+        
         if (!instance) continue;
-
+        
         [instances addObject:instance];
     }
-
+    
     return [NSArray arrayWithArray:instances];
 }
 
 -(id<NSObject>) instanceForProtocol:(Protocol*) protocol {
     if (!protocol) return nil;
-
+    
+    if ([self _shouldInjectMocks]) {
+        id mock = [[self.mockProvoider mockForProtocol:protocol] retain];
+        return [mock autorelease];
+    }
+    
     NSArray* classesForProtocol = [self.protocolLocator getAllClassesByProtocolType:protocol];
     if (!classesForProtocol || [classesForProtocol count] == 0) return nil;
     Class clazz = [classesForProtocol objectAtIndex:0];
@@ -52,8 +65,9 @@
 
 -(id<NSObject>) instanceForClass:(Class) clazz {
     if (!clazz) return nil;
-
+    
     id classInstance;
+    
     if ([self _shouldReturnSingletonInstanceForClass:clazz]) {
         classInstance = [self _singletonForClass:clazz];
     }
@@ -66,17 +80,31 @@
 -(id) _singletonForClass:(Class) clazz {
     id classInstance = [self.singletonRepository instanceForClass:clazz];
     if (!classInstance) {
-        classInstance = [clazz alloc];
-        [self.singletonRepository setInstance:classInstance];
-        [[classInstance init] autorelease];
-        [self _injectImplementationsToInstanceIfneeded:classInstance];
+        if ([self _shouldInjectMocks]) {
+            classInstance = [[self.mockProvoider mockForClass:clazz] retain];
+            [self.singletonRepository setInstance:classInstance forClass:clazz];
+            [classInstance autorelease];
+        }
+        else {
+            classInstance = [clazz alloc];
+            [self.singletonRepository setInstance:classInstance forClass:clazz];
+            [[classInstance init] autorelease];
+            [self _injectImplementationsToInstanceIfneeded:classInstance];
+        }
     }
     return classInstance;
 }
 
 -(id) _createInstanceForClass:(Class) clazz {
-    id classInstance = [[clazz alloc] init];
-    [self _injectImplementationsToInstanceIfneeded:classInstance];
+    id classInstance;
+    
+    if ([self _shouldInjectMocks]) {
+        classInstance = [[self.mockProvoider mockForClass:clazz] retain];
+    }
+    else {
+        classInstance = [[clazz alloc] init];
+        [self _injectImplementationsToInstanceIfneeded:classInstance];
+    }
     return [classInstance autorelease];
 }
 
@@ -91,11 +119,16 @@
     return (self.settingsProvider.instanceCreateionPolicy & AppleGuiceInstanceCreationPolicySingletons) || [[self.protocolLocator getAllClassesByProtocolType:@protocol(AppleGuiceSingleton)] containsObject:clazz];
 }
 
+-(BOOL) _shouldInjectMocks {
+    return (self.settingsProvider.instanceCreateionPolicy & AppleGuiceInstanceCreationPolicyCreateMocks);
+}
+
 - (void)dealloc {
     [_protocolLocator release];
     [_settingsProvider release];
     [_singletonRepository release];
     [_injector release];
+    [_mockProvoider release];
     [super dealloc];
 }
 

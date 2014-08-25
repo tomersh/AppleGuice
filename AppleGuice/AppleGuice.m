@@ -53,10 +53,10 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     instanceCreator.settingsProvider = settingsProvider;
     instanceCreator.injector = injector;
     instanceCreator.singletonRepository = singletonRepository;
-
+    instanceCreator.mockProvoider = [[[AppleGuiceOCMockMockProvider alloc] init] autorelease];
+    
     injector.settingsProvider = settingsProvider;
     injector.instanceCreator = instanceCreator;
-    injector.mockProvoider = [[[AppleGuiceOCMockMockProvider alloc] init] autorelease];
     
     Class bootstrapperClass = NSClassFromString(settingsProvider.bootstrapperClassName);
     bootstrapper = [[bootstrapperClass alloc] init];

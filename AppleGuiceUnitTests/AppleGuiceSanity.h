@@ -8,7 +8,7 @@
 
 #import "TestBase.h"
 #import "AppleGuiceInjectable.h"
-
+#import "Appleguicesingleton.h"
 
 @protocol TestInjectableSuperProtocol <AppleGuiceInjectable>
 @end
@@ -16,19 +16,26 @@
 @protocol TestInjectableProtocol <TestInjectableSuperProtocol>
 @end
 
-@interface TestInjectableProtocolImplementor : NSObject<TestInjectableProtocol>
-
+@protocol TestProtocolForSingletonClasses <NSObject>
 @end
-@interface AnotherTestInjectableProtocolImplementor : NSObject<TestInjectableProtocol>
 
+@interface TestInjectableProtocolImplementor : NSObject<TestInjectableProtocol>
+@end
+
+@interface AnotherTestInjectableProtocolImplementor : NSObject<TestInjectableProtocol>
 @end
 
 @interface TestInjectableSuperClass : NSObject<AppleGuiceInjectable>
 @end
 
+@interface TestInjectableSingletonClass : NSObject<AppleGuiceInjectable, AppleGuiceSingleton, TestProtocolForSingletonClasses>
+@end
+
 @interface TestInjectableClass : TestInjectableSuperClass
 -(void) test;
 @end
+
+
 
 
 @interface AppleGuiceSanity : TestBase

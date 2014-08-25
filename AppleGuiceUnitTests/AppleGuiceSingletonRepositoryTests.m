@@ -43,7 +43,7 @@
 -(void) test_instanceForClass_validClassWithSingleton_returnsInstance {
     Class clazz = [AppleGuiceSingletonRepositoryTestTestClass class];
     id instance = [[[clazz alloc] init] autorelease];
-    [serviceUnderTest setInstance:instance];
+    [serviceUnderTest setInstance:instance forClass:clazz];
     
     id fetchedInstance = [serviceUnderTest instanceForClass:clazz];
     
@@ -63,9 +63,9 @@
 
 -(void) test_reSetClassWithNewInstance_returnsNewInstance {
     Class clazz = [AppleGuiceSingletonRepositoryTestTestClass class];
-    [serviceUnderTest setInstance:[[[clazz alloc] init] autorelease]];
+    [serviceUnderTest setInstance:[[[clazz alloc] init] autorelease] forClass:clazz];
     id instance = [[[AppleGuiceSingletonRepositoryTestTestClass alloc] init] autorelease];
-    [serviceUnderTest setInstance:instance];
+    [serviceUnderTest setInstance:instance forClass:clazz];
     
     id fetchedInstance = [serviceUnderTest instanceForClass:clazz];
     unsigned long retainCount = [fetchedInstance retainCount];
@@ -77,8 +77,8 @@
 -(void) test_reSetInstanceOfSameClass_returnsInstance {
     Class clazz = [AppleGuiceSingletonRepositoryTestTestClass class];
     id instance = [[[clazz alloc] init] autorelease];
-    [serviceUnderTest setInstance:instance];
-    [serviceUnderTest setInstance:instance];
+    [serviceUnderTest setInstance:instance forClass:clazz];
+    [serviceUnderTest setInstance:instance forClass:clazz];
     
     id fetchedInstance = [serviceUnderTest instanceForClass:clazz];
     unsigned long retainCount = [fetchedInstance retainCount];
@@ -92,8 +92,8 @@
     Class clazz2 = [AppleGuiceSingletonRepositoryTestTestClass2 class];
     id instance1 = [[[clazz1 alloc] init] autorelease];
     id instance2 = [[[clazz2 alloc] init] autorelease];
-    [serviceUnderTest setInstance:instance1];
-    [serviceUnderTest setInstance:instance2];
+    [serviceUnderTest setInstance:instance1 forClass:clazz1];
+    [serviceUnderTest setInstance:instance2 forClass:clazz2];
     
     id fetchedInstance1 = [serviceUnderTest instanceForClass:clazz1];
     id fetchedInstance2 = [serviceUnderTest instanceForClass:clazz2];
@@ -113,8 +113,8 @@
     Class clazz2 = [AppleGuiceSingletonRepositoryTestTestClass2 class];
     id instance1 = [[[clazz1 alloc] init] autorelease];
     id instance2 = [[[clazz2 alloc] init] autorelease];
-    [serviceUnderTest setInstance:instance1];
-    [serviceUnderTest setInstance:instance2];
+    [serviceUnderTest setInstance:instance1 forClass:clazz1];
+    [serviceUnderTest setInstance:instance2 forClass:clazz2];
     
     [serviceUnderTest clearRepository];
     

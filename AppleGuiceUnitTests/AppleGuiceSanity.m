@@ -102,6 +102,193 @@
     EXP_expect(generatedObject1).to.equal(generatedObject2);
 }
 
+#pragma mark - all ways to instantiate
+
+//regular
+
+-(void) test_instanceForClass_InitClassWithInstanceForClass_returnsInstance {
+    [AppleGuice startService];
+    __block AppleGuiceSanityTestClass* result;
+    EXP_expect(^{ result = [AppleGuice instanceForClass:[AppleGuiceSanityTestClass class]]; }).notTo.raiseAny();
+    
+    [self validateTestClassIntegrity:result];
+}
+
+-(void) test_instanceForClass_InitClassWithInstanceForClassShorthand_returnsInstance {
+    [AppleGuice startService];
+    __block AppleGuiceSanityTestClass* result;
+    EXP_expect(^{ result = [[AppleGuiceSanityTestClass class] instance]; }).notTo.raiseAny();
+    
+    [self validateTestClassIntegrity:result];
+}
+
+-(void) test_instanceForClass_InitClassWithProtocol_returnsInstance {
+    [AppleGuice startService];
+    Protocol* protocol = @protocol(TestInjectableProtocol);
+    __block AppleGuiceSanityTestClass* result;
+    EXP_expect(^{ result = [AppleGuice instanceForProtocol:protocol]; }).notTo.raiseAny();
+    
+    EXP_expect(result).notTo.beNil;
+    EXP_expect(result).to.conformTo(protocol);
+}
+
+-(void) test_instanceForClass_InitClassWithProtocols_returnsInstances {
+    [AppleGuice startService];
+    Protocol* protocol = @protocol(TestInjectableProtocol);
+    __block NSArray* result;
+    EXP_expect(^{ result = [AppleGuice allInstancesForProtocol:protocol]; }).notTo.raiseAny();
+    
+    EXP_expect(result).notTo.beNil;
+    EXP_expect([result count]).to.equal(2);
+
+    NSArray* implementations = @[[TestInjectableProtocolImplementor class], [AnotherTestInjectableProtocolImplementor class]];
+    
+    EXP_expect(implementations).to.contain([result[0] class]);
+    EXP_expect(implementations).to.contain([result[1] class]);
+}
+
+//singleton
+
+-(void) test_instanceForClass_InitSingletonClassWithInstanceForClass_returnsInstance {
+    [AppleGuice startService];
+    __block TestInjectableSingletonClass* result1, *result2;
+    EXP_expect(^{ result1 = (id)[AppleGuice instanceForClass:[TestInjectableSingletonClass class]]; result2 = (id)[AppleGuice instanceForClass:[TestInjectableSingletonClass class]]; }).notTo.raiseAny();
+    
+    EXP_expect(result1).to.equal(result2);
+}
+
+-(void) test_instanceForClass_InitSingletonClassWithInstanceForClassShorthand_returnsInstance {
+    [AppleGuice startService];
+    __block TestInjectableSingletonClass* result1, *result2;
+    EXP_expect(^{ result1 = (id)[[TestInjectableSingletonClass class] instance];
+        result2 = (id)[[TestInjectableSingletonClass class] instance]; }).notTo.raiseAny();
+    
+    EXP_expect(result1).to.equal(result2);
+}
+
+-(void) test_instanceForClass_InitSingletonClassWithProtocol_returnsInstance {
+    [AppleGuice startService];
+    Protocol* protocol = @protocol(TestProtocolForSingletonClasses);
+    __block TestInjectableSingletonClass* result1, *result2;
+    EXP_expect(^{ result1 = (id)[AppleGuice instanceForProtocol:protocol];
+        result2 = (id)[AppleGuice instanceForProtocol:protocol]; }).notTo.raiseAny();
+    
+    EXP_expect(result1).to.equal(result2);
+}
+
+-(void) test_instanceForClass_InitSingletonClassWithProtocols_returnsInstances {
+    [AppleGuice startService];
+    Protocol* protocol = @protocol(TestProtocolForSingletonClasses);
+    __block TestInjectableSingletonClass* result1;
+    __block NSArray* result2;
+    EXP_expect(^{ result1 = (id)[AppleGuice instanceForProtocol:protocol];
+        result2 = [AppleGuice allInstancesForProtocol:protocol]; }).notTo.raiseAny();
+    
+    EXP_expect([result2 count]).to.equal(1);
+    EXP_expect(result1).to.equal(result2[0]);
+}
+
+//create mocks
+
+//regular
+
+-(void) test_instanceForClass_InitClassWithInstanceForClassAndMockCreationPolicy_returnsInstance {
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    __block id result;
+    EXP_expect(^{ result = [AppleGuice instanceForClass:[AppleGuiceSanityTestClass class]]; }).notTo.raiseAny();
+    
+    [result verify];
+}
+
+-(void) test_instanceForClass_InitClassWithInstanceForClassShorthandAndMockCreationPolicy_returnsInstance {
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    __block id result;
+    EXP_expect(^{ result = [[AppleGuiceSanityTestClass class] instance]; }).notTo.raiseAny();
+    
+    [result verify];
+}
+
+-(void) test_instanceForClass_InitClassWithProtocolAndMockCreationPolicy_returnsInstance {
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    Protocol* protocol = @protocol(TestInjectableProtocol);
+    __block id result;
+    EXP_expect(^{ result = [AppleGuice instanceForProtocol:protocol]; }).notTo.raiseAny();
+    
+    [result verify];
+}
+
+-(void) test_instanceForClass_InitClassWithProtocolsAndMockCreationPolicy_returnsInstances {
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    Protocol* protocol = @protocol(TestInjectableProtocol);
+    __block NSArray* result;
+    
+    EXP_expect(^{ result = [AppleGuice allInstancesForProtocol:protocol]; }).notTo.raiseAny();
+    
+    EXP_expect(result).notTo.beNil;
+    EXP_expect([result count]).to.equal(1);
+    
+    [result[0] verify];
+}
+
+//singleton
+
+-(void) test_instanceForClass_InitSingletonClassWithInstanceForClassAndMockCreationPolicy_returnsInstance {
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    __block id result1, result2;
+    EXP_expect(^{ result1 = [AppleGuice instanceForClass:[TestInjectableSingletonClass class]]; result2 = [AppleGuice instanceForClass:[TestInjectableSingletonClass class]]; }).notTo.raiseAny();
+    
+    [result1 verify];
+    [result2 verify];
+    EXP_expect([result1 hash]).to.equal([result2 hash]);
+}
+
+-(void) test_instanceForClass_InitSingletonClassWithInstanceForClassShorthandAndMockCreationPolicy_returnsInstance {
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    __block id result1, result2;
+    EXP_expect(^{
+        
+        result1 = [[TestInjectableSingletonClass class] instance];
+        result2 = [[TestInjectableSingletonClass class] instance]; }).notTo.raiseAny();
+    
+    [result1 verify];
+    [result2 verify];
+    EXP_expect([result1 hash]).to.equal([result2 hash]);
+}
+
+-(void) test_instanceForClass_InitSingletonClassWithProtocolAndMockCreationPolicy_returnsInstance {
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    Protocol* protocol = @protocol(TestProtocolForSingletonClasses);
+    __block id result1, result2;
+    EXP_expect(^{ result1 = [AppleGuice instanceForProtocol:protocol];
+        result2 = [AppleGuice instanceForProtocol:protocol]; }).notTo.raiseAny();
+    
+    [result1 verify];
+    [result2 verify];
+    EXP_expect([result1 hash]).toNot.equal([result2 hash]);
+}
+
+-(void) test_instanceForClass_InitSingletonClassWithProtocolsAndMockCreationPolicy_returnsInstances {
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    Protocol* protocol = @protocol(TestProtocolForSingletonClasses);
+    __block id result1;
+    __block NSArray* result2;
+    EXP_expect(^{ result1 = [AppleGuice instanceForProtocol:protocol];
+        result2 = [AppleGuice allInstancesForProtocol:protocol]; }).notTo.raiseAny();
+    
+    EXP_expect([result2 count]).to.equal(1);
+    [result1 verify];
+    [result2[0] verify];
+    EXP_expect([result1 hash]).toNot.equal([result2[0] hash]);
+}
+
 #pragma mark - runtime discovery policy
 
 -(void) test__instanceForClass__ComplexObjectInitializedWithRuntimeImplementationDiscoveryPolicy__AllFieldsAreInjected {
@@ -214,3 +401,4 @@ Implementation(TestInjectableProtocolImplementor)
 Implementation(AnotherTestInjectableProtocolImplementor)
 Implementation(AppleGuiceSanityTestClass)
 Implementation(AppleGuiceSanityTestSuperClass)
+Implementation(TestInjectableSingletonClass)
