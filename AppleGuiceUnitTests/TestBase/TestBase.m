@@ -23,7 +23,7 @@ extern void __gcov_flush(void);
 
 - (void)tearDown
 {
-#ifdef GCC_GENERATE_TEST_COVERAGE_FILES
+#ifdef GCC_GCOV_FLUSH
     __gcov_flush();
 #endif
     [super tearDown];
