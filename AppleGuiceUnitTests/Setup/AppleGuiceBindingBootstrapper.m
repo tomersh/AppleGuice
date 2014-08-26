@@ -6,7 +6,9 @@
 @synthesize bindingService = _ioc_bindingService;
 
 -(void) bootstrap {
-[self.bindingService setImplementationsFromStrings:@[@"AnotherTestInjectableProtocolImplementor", @"TestInjectableClass", @"TestInjectableProtocolImplementor", @"TestInjectableSuperClass"] withProtocolAsString:@"AppleGuiceInjectable" withBindingType:appleGuiceBindingTypeUserBinding];
+[self.bindingService setImplementationsFromStrings:@[@"TestInjectableSingletonClass"] withProtocolAsString:@"AppleGuiceSingleton" withBindingType:appleGuiceBindingTypeUserBinding];
+[self.bindingService setImplementationsFromStrings:@[@"TestInjectableSingletonClass"] withProtocolAsString:@"TestProtocolForSingletonClasses" withBindingType:appleGuiceBindingTypeUserBinding];
+[self.bindingService setImplementationsFromStrings:@[@"AnotherTestInjectableProtocolImplementor", @"TestInjectableClass", @"TestInjectableProtocolImplementor", @"TestInjectableSingletonClass", @"TestInjectableSuperClass"] withProtocolAsString:@"AppleGuiceInjectable" withBindingType:appleGuiceBindingTypeUserBinding];
 [self.bindingService setImplementationsFromStrings:@[@"AnotherTestInjectableProtocolImplementor", @"TestInjectableProtocolImplementor"] withProtocolAsString:@"TestInjectableSuperProtocol" withBindingType:appleGuiceBindingTypeUserBinding];
 [self.bindingService setImplementationsFromStrings:@[@"AnotherTestInjectableProtocolImplementor", @"TestInjectableProtocolImplementor"] withProtocolAsString:@"TestInjectableProtocol" withBindingType:appleGuiceBindingTypeUserBinding];
 }
