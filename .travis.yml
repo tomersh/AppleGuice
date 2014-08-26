@@ -8,6 +8,6 @@ before_install:
  - gem install cocoapods --no-doc
  - pod install
 script:
- - xctool clean test -freshInstall -sdk iphonesimulator7.0 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH'
+ - xctool clean test -freshInstall -parallelize -sdk iphonesimulator7.0 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH'
 after_success:
  - ruby ./coveralls.rb --exclude-folder Pods --exclude-folder AppleGuicePreCompileBinder --exclude-folder Bootstrapper --exclude-folder AppleGuiceUnitTests
