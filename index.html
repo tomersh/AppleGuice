@@ -1,207 +1,219 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Appleguice by tomersh</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-45189057-1', 'appleguice.com');
-  ga('send', 'pageview');
-
-</script>
+    <title>Appleguice by tomersh</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
+    <header>
+      <div class="inner">
         <h1>Appleguice</h1>
-        <p>Effortless dependency injection framework for Objective-C</p>
+        <h2>Effortless dependency injection framework for Objective-C</h2>
+        <a href="https://github.com/tomersh/AppleGuice" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-        <p class="view"><a href="https://github.com/tomersh/AppleGuice">View the Project on GitHub <small>tomersh/AppleGuice</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/tomersh/AppleGuice/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/tomersh/AppleGuice/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/tomersh/AppleGuice">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a name="appleguice" class="anchor" href="#appleguice"><span class="octicon octicon-link"></span></a>AppleGuice</h1>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="appleguice" class="anchor" href="#appleguice" aria-hidden="true"><span class="octicon octicon-link"></span></a>AppleGuice</h1>
 
 <p>Effortless dependency injection framework for Objective-C</p>
 
-<p><a href="https://travis-ci.org/tomersh/AppleGuice"><img src="https://travis-ci.org/tomersh/AppleGuice.png?branch=master" alt="Build Status"></a></p>
+<p><a href="https://travis-ci.org/tomersh/AppleGuice"><img src="https://travis-ci.org/tomersh/AppleGuice.png?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/r/tomersh/AppleGuice?branch=master"><img src="https://coveralls.io/repos/tomersh/AppleGuice/badge.png?branch=master" alt="Coverage Status"></a></p>
 
 <h2>
-<a name="what-appleguice-does-for-you" class="anchor" href="#what-appleguice-does-for-you"><span class="octicon octicon-link"></span></a>What AppleGuice does for you?</h2>
+<a id="who-is-using-it" class="anchor" href="#who-is-using-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>Who is using it?</h2>
+
+<p><a href="https://itunes.apple.com/app/id408490162"><img src="http://i61.tinypic.com/30ib6hi.jpg" alt="Flashcards+"> FlashCards+</a> 
+<a href="https://itunes.apple.com/app/id385758163"><img src="http://oi59.tinypic.com/517m9c.jpg" alt="CheggApp"> Chegg – Textbooks, eTextbooks &amp; Study Tools</a></p>
+
+<p>Are you using AppleGuice and your app is not on the list? <a href="mailto:github@shiri.info">Drop me a line</a>.</p>
+
+<h2>
+<a id="what-appleguice-does-for-you" class="anchor" href="#what-appleguice-does-for-you" aria-hidden="true"><span class="octicon octicon-link"></span></a>What AppleGuice does for you?</h2>
 
 <p>AppleGuice helps you write clean, reuseable and testable code by allowing you to easily inject your services to any class.
 Other dependency injection frameworks require binding, xml editing or initializing your classes with a special method.
 With AppleGuice all you have to do is declare the injected type and thats it. As a bonus, you will still be able to initialize classes with <code>[[MyClass alloc] init]</code> so it is even easier to integrate it with your existing code base.</p>
 
 <h2>
-<a name="show-me" class="anchor" href="#show-me"><span class="octicon octicon-link"></span></a>Show Me</h2>
+<a id="show-me" class="anchor" href="#show-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>Show Me</h2>
 
 <h3>
-<a name="inject-your-first-injectable-instance-with-3-simple-steps" class="anchor" href="#inject-your-first-injectable-instance-with-3-simple-steps"><span class="octicon octicon-link"></span></a>Inject your first injectable instance with 3 simple steps:</h3>
+<a id="inject-your-first-injectable-instance-with-3-simple-steps" class="anchor" href="#inject-your-first-injectable-instance-with-3-simple-steps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inject your first injectable instance with 3 simple steps:</h3>
 
 <h4>
-<a name="start-appleguice" class="anchor" href="#start-appleguice"><span class="octicon octicon-link"></span></a>Start AppleGuice</h4>
+<a id="start-appleguice" class="anchor" href="#start-appleguice" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start AppleGuice</h4>
 
-<div class="highlight highlight-objectivec"><pre>
-<span class="c1">//AppDelegate.m</span>
+<pre lang="objectivec"><code>
+//AppDelegate.m
 
-<span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFinishLaunchingWithOptions:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">launchOptions</span> <span class="p">{</span>
-<span class="c1">//Some code</span>
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//Some code
 
-<span class="p">[</span><span class="n">AppleGuice</span> <span class="n">startService</span><span class="p">];</span>
+[AppleGuice startService];
 
-<span class="c1">//More Code</span>
-<span class="p">}</span>
-</pre></div>
+//More Code
+}
+</code></pre>
 
 <h4>
-<a name="create-your-injectable-service" class="anchor" href="#create-your-injectable-service"><span class="octicon octicon-link"></span></a>Create your injectable service</h4>
+<a id="create-your-injectable-service" class="anchor" href="#create-your-injectable-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create your injectable service</h4>
 
 <p>Mark your injectable service with the protocol <code>AppleGuiceInjectable</code> so AppleGuice will find it.</p>
 
-<div class="highlight highlight-objectivec"><pre>
-<span class="k">@protocol</span> <span class="nc">MyServiceProtocol</span> <span class="o">&lt;</span><span class="n">AppleGuiceInjectable</span><span class="o">&gt;</span>
+<pre lang="objectivec"><code>
+@protocol MyServiceProtocol &lt;AppleGuiceInjectable&gt;
 
-<span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">doStuff</span><span class="p">;</span>
+-(void) doStuff;
 
-<span class="k">@end</span>
+@end
 
-<span class="k">@interface</span> <span class="nc">MyService</span> : <span class="nc">NSObject</span><span class="o">&lt;</span><span class="n">MyServiceProtocol</span><span class="o">&gt;</span>
-<span class="k">@end</span>
+@interface MyService : NSObject&lt;MyServiceProtocol&gt;
+@end
 
-<span class="k">@implementation</span> <span class="nc">MyService</span>
-<span class="p">...</span>
-<span class="k">@end</span>
-</pre></div>
+@implementation MyService
+...
+@end
+</code></pre>
 
 <h4>
-<a name="enjoy-automatic-injection-while-coding" class="anchor" href="#enjoy-automatic-injection-while-coding"><span class="octicon octicon-link"></span></a>Enjoy automatic injection while coding</h4>
+<a id="enjoy-automatic-injection-while-coding" class="anchor" href="#enjoy-automatic-injection-while-coding" aria-hidden="true"><span class="octicon octicon-link"></span></a>Enjoy automatic injection while coding</h4>
 
 <p>Create an ivar prefixed with the ioc prefix (the default is <code>_ioc_</code>).
 AppleGuice will automatically inject the proper implementation when calling the init method.</p>
 
-<div class="highlight highlight-objectivec"><pre><span class="c1">//MyClass.h</span>
-<span class="k">@interface</span> <span class="nc">MyClass</span> : <span class="nc">NSObject</span>
+<pre lang="objectivec"><code>//MyClass.h
+@interface MyClass : NSObject
 
-<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="kt">id</span><span class="o">&lt;</span><span class="n">MyServiceProtocol</span><span class="o">&gt;</span> <span class="n">ioc_myService</span><span class="p">;</span>
+@property (nonatomic, strong) id&lt;MyServiceProtocol&gt; ioc_myService;
 
-<span class="k">@end</span>
+@end
 
-<span class="c1">//MyClass.m</span>
-<span class="k">@implementation</span> <span class="nc">MyClass</span>
+//MyClass.m
+@implementation MyClass
 
-<span class="c1">//Now, you can use _ioc_myService anywhere. Even in the init function!</span>
+//Now, you can use _ioc_myService anywhere. Even in the init function!
 
-<span class="k">-</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span> <span class="nf">init</span> <span class="p">{</span>
-  <span class="n">self</span> <span class="o">=</span> <span class="p">[</span><span class="n">super</span> <span class="n">init</span><span class="p">];</span>
-  <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">ioc_myService</span> <span class="n">doStuff</span><span class="p">];</span>
-  <span class="k">return</span> <span class="n">self</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="k">@end</span>
-</pre></div>
+-(id) init {
+  self = [super init];
+  [self.ioc_myService doStuff];
+  return self;
+}
+@end
+</code></pre>
 
 <p>AppleGuice initialized <code>_ioc_myService</code>  without any manual binding!</p>
 
 <h4>
-<a name="stub-with-ease-while-testing" class="anchor" href="#stub-with-ease-while-testing"><span class="octicon octicon-link"></span></a>Stub with ease while testing</h4>
+<a id="stub-with-ease-while-testing" class="anchor" href="#stub-with-ease-while-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stub with ease while testing</h4>
 
-<div class="highlight highlight-objectivec"><pre><span class="cp">#import &lt;AppleGuice/AppleGuice.h&gt;</span>
+<pre lang="objectivec"><code>#import &lt;AppleGuice/AppleGuice.h&gt;
 
-<span class="k">@implementation</span> <span class="nc">MyClassTests</span> <span class="p">{</span>
-    <span class="n">MyClass</span><span class="o">*</span> <span class="n">classUnderTest</span><span class="p">;</span>
-<span class="p">}</span>
+@implementation MyClassTests {
+    MyClass* classUnderTest;
+}
 
-<span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">setUp</span>
-<span class="p">{</span>
-    <span class="p">[</span><span class="n">super</span> <span class="n">setUp</span><span class="p">];</span>
-    <span class="p">[</span><span class="n">AppleGuice</span> <span class="n">startService</span><span class="p">];</span>
-    <span class="p">[</span><span class="n">AppleGuice</span> <span class="n">setInstanceCreationPolicy</span><span class="o">:</span><span class="n">AppleGuiceInstanceCreationPolicyCreateMocks</span><span class="p">];</span>
-    <span class="n">classUnderTest</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MyClass</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-<span class="p">}</span>
+-(void)setUp
+{
+    [super setUp];
+    [AppleGuice startService];
+    [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
+    classUnderTest = [[MyClass alloc] init];
+}
 
-<span class="o">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">test_foo_returnsValue</span> <span class="p">{</span>
-  <span class="c1">//the injectable ivar is initialized with a mock. You can stub methods on it as you normally do with OCMock.</span>
-  <span class="p">[[[</span><span class="n">classUnderTest</span><span class="p">.</span><span class="n">ioc_myService</span> <span class="n">expect</span><span class="p">]</span> <span class="n">andReturn</span><span class="o">:</span><span class="s">@"someString"</span><span class="p">]</span> <span class="n">doStuff</span><span class="o">:</span><span class="n">OCMOCK_ANY</span><span class="p">];</span>
+-(void) test_foo_returnsValue {
+  //the injectable ivar is initialized with a mock. You can stub methods on it as you normally do with OCMock.
+  [[[classUnderTest.ioc_myService expect] andReturn:@"someString"] doStuff:OCMOCK_ANY];
 
-  <span class="p">[</span><span class="n">classUnderTest</span> <span class="n">foo</span><span class="p">];</span>
+  [classUnderTest foo];
 
-  <span class="p">[</span><span class="n">classUnderTest</span><span class="p">.</span><span class="n">ioc_myService</span> <span class="n">verify</span><span class="p">];</span>
-<span class="p">}</span>
-</pre></div>
+  [classUnderTest.ioc_myService verify];
+}
+</code></pre>
 
 <p>*When testing, AppleGuice works best with <a href="http://ocmock.org/">OCMock</a>.</p>
 
 <h2>
-<a name="inject-in-every-flavour" class="anchor" href="#inject-in-every-flavour"><span class="octicon octicon-link"></span></a>Inject In every flavour</h2>
+<a id="inject-in-every-flavour" class="anchor" href="#inject-in-every-flavour" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inject In every flavour</h2>
 
 <p>Injecting a service is done by declering an ivar in a class. You can add it in the interface, implementation, as a property or even inside a private category. AppleGuice will find it.
 Injection comes in three flavours:</p>
 
-<div class="highlight highlight-objectivec"><pre><span class="k">@interface</span> <span class="nc">MyClass</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="n">MyService</span><span class="o">*</span> <span class="n">_ioc_MyService</span><span class="p">;</span> <span class="c1">//will create an instance of MyService.</span>
-    <span class="kt">id</span><span class="o">&lt;</span><span class="n">MyServiceProtocol</span><span class="o">&gt;</span> <span class="n">_ioc_MyService</span> <span class="c1">//will create an instance of the first class conforming to MyProtocol.</span>
-    <span class="n">NSArray</span><span class="o">*</span> <span class="n">_ioc_MyProtocol</span> <span class="c1">//will return an array containing instances of all classes conforming to MyProtocol</span>
-<span class="p">}</span>
-</pre></div>
+<pre lang="objectivec"><code>@interface MyClass () {
+    MyService* _ioc_MyService; //will create an instance of MyService.
+    id&lt;MyServiceProtocol&gt; _ioc_MyService //will create an instance of the first class conforming to MyServiceProtocol.
+    NSArray* _ioc_MyProtocol //will return an array containing instances of all classes conforming to MyProtocol
+}
+</code></pre>
 
 <h2>
-<a name="more-features" class="anchor" href="#more-features"><span class="octicon octicon-link"></span></a>More features</h2>
+<a id="more-features" class="anchor" href="#more-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>More features</h2>
 
 <h3>
-<a name="singletons-in-a-snap" class="anchor" href="#singletons-in-a-snap"><span class="octicon octicon-link"></span></a>Singletons in a snap</h3>
+<a id="singletons-in-a-snap" class="anchor" href="#singletons-in-a-snap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Singletons in a snap</h3>
 
 <p>Instead of messing your code with shared instance declerations or macros, you can just add <code>AppleGuiceSingleton</code> to the implemented protocols list and AppleGuice will always return the same instance.</p>
 
-<div class="highlight highlight-objectivec"><pre><span class="k">@protocol</span> <span class="nc">MyServiceProtocol</span> <span class="o">&lt;</span><span class="n">AppleGuiceInjectable</span><span class="p">,</span> <span class="n">AppleGuiceSingleton</span><span class="o">&gt;</span>
-<span class="k">@end</span>
-</pre></div>
+<pre lang="objectivec"><code>@protocol MyServiceProtocol &lt;AppleGuiceInjectable, AppleGuiceSingleton&gt;
+@end
+</code></pre>
 
 <h3>
-<a name="circular-dependency-support" class="anchor" href="#circular-dependency-support"><span class="octicon octicon-link"></span></a>Circular dependency support</h3>
+<a id="circular-dependency-support" class="anchor" href="#circular-dependency-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Circular dependency support</h3>
 
 <p>AppleGuice can handle circular depenency between injected classes as long as the dependent classes conforms to <code>AppleGuiceSingleton</code>.</p>
 
 <h3>
-<a name="lazyload-objects" class="anchor" href="#lazyload-objects"><span class="octicon octicon-link"></span></a>LazyLoad objects</h3>
+<a id="lazyload-objects" class="anchor" href="#lazyload-objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>LazyLoad objects</h3>
 
 <p>You can configure AppleGuice to inject a proxy object instead of the real service. Once the service is needed (A method in the service is called) the proxy will be replaced with the real object.</p>
 
-<div class="highlight highlight-objectivec"><pre><span class="c1">//add in your AppDelegate</span>
-<span class="p">[</span><span class="n">AppleGuice</span> <span class="n">setInstanceCreationPolicy</span><span class="o">:</span><span class="n">AppleGuiceInstanceCreationPolicyLazyLoad</span><span class="p">];</span>
-</pre></div>
+<pre lang="objectivec"><code>//add in your AppDelegate
+[AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyLazyLoad];
+</code></pre>
 
 <h2>
-<a name="ready-to-start" class="anchor" href="#ready-to-start"><span class="octicon octicon-link"></span></a>Ready to start?</h2>
+<a id="ready-to-start" class="anchor" href="#ready-to-start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ready to start?</h2>
 
 <p>Check out the quick <a href="https://github.com/tomersh/AppleGuice/wiki/AppleGuice-Installation-Guide">installation guide</a>.</p>
 
-<p><a href="http://githalytics.com/tomersh/AppleGuice"><img src="https://cruel-carlota.pagodabox.com/e73586a87135304cb47ff18e519b75f6" alt="githalytics.com alpha" title="githalytics.com"></a></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/tomersh">tomersh</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+<p>Documentation can be found <a href="http://cocoadocs.org/docsets/AppleGuice">here</a>.
+<a href="http://githalytics.com/tomersh/AppleGuice"><img src="https://cruel-carlota.pagodabox.com/e73586a87135304cb47ff18e519b75f6" alt="githalytics.com alpha" title="githalytics.com"></a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/tomersh/AppleGuice/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/tomersh/AppleGuice/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/tomersh/AppleGuice"></a> is maintained by <a href="https://github.com/tomersh">tomersh</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+  
   </body>
 </html>
