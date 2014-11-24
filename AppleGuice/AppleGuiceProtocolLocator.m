@@ -14,7 +14,6 @@
 
 #import "AppleGuiceProtocolLocator.h"
 #import "AppleGuiceBindingServiceProtocol.h"
-#import "AppleGuiceClassLinkedList.h"
 #import <objc/runtime.h>
 
 
@@ -74,8 +73,8 @@
     
     if (allMatchingClasses) {
         [self.bindingService setImplementations:allMatchingClasses withProtocol:protocol withBindingType:appleGuiceBindingTypeCachedBinding];
-        return allMatchingClasses;
     }
+    
     return allMatchingClasses;
 }
 
@@ -83,12 +82,13 @@
     NSMutableSet* filteredClasses = [NSMutableSet set];
     for (int i = 0; i < _allClassCount; i++) {
         Class clazz = _allClassesMemoization[i];
-        AppleGuiceClassLinkedList* classLinkedList = [AppleGuiceClassLinkedList list];
+        CFMutableArrayRef classLinkedList = CFArrayCreateMutable(kCFAllocatorDefault, 0, NULL);
         while (clazz) {
-            [classLinkedList addClass:clazz];
+            CFArrayAppendValue(classLinkedList, clazz);
             if (class_conformsToProtocol(clazz, filterProtocol)) {
-                NSArray* conformingClassesList = [classLinkedList toArray];
+                NSArray* conformingClassesList = [NSArray arrayWithArray:(NSArray*)classLinkedList];
                 [filteredClasses addObjectsFromArray:conformingClassesList];
+                free(classLinkedList);
                 break;
             }
             clazz = class_getSuperclass(clazz);
