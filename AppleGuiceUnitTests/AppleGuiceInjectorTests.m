@@ -320,4 +320,15 @@
     EXP_expect([instanceToInjectTo->test_InjectedProtocol isProxy]).to.beFalsy();
 }
 
+-(void) test_injectImplementationsToInstance_instanceCreatorReturnsNil_throwsError {
+
+    ClassWithInjectableProtocol* instanceToInjectTo = [[ClassWithInjectableProtocol alloc] init];
+    
+    [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
+    [[[instanceCreator expect] andReturn:nil] instanceForProtocol:OCMOCK_ANY];
+    
+    EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).to.raise(@"AppleGuiceInjectableImplementationNotFoundException");
+    [instanceCreator verify];
+}
+
 @end
