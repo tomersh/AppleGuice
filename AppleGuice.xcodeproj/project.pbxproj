@@ -84,10 +84,11 @@
 
 /* Begin PBXFileReference section */
 		392C9521977347E6A8A05659 /* libPods-AppleGuiceUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleGuiceUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FA7C2F6DC2343AA8DB3B290 /* Pods-AppleGuiceUnitTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceUnitTests.xcconfig"; path = "Pods/Pods-AppleGuiceUnitTests.xcconfig"; sourceTree = "<group>"; };
 		696C132EABBD3AA90781B1C5 /* AppleGuiceInstanceCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInstanceCreator.m; sourceTree = "<group>"; };
 		696C1AFB2DB967C5ECCA9957 /* AppleGuiceInstanceCreatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInstanceCreatorProtocol.h; sourceTree = "<group>"; };
 		696C1E88F5F8FC4C3E9F8540 /* AppleGuiceInstanceCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInstanceCreator.h; sourceTree = "<group>"; };
+		81FBD0AD1F8ED221E1DC8101 /* Pods-AppleGuiceUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		84973227AA693E29CBA3DE6C /* Pods-AppleGuiceUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		F10934CD18EAF4E000687DD1 /* AppleGuiceTypedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceTypedDictionary.h; sourceTree = "<group>"; };
 		F11BE113170432DE00E71B99 /* AppleGuiceSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingleton.h; sourceTree = "<group>"; };
 		F133DA6218D0BCE40050864F /* AppleGuiceUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleGuiceUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +186,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E38FC3BC2078EF08A2D6812 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				81FBD0AD1F8ED221E1DC8101 /* Pods-AppleGuiceUnitTests.debug.xcconfig */,
+				84973227AA693E29CBA3DE6C /* Pods-AppleGuiceUnitTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F133DA6818D0BCE40050864F /* AppleGuiceUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,7 +270,7 @@
 				F133DA6818D0BCE40050864F /* AppleGuiceUnitTests */,
 				F18E722416F9135C000BD3CB /* Frameworks */,
 				F18E722316F9135C000BD3CB /* Products */,
-				4FA7C2F6DC2343AA8DB3B290 /* Pods-AppleGuiceUnitTests.xcconfig */,
+				2E38FC3BC2078EF08A2D6812 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -492,7 +502,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AppleGuiceUnitTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F133DA9518D0BE550050864F /* Bootstrap project */ = {
@@ -590,7 +600,7 @@
 /* Begin XCBuildConfiguration section */
 		F133DA7318D0BCE40050864F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FA7C2F6DC2343AA8DB3B290 /* Pods-AppleGuiceUnitTests.xcconfig */;
+			baseConfigurationReference = 81FBD0AD1F8ED221E1DC8101 /* Pods-AppleGuiceUnitTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -618,6 +628,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-framework",
 					Foundation,
@@ -630,7 +641,7 @@
 		};
 		F133DA7418D0BCE40050864F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FA7C2F6DC2343AA8DB3B290 /* Pods-AppleGuiceUnitTests.xcconfig */;
+			baseConfigurationReference = 84973227AA693E29CBA3DE6C /* Pods-AppleGuiceUnitTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -655,6 +666,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-ObjC",
 					"-framework",
 					Foundation,
@@ -698,8 +710,9 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				VALID_ARCHS = "$(inherited)";
 			};
 			name = Debug;
 		};
@@ -728,9 +741,10 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				VALID_ARCHS = "$(inherited)";
 			};
 			name = Release;
 		};
@@ -741,10 +755,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuice/AppleGuice-Prefix.pch";
 				GCC_VERSION = "";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				VALID_ARCHS = "$(inherited)";
 			};
 			name = Debug;
 		};
@@ -755,10 +772,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuice/AppleGuice-Prefix.pch";
 				GCC_VERSION = "";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				VALID_ARCHS = "$(inherited)";
 			};
 			name = Release;
 		};
