@@ -49,7 +49,7 @@
     serviceUnderTest.singletonRepository = singletonRepository;
     serviceUnderTest.protocolLocator = protocolLocator;
     serviceUnderTest.injector = injector;
-    serviceUnderTest.mockProvoider = mockProvider;
+    serviceUnderTest.mockProvider = mockProvider;
 }
 
 -(void)tearDown {

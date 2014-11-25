@@ -54,6 +54,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F18E722116F9135C000BD3CB"
+            BuildableName = "libAppleGuice.a"
+            BlueprintName = "AppleGuice"
+            ReferencedContainer = "container:AppleGuice.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

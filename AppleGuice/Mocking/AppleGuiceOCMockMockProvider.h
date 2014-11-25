@@ -13,8 +13,8 @@
 //limitations under the License.
 
 
-#import "AppleGuiceMockProviderProtocol.h"
+#import "AppleGuiceMockProvider.h"
 
-@interface AppleGuiceOCMockMockProvider : NSObject<AppleGuiceMockProviderProtocol>
+@interface AppleGuiceOCMockMockProvider : AppleGuiceMockProvider
 
 @end

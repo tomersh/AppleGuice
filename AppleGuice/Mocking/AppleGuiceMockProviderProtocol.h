@@ -15,6 +15,10 @@
 
 @protocol AppleGuiceMockProviderProtocol <NSObject>
 
+-(instancetype) initWithClassMockClassName:(NSString*) classMockClassName andProtocolMockClassName:(NSString*) protocolMockClassName;
+
+-(BOOL) isServiceAvailable;
+
 -(id) mockForClass:(Class)aClass;
 
 -(id) mockForProtocol:(Protocol *)aProtocol;

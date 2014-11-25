@@ -63,10 +63,17 @@
 		F172DD4516F9141300BA754E /* AppleGuiceSingletonRepository.mm in Sources */ = {isa = PBXBuildFile; fileRef = F172DD2C16F9141300BA754E /* AppleGuiceSingletonRepository.mm */; };
 		F1777745191B85B2008CFEFD /* AppleGuiceClassGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1777744191B85B2008CFEFD /* AppleGuiceClassGeneratorTests.m */; };
 		F1777747191B94C6008CFEFD /* AppleGuiceProtocolToClassMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1777746191B94C6008CFEFD /* AppleGuiceProtocolToClassMapperTests.m */; };
-		F185E1C51722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F185E1C41722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h */; };
-		F185E1C81722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */; };
-		F185E1C91722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */; };
 		F18E722616F9135C000BD3CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
+		F1E33BE11A24810E0083660E /* AppleGuiceMockProviderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F1E33BDE1A24810E0083660E /* AppleGuiceMockProviderProtocol.h */; };
+		F1E33BE21A24810E0083660E /* AppleGuiceOCMockMockProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F1E33BDF1A24810E0083660E /* AppleGuiceOCMockMockProvider.h */; };
+		F1E33BE31A24810E0083660E /* AppleGuiceOCMockMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BE01A24810E0083660E /* AppleGuiceOCMockMockProvider.m */; };
+		F1E33BEA1A2482560083660E /* AppleGuiceMockProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F1E33BE81A2482560083660E /* AppleGuiceMockProvider.h */; };
+		F1E33BEB1A2482560083660E /* AppleGuiceMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BE91A2482560083660E /* AppleGuiceMockProvider.m */; };
+		F1E33BEE1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F1E33BEC1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.h */; };
+		F1E33BEF1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BED1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m */; };
+		F1E33BF21A2495340083660E /* AppleGuiceMockProviderSelectorService.h in Headers */ = {isa = PBXBuildFile; fileRef = F1E33BF01A2495340083660E /* AppleGuiceMockProviderSelectorService.h */; };
+		F1E33BF31A2495340083660E /* AppleGuiceMockProviderSelectorService.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BF11A2495340083660E /* AppleGuiceMockProviderSelectorService.m */; };
+		F1E33BF51A2495850083660E /* AppleGuiceMockProviderSelectorServiceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = F1E33BF41A2495850083660E /* AppleGuiceMockProviderSelectorServiceProtocol.h */; };
 		F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */; };
 /* End PBXBuildFile section */
 
@@ -148,12 +155,19 @@
 		F172DD5616F9159200BA754E /* AppleGuiceBindingBootstrapperProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceBindingBootstrapperProtocol.h; sourceTree = "<group>"; };
 		F1777744191B85B2008CFEFD /* AppleGuiceClassGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceClassGeneratorTests.m; sourceTree = "<group>"; };
 		F1777746191B94C6008CFEFD /* AppleGuiceProtocolToClassMapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceProtocolToClassMapperTests.m; sourceTree = "<group>"; };
-		F185E1C41722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderProtocol.h; sourceTree = "<group>"; };
-		F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceOCMockMockProvider.h; sourceTree = "<group>"; };
-		F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceOCMockMockProvider.m; sourceTree = "<group>"; };
 		F18E722216F9135C000BD3CB /* libAppleGuice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAppleGuice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F18E722516F9135C000BD3CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F18E722916F9135C000BD3CB /* AppleGuice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuice-Prefix.pch"; sourceTree = "<group>"; };
+		F1E33BDE1A24810E0083660E /* AppleGuiceMockProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderProtocol.h; sourceTree = "<group>"; };
+		F1E33BDF1A24810E0083660E /* AppleGuiceOCMockMockProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceOCMockMockProvider.h; sourceTree = "<group>"; };
+		F1E33BE01A24810E0083660E /* AppleGuiceOCMockMockProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceOCMockMockProvider.m; sourceTree = "<group>"; };
+		F1E33BE81A2482560083660E /* AppleGuiceMockProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProvider.h; sourceTree = "<group>"; };
+		F1E33BE91A2482560083660E /* AppleGuiceMockProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceMockProvider.m; sourceTree = "<group>"; };
+		F1E33BEC1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceOCMockitoMockProvider.h; sourceTree = "<group>"; };
+		F1E33BED1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceOCMockitoMockProvider.m; sourceTree = "<group>"; };
+		F1E33BF01A2495340083660E /* AppleGuiceMockProviderSelectorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderSelectorService.h; sourceTree = "<group>"; };
+		F1E33BF11A2495340083660E /* AppleGuiceMockProviderSelectorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceMockProviderSelectorService.m; sourceTree = "<group>"; };
+		F1E33BF41A2495850083660E /* AppleGuiceMockProviderSelectorServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderSelectorServiceProtocol.h; sourceTree = "<group>"; };
 		F1FEDFB718D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepositoryTests.h; sourceTree = "<group>"; };
 		F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSingletonRepositoryTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -293,6 +307,7 @@
 		F18E722716F9135C000BD3CB /* AppleGuice */ = {
 			isa = PBXGroup;
 			children = (
+				F1E33BDD1A2480D50083660E /* Mocking */,
 				F14FF18D18EC058D00222D4F /* BindingService */,
 				F172DD1416F9141300BA754E /* AppleGuice.h */,
 				F172DD1516F9141300BA754E /* AppleGuice.m */,
@@ -323,9 +338,6 @@
 				F172DD2B16F9141300BA754E /* AppleGuiceSingletonRepository.h */,
 				F172DD2C16F9141300BA754E /* AppleGuiceSingletonRepository.mm */,
 				F172DD2D16F9141300BA754E /* AppleGuiceSingletonRepositoryProtocol.h */,
-				F185E1C41722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h */,
-				F185E1C61722A20900D12DE4 /* AppleGuiceOCMockMockProvider.h */,
-				F185E1C71722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m */,
 				F159661318B6111B0041E6E5 /* AppleGuiceOptional.h */,
 				F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */,
 				F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */,
@@ -343,6 +355,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F1E33BDD1A2480D50083660E /* Mocking */ = {
+			isa = PBXGroup;
+			children = (
+				F1E33BDE1A24810E0083660E /* AppleGuiceMockProviderProtocol.h */,
+				F1E33BE81A2482560083660E /* AppleGuiceMockProvider.h */,
+				F1E33BE91A2482560083660E /* AppleGuiceMockProvider.m */,
+				F1E33BDF1A24810E0083660E /* AppleGuiceOCMockMockProvider.h */,
+				F1E33BE01A24810E0083660E /* AppleGuiceOCMockMockProvider.m */,
+				F1E33BEC1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.h */,
+				F1E33BED1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m */,
+				F1E33BF41A2495850083660E /* AppleGuiceMockProviderSelectorServiceProtocol.h */,
+				F1E33BF01A2495340083660E /* AppleGuiceMockProviderSelectorService.h */,
+				F1E33BF11A2495340083660E /* AppleGuiceMockProviderSelectorService.m */,
+			);
+			path = Mocking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -353,6 +382,7 @@
 				F150E875170C57B900938549 /* AppleGuice.h in Headers */,
 				F150E876170C57B900938549 /* AppleGuiceInjectable.h in Headers */,
 				F10934CF18EAF4E000687DD1 /* AppleGuiceTypedDictionary.h in Headers */,
+				F1E33BF21A2495340083660E /* AppleGuiceMockProviderSelectorService.h in Headers */,
 				F150E877170C57B900938549 /* AppleGuiceSingleton.h in Headers */,
 				F150E879170C57B900938549 /* AppleGuiceBindingBootstrapperProtocol.h in Headers */,
 				F150E87A170C57B900938549 /* AppleGuiceAutoInjector.h in Headers */,
@@ -362,6 +392,7 @@
 				F150E87E170C57B900938549 /* AppleGuiceInjectableImplementationNotFoundException.h in Headers */,
 				F150E87F170C57B900938549 /* AppleGuiceInjector.h in Headers */,
 				F150E880170C57B900938549 /* AppleGuiceInjectorProtocol.h in Headers */,
+				F1E33BE11A24810E0083660E /* AppleGuiceMockProviderProtocol.h in Headers */,
 				F150E881170C57B900938549 /* AppleGuiceInstanceCreatorProtocol.h in Headers */,
 				F150E882170C57B900938549 /* AppleGuiceInstanceCreator.h in Headers */,
 				F150E883170C57B900938549 /* AppleGuiceInvocationProxy.h in Headers */,
@@ -371,14 +402,16 @@
 				F14FF19B18EC2F7400222D4F /* AppleGuiceClassGenerator.h in Headers */,
 				F150E886170C57B900938549 /* AppleGuiceProtocolLocatorProtocol.h in Headers */,
 				F14FF19618EC2F1C00222D4F /* AppleGuiceBindingService.h in Headers */,
+				F1E33BEA1A2482560083660E /* AppleGuiceMockProvider.h in Headers */,
 				F150E887170C57B900938549 /* AppleGuiceSettingsProvider.h in Headers */,
 				F14FF19D18EC2F7400222D4F /* AppleGuiceClassGeneratorProtocol.h in Headers */,
+				F1E33BF51A2495850083660E /* AppleGuiceMockProviderSelectorServiceProtocol.h in Headers */,
 				F150E888170C57B900938549 /* AppleGuiceSettingsProviderProtocol.h in Headers */,
 				F150E889170C57B900938549 /* AppleGuiceSingletonRepository.h in Headers */,
+				F1E33BEE1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.h in Headers */,
+				F1E33BE21A24810E0083660E /* AppleGuiceOCMockMockProvider.h in Headers */,
 				F150E88A170C57B900938549 /* AppleGuiceSingletonRepositoryProtocol.h in Headers */,
 				F150E88C170C57B900938549 /* NSObject+AppleGuice.h in Headers */,
-				F185E1C51722A13A00D12DE4 /* AppleGuiceMockProviderProtocol.h in Headers */,
-				F185E1C81722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,11 +585,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F172DD3516F9141300BA754E /* AppleGuice.m in Sources */,
+				F1E33BE31A24810E0083660E /* AppleGuiceOCMockMockProvider.m in Sources */,
 				F14FF19C18EC2F7400222D4F /* AppleGuiceClassGenerator.m in Sources */,
 				F14FF19718EC2F1C00222D4F /* AppleGuiceBindingService.m in Sources */,
 				F172DD3716F9141300BA754E /* AppleGuiceAutoInjector.m in Sources */,
 				F172DD3B16F9141300BA754E /* AppleGuiceInjectableImplementationNotFoundException.m in Sources */,
 				F172DD3D16F9141300BA754E /* AppleGuiceInjector.m in Sources */,
+				F1E33BEB1A2482560083660E /* AppleGuiceMockProvider.m in Sources */,
+				F1E33BEF1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m in Sources */,
 				F14FF19318EC05E800222D4F /* AppleGuiceProtocolToClassMapper.mm in Sources */,
 				F172DD3F16F9141300BA754E /* AppleGuiceInvocationProxy.m in Sources */,
 				F172DD4116F9141300BA754E /* AppleGuiceProtocolLocator.m in Sources */,
@@ -564,7 +600,7 @@
 				F172DD4516F9141300BA754E /* AppleGuiceSingletonRepository.mm in Sources */,
 				F162136516F9D95C00563E38 /* NSObject+AppleGuice.m in Sources */,
 				696C18D4C34FD833E551D9FC /* AppleGuiceInstanceCreator.m in Sources */,
-				F185E1C91722A20A00D12DE4 /* AppleGuiceOCMockMockProvider.m in Sources */,
+				F1E33BF31A2495340083660E /* AppleGuiceMockProviderSelectorService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

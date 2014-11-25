@@ -82,17 +82,16 @@
     NSMutableSet* filteredClasses = [NSMutableSet set];
     for (int i = 0; i < _allClassCount; i++) {
         Class clazz = _allClassesMemoization[i];
-        CFMutableArrayRef classLinkedList = CFArrayCreateMutable(kCFAllocatorDefault, 0, NULL);
+        CFMutableArrayRef classesList = CFArrayCreateMutable(kCFAllocatorDefault, 0, NULL);
         while (clazz) {
-            CFArrayAppendValue(classLinkedList, clazz);
+            CFArrayAppendValue(classesList, clazz);
             if (class_conformsToProtocol(clazz, filterProtocol)) {
-                NSArray* conformingClassesList = [NSArray arrayWithArray:(NSArray*)classLinkedList];
-                [filteredClasses addObjectsFromArray:conformingClassesList];
-                free(classLinkedList);
+                [filteredClasses addObjectsFromArray:(NSArray*)classesList];
                 break;
             }
             clazz = class_getSuperclass(clazz);
         }
+        [(NSArray*)classesList release];
     }
     
     if ([filteredClasses count] == 0) return nil;

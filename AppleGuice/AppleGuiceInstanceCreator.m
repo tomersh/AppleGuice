@@ -53,7 +53,7 @@
     if (!protocol) return nil;
     
     if ([self _shouldInjectMocks]) {
-        id mock = [[self.mockProvoider mockForProtocol:protocol] retain];
+        id mock = [[self.mockProvider mockForProtocol:protocol] retain];
         return [mock autorelease];
     }
     
@@ -81,7 +81,7 @@
     id classInstance = [self.singletonRepository instanceForClass:clazz];
     if (!classInstance) {
         if ([self _shouldInjectMocks]) {
-            classInstance = [[self.mockProvoider mockForClass:clazz] retain];
+            classInstance = [[self.mockProvider mockForClass:clazz] retain];
             [self.singletonRepository setInstance:classInstance forClass:clazz];
             [classInstance autorelease];
         }
@@ -99,7 +99,7 @@
     id classInstance;
     
     if ([self _shouldInjectMocks]) {
-        classInstance = [[self.mockProvoider mockForClass:clazz] retain];
+        classInstance = [[self.mockProvider mockForClass:clazz] retain];
     }
     else {
         classInstance = [[clazz alloc] init];
@@ -128,7 +128,7 @@
     [_settingsProvider release];
     [_singletonRepository release];
     [_injector release];
-    [_mockProvoider release];
+    [_mockProvider release];
     [super dealloc];
 }
 

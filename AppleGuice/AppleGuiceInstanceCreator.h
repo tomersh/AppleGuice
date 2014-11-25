@@ -22,6 +22,6 @@
 @property (nonatomic, retain) id<AppleGuiceSingletonRepositoryProtocol> singletonRepository;
 @property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
 @property (nonatomic, retain) id<AppleGuiceInjectorProtocol> injector;
-@property (nonatomic, retain) id<AppleGuiceMockProviderProtocol> mockProvoider;
+@property (nonatomic, retain) id<AppleGuiceMockProviderProtocol> mockProvider;
 
 @end
