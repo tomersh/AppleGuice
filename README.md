@@ -29,6 +29,8 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 
 //AppDelegate.m
 
+#import <AppleGuice/AppleGuice.h>
+
 +(void) initialize {
     [AppleGuice startService];
 }
