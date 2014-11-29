@@ -29,12 +29,8 @@ With AppleGuice all you have to do is declare the injected type and thats it. As
 
 //AppDelegate.m
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//Some code
-
-[AppleGuice startService];
-
-//More Code
++(void) initialize {
+    [AppleGuice startService];
 }
 ```
 #### Create your injectable service ####
