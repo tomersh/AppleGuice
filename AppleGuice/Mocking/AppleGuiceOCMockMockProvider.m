@@ -18,7 +18,7 @@
 @implementation AppleGuiceOCMockMockProvider
 
 
--(id) init {
+-(instancetype) init {
     self = [super initWithClassMockClassName:@"OCMockObject" andProtocolMockClassName:@"OCMockObject"];
     if (!self) return self;
     self.mockProtocolSelector = @selector(mockForProtocol:);
