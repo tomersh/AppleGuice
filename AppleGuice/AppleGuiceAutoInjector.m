@@ -28,7 +28,7 @@ static SEL _targetSelector;
 static id _appleGuiceInjectionInitWrapper(id self, SEL _cmd) {
     id returnValue = nil;
     NSAutoreleasePool* autoReleasePool = [[NSAutoreleasePool alloc] init];
-    returnValue = _originalInitMethodImp(self, _cmd);
+    returnValue = ((id (*)(id, SEL)) _originalInitMethodImp)(self, _cmd);
     [_injector injectImplementationsToInstance:returnValue];
     [autoReleasePool drain];
     return returnValue;

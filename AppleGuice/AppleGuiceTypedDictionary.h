@@ -18,8 +18,8 @@
 #include <objc/objc.h>
 #include <objc/message.h>
 
-#define retain(__obj) objc_msgSend(__obj, sel_getUid("retain"))
-#define release(__obj) objc_msgSend(__obj, sel_getUid("release"))
+#define retain(__obj) ((id (*)(id, SEL)) objc_msgSend)(__obj, sel_getUid("retain"))
+#define release(__obj) ((id (*)(id, SEL)) objc_msgSend)(__obj, sel_getUid("release"))
 
 namespace AppleGuice {
 
