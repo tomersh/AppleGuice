@@ -21,7 +21,6 @@
 		F133DA9018D0BE2A0050864F /* AppleGuiceBindingServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F133DA8618D0BE2A0050864F /* AppleGuiceBindingServiceTests.m */; };
 		F133DA9118D0BE2A0050864F /* AppleGuiceInjectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F133DA8818D0BE2A0050864F /* AppleGuiceInjectorTests.m */; };
 		F133DA9218D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F133DA8A18D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m */; };
-		F133DA9318D0BE2A0050864F /* AppleGuiceProtocolLocatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F133DA8C18D0BE2A0050864F /* AppleGuiceProtocolLocatorTests.m */; };
 		F133DA9418D0BE2A0050864F /* AppleGuiceSanity.m in Sources */ = {isa = PBXBuildFile; fileRef = F133DA8E18D0BE2A0050864F /* AppleGuiceSanity.m */; };
 		F14FF19218EC05E800222D4F /* AppleGuiceProtocolToClassMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F14FF19018EC05E800222D4F /* AppleGuiceProtocolToClassMapper.h */; };
 		F14FF19318EC05E800222D4F /* AppleGuiceProtocolToClassMapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = F14FF19118EC05E800222D4F /* AppleGuiceProtocolToClassMapper.mm */; };
@@ -114,8 +113,6 @@
 		F133DA8818D0BE2A0050864F /* AppleGuiceInjectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInjectorTests.m; sourceTree = "<group>"; };
 		F133DA8918D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInstanceCreatorTests.h; sourceTree = "<group>"; };
 		F133DA8A18D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInstanceCreatorTests.m; sourceTree = "<group>"; };
-		F133DA8B18D0BE2A0050864F /* AppleGuiceProtocolLocatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceProtocolLocatorTests.h; sourceTree = "<group>"; };
-		F133DA8C18D0BE2A0050864F /* AppleGuiceProtocolLocatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceProtocolLocatorTests.m; sourceTree = "<group>"; };
 		F133DA8D18D0BE2A0050864F /* AppleGuiceSanity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSanity.h; sourceTree = "<group>"; };
 		F133DA8E18D0BE2A0050864F /* AppleGuiceSanity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSanity.m; sourceTree = "<group>"; };
 		F14FF19018EC05E800222D4F /* AppleGuiceProtocolToClassMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceProtocolToClassMapper.h; sourceTree = "<group>"; };
@@ -216,8 +213,6 @@
 				F133DA8818D0BE2A0050864F /* AppleGuiceInjectorTests.m */,
 				F133DA8918D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.h */,
 				F133DA8A18D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m */,
-				F133DA8B18D0BE2A0050864F /* AppleGuiceProtocolLocatorTests.h */,
-				F133DA8C18D0BE2A0050864F /* AppleGuiceProtocolLocatorTests.m */,
 				F133DA8D18D0BE2A0050864F /* AppleGuiceSanity.h */,
 				F133DA8E18D0BE2A0050864F /* AppleGuiceSanity.m */,
 				F1FEDFB718D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.h */,
@@ -573,7 +568,6 @@
 				F133DA8F18D0BE2A0050864F /* AppleGuiceAutoInjectorTests.m in Sources */,
 				F133DA7A18D0BD570050864F /* AppleGuiceBindingBootstrapper.m in Sources */,
 				F133DA9018D0BE2A0050864F /* AppleGuiceBindingServiceTests.m in Sources */,
-				F133DA9318D0BE2A0050864F /* AppleGuiceProtocolLocatorTests.m in Sources */,
 				F1777747191B94C6008CFEFD /* AppleGuiceProtocolToClassMapperTests.m in Sources */,
 				F133DA9418D0BE2A0050864F /* AppleGuiceSanity.m in Sources */,
 				F133DA9218D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m in Sources */,
@@ -790,6 +784,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "$(inherited)";
+				WARNING_CFLAGS = "";
 			};
 			name = Debug;
 		};
@@ -807,6 +802,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				VALID_ARCHS = "$(inherited)";
+				WARNING_CFLAGS = "";
 			};
 			name = Release;
 		};

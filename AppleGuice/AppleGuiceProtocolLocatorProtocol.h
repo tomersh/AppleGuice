@@ -17,10 +17,6 @@
 
 @protocol AppleGuiceProtocolLocatorProtocol <NSObject>
 
--(void) bootstrapAutomaticImplementationDiscovery;
-
 -(NSArray*) getAllClassesByProtocolType:(Protocol*) protocol;
-
--(void) setFilterProtocol:(Protocol*) filterProtocol;
 
 @end

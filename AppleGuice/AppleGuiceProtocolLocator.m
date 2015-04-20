@@ -17,111 +17,16 @@
 #import <objc/runtime.h>
 
 
-@implementation AppleGuiceProtocolLocator {
-    int _allClassCount;
-    Class* _allClassesMemoization;
-    NSArray* _injectableClasses;
-}
-
--(id) init {
-    self = [super init];
-    if (!self) return self;
-    
-    _allClassesMemoization = NULL;
-    _allClassCount = 0;
-    
-    return self;
-}
-
--(void) bootstrapAutomaticImplementationDiscovery {
-    if (_allClassesMemoization) return;
-
-    _allClassCount = objc_getClassList(NULL, 0);
-    
-    _allClassesMemoization = malloc(sizeof(Class) * _allClassCount);
-    _allClassCount = objc_getClassList(_allClassesMemoization, _allClassCount);
-}
-
-
--(void) setFilterProtocol:(Protocol*) filterProtocol {
-
-    [_injectableClasses release];
-    _injectableClasses = nil;
-    [self.bindingService unsetAllImplementationsWithType:appleGuiceBindingTypeCachedBinding];
-
-    if (!filterProtocol) return;
-
-    _injectableClasses = [[self _filterAllClassesWithProtocol:filterProtocol] retain];
-}
+@implementation AppleGuiceProtocolLocator
 
 -(NSArray *) getAllClassesByProtocolType:(Protocol*) protocol {
     
     NSArray* allMatchingClasses = [self.bindingService getClassesForProtocol:protocol];
- 
-    if (allMatchingClasses) {
-        return allMatchingClasses;
-    }
-    
-    allMatchingClasses = [self _filterAllFilteredClassesWithProtocol:protocol];
-    
-    if (allMatchingClasses) {
-        [self.bindingService setImplementations:allMatchingClasses withProtocol:protocol withBindingType:appleGuiceBindingTypeCachedBinding];
-        return allMatchingClasses;
-    }
-    
-    allMatchingClasses = [self _filterAllClassesWithProtocol:protocol];
-    
-    if (allMatchingClasses) {
-        [self.bindingService setImplementations:allMatchingClasses withProtocol:protocol withBindingType:appleGuiceBindingTypeCachedBinding];
-    }
-    
     return allMatchingClasses;
 }
 
--(NSArray*) _filterAllClassesWithProtocol:(Protocol*) filterProtocol {
-    NSMutableSet* filteredClasses = [NSMutableSet set];
-    for (int i = 0; i < _allClassCount; i++) {
-        Class clazz = _allClassesMemoization[i];
-        CFMutableArrayRef classesList = CFArrayCreateMutable(kCFAllocatorDefault, 0, NULL);
-        while (clazz) {
-            CFArrayAppendValue(classesList, clazz);
-            if (class_conformsToProtocol(clazz, filterProtocol)) {
-                [filteredClasses addObjectsFromArray:(NSArray*)classesList];
-                break;
-            }
-            clazz = class_getSuperclass(clazz);
-        }
-        [(NSArray*)classesList release];
-    }
-    
-    if ([filteredClasses count] == 0) return nil;
-    
-    return [NSArray arrayWithArray:[filteredClasses allObjects]];
-}
-
--(NSArray*) _filterAllFilteredClassesWithProtocol:(Protocol*) protocol {
-    return [self _filterClassesArray:_injectableClasses withProtocol:protocol];
-}
-
--(NSArray*) _filterClassesArray:(NSArray*) classesArray withProtocol:(Protocol*) protocol {
-    if (!classesArray) return nil;
-    NSMutableArray* filteredClasses = [NSMutableArray arrayWithCapacity:[classesArray count]];
-    for (Class clazz in classesArray) {
-        if ([clazz conformsToProtocol:protocol]) {
-            [filteredClasses addObject:clazz];
-        }
-    }
-    
-    if ([filteredClasses count] == 0) return nil;
-    
-    return [NSArray arrayWithArray:filteredClasses];
-}
-
-
 -(void) dealloc {
     [_bindingService release];
-    [_injectableClasses release];
-    free(_allClassesMemoization);
     [super dealloc];
 }
 

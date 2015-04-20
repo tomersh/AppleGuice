@@ -64,8 +64,6 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     Class bootstrapperClass = NSClassFromString(settingsProvider.bootstrapperClassName);
     bootstrapper = [[bootstrapperClass alloc] init];
     bootstrapper.bindingService = bindingService;
-    
-    [protocolLocator setFilterProtocol:@protocol(AppleGuiceInjectable)];
 }
 
 +(id<AppleGuiceMockProviderProtocol>) _selectMockProvider {
@@ -89,9 +87,6 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
 +(void) startServiceWithImplementationDiscoveryPolicy:(AppleGuiceImplementationDiscoveryPolicy) implementationDiscoveryPolicy {
     switch (implementationDiscoveryPolicy) {
-        case AppleGuiceImplementationDiscoveryPolicyRuntime:
-            [protocolLocator bootstrapAutomaticImplementationDiscovery];
-            break;
         case AppleGuiceImplementationDiscoveryPolicyPreCompile:
             [bootstrapper bootstrap];
             break;

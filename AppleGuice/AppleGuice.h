@@ -21,8 +21,7 @@
 
 typedef enum AppleGuiceImplementationDiscoveryPolicy {
     AppleGuiceImplementationDiscoveryPolicyNoAutoDiscovery = 0,
-    AppleGuiceImplementationDiscoveryPolicyPreCompile = 1,
-    AppleGuiceImplementationDiscoveryPolicyRuntime = 2
+    AppleGuiceImplementationDiscoveryPolicyPreCompile = 1, AppleGuiceImplementationDiscoveryPolicyRuntime __attribute__((deprecated))
 } AppleGuiceImplementationDiscoveryPolicy;
 
 @interface AppleGuice : NSObject
