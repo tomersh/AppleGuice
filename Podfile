@@ -1,4 +1,3 @@
-platform :ios
 
 	target :AppleGuiceUnitTests do
 
