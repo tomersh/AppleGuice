@@ -396,12 +396,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F133DA7518D0BCE40050864F /* Build configuration list for PBXNativeTarget "AppleGuiceUnitTests" */;
 			buildPhases = (
-				0AA0ABDBF39945E89FF31BB4 /* Check Pods Manifest.lock */,
+				0AA0ABDBF39945E89FF31BB4 /* 📦 Check Pods Manifest.lock */,
 				F133DA5E18D0BCE40050864F /* Sources */,
 				F133DA5F18D0BCE40050864F /* Frameworks */,
 				F133DA6018D0BCE40050864F /* Resources */,
 				F133DA9518D0BE550050864F /* Bootstrap project */,
-				96B7C4D1674F4D26B75542AB /* Copy Pods Resources */,
+				96B7C4D1674F4D26B75542AB /* 📦 Copy Pods Resources */,
+				609F8C27328CDA4A2981CE55 /* 📦 Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -475,14 +476,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0AA0ABDBF39945E89FF31BB4 /* Check Pods Manifest.lock */ = {
+		0AA0ABDBF39945E89FF31BB4 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,14 +491,29 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		96B7C4D1674F4D26B75542AB /* Copy Pods Resources */ = {
+		609F8C27328CDA4A2981CE55 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96B7C4D1674F4D26B75542AB /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
