@@ -628,6 +628,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuiceUnitTests/AppleGuiceUnitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -670,6 +671,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuiceUnitTests/AppleGuiceUnitTests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
