@@ -10,7 +10,7 @@ before_install:
  - sudo easy_install cpp-coveralls
  - pod install
 script:
- - xcodebuild test -sdk iphonesimulator9.2 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH' | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
+ - xcodebuild test -sdk iphonesimulator9.2 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH' | xcpretty -f `xcpretty-travis-formatter`
 after_success:
  - ruby ./coveralls.rb --exclude-folder Pods --exclude-folder AppleGuicePreCompileBinder --exclude-folder Bootstrapper --exclude-folder AppleGuiceUnitTests
  - bash <(curl -s https://codecov.io/bash)
