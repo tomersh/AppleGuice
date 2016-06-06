@@ -14,11 +14,11 @@
 
 #import "AppleGuiceInjector.h"
 #import "AppleGuiceSettingsProviderProtocol.h"
-#import <objc/runtime.h>
 #import "AppleGuiceInvocationProxy.h"
 #import "AppleGuiceInstanceCreatorProtocol.h"
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
 #import "AppleGuiceOptional.h"
+#import <objc/runtime.h>
 
 @implementation AppleGuiceInjector
 

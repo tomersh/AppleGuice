@@ -63,14 +63,14 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param clazz Class type
  @return an instance of the class clazz
 */
-+(NSObject*) instanceForClass:(Class) clazz;
++(id<NSObject>) instanceForClass:(Class) clazz;
 
 /**
  Returns an instance of the first implementation of protocol. All of the ivar's with the IOC prefix will be initialized and will be available for the init function.
  @param protocol protocol type
  @return an instance of Protocol protocol
  */
-+(NSObject*) instanceForProtocol:(Protocol*) protocol;
++(id<NSObject>) instanceForProtocol:(Protocol*) protocol;
 
 /**
  Returns an array containing instances of all implementations of protocol. All of the ivar's with the IOC prefix will be initialized and will be available for the init function.
