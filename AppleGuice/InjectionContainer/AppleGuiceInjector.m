@@ -18,10 +18,16 @@
 #import "AppleGuiceInstanceCreatorProtocol.h"
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
 #import "AppleGuiceOptional.h"
+#import "AppleGuiceSingleton.h"
 #import <objc/runtime.h>
 
 @implementation AppleGuiceInjector
 
+static NSString* appleGuiceSingletonProtocolName;
+
++(void)initialize {
+    appleGuiceSingletonProtocolName = [NSStringFromProtocol(@protocol(AppleGuiceSingleton)) retain];
+}
 
 -(void) injectImplementationsToInstance:(id<NSObject>) classInstance {
     if (!classInstance) return;
@@ -53,15 +59,18 @@
         return [self _getValueForIvar:ivar withName:ivarName];
     };
     
+    id ivarValue;
+    
     if ([self _shouldLazyLoadObjects]) {
-        id ivarValue = [[AppleGuiceInvocationProxy alloc] autorelease];
-        ((AppleGuiceInvocationProxy*)ivarValue).createInstanceBlock = createInstanceBlock;
-        [instance setValue:ivarValue forKey:ivarName];
-        return;
+        AppleGuiceInvocationProxy* ivarProxy = [[AppleGuiceInvocationProxy alloc] autorelease];
+        ivarProxy.createInstanceBlock = createInstanceBlock;
+        ivarValue = ivarProxy;
+    }
+    else {
+        ivarValue = createInstanceBlock();
     }
     
-    id ivarValue = createInstanceBlock();
-    if (ivarValue != nil) {
+    if (ivarValue) {
         [instance setValue:ivarValue forKey:ivarName];
     }
 }
@@ -69,6 +78,12 @@
 -(BOOL) _shouldLazyLoadObjects {
     return (self.settingsProvider.instanceCreateionPolicy & AppleGuiceInstanceCreationPolicyLazyLoad);
 }
+// we support the following flavors:
+// clazz ioc_xx
+// id<injectable> ioc_xx
+// id<injectable, appleguicesingleton> ioc_xx
+// NSArray<injectable> ioc_xx
+// NSArray ioc_injectable
 
 -(id) _getValueForIvar:(Ivar)ivar withName:(NSString*) ivarName {
     
@@ -80,16 +95,46 @@
     
     NSString* className = [self _classNameFromType:ivarTypeEncoding];
     
+    BOOL isArray = [self _isArray:ivarTypeEncoding];
+    
     if ([self _isProtocol:className]) {
-        NSString* protocolName = [self _protocolNameFromType:className];
-        return [self _valueForIvarNamed:ivarName withProtocolNamed:protocolName];
+        NSArray<NSString*>* protocolNames = [self _protocolNamesFromType:className];
+        NSUInteger protocolToInjectIndex = 0;
+        BOOL forceSingleton = NO;
+        
+        if ([protocolNames count] > 1) {
+            NSInteger appleguiceSingletonIndex = [protocolNames indexOfObject:appleGuiceSingletonProtocolName];
+            if (appleguiceSingletonIndex != NSNotFound) {
+                
+                forceSingleton = YES;
+                
+                if (appleguiceSingletonIndex == 0) {
+                    protocolToInjectIndex = 1;
+                }
+            }
+        }
+        if (isArray) {
+            return [self.instanceCreator allInstancesForProtocol:NSProtocolFromString(protocolNames[protocolToInjectIndex])];
+        }
+        
+        return [self _valueForIvarNamed:ivarName withProtocolNamed:protocolNames[protocolToInjectIndex] forceSingleton:NO];
     }
     
-    if ([self _isArray:ivarTypeEncoding]) {
+    if (isArray) {
         return [self _allValuesForIvarNamed:ivarName];
     }
     
     return [self _valueForIvarNamed:ivarName withClassNamed:className];
+}
+
+-(NSArray*) _allValuesForIvarNamed:(NSString*) ivarName {
+    NSArray* ivarValue = nil;
+    NSString* protocolNameFromIvarName = [ivarName substringFromIndex:[self.settingsProvider.iocPrefix length]];
+    
+    ivarValue = [self.instanceCreator allInstancesForProtocol:NSProtocolFromString(protocolNameFromIvarName)];
+    //array can be nil.
+    
+    return ivarValue;
 }
 
 -(id) _valueForIvarNamed:(NSString*) ivarName withClassNamed:(NSString*) className {
@@ -104,21 +149,17 @@
     return ivarValue;
 }
 
--(NSArray*) _allValuesForIvarNamed:(NSString*) ivarName {
-    NSArray* ivarValue = nil;
-    NSString* protocolNameFromIvarName = [ivarName substringFromIndex:[self.settingsProvider.iocPrefix length]];
-
-    ivarValue = [self.instanceCreator allInstancesForProtocol:NSProtocolFromString(protocolNameFromIvarName)];
-        //array can be nil.
-
-    return ivarValue;
-}
-
--(id) _valueForIvarNamed:(NSString*) ivarName withProtocolNamed:(NSString*) protocolName {
-    id ivarValue = nil;
+-(id) _valueForIvarNamed:(NSString*) ivarName withProtocolNamed:(NSString*) protocolName forceSingleton:(BOOL) forceSingleton {
+    
     Protocol* protocol = NSProtocolFromString(protocolName);
     
-    ivarValue = [self.instanceCreator instanceForProtocol:protocol];
+    id ivarValue = nil;
+    if (forceSingleton) {
+        ivarValue = [self.instanceCreator singletonForProtocol:protocol];
+    }
+    else {
+        ivarValue = [self.instanceCreator instanceForProtocol:protocol];
+    }
     
     if (!ivarValue && [self _shouldThrowOnFailedInjection:protocol]) {
         @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithIvarName:ivarName andProtocolName:protocolName];
@@ -147,9 +188,9 @@
     return  leftParenPos != NSNotFound && rightParenPos != NSNotFound && leftParenPos < rightParenPos;
 }
 
--(NSString*) _protocolNameFromType:(NSString*) iVarType {
-    //<xxx>
-    return [[iVarType substringFromIndex:1] substringToIndex:[iVarType length] - 2];
+-(NSArray<NSString*>*) _protocolNamesFromType:(NSString*) iVarType {
+    //<xxx><yyy>
+    return [[[iVarType substringFromIndex:1] substringToIndex:[iVarType length] - 2] componentsSeparatedByString:@"><"];
 }
 
 -(NSString*) _classNameFromType:(const char*) typeEncoding {

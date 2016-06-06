@@ -57,9 +57,7 @@
         return [mock autorelease];
     }
     
-    NSArray* classesForProtocol = [self.bindingService getClassesForProtocol:protocol];
-    if (!classesForProtocol || [classesForProtocol count] == 0) return nil;
-    Class clazz = [classesForProtocol objectAtIndex:0];
+    Class clazz = [self _classForProtocol:protocol];
     return [self instanceForClass:clazz];
 }
 
@@ -69,7 +67,7 @@
     id classInstance;
     
     if ([self _shouldReturnSingletonInstanceForClass:clazz]) {
-        classInstance = [self _singletonForClass:clazz];
+        classInstance = [self singletonForClass:clazz];
     }
     else {
         classInstance = [self _createInstanceForClass:clazz];
@@ -77,7 +75,12 @@
     return classInstance;
 }
 
--(id) _singletonForClass:(Class) clazz {
+-(id) singletonForProtocol:(Protocol*) protocol {
+    Class clazz = [self _classForProtocol:protocol];
+    return [self instanceForClass:clazz];
+}
+
+-(id) singletonForClass:(Class) clazz {
     id classInstance = [self.singletonRepository instanceForClass:clazz];
     if (!classInstance) {
         if ([self _shouldInjectMocks]) {
@@ -113,6 +116,12 @@
     if (shouldInject) {
         [self.injector injectImplementationsToInstance:classInstance];
     }
+}
+
+-(Class) _classForProtocol:(Protocol*) protocol {
+    NSArray* classesForProtocol = [self.bindingService getClassesForProtocol:protocol];
+    if ([classesForProtocol count] == 0) return nil;
+    return [classesForProtocol firstObject];
 }
 
 -(BOOL) _shouldReturnSingletonInstanceForClass:(Class) clazz {

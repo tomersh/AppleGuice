@@ -15,8 +15,10 @@
 @protocol AppleGuiceInstanceCreatorProtocol <NSObject>
 
 -(id<NSObject>) instanceForClass:(Class) clazz;
-
 -(id<NSObject>) instanceForProtocol:(Protocol*) protocol;
+
+-(id<NSObject>) singletonForClass:(Class) clazz;
+-(id<NSObject>) singletonForProtocol:(Protocol*) protocol;
 
 -(NSArray*) allInstancesForProtocol:(Protocol*) protocol;
 
