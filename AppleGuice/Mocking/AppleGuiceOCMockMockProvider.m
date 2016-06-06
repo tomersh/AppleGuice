@@ -19,10 +19,13 @@
 
 
 -(instancetype) init {
-    self = [super initWithClassMockClassName:@"OCMockObject" andProtocolMockClassName:@"OCMockObject"];
+    self = [super init];
     if (!self) return self;
-    self.mockProtocolSelector = @selector(mockForProtocol:);
-    self.mockClassSelector = @selector(mockForClass:);
+    
+    self.classMockerClass = NSClassFromString(@"OCMockObject");
+    self.protocolMockerClass = self.classMockerClass;
+    self.classMockerSelector = @selector(mockForClass:);
+    self.protocolMockerSelector = @selector(mockForProtocol:);
     return self;
 }
 

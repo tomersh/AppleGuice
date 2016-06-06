@@ -16,12 +16,14 @@
 
 @implementation AppleGuiceOCMockitoMockProvider
 
-
 -(instancetype) init {
-    self = [super initWithClassMockClassName:@"MKTObjectMock" andProtocolMockClassName:@"MKTProtocolMock"];
+    self = [super init];
     if (!self) return self;
-    self.mockProtocolSelector = @selector(mockForProtocol:);
-    self.mockClassSelector = @selector(mockForClass:);
+
+    self.classMockerClass = NSClassFromString(@"MKTObjectMock");
+    self.protocolMockerClass = NSClassFromString(@"MKTProtocolMock");
+    self.classMockerSelector = @selector(mockForClass:);
+    self.protocolMockerSelector = @selector(mockForProtocol:);
     return self;
 }
 

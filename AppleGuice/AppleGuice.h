@@ -63,21 +63,21 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param clazz Class type
  @return an instance of the class clazz
 */
-+(id<NSObject>) instanceForClass:(Class) clazz;
++(NSObject*) instanceForClass:(Class) clazz;
 
 /**
  Returns an instance of the first implementation of protocol. All of the ivar's with the IOC prefix will be initialized and will be available for the init function.
  @param protocol protocol type
  @return an instance of Protocol protocol
  */
-+(id<NSObject>) instanceForProtocol:(Protocol*) protocol;
++(NSObject*) instanceForProtocol:(Protocol*) protocol;
 
 /**
  Returns an array containing instances of all implementations of protocol. All of the ivar's with the IOC prefix will be initialized and will be available for the init function.
  @param protocol protocol type
  @return an array containing instances of Protocol protocol
  */
-+(NSArray*) allInstancesForProtocol:(Protocol*) protocol;
++(NSArray<NSObject*>*) allInstancesForProtocol:(Protocol*) protocol;
 
 
 /**
@@ -85,7 +85,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param protocol protocol type
  @return an array containing classes type of Protocol protocol, an empty array will be returned if @param protocol is nil.
 */
-+(NSArray*) allClassesForProtocol:(Protocol*) protocol;
++(NSArray<Class>*) allClassesForProtocol:(Protocol*) protocol;
 
 /**
  Initialize all ivar's with the IOC prefix.
@@ -110,7 +110,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param classes a list of classes implementing protocol
  @param protocol protocol to bind to
  */
-+(void) setImplementations:(NSArray*) classes withProtocol:(Protocol*) protocol;
++(void) setImplementations:(NSArray<NSObject*>*) classes withProtocol:(Protocol*) protocol;
 
 /**
  Unset all implementations of protocol that were set with setImplementation:withProtocol: or setImplementations:withProtocol:

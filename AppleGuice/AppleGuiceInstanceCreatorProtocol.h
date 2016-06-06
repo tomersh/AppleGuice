@@ -12,11 +12,6 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@protocol AppleGuiceProtocolLocatorProtocol;
-@protocol AppleGuiceSettingsProviderProtocol;
-@protocol AppleGuiceSingletonRepositoryProtocol;
-@protocol AppleGuiceInjectorProtocol;
-
 @protocol AppleGuiceInstanceCreatorProtocol <NSObject>
 
 -(id<NSObject>) instanceForClass:(Class) clazz;

@@ -16,9 +16,9 @@
 
 @interface AppleGuiceProtocolToClassMapper : NSObject
 
--(NSSet*) getClassesForProtocol:(Protocol*) protocol;
+-(NSSet<Class>*) getClassesForProtocol:(Protocol*) protocol;
 
--(void) setImplementations:(NSArray*)classes withProtocol:(Protocol*)protocol;
+-(void) setImplementations:(NSArray<NSObject*>*)classes withProtocol:(Protocol*)protocol;
 
 -(void) unsetImplementationOfProtocol:(Protocol*) protocol;
 

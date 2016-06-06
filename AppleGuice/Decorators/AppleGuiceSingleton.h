@@ -12,22 +12,12 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "AppleGuiceProtocolLocator.h"
-#import "AppleGuiceBindingServiceProtocol.h"
-#import <objc/runtime.h>
 
+/*
+ All classes marked with AppleGuiceSingleton protocol will return the same class instance when injected with AppleGuice
+ Instances that are marked with with id<x, AppleGuiceSingleton> will return the same instance of x.
+*/
+@protocol AppleGuiceSingleton <NSObject>
 
-@implementation AppleGuiceProtocolLocator
-
--(NSArray *) getAllClassesByProtocolType:(Protocol*) protocol {
-    
-    NSArray* allMatchingClasses = [self.bindingService getClassesForProtocol:protocol];
-    return allMatchingClasses;
-}
-
--(void) dealloc {
-    [_bindingService release];
-    [super dealloc];
-}
 
 @end

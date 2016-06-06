@@ -25,7 +25,7 @@
     [super tearDown];
 }
 
-- (void)tests__setImplementation_withProtocol_withBindingType__nilImplementation__noBindingIsMade
+- (void)test__setImplementation_withProtocol_withBindingType__nilImplementation__noBindingIsMade
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementation:nil withProtocol:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
@@ -34,7 +34,7 @@
     EXP_expect(returnedProtocols).to.beNil();
 }
 
-- (void)tests__setImplementation_withProtocol_withBindingType__setUserBindToUserBindings__bindIsMadeToUserBinding
+- (void)test__setImplementation_withProtocol_withBindingType__setUserBindToUserBindings__bindIsMadeToUserBinding
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementation:[NSObject class] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
@@ -47,7 +47,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(1);
 }
 
-- (void)tests__setImplementation_withProtocol_withBindingType__setUserBindToCachedBindings__bindIsMadeToCachedBinding
+- (void)test__setImplementation_withProtocol_withBindingType__setUserBindToCachedBindings__bindIsMadeToCachedBinding
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementation:[NSObject class] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
@@ -60,7 +60,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementations_withProtocol_withBindingType__nilImplementation__noBindingIsMade
+- (void)test__setImplementations_withProtocol_withBindingType__nilImplementation__noBindingIsMade
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementations:nil withProtocol:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
@@ -69,7 +69,7 @@
     EXP_expect(returnedProtocols).to.beNil();
 }
 
-- (void)tests__setImplementations_withProtocol_withBindingType__EmptyArrayImplementation__noBindingIsMade
+- (void)test__setImplementations_withProtocol_withBindingType__EmptyArrayImplementation__noBindingIsMade
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementations:@[] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
@@ -78,7 +78,7 @@
     EXP_expect(returnedProtocols).to.beNil();
 }
 
-- (void)tests__setImplementations_withProtocol_withBindingType__setUserBindToUserBindings__bindIsMadeToUserBinding
+- (void)test__setImplementations_withProtocol_withBindingType__setUserBindToUserBindings__bindIsMadeToUserBinding
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementations:@[[NSObject class]] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
@@ -91,7 +91,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(1);
 }
 
-- (void)tests__setImplementations_withProtocol_withBindingType__setUserBindWithMultipleClassesToUserBindings__bindIsMadeToUserBinding
+- (void)test__setImplementations_withProtocol_withBindingType__setUserBindWithMultipleClassesToUserBindings__bindIsMadeToUserBinding
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementations:@[[NSObject class], [NSArray class]] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
@@ -105,7 +105,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(1);
 }
 
-- (void)tests__setImplementations_withProtocol_withBindingType__appendUserBindWithMultipleClassesToUserBindings__bindIsMadeToUserBinding
+- (void)test__setImplementations_withProtocol_withBindingType__appendUserBindWithMultipleClassesToUserBindings__bindIsMadeToUserBinding
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementations:@[[NSObject class], [NSDictionary class]] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
@@ -121,7 +121,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(1);
 }
 
-- (void)tests__setImplementations_withProtocol_withBindingType__setCachedBindToUserBindings__bindIsMadeToCached
+- (void)test__setImplementations_withProtocol_withBindingType__setCachedBindToUserBindings__bindIsMadeToCached
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementations:@[[NSObject class]] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
@@ -134,7 +134,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementations_withProtocol_withBindingType__setCachedBindWithMultipleClassesToUserBindings__bindIsMadeToUserBinding
+- (void)test__setImplementations_withProtocol_withBindingType__setCachedBindWithMultipleClassesToUserBindings__bindIsMadeToUserBinding
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementations:@[[NSObject class], [NSArray class]] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
@@ -148,7 +148,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementations_withProtocol_withBindingType__appendCachedBindWithMultipleClassesToUserBindings__bindIsMadeToUserBinding
+- (void)test__setImplementations_withProtocol_withBindingType__appendCachedBindWithMultipleClassesToUserBindings__bindIsMadeToUserBinding
 {
     Protocol* testProtocol = @protocol(NSObject);
     [serviceUnderTest setImplementations:@[[NSObject class]] withProtocol:testProtocol withBindingType:appleGuiceBindingTypeCachedBinding];
@@ -163,7 +163,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__nilClassAndnilProtocol__NobindIsMade
+- (void)test__setImplementationFromString_withProtocolAsString_withBindingType__nilClassAndnilProtocol__NobindIsMade
 {
     [serviceUnderTest setImplementationFromString:nil withProtocolAsString:nil withBindingType:appleGuiceBindingTypeUserBinding];
     
@@ -171,7 +171,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__InvalidClassAndnilProtocol__NobindIsMade
+- (void)test__setImplementationFromString_withProtocolAsString_withBindingType__InvalidClassAndnilProtocol__NobindIsMade
 {
     [serviceUnderTest setImplementationFromString:INVALID_CLASS_NAME withProtocolAsString:nil withBindingType:appleGuiceBindingTypeUserBinding];
     
@@ -179,7 +179,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__ValidClassAndnilProtocol__NobindIsMade
+- (void)test__setImplementationFromString_withProtocolAsString_withBindingType__ValidClassAndnilProtocol__NobindIsMade
 {
     [serviceUnderTest setImplementationFromString:@"NSObject" withProtocolAsString:nil withBindingType:appleGuiceBindingTypeUserBinding];
     
@@ -187,7 +187,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__nilClassAndInvalidProtocol__NobindIsMade
+- (void)test__setImplementationFromString_withProtocolAsString_withBindingType__nilClassAndInvalidProtocol__NobindIsMade
 {
     [serviceUnderTest setImplementationFromString:nil withProtocolAsString:INVALID_PROTOCOL_NAME withBindingType:appleGuiceBindingTypeUserBinding];
     
@@ -195,7 +195,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__nilClassAndValidProtocol__NobindIsMade
+- (void)test__setImplementationFromString_withProtocolAsString_withBindingType__nilClassAndValidProtocol__NobindIsMade
 {
     [serviceUnderTest setImplementationFromString:nil withProtocolAsString:@"NSObject" withBindingType:appleGuiceBindingTypeUserBinding];
     
@@ -205,7 +205,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__invalidClassAndInvalidProtocol__NobindIsMade
+- (void)test__setImplementationFromString_withProtocolAsString_withBindingType__invalidClassAndInvalidProtocol__NobindIsMade
 {
     NSString* testProtocol = INVALID_PROTOCOL_NAME;
     [serviceUnderTest setImplementationFromString:INVALID_CLASS_NAME withProtocolAsString:testProtocol withBindingType:appleGuiceBindingTypeUserBinding];
@@ -214,7 +214,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__validClassAndValidProtocol__bindIsMade
+- (void)test__setImplementationFromString_withProtocolAsString_withBindingType__validClassAndValidProtocol__bindIsMade
 {
     NSString* testProtocol = @"NSObject";
     NSString* testClass = @"NSArray";
@@ -233,7 +233,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(1);
 }
 
-- (void)tests__setImplementationFromString_withProtocolAsString_withBindingType__validClassAndValidProtocol__bindIsMadeToCachedObjects
+- (void)test__setImplementationFromString_withProtocolAsString_withBindingType__validClassAndValidProtocol__bindIsMadeToCachedObjects
 {
     NSString* testProtocol = @"NSObject";
     NSString* testClass = @"NSArray";
@@ -254,7 +254,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__nilAsClasses__noBindIsMade
+- (void)test__setImplementationsFromStrings_withProtocolAsString_withBindingType__nilAsClasses__noBindIsMade
 {
     NSString* testProtocol = @"NSObject";
     [[[(id)serviceUnderTest.classGenerator expect] andReturn:nil] safeGetClassesFromStrings:OCMOCK_ANY];
@@ -270,7 +270,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__emptyClassesArray__noBindIsMade
+- (void)test__setImplementationsFromStrings_withProtocolAsString_withBindingType__emptyClassesArray__noBindIsMade
 {
     NSString* testProtocol = @"NSObject";
     [[[(id)serviceUnderTest.classGenerator expect] andReturn:@[]] safeGetClassesFromStrings:OCMOCK_ANY];
@@ -286,7 +286,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__multipleValidClassesAndValidProtocol__bindIsMadeToCachedObjects
+- (void)test__setImplementationsFromStrings_withProtocolAsString_withBindingType__multipleValidClassesAndValidProtocol__bindIsMadeToCachedObjects
 {
     NSString* testProtocol = @"NSObject";
     NSArray* testClassesAsStrings = @[ @"NSArray", @"NSSet" ];
@@ -307,7 +307,7 @@
     EXP_expect([[self _getUserBoundObjects] count]).to.equal(0);
 }
 
-- (void)tests__setImplementationsFromStrings_withProtocolAsString_withBindingType__multipleValidClassesAndValidProtocol__bindIsMadeToUserObjects
+- (void)test__setImplementationsFromStrings_withProtocolAsString_withBindingType__multipleValidClassesAndValidProtocol__bindIsMadeToUserObjects
 {
     NSString* testProtocol = @"NSObject";
     NSArray* testClassesAsStrings = @[ @"NSArray", @"NSSet" ];

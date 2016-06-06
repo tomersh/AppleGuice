@@ -52,7 +52,7 @@ string _storageKeyForProtocol(Protocol* protocol) {
     return [NSSet setWithSet:classes];
 }
 
--(void) setImplementations:(NSArray*)classes withProtocol:(Protocol*)protocol {
+-(void) setImplementations:(NSArray<NSObject*>*)classes withProtocol:(Protocol*)protocol {
     if (!protocol || !classes) return;
     if ([classes count] == 0) return;
     

@@ -15,7 +15,12 @@
 
 @protocol AppleGuiceMockProviderProtocol <NSObject>
 
--(instancetype) initWithClassMockClassName:(NSString*) classMockClassName andProtocolMockClassName:(NSString*) protocolMockClassName;
+@property (nonatomic, assign) Class classMockerClass;
+@property (nonatomic, assign) SEL classMockerSelector;
+
+@property (nonatomic, assign) Class protocolMockerClass;
+@property (nonatomic, assign) SEL protocolMockerSelector;
+
 
 -(BOOL) isServiceAvailable;
 

@@ -17,7 +17,6 @@
 #import "AppleGuiceBindingService.h"
 #import "AppleGuiceAutoInjector.h"
 #import "AppleGuiceInjector.h"
-#import "AppleGuiceProtocolLocator.h"
 #import "AppleGuiceSettingsProvider.h"
 #import "AppleGuiceSingletonRepository.h"
 #import "AppleGuiceInstanceCreator.h"
@@ -32,7 +31,6 @@
 
 static AppleGuiceBindingService* bindingService;
 static AppleGuiceInjector* injector;
-static AppleGuiceProtocolLocator* protocolLocator;
 static AppleGuiceSingletonRepository* singletonRepository;
 static AppleGuiceSettingsProvider* settingsProvider;
 static AppleGuiceInstanceCreator* instanceCreator;
@@ -43,16 +41,14 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
     settingsProvider = [[AppleGuiceSettingsProvider alloc] init];
     bindingService = [[AppleGuiceBindingService alloc] init];
-    protocolLocator = [[AppleGuiceProtocolLocator alloc] init];
     injector = [[AppleGuiceInjector alloc] init];
     singletonRepository = [[AppleGuiceSingletonRepository alloc] init];
     instanceCreator = [[AppleGuiceInstanceCreator alloc] init];
     
     bindingService.classGenerator = [[[AppleGuiceClassGenerator alloc] init] autorelease];
     
-    protocolLocator.bindingService = bindingService;
-
-    instanceCreator.protocolLocator = protocolLocator;
+    
+    instanceCreator.bindingService = bindingService;
     instanceCreator.settingsProvider = settingsProvider;
     instanceCreator.injector = injector;
     instanceCreator.singletonRepository = singletonRepository;
@@ -120,7 +116,7 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
 +(NSArray*) allClassesForProtocol:(Protocol*) protocol {
     if (!protocol) return @[];
-    return [protocolLocator getAllClassesByProtocolType:protocol];
+    return [bindingService getClassesForProtocol:protocol];
 }
 
 +(void) injectImplementationsToInstance:(id<NSObject>) classInstance {

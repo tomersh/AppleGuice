@@ -18,7 +18,4 @@
 
 @interface AppleGuiceMockProvider : NSObject<AppleGuiceMockProviderProtocol>
 
-@property (nonatomic, assign) SEL mockClassSelector;
-@property (nonatomic, assign) SEL mockProtocolSelector;
-
 @end
