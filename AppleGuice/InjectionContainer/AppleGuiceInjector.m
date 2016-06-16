@@ -117,7 +117,7 @@ static NSString* appleGuiceSingletonProtocolName;
             return [self.instanceCreator allInstancesForProtocol:NSProtocolFromString(protocolNames[protocolToInjectIndex])];
         }
         
-        return [self _valueForIvarNamed:ivarName withProtocolNamed:protocolNames[protocolToInjectIndex] forceSingleton:NO];
+        return [self _valueForIvarNamed:ivarName withProtocolNamed:protocolNames[protocolToInjectIndex] forceSingleton:forceSingleton];
     }
     
     if (isArray) {
