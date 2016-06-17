@@ -37,8 +37,9 @@
 		F191023D1D136CA2005C2F09 /* AppleGuiceAutoInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = F19102391D136CA2005C2F09 /* AppleGuiceAutoInjector.m */; };
 		F19102451D136CB5005C2F09 /* AppleGuiceSettingsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F19102421D136CB5005C2F09 /* AppleGuiceSettingsProvider.m */; };
 		F19102C11D141E89005C2F09 /* libAppleGuice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722216F9135C000BD3CB /* libAppleGuice.a */; };
-		F19102C21D141E9C005C2F09 /* AppleGuice.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1416F9141300BA754E /* AppleGuice.h */; };
-		F19102C31D141F2F005C2F09 /* AppleGuiceWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F19102AC1D141E4B005C2F09 /* AppleGuiceWrapper.h */; };
+		F19102C21D141E9C005C2F09 /* AppleGuice.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1416F9141300BA754E /* AppleGuice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F19102C31D141F2F005C2F09 /* AppleGuiceWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F19102AC1D141E4B005C2F09 /* AppleGuiceWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F19102CC1D1422F5005C2F09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
 		F1E33BE31A24810E0083660E /* AppleGuiceOCMockMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BE01A24810E0083660E /* AppleGuiceOCMockMockProvider.m */; };
 		F1E33BEB1A2482560083660E /* AppleGuiceMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BE91A2482560083660E /* AppleGuiceMockProvider.m */; };
 		F1E33BEF1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BED1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m */; };
@@ -164,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F19102CC1D1422F5005C2F09 /* Foundation.framework in Frameworks */,
 				F19102C11D141E89005C2F09 /* libAppleGuice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -988,6 +990,7 @@
 				F19102BC1D141E4B005C2F09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
