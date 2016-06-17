@@ -13,6 +13,7 @@
 //limitations under the License.
 
 #import "AppleGuiceSingletonRepository.h"
+#import "AppleGuiceSync.h"
 #include <pthread.h>
 
 @interface AppleGuiceSingletonRepository ()

@@ -13,6 +13,7 @@
 //limitations under the License.
 
 #import "AppleGuiceProtocolToClassMapper.h"
+#import "AppleGuiceSync.h"
 #import <pthread.h>
 #import <string>
 
