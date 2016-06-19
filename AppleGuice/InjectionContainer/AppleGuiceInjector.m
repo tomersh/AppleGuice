@@ -82,7 +82,6 @@ static NSString* appleGuiceSingletonProtocolName;
 // clazz ioc_xx
 // id<injectable> ioc_xx
 // id<injectable, appleguicesingleton> ioc_xx
-// NSArray<injectable> ioc_xx
 // NSArray ioc_injectable
 
 -(id) _getValueForIvar:(Ivar)ivar withName:(NSString*) ivarName {
@@ -94,8 +93,6 @@ static NSString* appleGuiceSingletonProtocolName;
     }
     
     NSString* className = [self _classNameFromType:ivarTypeEncoding];
-    
-    BOOL isArray = [self _isArray:ivarTypeEncoding];
     
     if ([self _isProtocol:className]) {
         NSArray<NSString*>* protocolNames = [self _protocolNamesFromType:className];
@@ -113,14 +110,11 @@ static NSString* appleGuiceSingletonProtocolName;
                 }
             }
         }
-        if (isArray) {
-            return [self.instanceCreator allInstancesForProtocol:NSProtocolFromString(protocolNames[protocolToInjectIndex])];
-        }
         
         return [self _valueForIvarNamed:ivarName withProtocolNamed:protocolNames[protocolToInjectIndex] forceSingleton:forceSingleton];
     }
     
-    if (isArray) {
+    if ([self _isArray:ivarTypeEncoding]) {
         return [self _allValuesForIvarNamed:ivarName];
     }
     

@@ -12,12 +12,6 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-//! Project version number for AppleGuiceWrapper.
-FOUNDATION_EXPORT double AppleGuiceWrapperVersionNumber;
-
-//! Project version string for AppleGuiceWrapper.
-FOUNDATION_EXPORT const unsigned char AppleGuiceWrapperVersionString[];
-
 // In this header, you should import all the public headers of your framework using statements like #import <AppleGuiceWrapper/PublicHeader.h>
 
 #import <AppleGuice/AppleGuice.h>
