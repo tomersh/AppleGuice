@@ -19,14 +19,20 @@
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
 #import "AppleGuiceOptional.h"
 #import "AppleGuiceSingleton.h"
+#import "AppleGuiceLazyLoad.h"
+
 #import <objc/runtime.h>
 
 @implementation AppleGuiceInjector
 
 static NSString* appleGuiceSingletonProtocolName;
+static NSString* appleGuiceLazyLoadProtocolName;
+static NSSet<NSString*>* appleGuiceInstanceFlags;
 
 +(void)initialize {
     appleGuiceSingletonProtocolName = [NSStringFromProtocol(@protocol(AppleGuiceSingleton)) retain];
+    appleGuiceLazyLoadProtocolName = [NSStringFromProtocol(@protocol(AppleGuiceLazyLoad)) retain];
+    appleGuiceInstanceFlags = [[NSSet setWithObjects: appleGuiceSingletonProtocolName, appleGuiceLazyLoadProtocolName, nil] retain];
 }
 
 -(void) injectImplementationsToInstance:(id<NSObject>) classInstance {
@@ -95,23 +101,16 @@ static NSString* appleGuiceSingletonProtocolName;
     NSString* className = [self _classNameFromType:ivarTypeEncoding];
     
     if ([self _isProtocol:className]) {
-        NSArray<NSString*>* protocolNames = [self _protocolNamesFromType:className];
-        NSUInteger protocolToInjectIndex = 0;
-        BOOL forceSingleton = NO;
+        NSMutableSet<NSString*>* protocolNames = [self _protocolNamesFromType:className];
         
+        BOOL isSingleton = [protocolNames containsObject:appleGuiceSingletonProtocolName];
+        BOOL shouldLazyLoad = [protocolNames containsObject:appleGuiceLazyLoadProtocolName];
         if ([protocolNames count] > 1) {
-            NSInteger appleguiceSingletonIndex = [protocolNames indexOfObject:appleGuiceSingletonProtocolName];
-            if (appleguiceSingletonIndex != NSNotFound) {
-                
-                forceSingleton = YES;
-                
-                if (appleguiceSingletonIndex == 0) {
-                    protocolToInjectIndex = 1;
-                }
-            }
+            [protocolNames minusSet:appleGuiceInstanceFlags];
         }
+        NSString* protocolNameToInject = [protocolNames anyObject];
         
-        return [self _valueForIvarNamed:ivarName withProtocolNamed:protocolNames[protocolToInjectIndex] forceSingleton:forceSingleton];
+        return [self _valueForIvarNamed:ivarName withProtocolNamed:protocolNameToInject forceSingleton:isSingleton shouldLazyLoad:shouldLazyLoad];
     }
     
     if ([self _isArray:ivarTypeEncoding]) {
@@ -143,22 +142,33 @@ static NSString* appleGuiceSingletonProtocolName;
     return ivarValue;
 }
 
--(id) _valueForIvarNamed:(NSString*) ivarName withProtocolNamed:(NSString*) protocolName forceSingleton:(BOOL) forceSingleton {
+-(id) _valueForIvarNamed:(NSString*) ivarName withProtocolNamed:(NSString*) protocolName forceSingleton:(BOOL) forceSingleton shouldLazyLoad:(BOOL) shouldLazyLoad {
     
-    Protocol* protocol = NSProtocolFromString(protocolName);
+    id (^createInstanceBlock)(void) = ^id(void) {
+        
+        Protocol* protocol = NSProtocolFromString(protocolName);
+        
+        id ivarValue = nil;
+        if (forceSingleton) {
+            ivarValue = [self.instanceCreator singletonForProtocol:protocol];
+        }
+        else {
+            ivarValue = [self.instanceCreator instanceForProtocol:protocol];
+        }
+        
+        if (!ivarValue && [self _shouldThrowOnFailedInjection:protocol]) {
+            @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithIvarName:ivarName andProtocolName:protocolName];
+        }
+        return ivarValue;
+    };
     
-    id ivarValue = nil;
-    if (forceSingleton) {
-        ivarValue = [self.instanceCreator singletonForProtocol:protocol];
-    }
-    else {
-        ivarValue = [self.instanceCreator instanceForProtocol:protocol];
+    if (shouldLazyLoad) {
+        AppleGuiceInvocationProxy* ivarProxy = [AppleGuiceInvocationProxy alloc];
+        ivarProxy.createInstanceBlock = createInstanceBlock;
+        return [ivarProxy autorelease];
     }
     
-    if (!ivarValue && [self _shouldThrowOnFailedInjection:protocol]) {
-        @throw [AppleGuiceInjectableImplementationNotFoundException exceptionWithIvarName:ivarName andProtocolName:protocolName];
-    }
-    return ivarValue;
+    return createInstanceBlock();
 }
 
 -(BOOL) _shouldThrowOnFailedInjection:(Protocol*) protocol {
@@ -182,9 +192,9 @@ static NSString* appleGuiceSingletonProtocolName;
     return  leftParenPos != NSNotFound && rightParenPos != NSNotFound && leftParenPos < rightParenPos;
 }
 
--(NSArray<NSString*>*) _protocolNamesFromType:(NSString*) iVarType {
+-(NSMutableSet<NSString*>*) _protocolNamesFromType:(NSString*) iVarType {
     //<xxx><yyy>
-    return [[[iVarType substringFromIndex:1] substringToIndex:[iVarType length] - 2] componentsSeparatedByString:@"><"];
+    return [NSMutableSet setWithArray:[[[iVarType substringFromIndex:1] substringToIndex:[iVarType length] - 2] componentsSeparatedByString:@"><"]];
 }
 
 -(NSString*) _classNameFromType:(const char*) typeEncoding {

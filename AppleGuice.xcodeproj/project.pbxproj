@@ -88,6 +88,7 @@
 		F14FF19818EC2F7400222D4F /* AppleGuiceClassGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceClassGenerator.h; sourceTree = "<group>"; };
 		F14FF19918EC2F7400222D4F /* AppleGuiceClassGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceClassGenerator.m; sourceTree = "<group>"; };
 		F14FF19A18EC2F7400222D4F /* AppleGuiceClassGeneratorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceClassGeneratorProtocol.h; sourceTree = "<group>"; };
+		F153386C1D217AD000250BE7 /* AppleGuiceLazyLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleGuiceLazyLoad.h; sourceTree = "<group>"; };
 		F162136316F9D95C00563E38 /* NSObject+AppleGuice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AppleGuice.h"; sourceTree = "<group>"; };
 		F162136416F9D95C00563E38 /* NSObject+AppleGuice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AppleGuice.m"; sourceTree = "<group>"; };
 		F16B27E51D05CB7C0054DC44 /* AppleGuiceInjectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceInjectable.h; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 				F16B27E51D05CB7C0054DC44 /* AppleGuiceInjectable.h */,
 				F16B27E61D05CB7C0054DC44 /* AppleGuiceOptional.h */,
 				F16B27E71D05CB7C0054DC44 /* AppleGuiceSingleton.h */,
+				F153386C1D217AD000250BE7 /* AppleGuiceLazyLoad.h */,
 			);
 			path = Decorators;
 			sourceTree = "<group>";
