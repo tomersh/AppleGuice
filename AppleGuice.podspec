@@ -15,7 +15,9 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => 'https://github.com/tomersh/AppleGuice.git', :tag => 'v' + s.version.to_s }
   s.source_files  = 'AppleGuice/**/*.{h,m,mm}'
-  s.preserve_paths = 'Bootstrapper/*', 'AppleGuicePreCompileBinder/*', 'AppleGuice/AppleGuice-Prefix.pch'
+  s.preserve_paths = 'Bootstrapper/*', 'AppleGuicePreCompileBinder/*'
+  s.exclude_files = 'AppleGuice/AppleGuiceBindingBootstrapper.m'
+
   s.requires_arc = false
   s.libraries = 'c++'
   s.prepare_command = 'make -C ./Bootstrapper'
