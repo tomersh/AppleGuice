@@ -12,14 +12,12 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@interface AppleGuiceClassLinkedList : NSObject
 
-+(AppleGuiceClassLinkedList*) list;
+/*
+ All classes marked with AppleGuiceSingleton protocol will return the same class instance when injected with AppleGuice
+ Instances that are marked with with id<x, AppleGuiceSingleton> will return the same instance of x.
+*/
+@protocol AppleGuiceSingleton <NSObject>
 
--(void) addClass:(Class) clazz;
-
--(NSArray*) toArray;
-
--(void) clearList;
 
 @end

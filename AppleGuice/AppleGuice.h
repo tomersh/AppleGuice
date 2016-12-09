@@ -21,8 +21,7 @@
 
 typedef enum AppleGuiceImplementationDiscoveryPolicy {
     AppleGuiceImplementationDiscoveryPolicyNoAutoDiscovery = 0,
-    AppleGuiceImplementationDiscoveryPolicyPreCompile = 1,
-    AppleGuiceImplementationDiscoveryPolicyRuntime = 2
+    AppleGuiceImplementationDiscoveryPolicyPreCompile = 1, AppleGuiceImplementationDiscoveryPolicyRuntime __attribute__((deprecated))
 } AppleGuiceImplementationDiscoveryPolicy;
 
 @interface AppleGuice : NSObject
@@ -78,7 +77,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param protocol protocol type
  @return an array containing instances of Protocol protocol
  */
-+(NSArray*) allInstancesForProtocol:(Protocol*) protocol;
++(NSArray<NSObject*>*) allInstancesForProtocol:(Protocol*) protocol;
 
 
 /**
@@ -86,7 +85,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param protocol protocol type
  @return an array containing classes type of Protocol protocol, an empty array will be returned if @param protocol is nil.
 */
-+(NSArray*) allClassesForProtocol:(Protocol*) protocol;
++(NSArray<Class>*) allClassesForProtocol:(Protocol*) protocol;
 
 /**
  Initialize all ivar's with the IOC prefix.
@@ -111,7 +110,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param classes a list of classes implementing protocol
  @param protocol protocol to bind to
  */
-+(void) setImplementations:(NSArray*) classes withProtocol:(Protocol*) protocol;
++(void) setImplementations:(NSArray<NSObject*>*) classes withProtocol:(Protocol*) protocol;
 
 /**
  Unset all implementations of protocol that were set with setImplementation:withProtocol: or setImplementations:withProtocol:

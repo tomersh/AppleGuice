@@ -12,18 +12,9 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import <Foundation/Foundation.h>
+#ifndef AppleGuiceSync_h
+#define AppleGuiceSync_h
 
-@interface AppleGuiceProtocolToClassMapper : NSObject
+#define SYNC(...) pthread_mutex_lock(&_mutex); __VA_ARGS__; pthread_mutex_unlock(&_mutex);
 
--(NSSet<Class>*) getClassesForProtocol:(Protocol*) protocol;
-
--(void) setImplementations:(NSArray<NSObject*>*)classes withProtocol:(Protocol*)protocol;
-
--(void) unsetImplementationOfProtocol:(Protocol*) protocol;
-
--(void) unsetAllImplementations;
-
--(NSUInteger) count;
-
-@end
+#endif /* AppleGuiceSync_h */

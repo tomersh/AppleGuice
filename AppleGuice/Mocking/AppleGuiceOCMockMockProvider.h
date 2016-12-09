@@ -12,15 +12,9 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@protocol AppleGuiceBindingServiceProtocol;
 
+#import "AppleGuiceMockProvider.h"
 
-@protocol AppleGuiceProtocolLocatorProtocol <NSObject>
-
--(void) bootstrapAutomaticImplementationDiscovery;
-
--(NSArray*) getAllClassesByProtocolType:(Protocol*) protocol;
-
--(void) setFilterProtocol:(Protocol*) filterProtocol;
+@interface AppleGuiceOCMockMockProvider : AppleGuiceMockProvider
 
 @end

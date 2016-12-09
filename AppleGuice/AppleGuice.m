@@ -17,19 +17,20 @@
 #import "AppleGuiceBindingService.h"
 #import "AppleGuiceAutoInjector.h"
 #import "AppleGuiceInjector.h"
-#import "AppleGuiceProtocolLocator.h"
 #import "AppleGuiceSettingsProvider.h"
 #import "AppleGuiceSingletonRepository.h"
 #import "AppleGuiceInstanceCreator.h"
-#import "AppleGuiceOCMockMockProvider.h"
 #import "AppleGuiceBindingBootstrapperProtocol.h"
 #import "AppleGuiceClassGenerator.h"
+
+#import "AppleGuiceOCMockMockProvider.h"
+#import "AppleGuiceOCMockitoMockProvider.h"
+#import "AppleGuiceMockProviderSelectorService.h"
 
 @implementation AppleGuice
 
 static AppleGuiceBindingService* bindingService;
 static AppleGuiceInjector* injector;
-static AppleGuiceProtocolLocator* protocolLocator;
 static AppleGuiceSingletonRepository* singletonRepository;
 static AppleGuiceSettingsProvider* settingsProvider;
 static AppleGuiceInstanceCreator* instanceCreator;
@@ -40,20 +41,18 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
     settingsProvider = [[AppleGuiceSettingsProvider alloc] init];
     bindingService = [[AppleGuiceBindingService alloc] init];
-    protocolLocator = [[AppleGuiceProtocolLocator alloc] init];
     injector = [[AppleGuiceInjector alloc] init];
     singletonRepository = [[AppleGuiceSingletonRepository alloc] init];
     instanceCreator = [[AppleGuiceInstanceCreator alloc] init];
     
     bindingService.classGenerator = [[[AppleGuiceClassGenerator alloc] init] autorelease];
     
-    protocolLocator.bindingService = bindingService;
-
-    instanceCreator.protocolLocator = protocolLocator;
+    
+    instanceCreator.bindingService = bindingService;
     instanceCreator.settingsProvider = settingsProvider;
     instanceCreator.injector = injector;
     instanceCreator.singletonRepository = singletonRepository;
-    instanceCreator.mockProvoider = [[[AppleGuiceOCMockMockProvider alloc] init] autorelease];
+    instanceCreator.mockProvider = [[self class] _selectMockProvider];
     
     injector.settingsProvider = settingsProvider;
     injector.instanceCreator = instanceCreator;
@@ -61,8 +60,19 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     Class bootstrapperClass = NSClassFromString(settingsProvider.bootstrapperClassName);
     bootstrapper = [[bootstrapperClass alloc] init];
     bootstrapper.bindingService = bindingService;
+}
+
++(id<AppleGuiceMockProviderProtocol>) _selectMockProvider {
+    NSArray* mockProviders = @[
+                               [[[AppleGuiceOCMockMockProvider alloc] init] autorelease],
+                               [[[AppleGuiceOCMockitoMockProvider alloc] init] autorelease]
+                              ];
     
-    [protocolLocator setFilterProtocol:@protocol(AppleGuiceInjectable)];
+    id<AppleGuiceMockProviderSelectorServiceProtocol> mockSelector = [[[AppleGuiceMockProviderSelectorService alloc] init] autorelease];
+    
+    [mockSelector setMockProviders:mockProviders];
+    
+    return [mockSelector getSelectedMockProvider];
 }
 
 #pragma mark - Bootstrap
@@ -73,9 +83,6 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
 +(void) startServiceWithImplementationDiscoveryPolicy:(AppleGuiceImplementationDiscoveryPolicy) implementationDiscoveryPolicy {
     switch (implementationDiscoveryPolicy) {
-        case AppleGuiceImplementationDiscoveryPolicyRuntime:
-            [protocolLocator bootstrapAutomaticImplementationDiscovery];
-            break;
         case AppleGuiceImplementationDiscoveryPolicyPreCompile:
             [bootstrapper bootstrap];
             break;
@@ -109,7 +116,7 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
 +(NSArray*) allClassesForProtocol:(Protocol*) protocol {
     if (!protocol) return @[];
-    return [protocolLocator getAllClassesByProtocolType:protocol];
+    return [bindingService getClassesForProtocol:protocol];
 }
 
 +(void) injectImplementationsToInstance:(id<NSObject>) classInstance {

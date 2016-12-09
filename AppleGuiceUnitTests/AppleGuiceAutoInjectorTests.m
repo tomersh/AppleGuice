@@ -45,7 +45,6 @@ static MockedInjector* mockedInjector;
     [super tearDown];
     [mockedInjector reset];
     [AppleGuiceAutoInjector stopAutoInjector]; //just in case
-    
 }
 
 -(void) test__startAutoInjector__call__startsTheService {

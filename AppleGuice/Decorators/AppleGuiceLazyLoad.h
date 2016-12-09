@@ -14,9 +14,10 @@
 
 
 /*
- All classes marked with AppleGuiceSingleton protocol will return the same class instance when injected with AppleGuice
-*/
-@protocol AppleGuiceSingleton <NSObject>
+ All classes marked with AppleGuiceLazyLoad protocol will return a proxy class when Injected. Upon calling an instance method on the service, the proxy will be replaced by a real implementation.
+ Instances that are marked with with id<x, AppleGuiceLazyLoad> will result in initializing a proxy class. Upon calling an instance method on the service, the proxy will be replaced by a real implementation.
+ */
+@protocol AppleGuiceLazyLoad <NSObject>
 
 
 @end

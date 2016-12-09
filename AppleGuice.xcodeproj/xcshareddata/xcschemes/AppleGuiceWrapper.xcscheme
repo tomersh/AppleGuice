@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F18E722116F9135C000BD3CB"
-               BuildableName = "libAppleGuice.a"
-               BlueprintName = "AppleGuice"
+               BlueprintIdentifier = "F19102A91D141E4B005C2F09"
+               BuildableName = "AppleGuiceWrapper.framework"
+               BlueprintName = "AppleGuiceWrapper"
                ReferencedContainer = "container:AppleGuice.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,18 +32,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F133DA6118D0BCE40050864F"
-               BuildableName = "AppleGuiceUnitTests.xctest"
-               BlueprintName = "AppleGuiceUnitTests"
+               BlueprintIdentifier = "F19102B21D141E4B005C2F09"
+               BuildableName = "AppleGuiceWrapperTests.xctest"
+               BlueprintName = "AppleGuiceWrapperTests"
                ReferencedContainer = "container:AppleGuice.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "TestBase">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F19102A91D141E4B005C2F09"
+            BuildableName = "AppleGuiceWrapper.framework"
+            BlueprintName = "AppleGuiceWrapper"
+            ReferencedContainer = "container:AppleGuice.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -60,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F18E722116F9135C000BD3CB"
-            BuildableName = "libAppleGuice.a"
-            BlueprintName = "AppleGuice"
+            BlueprintIdentifier = "F19102A91D141E4B005C2F09"
+            BuildableName = "AppleGuiceWrapper.framework"
+            BlueprintName = "AppleGuiceWrapper"
             ReferencedContainer = "container:AppleGuice.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -75,6 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F19102A91D141E4B005C2F09"
+            BuildableName = "AppleGuiceWrapper.framework"
+            BlueprintName = "AppleGuiceWrapper"
+            ReferencedContainer = "container:AppleGuice.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

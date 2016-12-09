@@ -12,17 +12,10 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-@protocol AppleGuiceProtocolLocatorProtocol;
-@protocol AppleGuiceSettingsProviderProtocol;
-@protocol AppleGuiceSingletonRepositoryProtocol;
-@protocol AppleGuiceInjectorProtocol;
 
-@protocol AppleGuiceInstanceCreatorProtocol <NSObject>
+#import "AppleGuiceMockProviderProtocol.h"
+#import "AppleGuiceClassGeneratorProtocol.h"
 
--(id<NSObject>) instanceForClass:(Class) clazz;
-
--(id<NSObject>) instanceForProtocol:(Protocol*) protocol;
-
--(NSArray*) allInstancesForProtocol:(Protocol*) protocol;
+@interface AppleGuiceMockProvider : NSObject<AppleGuiceMockProviderProtocol>
 
 @end

@@ -12,18 +12,14 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import <Foundation/Foundation.h>
+@protocol AppleGuiceInstanceCreatorProtocol <NSObject>
 
-@interface AppleGuiceProtocolToClassMapper : NSObject
+-(id<NSObject>) instanceForClass:(Class) clazz;
+-(id<NSObject>) instanceForProtocol:(Protocol*) protocol;
 
--(NSSet<Class>*) getClassesForProtocol:(Protocol*) protocol;
+-(id<NSObject>) singletonForClass:(Class) clazz;
+-(id<NSObject>) singletonForProtocol:(Protocol*) protocol;
 
--(void) setImplementations:(NSArray<NSObject*>*)classes withProtocol:(Protocol*)protocol;
-
--(void) unsetImplementationOfProtocol:(Protocol*) protocol;
-
--(void) unsetAllImplementations;
-
--(NSUInteger) count;
+-(NSArray*) allInstancesForProtocol:(Protocol*) protocol;
 
 @end

@@ -13,18 +13,24 @@
 //limitations under the License.
 
 #import "AppleGuiceSingletonRepository.h"
-#include "AppleGuiceTypedDictionary.h"
+#import "AppleGuiceSync.h"
 #include <pthread.h>
+
+@interface AppleGuiceSingletonRepository ()
+
+@property (nonatomic, retain) NSMutableDictionary<NSNumber*, NSObject*>* singletons;
+
+@end
 
 @implementation AppleGuiceSingletonRepository {
     pthread_mutex_t _mutex;
-    AppleGuice::AppleGuiceTypedDictionary<unsigned long, id> _singletons;
 }
 
 -(id)init {
     self = [super init];
     if (!self) return self;
     pthread_mutex_init(&_mutex, PTHREAD_MUTEX_NORMAL);
+    self.singletons = [NSMutableDictionary dictionary];
     return self;
 }
 
@@ -34,22 +40,22 @@
     [super dealloc];
 }
 
-unsigned long _storageKeyForClass(Class clazz) {
-    return (unsigned long)[clazz hash];
+NSNumber* _storageKeyForClass(Class clazz) {
+    return @([clazz hash]);
 }
 
 -(id) instanceForClass:(Class) clazz {
     id instance = nil;
-    SYNC(instance = _singletons.objectForKey(_storageKeyForClass(clazz)));
+    SYNC(instance = self.singletons[_storageKeyForClass(clazz)]);
     return instance;
 }
 
 -(void) setInstance:(id) instance forClass:(Class) clazz {
-    SYNC(_singletons.setObject(_storageKeyForClass(clazz), instance));
+    SYNC(self.singletons[_storageKeyForClass(clazz)] = instance);
 }
 
 -(void) clearRepository {
-    SYNC(_singletons.removeAllObjects());
+    SYNC([self.singletons removeAllObjects]);
 }
 
 @end

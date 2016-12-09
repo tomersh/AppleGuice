@@ -12,16 +12,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "AppleGuiceInstanceCreatorProtocol.h"
+#import "AppleGuiceMockProviderSelectorServiceProtocol.h"
 
-@protocol AppleGuiceMockProviderProtocol;
-
-@interface AppleGuiceInstanceCreator : NSObject<AppleGuiceInstanceCreatorProtocol>
-
-@property (nonatomic, retain) id<AppleGuiceProtocolLocatorProtocol> protocolLocator;
-@property (nonatomic, retain) id<AppleGuiceSingletonRepositoryProtocol> singletonRepository;
-@property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
-@property (nonatomic, retain) id<AppleGuiceInjectorProtocol> injector;
-@property (nonatomic, retain) id<AppleGuiceMockProviderProtocol> mockProvoider;
+@interface AppleGuiceMockProviderSelectorService : NSObject<AppleGuiceMockProviderSelectorServiceProtocol>
 
 @end

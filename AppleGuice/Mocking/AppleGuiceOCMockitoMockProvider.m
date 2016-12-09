@@ -12,9 +12,19 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+#import "AppleGuiceOCMockitoMockProvider.h"
 
-#import "AppleGuiceMockProviderProtocol.h"
+@implementation AppleGuiceOCMockitoMockProvider
 
-@interface AppleGuiceOCMockMockProvider : NSObject<AppleGuiceMockProviderProtocol>
+-(instancetype) init {
+    self = [super init];
+    if (!self) return self;
+
+    self.classMockerClass = NSClassFromString(@"MKTObjectMock");
+    self.protocolMockerClass = NSClassFromString(@"MKTProtocolMock");
+    self.classMockerSelector = @selector(mockForClass:);
+    self.protocolMockerSelector = @selector(mockForProtocol:);
+    return self;
+}
 
 @end

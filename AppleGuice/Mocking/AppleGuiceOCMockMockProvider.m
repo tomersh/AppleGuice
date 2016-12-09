@@ -15,31 +15,18 @@
 
 #import "AppleGuiceOCMockMockProvider.h"
 
-@implementation AppleGuiceOCMockMockProvider {
-    Class _ocMock;
-}
+@implementation AppleGuiceOCMockMockProvider
 
--(id) init {
+
+-(instancetype) init {
     self = [super init];
     if (!self) return self;
-    _ocMock = NSClassFromString(@"OCMockObject");
+    
+    self.classMockerClass = NSClassFromString(@"OCMockObject");
+    self.protocolMockerClass = self.classMockerClass;
+    self.classMockerSelector = @selector(mockForClass:);
+    self.protocolMockerSelector = @selector(mockForProtocol:);
     return self;
-}
-
--(id) mockForClass:(Class)aClass {
-    if (![self _isServiceAvailable]) return nil;
-    if (aClass == nil) return nil;
-    return [_ocMock performSelector:@selector(mockForClass:) withObject:aClass];
-}
-
--(id) mockForProtocol:(Protocol *)aProtocol {
-    if (![self _isServiceAvailable]) return nil;
-    if (aProtocol == nil) return nil;
-    return [_ocMock performSelector:@selector(mockForProtocol:) withObject:aProtocol];
-}
-
--(BOOL) _isServiceAvailable {
-    return _ocMock != nil;
 }
 
 @end

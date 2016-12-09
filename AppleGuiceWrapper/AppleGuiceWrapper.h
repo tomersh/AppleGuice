@@ -12,10 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import "AppleGuiceProtocolLocatorProtocol.h"
+// In this header, you should import all the public headers of your framework using statements like #import <AppleGuiceWrapper/PublicHeader.h>
 
-@interface AppleGuiceProtocolLocator : NSObject<AppleGuiceProtocolLocatorProtocol>
+#import <AppleGuice/AppleGuice.h>
 
-@property (nonatomic, retain) id<AppleGuiceBindingServiceProtocol> bindingService;
-
-@end

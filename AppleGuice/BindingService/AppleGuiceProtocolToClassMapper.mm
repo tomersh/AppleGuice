@@ -13,34 +13,41 @@
 //limitations under the License.
 
 #import "AppleGuiceProtocolToClassMapper.h"
-#import "AppleGuiceTypedDictionary.h"
+#import "AppleGuiceSync.h"
 #import <pthread.h>
 #import <string>
 
+@interface AppleGuiceProtocolToClassMapper ()
+
+@property (nonatomic, retain) NSMutableDictionary<NSString*, NSMutableSet*>* mapper;
+
+@end
+
 @implementation AppleGuiceProtocolToClassMapper {
     pthread_mutex_t _mutex;
-    AppleGuice::AppleGuiceTypedDictionary<string, NSMutableSet*> _mapper;
 }
 
 -(id)init {
     self = [super init];
     if (!self) return self;
     pthread_mutex_init(&_mutex, PTHREAD_MUTEX_NORMAL);
+    self.mapper = [NSMutableDictionary dictionary];
     return self;
 }
 
 -(void)dealloc {
     pthread_mutex_unlock(&_mutex);
     pthread_mutex_destroy(&_mutex);
+    [_mapper release];
     [super dealloc];
 }
 
-string _storageKeyForProtocol(Protocol* protocol) {
-    return string(protocol_getName(protocol));
+NSString* _storageKeyForProtocol(Protocol* protocol) {
+    return NSStringFromProtocol(protocol);
 }
 
--(NSMutableSet*) _getClassesForStorageKey:(string) storageKey {
-    return _mapper.objectForKey(storageKey);
+-(NSMutableSet*) _getClassesForStorageKey:(NSString*) storageKey {
+    return self.mapper[storageKey];
 }
 
 -(NSSet*) getClassesForProtocol:(Protocol*) protocol {
@@ -52,11 +59,11 @@ string _storageKeyForProtocol(Protocol* protocol) {
     return [NSSet setWithSet:classes];
 }
 
--(void) setImplementations:(NSArray*)classes withProtocol:(Protocol*)protocol {
+-(void) setImplementations:(NSArray<NSObject*>*)classes withProtocol:(Protocol*)protocol {
     if (!protocol || !classes) return;
     if ([classes count] == 0) return;
     
-    string storageKey = _storageKeyForProtocol(protocol);
+    NSString* storageKey = _storageKeyForProtocol(protocol);
     
     SYNC(
          NSMutableSet* boundClasses = [self _getClassesForStorageKey:storageKey];
@@ -67,21 +74,21 @@ string _storageKeyForProtocol(Protocol* protocol) {
              [boundClasses addObjectsFromArray:classes];
          }
     
-         _mapper.setObject(storageKey, boundClasses);
+         self.mapper[storageKey] = boundClasses;
     );
 }
 
 -(void) unsetImplementationOfProtocol:(Protocol*) protocol {
-    SYNC(_mapper.removeObject(_storageKeyForProtocol(protocol)));
+    SYNC([self.mapper removeObjectForKey:_storageKeyForProtocol(protocol)]);
 }
 
 -(void) unsetAllImplementations {
-    SYNC(_mapper.removeAllObjects());
+    SYNC([self.mapper removeAllObjects]);
 }
 
 -(NSUInteger) count {
     NSUInteger count = 0;
-    SYNC(count = _mapper.count());
+    SYNC(count = [self.mapper count]);
     return count;
 }
 

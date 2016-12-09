@@ -12,18 +12,8 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-#import <Foundation/Foundation.h>
+#import "AppleGuiceMockProvider.h"
 
-@interface AppleGuiceProtocolToClassMapper : NSObject
-
--(NSSet<Class>*) getClassesForProtocol:(Protocol*) protocol;
-
--(void) setImplementations:(NSArray<NSObject*>*)classes withProtocol:(Protocol*)protocol;
-
--(void) unsetImplementationOfProtocol:(Protocol*) protocol;
-
--(void) unsetAllImplementations;
-
--(NSUInteger) count;
+@interface AppleGuiceOCMockitoMockProvider : AppleGuiceMockProvider
 
 @end
