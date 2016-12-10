@@ -77,8 +77,7 @@ typedef enum AppleGuiceImplementationDiscoveryPolicy {
  @param protocol protocol type
  @return an array containing instances of Protocol protocol
  */
-+(NSArray<NSObject*>*) allInstancesForProtocol:(Protocol*) protocol;
-
++(NSArray<id<NSObject>>*) allInstancesForProtocol:(Protocol*) protocol;
 
 /**
  Returns an array containing classes of all implementations of protocol.
