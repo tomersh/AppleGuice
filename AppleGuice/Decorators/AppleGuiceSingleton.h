@@ -17,6 +17,9 @@
  All classes marked with AppleGuiceSingleton protocol will return the same class instance when injected with AppleGuice
  Instances that are marked with with id<x, AppleGuiceSingleton> will return the same instance of x.
 */
+
+#import <Foundation/Foundation.h>
+
 @protocol AppleGuiceSingleton <NSObject>
 
 

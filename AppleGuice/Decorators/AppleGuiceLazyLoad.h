@@ -12,6 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+#import <Foundation/Foundation.h>
 
 /*
  All classes marked with AppleGuiceLazyLoad protocol will return a proxy class when Injected. Upon calling an instance method on the service, the proxy will be replaced by a real implementation.

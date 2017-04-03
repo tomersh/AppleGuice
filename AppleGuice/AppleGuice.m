@@ -35,9 +35,15 @@ static AppleGuiceSingletonRepository* singletonRepository;
 static AppleGuiceSettingsProvider* settingsProvider;
 static AppleGuiceInstanceCreator* instanceCreator;
 
+static BOOL didStart;
+
 static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 
-+(void)initialize {
++(void)load {
+    didStart = NO;
+}
+
++(void) _initializeAppleGuice {
 
     settingsProvider = [[AppleGuiceSettingsProvider alloc] init];
     bindingService = [[AppleGuiceBindingService alloc] init];
@@ -82,6 +88,13 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
 }
 
 +(void) startServiceWithImplementationDiscoveryPolicy:(AppleGuiceImplementationDiscoveryPolicy) implementationDiscoveryPolicy {
+    if (didStart) {
+        return;
+    }
+    didStart = YES;
+    
+    [self _initializeAppleGuice];
+    
     switch (implementationDiscoveryPolicy) {
         case AppleGuiceImplementationDiscoveryPolicyPreCompile:
             [bootstrapper bootstrap];
@@ -99,6 +112,7 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     [bindingService unsetAllImplementationsWithType:appleGuiceBindingTypeCachedBinding];
     [bindingService unsetAllImplementationsWithType:appleGuiceBindingTypeUserBinding];
     [singletonRepository clearRepository];
+    didStart = NO;
 }
 
 #pragma mark - Injection
