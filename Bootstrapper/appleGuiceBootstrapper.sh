@@ -29,7 +29,7 @@ then
     make EXENAME=${bootstrapper} CXXFLAGS=-mios-version-min=7.0.0
 fi
 
-interfaceDeclerations=$(grep -sirhE --include=*.h --regexp='((@interface[^:]+:\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${path});
+interfaceDeclerations=$(grep -sirhE --include=*.h --exclude=$3 --exclude-dir=$4 --regexp='((@interface[^:]+:\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${path});
 
 result=$(echo "${interfaceDeclerations}" | ${scriptDir}/${bootstrapper});
 
