@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.1
+osx_image: xcode7.3
 before_install:
  - export LANG=en_US.UTF-8
  - gem install xcpretty --no-rdoc --no-ri --no-document
@@ -8,7 +8,7 @@ before_install:
  - sudo easy_install cpp-coveralls
  - pod install
 script:
- - xcodebuild test -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.1' -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH'
+ - xcodebuild test -sdk iphonesimulator9.3 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH'
  - xcodebuild test -workspace AppleGuice.xcworkspace -scheme Bootstrapper -configuration Debug CODE_SIGNING_REQUIRED=NO
 after_success:
  - ruby ./coveralls.rb --exclude-folder Pods --exclude-folder AppleGuicePreCompileBinder --exclude-folder Bootstrapper --exclude-folder AppleGuiceUnitTests
