@@ -121,7 +121,7 @@ void parseProtocolEntry(string &entry, unordered_map<string, set<string> > &prot
 	
 	//cout << "parsing line: " << entry << " ";
 
-	int protocolLength = string(protocolLabel).length();
+	unsigned long protocolLength = string(protocolLabel).length();
 	
 	size_t protocolNameEnd = entry.find('<');
 	if (protocolNameEnd == string::npos) return; // bad entry syntax
@@ -146,7 +146,7 @@ void parseInterfaceEntry(string &entry,unordered_map <string, string> &classToSu
 	
 	//cout << "parsing line: " << entry << " ";
 	
-	int interfaceLength = string(interfaceLabel).length();
+	unsigned long interfaceLength = string(interfaceLabel).length();
 
 	size_t classNameEnd = entry.find(':');
 	if (classNameEnd == string::npos) return; // bad entry syntax
@@ -255,10 +255,9 @@ void protocolsImplementedByClass(string &className,
                                  set<string> &result)
 {
     
-    bool stop = false;
     string curClassName = className;
     
-    while (!stop) {
+    while (true) {
         if (contains(classToProtocols, curClassName)) {
             set<string> implementedProtocols = classToProtocols[curClassName];
             result.insert(implementedProtocols.begin(), implementedProtocols.end());
@@ -270,11 +269,11 @@ void protocolsImplementedByClass(string &className,
                 curClassName = superClass;
             }
             else {
-                stop = true;
+                break;
             }
         }
         else {
-            stop = true;
+            break;
         }
     }
 }
@@ -285,7 +284,7 @@ void generateAppleGuiceCodeForEntry(string &protocolName, set<string> &implement
 
     stringBuilder << "[self.bindingService setImplementationsFromStrings:@[";
 
-    int setSize = implementingClasses.size();
+    unsigned long setSize = implementingClasses.size();
     for(set<string>::const_iterator implementedProtocolsIterator = implementingClasses.begin(); implementedProtocolsIterator != implementingClasses.end(); implementedProtocolsIterator++ ) {
 		string implementationName = *implementedProtocolsIterator;
 		stringBuilder << "@\"" << implementationName << "\"";
@@ -353,19 +352,7 @@ string readFromStdin() {
     return stringBuilder.str();
 }
 
-int main(int argc, char* argv[])
-{
-
-    if(isatty(fileno(stdin)))
-    {
-        fprintf(stderr, "You need to pipe in some data!\n");
-        return 1;
-    }
-    
-	string headerEntriesAsString = readFromStdin();
-
-	headerEntriesAsString = trim(headerEntriesAsString);
-
+unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntriesAsString) {
 	unordered_map<string, set<string> > protocolToSuperProtocols;
 	unordered_map<string, set<string> > classToProtocols;
 	unordered_map<string, string> classToSuperClass;
@@ -391,9 +378,26 @@ int main(int argc, char* argv[])
         
         addBindToResultList(className, implementedProtocols, protocolToSuperProtocols, protocolToImps);
     }
+    return protocolToImps;
+}
 
+int main(int argc, char* argv[])
+{
+    if(isatty(fileno(stdin)))
+    {
+        fprintf(stderr, "You need to pipe in some data!\n");
+        return 1;
+    }
+    
+    string headerEntriesAsString = readFromStdin();
+    
+    headerEntriesAsString = trim(headerEntriesAsString);
+    
+    unordered_map<string, set<string> > protocolToImps = generateProtocolsToImpsMap(headerEntriesAsString);
+    
     //generate code
     string generatedCode = generateAppleGuiceCode(protocolToImps);
     
     cout << generatedCode;
 }
+

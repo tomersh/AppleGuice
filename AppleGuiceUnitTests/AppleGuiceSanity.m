@@ -13,29 +13,14 @@
 
 #define Implementation(__clazzName) @implementation __clazzName @end
 
-@interface AppleGuiceSanityTestSuperClass : NSObject{
-    @public
-    iocIvar(TestInjectableSuperClass, standAloneClassInSuperClass);
-    iocProtocol(TestInjectableSuperProtocol, classFromSuperProtocol);
-    iocIvar(NSArray, TestInjectableProtocol);
-}
-@end
-
-@interface AppleGuiceSanityTestClass : AppleGuiceSanityTestSuperClass {
-    @public
-    iocIvar(TestInjectableClass, standAloneClass);
-    iocProtocol(TestInjectableProtocol, classFromProtocol);
-    iocIvar(NSArray, TestInjectableSuperProtocol);
-}
-@end
-
 @implementation AppleGuiceSanity
 
 -(void)setUp {
     [super setUp];
     [AppleGuice stopService];
-    [AppleGuice setIocPrefix:testIocPrefix];
     [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyDefault];
+    [AppleGuice startService];
+    [AppleGuice setIocPrefix:testIocPrefix];
 }
 
 -(void)tearDown {
@@ -46,7 +31,6 @@
 #pragma mark - pre compile discovery policy
 
 -(void) test__instanceForClass__ComplexObjectInitializedWithDefaultPolicies__AllFieldsAreInjected {
-    [AppleGuice startService];
     __block AppleGuiceSanityTestClass* result;
     EXP_expect(^{ result = [[AppleGuiceSanityTestClass alloc] init]; }).notTo.raiseAny();
     
@@ -55,7 +39,6 @@
 }
 
 -(void) test__instanceForClass__ComplexObjectInitializedWithSingletonCreationPolicy__allIvarsAreInjectedWithSingletons {
-    [AppleGuice startService];
     [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicySingletons];
     __block AppleGuiceSanityTestClass* result;
     __block AppleGuiceSanityTestClass* secondResult;
@@ -69,7 +52,6 @@
 }
 
 -(void) test__instanceForClass__ComplexObjectInitializedWithLazyLoadCreationPolicy__allIvarsAreInjectedWithProxies {
-    [AppleGuice startService];
     [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyLazyLoad];
     __block AppleGuiceSanityTestClass* result;
     
@@ -80,7 +62,6 @@
 }
 
 -(void) test__instanceForClass__ComplexObjectInitializedWithLazyLoadAndSingletonsCreationPolicy__allIvarsAreInjectedWithProxies {
-    [AppleGuice startService];
     [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyLazyLoad | AppleGuiceInstanceCreationPolicySingletons];
     __block AppleGuiceSanityTestClass* result;
     
@@ -91,13 +72,12 @@
 }
 
 -(void) test__instanceForClass__ComplexObjectInitializedWithLazyLoadAndSingletonsCreationPolicy__proxiesAreConvertedToSingletons {
-    [AppleGuice startService];
     [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyLazyLoad | AppleGuiceInstanceCreationPolicySingletons];
     AppleGuiceSanityTestClass* result = [[AppleGuiceSanityTestClass alloc] init];
     AppleGuiceSanityTestClass* secondResult = [[AppleGuiceSanityTestClass alloc] init];
     
-    id generatedObject1 = ((AppleGuiceInvocationProxy*)result->test_standAloneClass).createInstanceBlock();
-    id generatedObject2 = ((AppleGuiceInvocationProxy*)secondResult->test_standAloneClass).createInstanceBlock();
+    id generatedObject1 = ((AppleGuiceInvocationProxy*)result.test_standAloneClass).createInstanceBlock();
+    id generatedObject2 = ((AppleGuiceInvocationProxy*)secondResult.test_standAloneClass).createInstanceBlock();
     
     EXP_expect(generatedObject1).to.equal(generatedObject2);
 }
@@ -107,33 +87,29 @@
 //regular
 
 -(void) test_instanceForClass_InitClassWithInstanceForClass_returnsInstance {
-    [AppleGuice startService];
     __block AppleGuiceSanityTestClass* result;
-    EXP_expect(^{ result = [AppleGuice instanceForClass:[AppleGuiceSanityTestClass class]]; }).notTo.raiseAny();
+    EXP_expect(^{ result = (id)[AppleGuice instanceForClass:[AppleGuiceSanityTestClass class]]; }).notTo.raiseAny();
     
     [self validateTestClassIntegrity:result];
 }
 
 -(void) test_instanceForClass_InitClassWithInstanceForClassShorthand_returnsInstance {
-    [AppleGuice startService];
     __block AppleGuiceSanityTestClass* result;
-    EXP_expect(^{ result = [[AppleGuiceSanityTestClass class] instance]; }).notTo.raiseAny();
+    EXP_expect(^{ result = (id)[AppleGuice instanceForClass:[AppleGuiceSanityTestClass class]]; }).notTo.raiseAny();
     
     [self validateTestClassIntegrity:result];
 }
 
 -(void) test_instanceForClass_InitClassWithProtocol_returnsInstance {
-    [AppleGuice startService];
     Protocol* protocol = @protocol(TestInjectableProtocol);
     __block AppleGuiceSanityTestClass* result;
-    EXP_expect(^{ result = [AppleGuice instanceForProtocol:protocol]; }).notTo.raiseAny();
+    EXP_expect(^{ result = (id)[AppleGuice instanceForProtocol:protocol]; }).notTo.raiseAny();
     
     EXP_expect(result).notTo.beNil;
     EXP_expect(result).to.conformTo(protocol);
 }
 
 -(void) test_instanceForClass_InitClassWithProtocols_returnsInstances {
-    [AppleGuice startService];
     Protocol* protocol = @protocol(TestInjectableProtocol);
     __block NSArray* result;
     EXP_expect(^{ result = [AppleGuice allInstancesForProtocol:protocol]; }).notTo.raiseAny();
@@ -150,7 +126,6 @@
 //singleton
 
 -(void) test_instanceForClass_InitSingletonClassWithInstanceForClass_returnsInstance {
-    [AppleGuice startService];
     __block TestInjectableSingletonClass* result1, *result2;
     EXP_expect(^{ result1 = (id)[AppleGuice instanceForClass:[TestInjectableSingletonClass class]]; result2 = (id)[AppleGuice instanceForClass:[TestInjectableSingletonClass class]]; }).notTo.raiseAny();
     
@@ -158,16 +133,14 @@
 }
 
 -(void) test_instanceForClass_InitSingletonClassWithInstanceForClassShorthand_returnsInstance {
-    [AppleGuice startService];
     __block TestInjectableSingletonClass* result1, *result2;
-    EXP_expect(^{ result1 = (id)[[TestInjectableSingletonClass class] instance];
-        result2 = (id)[[TestInjectableSingletonClass class] instance]; }).notTo.raiseAny();
+    EXP_expect(^{ result1 = (id)[AppleGuice instanceForClass:[TestInjectableSingletonClass class]];
+        result2 = (id)[AppleGuice instanceForClass:[TestInjectableSingletonClass class]]; }).notTo.raiseAny();
     
     EXP_expect(result1).to.equal(result2);
 }
 
 -(void) test_instanceForClass_InitSingletonClassWithProtocol_returnsInstance {
-    [AppleGuice startService];
     Protocol* protocol = @protocol(TestProtocolForSingletonClasses);
     __block TestInjectableSingletonClass* result1, *result2;
     EXP_expect(^{ result1 = (id)[AppleGuice instanceForProtocol:protocol];
@@ -177,7 +150,6 @@
 }
 
 -(void) test_instanceForClass_InitSingletonClassWithProtocols_returnsInstances {
-    [AppleGuice startService];
     Protocol* protocol = @protocol(TestProtocolForSingletonClasses);
     __block TestInjectableSingletonClass* result1;
     __block NSArray* result2;
@@ -205,7 +177,7 @@
     [AppleGuice startService];
     [AppleGuice setInstanceCreationPolicy:AppleGuiceInstanceCreationPolicyCreateMocks];
     __block id result;
-    EXP_expect(^{ result = [[AppleGuiceSanityTestClass class] instance]; }).notTo.raiseAny();
+    EXP_expect(^{ result = [AppleGuice instanceForClass:[AppleGuiceSanityTestClass class]]; }).notTo.raiseAny();
     
     [result verify];
 }
@@ -253,8 +225,8 @@
     __block id result1, result2;
     EXP_expect(^{
         
-        result1 = [[TestInjectableSingletonClass class] instance];
-        result2 = [[TestInjectableSingletonClass class] instance]; }).notTo.raiseAny();
+        result1 = [AppleGuice instanceForClass:[TestInjectableSingletonClass class]];
+        result2 = [AppleGuice instanceForClass:[TestInjectableSingletonClass class]]; }).notTo.raiseAny();
     
     [result1 verify];
     [result2 verify];
@@ -293,43 +265,43 @@
 
 -(void) validateInjectedIvarsAreProxies:(AppleGuiceSanityTestClass*) result {
     EXP_expect([result isProxy]).to.beFalsy();
-    EXP_expect([result->test_standAloneClass isProxy]).to.beTruthy();
-    EXP_expect([result->test_standAloneClassInSuperClass isProxy]).to.beTruthy();
-    EXP_expect([result->test_classFromProtocol isProxy]).to.beTruthy();
-    EXP_expect([result->test_classFromSuperProtocol isProxy]).to.beTruthy();
-    EXP_expect([result->test_TestInjectableProtocol isProxy]).to.beTruthy();
-    EXP_expect([result->test_TestInjectableSuperProtocol isProxy]).to.beTruthy();
+    EXP_expect([result.test_standAloneClass isProxy]).to.beTruthy();
+    EXP_expect([result.test_standAloneClassInSuperClass isProxy]).to.beTruthy();
+    EXP_expect([result.test_classFromProtocol isProxy]).to.beTruthy();
+    EXP_expect([result.test_classFromSuperProtocol isProxy]).to.beTruthy();
+    EXP_expect([result.test_TestInjectableProtocol isProxy]).to.beTruthy();
+    EXP_expect([result.test_TestInjectableSuperProtocol isProxy]).to.beTruthy();
 }
 
 -(void) validateInjectedIvarInInstance:(AppleGuiceSanityTestClass*) result areEqualToInjectedIvarsInInstance: (AppleGuiceSanityTestClass*) secondResult {
     EXP_expect(result).notTo.equal(secondResult);
-    EXP_expect(result->test_standAloneClass).to.equal(secondResult->test_standAloneClass);
-    EXP_expect(result->test_standAloneClassInSuperClass).to.equal(secondResult->test_standAloneClassInSuperClass);
-    EXP_expect(result->test_classFromProtocol).to.equal(secondResult->test_classFromProtocol);
-    EXP_expect(result->test_classFromSuperProtocol).to.equal(secondResult->test_classFromSuperProtocol);
-    EXP_expect(result->test_TestInjectableProtocol).to.equal(secondResult->test_TestInjectableProtocol);
-    EXP_expect(result->test_TestInjectableSuperProtocol).to.equal(secondResult->test_TestInjectableSuperProtocol);
-    EXP_expect([result->test_TestInjectableProtocol objectAtIndex:0]).to.equal([secondResult->test_TestInjectableProtocol objectAtIndex:0]);
-    EXP_expect([result->test_TestInjectableProtocol objectAtIndex:1]).to.equal([secondResult->test_TestInjectableProtocol objectAtIndex:1]);
+    EXP_expect(result.test_standAloneClass).to.equal(secondResult.test_standAloneClass);
+    EXP_expect(result.test_standAloneClassInSuperClass).to.equal(secondResult.test_standAloneClassInSuperClass);
+    EXP_expect(result.test_classFromProtocol).to.equal(secondResult.test_classFromProtocol);
+    EXP_expect(result.test_classFromSuperProtocol).to.equal(secondResult.test_classFromSuperProtocol);
+    EXP_expect(result.test_TestInjectableProtocol).to.equal(secondResult.test_TestInjectableProtocol);
+    EXP_expect(result.test_TestInjectableSuperProtocol).to.equal(secondResult.test_TestInjectableSuperProtocol);
+    EXP_expect([result.test_TestInjectableProtocol objectAtIndex:0]).to.equal([secondResult.test_TestInjectableProtocol objectAtIndex:0]);
+    EXP_expect([result.test_TestInjectableProtocol objectAtIndex:1]).to.equal([secondResult.test_TestInjectableProtocol objectAtIndex:1]);
 }
 
 -(void) validateTestClassIntegrity:(AppleGuiceSanityTestClass*) result {
     EXP_expect(result).to.beInstanceOf([AppleGuiceSanityTestClass class]);
-    EXP_expect(result->test_standAloneClass).to.beInstanceOf([TestInjectableClass class]);
-    EXP_expect(result->test_standAloneClassInSuperClass).to.beInstanceOf([TestInjectableSuperClass class]);
-    EXP_expect(result->test_classFromProtocol).to.conformTo(@protocol(TestInjectableSuperProtocol));
-    EXP_expect(result->test_classFromSuperProtocol).to.conformTo(@protocol(TestInjectableSuperProtocol));
-    EXP_expect(result->test_TestInjectableProtocol).to.beKindOf(NSClassFromString(@"__NSArrayI"));
-    EXP_expect(result->test_TestInjectableSuperProtocol).to.beKindOf(NSClassFromString(@"__NSArrayI"));
-    EXP_expect([result->test_TestInjectableProtocol count]).to.equal(2);
-    EXP_expect([result->test_TestInjectableSuperProtocol count]).to.equal(2);
+    EXP_expect(result.test_standAloneClass).to.beInstanceOf([TestInjectableClass class]);
+    EXP_expect(result.test_standAloneClassInSuperClass).to.beInstanceOf([TestInjectableSuperClass class]);
+    EXP_expect(result.test_classFromProtocol).to.conformTo(@protocol(TestInjectableSuperProtocol));
+    EXP_expect(result.test_classFromSuperProtocol).to.conformTo(@protocol(TestInjectableSuperProtocol));
+    EXP_expect(result.test_TestInjectableProtocol).to.beKindOf(NSClassFromString(@"__NSArrayI"));
+    EXP_expect(result.test_TestInjectableSuperProtocol).to.beKindOf(NSClassFromString(@"__NSArrayI"));
+    EXP_expect([result.test_TestInjectableProtocol count]).to.equal(2);
+    EXP_expect([result.test_TestInjectableSuperProtocol count]).to.equal(2);
     
     NSArray* implementations = @[[TestInjectableProtocolImplementor class], [AnotherTestInjectableProtocolImplementor class]];
     
-    EXP_expect(implementations).to.contain([[result->test_TestInjectableProtocol objectAtIndex:0] class]);
-    EXP_expect(implementations).to.contain([[result->test_TestInjectableProtocol objectAtIndex:1] class]);
-    EXP_expect(implementations).to.contain([[result->test_TestInjectableSuperProtocol objectAtIndex:0] class]);
-    EXP_expect(implementations).to.contain([[result->test_TestInjectableSuperProtocol objectAtIndex:1] class]);
+    EXP_expect(implementations).to.contain([[result.test_TestInjectableProtocol objectAtIndex:0] class]);
+    EXP_expect(implementations).to.contain([[result.test_TestInjectableProtocol objectAtIndex:1] class]);
+    EXP_expect(implementations).to.contain([[result.test_TestInjectableSuperProtocol objectAtIndex:0] class]);
+    EXP_expect(implementations).to.contain([[result.test_TestInjectableSuperProtocol objectAtIndex:1] class]);
 }
 
 @end

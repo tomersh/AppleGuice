@@ -9,5 +9,6 @@ before_install:
  - pod install
 script:
  - xcodebuild test -sdk iphonesimulator9.3 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH'
+ - xcodebuild test -workspace AppleGuice.xcworkspace -scheme Bootstrapper -configuration Debug CODE_SIGNING_REQUIRED=NO
 after_success:
  - ruby ./coveralls.rb --exclude-folder Pods --exclude-folder AppleGuicePreCompileBinder --exclude-folder Bootstrapper --exclude-folder AppleGuiceUnitTests

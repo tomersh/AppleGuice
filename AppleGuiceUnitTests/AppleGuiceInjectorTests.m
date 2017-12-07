@@ -29,80 +29,62 @@
 @end
 
 
-@interface ClassWithNonInjectableIvars : NSObject {
-@public
-    NSObject* nonInjectableIvar;
-}
+@interface ClassWithNonInjectableIvars : NSObject
+    @property (nonatomic, retain) NSObject* nonInjectableIvar;
 @end
 @implementation ClassWithNonInjectableIvars
 @end
 
 
-@interface ClassWithPrimitiveInjectableIvars : NSObject {
-@public
+@interface ClassWithPrimitiveInjectableIvars : NSObject
     iocPrimitive(int, int);
     iocPrimitive(float, float);
     iocPrimitive(BOOL, bool);
-}
 @end
 @implementation ClassWithPrimitiveInjectableIvars
 @end
 
 
-@interface SuperClassWithInjectableClass : NSObject {
-@public
+@interface SuperClassWithInjectableClass : NSObject
     iocIvar(ClassWithNoIvars, injectableObjectInSuperclass);
-}
 @end
 @implementation SuperClassWithInjectableClass
 @end
 
-@interface ClassWithInjectableClass : SuperClassWithInjectableClass {
-@public
+@interface ClassWithInjectableClass : SuperClassWithInjectableClass
     iocIvar(ClassWithNoIvars, injectableObject);
-}
 @end
 @implementation ClassWithInjectableClass
 @end
 
 
-@interface SuperClassWithInjectableProtocol : NSObject {
-@public
+@interface SuperClassWithInjectableProtocol : NSObject
     iocProtocol(InjectedProtocol, injectableProtocolInSuperclass);
-}
 @end
 @implementation SuperClassWithInjectableProtocol
 @end
 
-@interface ClassWithInjectableProtocol : SuperClassWithInjectableProtocol {
-@public
+@interface ClassWithInjectableProtocol : SuperClassWithInjectableProtocol
     iocProtocol(InjectedProtocol, injectableProtocol);
-}
 @end
 @implementation ClassWithInjectableProtocol
 @end
 
 
-@interface SuperClassWithInjectableArray : NSObject {
-@public
+@interface SuperClassWithInjectableArray : NSObject
     iocIvar(NSArray, InjectedProtocolDoesNotExist);
-}
 @end
 @implementation SuperClassWithInjectableArray
 @end
 
-@interface ClassWithInjectableArray : SuperClassWithInjectableArray {
-@public
+@interface ClassWithInjectableArray : SuperClassWithInjectableArray
     iocIvar(NSArray, InjectedProtocol);
-}
 @end
 @implementation ClassWithInjectableArray
 @end
 
-@interface ClassWithInjectableOptionalProtocol : NSObject {
-@public
+@interface ClassWithInjectableOptionalProtocol : NSObject
     iocProtocol(OptionalProtocolWithNoImplementation, optionalObject);
-}
 @end
 @implementation ClassWithInjectableOptionalProtocol
 @end
@@ -152,7 +134,7 @@
     
     [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo];
     
-    EXP_expect(instanceToInjectTo->nonInjectableIvar).to.equal(nil);
+    EXP_expect(instanceToInjectTo.nonInjectableIvar).to.equal(nil);
 }
 
 -(void) test__injectImplementationsToInstance__ivarWithoutIocPrefixAndWithLazyInstanceCreateionPolicy__ivarIsNotSet {
@@ -161,7 +143,7 @@
     
     [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo];
     
-    EXP_expect(instanceToInjectTo->nonInjectableIvar).to.equal(nil);
+    EXP_expect(instanceToInjectTo.nonInjectableIvar).to.equal(nil);
 }
 
 -(void) test__injectImplementationsToInstance__ivarWithoutIocPrefixAndWithSingletonInstanceCreationPolicy__ivarIsNotSet {
@@ -170,7 +152,7 @@
     
     [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo];
     
-    EXP_expect(instanceToInjectTo->nonInjectableIvar).to.equal(nil);
+    EXP_expect(instanceToInjectTo.nonInjectableIvar).to.equal(nil);
 }
 
 -(void) test__injectImplementationsToInstance__primitivesWithIocPrefixAndWithDefaultInstanceCreationPolicy__primitiveSetsToDefaultValues {
@@ -179,9 +161,9 @@
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     
-    EXP_expect(instanceToInjectTo->test_int).to.equal(0);
-    EXP_expect(instanceToInjectTo->test_float).to.equal(0.0);
-    EXP_expect(instanceToInjectTo->test_bool).to.equal(FALSE);
+    EXP_expect(instanceToInjectTo.test_int).to.equal(0);
+    EXP_expect(instanceToInjectTo.test_float).to.equal(0.0);
+    EXP_expect(instanceToInjectTo.test_bool).to.equal(FALSE);
 }
 
 -(void) test__injectImplementationsToInstance__InstanceWithInjectableClassAndWithLazyLoadInstanceCreationPolicy__proxiesAreInjected {
@@ -190,8 +172,8 @@
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     
-    EXP_expect([instanceToInjectTo->test_injectableObject isProxy]).to.beTruthy();
-    EXP_expect([instanceToInjectTo->test_injectableObjectInSuperclass isProxy]).to.beTruthy();
+    EXP_expect([instanceToInjectTo.test_injectableObject isProxy]).to.beTruthy();
+    EXP_expect([instanceToInjectTo.test_injectableObjectInSuperclass isProxy]).to.beTruthy();
 }
 
 -(void) test__injectImplementationsToInstance__InstanceWithInjectableClassAndWithDefaultInstanceCreationPolicy__instancesAreInjected {
@@ -208,10 +190,10 @@
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     [instanceCreator verify];
 
-    EXP_expect(instanceToInjectTo->test_injectableObject).to.beKindOf([injectedClass class]);
-    EXP_expect(instanceToInjectTo->test_injectableObjectInSuperclass).to.beKindOf([injectedClass class]);
-    EXP_expect([instanceToInjectTo->test_injectableObject isProxy]).to.beFalsy();
-    EXP_expect([instanceToInjectTo->test_injectableObjectInSuperclass isProxy]).to.beFalsy();
+    EXP_expect(instanceToInjectTo.test_injectableObject).to.beKindOf([injectedClass class]);
+    EXP_expect(instanceToInjectTo.test_injectableObjectInSuperclass).to.beKindOf([injectedClass class]);
+    EXP_expect([instanceToInjectTo.test_injectableObject isProxy]).to.beFalsy();
+    EXP_expect([instanceToInjectTo.test_injectableObjectInSuperclass isProxy]).to.beFalsy();
 }
 
 -(void) test__injectImplementationsToInstance__InstanceInjectableProtocolAndWithLazyLoadInstanceCreationPolicy__proxiesAreInjected {
@@ -220,8 +202,8 @@
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     
-    EXP_expect([instanceToInjectTo->test_injectableProtocol isProxy]).to.beTruthy();
-    EXP_expect([instanceToInjectTo->test_injectableProtocolInSuperclass isProxy]).to.beTruthy();
+    EXP_expect([instanceToInjectTo.test_injectableProtocol isProxy]).to.beTruthy();
+    EXP_expect([instanceToInjectTo.test_injectableProtocolInSuperclass isProxy]).to.beTruthy();
 }
 
 -(void) test__injectImplementationsToInstance__InstanceInjectableProtocolAndWithDefaultInstanceCreationPolicy__instancesAreInjected {
@@ -236,10 +218,10 @@
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     [instanceCreator verify];
-    EXP_expect(instanceToInjectTo->test_injectableProtocol).to.beKindOf([injectedClass class]);
-    EXP_expect(instanceToInjectTo->test_injectableProtocolInSuperclass).to.beKindOf([injectedClass class]);
-    EXP_expect([instanceToInjectTo->test_injectableProtocol isProxy]).to.beFalsy();
-    EXP_expect([instanceToInjectTo->test_injectableProtocolInSuperclass isProxy]).to.beFalsy();
+    EXP_expect(instanceToInjectTo.test_injectableProtocol).to.beKindOf([injectedClass class]);
+    EXP_expect(instanceToInjectTo.test_injectableProtocolInSuperclass).to.beKindOf([injectedClass class]);
+    EXP_expect([instanceToInjectTo.test_injectableProtocol isProxy]).to.beFalsy();
+    EXP_expect([instanceToInjectTo.test_injectableProtocolInSuperclass isProxy]).to.beFalsy();
 }
 
 -(void) test__injectImplementationsToInstance__InstanceInjectableWithNoProtocolImplementation__throwsException {
@@ -271,8 +253,8 @@
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     
     
-    EXP_expect(instanceToInjectTo->test_injectableProtocol).to.beNil;
-    EXP_expect(instanceToInjectTo->test_injectableProtocol).to.beNil;
+    EXP_expect(instanceToInjectTo.test_injectableProtocol).to.beNil;
+    EXP_expect(instanceToInjectTo.test_injectableProtocol).to.beNil;
     [instanceCreator verify];
 }
 
@@ -290,7 +272,7 @@
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     
     
-    EXP_expect(instanceToInjectTo->test_optionalObject).to.beNil;
+    EXP_expect(instanceToInjectTo.test_optionalObject).to.beNil;
     [instanceCreator verify];
 }
 
@@ -301,8 +283,8 @@
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     
-    EXP_expect([instanceToInjectTo->test_InjectedProtocol isProxy]).to.beTruthy();
-    EXP_expect([instanceToInjectTo->test_InjectedProtocolDoesNotExist isProxy]).to.beTruthy();
+    EXP_expect([instanceToInjectTo.test_InjectedProtocol isProxy]).to.beTruthy();
+    EXP_expect([instanceToInjectTo.test_InjectedProtocolDoesNotExist isProxy]).to.beTruthy();
 }
 
 -(void) test__injectImplementationsToInstance__InstanceInjectableArrayAndWithDefaultInstanceCreationPolicy__instancesAreInjected {
@@ -316,8 +298,8 @@
     
     EXP_expect(^{ [serviceUnderTest injectImplementationsToInstance:instanceToInjectTo]; }).toNot.raiseAny();
     [instanceCreator verify];
-    EXP_expect(instanceToInjectTo->test_InjectedProtocol).to.beKindOf([NSArray class]);
-    EXP_expect([instanceToInjectTo->test_InjectedProtocol isProxy]).to.beFalsy();
+    EXP_expect(instanceToInjectTo.test_InjectedProtocol).to.beKindOf([NSArray class]);
+    EXP_expect([instanceToInjectTo.test_InjectedProtocol isProxy]).to.beFalsy();
 }
 
 -(void) test_injectImplementationsToInstance_instanceCreatorReturnsNil_throwsError {

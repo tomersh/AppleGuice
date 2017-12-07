@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B0B2F8529754A7BA2AE2627 /* libPods-AppleGuiceUnitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 392C9521977347E6A8A05659 /* libPods-AppleGuiceUnitTests.a */; };
+		4C2839D1A7F58AC4717A6B33 /* libPods-BootstrapperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BADD5BAB5136B586A8D97AE /* libPods-BootstrapperTests.a */; };
+		CBF52252CCBF2C157EA875B1 /* libPods-AppleGuiceUnitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 392C9521977347E6A8A05659 /* libPods-AppleGuiceUnitTests.a */; };
+		F11242441FD833A800A276F8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F133DA6318D0BCE40050864F /* XCTest.framework */; };
+		F11242551FD8346E00A276F8 /* BootstrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CF54F41FD81093004DF674 /* BootstrapperTests.m */; };
 		F133DA6418D0BCE40050864F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F133DA6318D0BCE40050864F /* XCTest.framework */; };
 		F133DA6518D0BCE40050864F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
-		F133DA6718D0BCE40050864F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F133DA6618D0BCE40050864F /* UIKit.framework */; };
 		F133DA6D18D0BCE40050864F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F133DA6B18D0BCE40050864F /* InfoPlist.strings */; };
 		F133DA7618D0BCEC0050864F /* libAppleGuice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722216F9135C000BD3CB /* libAppleGuice.a */; };
 		F133DA7A18D0BD570050864F /* AppleGuiceBindingBootstrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F133DA7918D0BD570050864F /* AppleGuiceBindingBootstrapper.m */; };
@@ -40,6 +42,7 @@
 		F19102C21D141E9C005C2F09 /* AppleGuice.h in Headers */ = {isa = PBXBuildFile; fileRef = F172DD1416F9141300BA754E /* AppleGuice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F19102C31D141F2F005C2F09 /* AppleGuiceWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = F19102AC1D141E4B005C2F09 /* AppleGuiceWrapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F19102CC1D1422F5005C2F09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18E722516F9135C000BD3CB /* Foundation.framework */; };
+		F1CF54EB1FD80A48004DF674 /* appleGuiceBootstrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1CF54EA1FD80A48004DF674 /* appleGuiceBootstrapper.cpp */; };
 		F1E33BE31A24810E0083660E /* AppleGuiceOCMockMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BE01A24810E0083660E /* AppleGuiceOCMockMockProvider.m */; };
 		F1E33BEB1A2482560083660E /* AppleGuiceMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BE91A2482560083660E /* AppleGuiceMockProvider.m */; };
 		F1E33BEF1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BED1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m */; };
@@ -48,6 +51,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F11242531FD8343D00A276F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F18E721A16F9135C000BD3CB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1CF54E21FD80A12004DF674;
+			remoteInfo = Bootstrapper;
+		};
 		F133DA7118D0BCE40050864F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F18E721A16F9135C000BD3CB /* Project object */;
@@ -57,10 +67,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F1CF54E11FD80A12004DF674 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		03F2C5CB32A5D5BC44513463 /* Pods-BootstrapperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BootstrapperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BootstrapperTests/Pods-BootstrapperTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1BADD5BAB5136B586A8D97AE /* libPods-BootstrapperTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BootstrapperTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		392C9521977347E6A8A05659 /* libPods-AppleGuiceUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleGuiceUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BCB1DCB69D05BED2C1599A6 /* Pods-BootstrapperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BootstrapperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BootstrapperTests/Pods-BootstrapperTests.release.xcconfig"; sourceTree = "<group>"; };
 		81FBD0AD1F8ED221E1DC8101 /* Pods-AppleGuiceUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		84973227AA693E29CBA3DE6C /* Pods-AppleGuiceUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		F11242501FD833A800A276F8 /* BootstrapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BootstrapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F11242571FD853E900A276F8 /* libExpecta-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libExpecta-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F11242581FD857F500A276F8 /* BootstrapperTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BootstrapperTests-Info.plist"; sourceTree = "<group>"; };
 		F133DA6218D0BCE40050864F /* AppleGuiceUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleGuiceUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F133DA6318D0BCE40050864F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		F133DA6618D0BCE40050864F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -127,6 +155,10 @@
 		F19102AC1D141E4B005C2F09 /* AppleGuiceWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleGuiceWrapper.h; sourceTree = "<group>"; };
 		F19102AE1D141E4B005C2F09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F19102C51D141F82005C2F09 /* AppleGuiceSync.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSync.h; sourceTree = "<group>"; };
+		F1CF54E31FD80A12004DF674 /* Bootstrapper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Bootstrapper; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1CF54EA1FD80A48004DF674 /* appleGuiceBootstrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = appleGuiceBootstrapper.cpp; sourceTree = "<group>"; };
+		F1CF54F41FD81093004DF674 /* BootstrapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BootstrapperTests.m; sourceTree = "<group>"; };
+		F1CF54F61FD81093004DF674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1E33BDE1A24810E0083660E /* AppleGuiceMockProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderProtocol.h; sourceTree = "<group>"; };
 		F1E33BDF1A24810E0083660E /* AppleGuiceOCMockMockProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceOCMockMockProvider.h; sourceTree = "<group>"; };
 		F1E33BE01A24810E0083660E /* AppleGuiceOCMockMockProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceOCMockMockProvider.m; sourceTree = "<group>"; };
@@ -142,15 +174,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F11242421FD833A800A276F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F11242441FD833A800A276F8 /* XCTest.framework in Frameworks */,
+				4C2839D1A7F58AC4717A6B33 /* libPods-BootstrapperTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F133DA5F18D0BCE40050864F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F133DA7618D0BCEC0050864F /* libAppleGuice.a in Frameworks */,
 				F133DA6418D0BCE40050864F /* XCTest.framework in Frameworks */,
-				F133DA6718D0BCE40050864F /* UIKit.framework in Frameworks */,
 				F133DA6518D0BCE40050864F /* Foundation.framework in Frameworks */,
-				3B0B2F8529754A7BA2AE2627 /* libPods-AppleGuiceUnitTests.a in Frameworks */,
+				CBF52252CCBF2C157EA875B1 /* libPods-AppleGuiceUnitTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +211,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1CF54E01FD80A12004DF674 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -179,6 +226,8 @@
 			children = (
 				81FBD0AD1F8ED221E1DC8101 /* Pods-AppleGuiceUnitTests.debug.xcconfig */,
 				84973227AA693E29CBA3DE6C /* Pods-AppleGuiceUnitTests.release.xcconfig */,
+				03F2C5CB32A5D5BC44513463 /* Pods-BootstrapperTests.debug.xcconfig */,
+				3BCB1DCB69D05BED2C1599A6 /* Pods-BootstrapperTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -294,6 +343,8 @@
 				F18E722716F9135C000BD3CB /* AppleGuice */,
 				F133DA6818D0BCE40050864F /* AppleGuiceUnitTests */,
 				F19102AB1D141E4B005C2F09 /* AppleGuiceWrapper */,
+				F1CF54E41FD80A12004DF674 /* Bootstrapper */,
+				F1CF54F31FD81093004DF674 /* BootstrapperTests */,
 				F18E722416F9135C000BD3CB /* Frameworks */,
 				F18E722316F9135C000BD3CB /* Products */,
 				2E38FC3BC2078EF08A2D6812 /* Pods */,
@@ -306,6 +357,8 @@
 				F18E722216F9135C000BD3CB /* libAppleGuice.a */,
 				F133DA6218D0BCE40050864F /* AppleGuiceUnitTests.xctest */,
 				F19102AA1D141E4B005C2F09 /* AppleGuiceWrapper.framework */,
+				F1CF54E31FD80A12004DF674 /* Bootstrapper */,
+				F11242501FD833A800A276F8 /* BootstrapperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -313,10 +366,12 @@
 		F18E722416F9135C000BD3CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F11242571FD853E900A276F8 /* libExpecta-iOS.a */,
 				F18E722516F9135C000BD3CB /* Foundation.framework */,
 				F133DA6318D0BCE40050864F /* XCTest.framework */,
 				F133DA6618D0BCE40050864F /* UIKit.framework */,
 				392C9521977347E6A8A05659 /* libPods-AppleGuiceUnitTests.a */,
+				1BADD5BAB5136B586A8D97AE /* libPods-BootstrapperTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -380,6 +435,24 @@
 			path = AppleGuiceWrapper;
 			sourceTree = "<group>";
 		};
+		F1CF54E41FD80A12004DF674 /* Bootstrapper */ = {
+			isa = PBXGroup;
+			children = (
+				F1CF54EA1FD80A48004DF674 /* appleGuiceBootstrapper.cpp */,
+			);
+			path = Bootstrapper;
+			sourceTree = "<group>";
+		};
+		F1CF54F31FD81093004DF674 /* BootstrapperTests */ = {
+			isa = PBXGroup;
+			children = (
+				F11242581FD857F500A276F8 /* BootstrapperTests-Info.plist */,
+				F1CF54F41FD81093004DF674 /* BootstrapperTests.m */,
+				F1CF54F61FD81093004DF674 /* Info.plist */,
+			);
+			path = BootstrapperTests;
+			sourceTree = "<group>";
+		};
 		F1E33BDD1A2480D50083660E /* Mocking */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,17 +493,37 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		F11242331FD833A800A276F8 /* BootstrapperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F112424D1FD833A800A276F8 /* Build configuration list for PBXNativeTarget "BootstrapperTests" */;
+			buildPhases = (
+				F11242361FD833A800A276F8 /* [CP] Check Pods Manifest.lock */,
+				F11242371FD833A800A276F8 /* Sources */,
+				F11242421FD833A800A276F8 /* Frameworks */,
+				F112424B1FD833A800A276F8 /* [CP] Copy Pods Resources */,
+				F112424C1FD833A800A276F8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F11242541FD8343D00A276F8 /* PBXTargetDependency */,
+			);
+			name = BootstrapperTests;
+			productName = AppleGuiceUnitTests;
+			productReference = F11242501FD833A800A276F8 /* BootstrapperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F133DA6118D0BCE40050864F /* AppleGuiceUnitTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F133DA7518D0BCE40050864F /* Build configuration list for PBXNativeTarget "AppleGuiceUnitTests" */;
 			buildPhases = (
-				0AA0ABDBF39945E89FF31BB4 /* 📦 Check Pods Manifest.lock */,
+				0AA0ABDBF39945E89FF31BB4 /* [CP] Check Pods Manifest.lock */,
 				F133DA5E18D0BCE40050864F /* Sources */,
 				F133DA5F18D0BCE40050864F /* Frameworks */,
 				F133DA6018D0BCE40050864F /* Resources */,
 				F133DA9518D0BE550050864F /* Bootstrap project */,
-				96B7C4D1674F4D26B75542AB /* 📦 Copy Pods Resources */,
-				609F8C27328CDA4A2981CE55 /* 📦 Embed Pods Frameworks */,
+				96B7C4D1674F4D26B75542AB /* [CP] Copy Pods Resources */,
+				609F8C27328CDA4A2981CE55 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,6 +571,23 @@
 			productReference = F19102AA1D141E4B005C2F09 /* AppleGuiceWrapper.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F1CF54E21FD80A12004DF674 /* Bootstrapper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1CF54E91FD80A12004DF674 /* Build configuration list for PBXNativeTarget "Bootstrapper" */;
+			buildPhases = (
+				F1CF54DF1FD80A12004DF674 /* Sources */,
+				F1CF54E01FD80A12004DF674 /* Frameworks */,
+				F1CF54E11FD80A12004DF674 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bootstrapper;
+			productName = Bootstrapper;
+			productReference = F1CF54E31FD80A12004DF674 /* Bootstrapper */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -492,6 +602,10 @@
 					};
 					F19102A91D141E4B005C2F09 = {
 						CreatedOnToolsVersion = 7.3;
+					};
+					F1CF54E21FD80A12004DF674 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -510,6 +624,8 @@
 				F18E722116F9135C000BD3CB /* AppleGuice */,
 				F133DA6118D0BCE40050864F /* AppleGuiceUnitTests */,
 				F19102A91D141E4B005C2F09 /* AppleGuiceWrapper */,
+				F1CF54E21FD80A12004DF674 /* Bootstrapper */,
+				F11242331FD833A800A276F8 /* BootstrapperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -533,29 +649,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0AA0ABDBF39945E89FF31BB4 /* 📦 Check Pods Manifest.lock */ = {
+		0AA0ABDBF39945E89FF31BB4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppleGuiceUnitTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		609F8C27328CDA4A2981CE55 /* 📦 Embed Pods Frameworks */ = {
+		609F8C27328CDA4A2981CE55 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -563,19 +682,67 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		96B7C4D1674F4D26B75542AB /* 📦 Copy Pods Resources */ = {
+		96B7C4D1674F4D26B75542AB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F11242361FD833A800A276F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BootstrapperTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F112424B1FD833A800A276F8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BootstrapperTests/Pods-BootstrapperTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F112424C1FD833A800A276F8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BootstrapperTests/Pods-BootstrapperTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F133DA9518D0BE550050864F /* Bootstrap project */ = {
@@ -609,6 +776,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F11242371FD833A800A276F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F11242551FD8346E00A276F8 /* BootstrapperTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F133DA5E18D0BCE40050864F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -656,9 +831,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1CF54DF1FD80A12004DF674 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1CF54EB1FD80A48004DF674 /* appleGuiceBootstrapper.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F11242541FD8343D00A276F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1CF54E21FD80A12004DF674 /* Bootstrapper */;
+			targetProxy = F11242531FD8343D00A276F8 /* PBXContainerItemProxy */;
+		};
 		F133DA7218D0BCE40050864F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F18E722116F9135C000BD3CB /* AppleGuice */;
@@ -678,6 +866,85 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F112424E1FD833A800A276F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03F2C5CB32A5D5BC44513463 /* Pods-BootstrapperTests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "BootstrapperTests/BootstrapperTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					Foundation,
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AppleGuice.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				VALID_ARCHS = "$(inherited) i386 x86_64";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F112424F1FD833A800A276F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BCB1DCB69D05BED2C1599A6 /* Pods-BootstrapperTests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "BootstrapperTests/BootstrapperTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					Foundation,
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AppleGuice.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				VALID_ARCHS = "$(inherited) i386 x86_64";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		F133DA7318D0BCE40050864F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81FBD0AD1F8ED221E1DC8101 /* Pods-AppleGuiceUnitTests.debug.xcconfig */;
@@ -702,7 +969,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -739,7 +1006,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -787,7 +1054,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -822,7 +1089,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-all_load",
@@ -961,9 +1228,100 @@
 			};
 			name = Release;
 		};
+		F1CF54E71FD80A12004DF674 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F1CF54E81FD80A12004DF674 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F112424D1FD833A800A276F8 /* Build configuration list for PBXNativeTarget "BootstrapperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F112424E1FD833A800A276F8 /* Debug */,
+				F112424F1FD833A800A276F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F133DA7518D0BCE40050864F /* Build configuration list for PBXNativeTarget "AppleGuiceUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -996,6 +1354,15 @@
 			buildConfigurations = (
 				F19102BB1D141E4B005C2F09 /* Debug */,
 				F19102BC1D141E4B005C2F09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1CF54E91FD80A12004DF674 /* Build configuration list for PBXNativeTarget "Bootstrapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1CF54E71FD80A12004DF674 /* Debug */,
+				F1CF54E81FD80A12004DF674 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

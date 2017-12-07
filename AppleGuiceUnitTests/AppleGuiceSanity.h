@@ -35,7 +35,17 @@
 -(void) test;
 @end
 
+@interface AppleGuiceSanityTestSuperClass : NSObject<AppleGuiceInjectable>
+    iocIvar(TestInjectableSuperClass, standAloneClassInSuperClass);
+    iocProtocol(TestInjectableSuperProtocol, classFromSuperProtocol);
+    iocIvar(NSArray, TestInjectableProtocol);
+@end
 
+@interface AppleGuiceSanityTestClass : AppleGuiceSanityTestSuperClass
+    iocIvar(TestInjectableClass, standAloneClass);
+    iocProtocol(TestInjectableProtocol, classFromProtocol);
+    iocIvar(NSArray, TestInjectableSuperProtocol);
+@end
 
 
 @interface AppleGuiceSanity : TestBase

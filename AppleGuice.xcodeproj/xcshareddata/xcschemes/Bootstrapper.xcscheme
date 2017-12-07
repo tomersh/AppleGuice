@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0910"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F18E722116F9135C000BD3CB"
-               BuildableName = "libAppleGuice.a"
-               BlueprintName = "AppleGuice"
+               BlueprintIdentifier = "F1CF54E21FD80A12004DF674"
+               BuildableName = "Bootstrapper"
+               BlueprintName = "Bootstrapper"
+               ReferencedContainer = "container:AppleGuice.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F11242331FD833A800A276F8"
+               BuildableName = "BootstrapperTests.xctest"
+               BlueprintName = "BootstrapperTests"
                ReferencedContainer = "container:AppleGuice.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,24 +47,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F133DA6118D0BCE40050864F"
-               BuildableName = "AppleGuiceUnitTests.xctest"
-               BlueprintName = "AppleGuiceUnitTests"
+               BlueprintIdentifier = "F11242331FD833A800A276F8"
+               BuildableName = "BootstrapperTests.xctest"
+               BlueprintName = "BootstrapperTests"
                ReferencedContainer = "container:AppleGuice.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "TestBase">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F18E722116F9135C000BD3CB"
-            BuildableName = "libAppleGuice.a"
-            BlueprintName = "AppleGuice"
+            BlueprintIdentifier = "F1CF54E21FD80A12004DF674"
+            BuildableName = "Bootstrapper"
+            BlueprintName = "Bootstrapper"
             ReferencedContainer = "container:AppleGuice.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -68,15 +77,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F18E722116F9135C000BD3CB"
-            BuildableName = "libAppleGuice.a"
-            BlueprintName = "AppleGuice"
+            BlueprintIdentifier = "F1CF54E21FD80A12004DF674"
+            BuildableName = "Bootstrapper"
+            BlueprintName = "Bootstrapper"
             ReferencedContainer = "container:AppleGuice.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -86,15 +96,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F18E722116F9135C000BD3CB"
-            BuildableName = "libAppleGuice.a"
-            BlueprintName = "AppleGuice"
+            BlueprintIdentifier = "F1CF54E21FD80A12004DF674"
+            BuildableName = "Bootstrapper"
+            BlueprintName = "Bootstrapper"
             ReferencedContainer = "container:AppleGuice.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
