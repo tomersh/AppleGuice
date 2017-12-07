@@ -198,20 +198,6 @@ void parseLine(string &headerEntry,
 	}
 }
 
-set<string> filterSuperProtocols(set<string> superProtocols) {
-    set<string> filteredSuperProtocols;
-    
-    for(set<string>::const_iterator protocolNameIterator = superProtocols.begin(); protocolNameIterator != superProtocols.end(); protocolNameIterator++ ) {
-        string protocolName = *protocolNameIterator;
-        
-        if (!isNSObject(protocolName)) {
-            filteredSuperProtocols.insert(protocolName);
-        }
-        
-    }
-    return filteredSuperProtocols;
-}
-
 void addBindToResultList(string &className,
                          set<string> implementedProtocols,
                          unordered_map<string, set<string> > &protocolToSuperProtocols,
