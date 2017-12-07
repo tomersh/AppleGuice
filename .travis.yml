@@ -8,7 +8,7 @@ before_install:
  - sudo easy_install cpp-coveralls
  - pod install
 script:
- - xcodebuild test -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.1' -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH'
- - xcodebuild test -destination 'platform=macOS,OS=10.8' -workspace AppleGuice.xcworkspace -scheme Bootstrapper -configuration Debug
+ - xcodebuild test -sdk iphonesimulator9.3 -workspace AppleGuice.xcworkspace -scheme AppleGuice -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES ONLY_ACTIVE_ARCH=NO GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS GCC_GCOV_FLUSH'
+ - xcodebuild test  -sdk macosx -workspace AppleGuice.xcworkspace -scheme Bootstrapper -configuration Debug
 after_success:
  - ruby ./coveralls.rb --exclude-folder Pods --exclude-folder AppleGuicePreCompileBinder --exclude-folder Bootstrapper --exclude-folder AppleGuiceUnitTests
