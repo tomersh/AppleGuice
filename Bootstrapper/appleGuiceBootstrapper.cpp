@@ -40,8 +40,6 @@ using namespace std;
 const static string protocolLabel = "@protocol";
 const static string interfaceLabel = "@interface";
 const static string NSObject = "NSObject";
-const static string UIPrefix = "UI";
-const static string NSPrefix = "NS";
 const static string appleGuice = "AppleGuice";
 
 template<class T>
@@ -249,9 +247,19 @@ void addBindToResultList(string &className,
     }
 }
 
+bool hasPrefixToIgnore(string className, set<string> prefixesToIgnore) {
+    for(set<string>::const_iterator prefixesToIgnoreIterator = prefixesToIgnore.begin(); prefixesToIgnoreIterator != prefixesToIgnore.end(); prefixesToIgnoreIterator++ ) {
+        if (isPrefix(*prefixesToIgnoreIterator, className)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void protocolsImplementedByClass(string &className,
                                  unordered_map <string, string> &classToSuperClass,
                                  unordered_map <string, set<string> > &classToProtocols,
+                                 set<string> prefixesToIgnore,
                                  set<string> &result)
 {
     
@@ -265,7 +273,7 @@ void protocolsImplementedByClass(string &className,
         
         if (contains(classToSuperClass, curClassName)) {
             string superClass = classToSuperClass[curClassName];
-            if (!isNSObject(superClass) && superClass.find(UIPrefix) != 0 && superClass.find(NSPrefix) != 0) {
+            if (!isNSObject(superClass) && !hasPrefixToIgnore(superClass, prefixesToIgnore)) {
                 curClassName = superClass;
             }
             else {
@@ -352,7 +360,7 @@ string readFromStdin() {
     return stringBuilder.str();
 }
 
-unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntriesAsString) {
+unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntriesAsString, set<string> prefixesToIgnore) {
 	unordered_map<string, set<string> > protocolToSuperProtocols;
 	unordered_map<string, set<string> > classToProtocols;
 	unordered_map<string, string> classToSuperClass;
@@ -374,11 +382,22 @@ unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntr
 
         set<string> implementedProtocols;
         
-        protocolsImplementedByClass(className, classToSuperClass, classToProtocols, implementedProtocols);
+        protocolsImplementedByClass(className, classToSuperClass, classToProtocols, prefixesToIgnore, implementedProtocols);
         
         addBindToResultList(className, implementedProtocols, protocolToSuperProtocols, protocolToImps);
     }
     return protocolToImps;
+}
+
+set<string> getPrefixesToIgnore(string prefixesStr) {
+    set<string> prefixesToIgnore;
+    vector<string> prefixEntries = split(prefixesStr, ",");
+    
+    for(vector<string>::const_iterator prefixesIterator = prefixEntries.begin(); prefixesIterator != prefixEntries.end(); prefixesIterator++ ) {
+        string prefix = *prefixesIterator;
+        prefixesToIgnore.insert(trim(prefix));
+    }
+    return prefixesToIgnore;
 }
 
 int main(int argc, char* argv[])
@@ -388,12 +407,16 @@ int main(int argc, char* argv[])
         fprintf(stderr, "You need to pipe in some data!\n");
         return 1;
     }
-    
+
     string headerEntriesAsString = readFromStdin();
     
     headerEntriesAsString = trim(headerEntriesAsString);
     
-    unordered_map<string, set<string> > protocolToImps = generateProtocolsToImpsMap(headerEntriesAsString);
+    set<string> prefixesToIgnore;
+    if (argc > 1) {
+        prefixesToIgnore = getPrefixesToIgnore(argv[1]);
+    }
+    unordered_map<string, set<string> > protocolToImps = generateProtocolsToImpsMap(headerEntriesAsString, prefixesToIgnore);
     
     //generate code
     string generatedCode = generateAppleGuiceCode(protocolToImps);

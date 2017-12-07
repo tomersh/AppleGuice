@@ -22,6 +22,7 @@ bootstrapper="bootStrapper";
 
 path=$1;
 scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+excludePrefixes=$5
 
 if [ ! -f ${scriptDir}/${bootstrapper} ]
 then
@@ -31,7 +32,7 @@ fi
 
 interfaceDeclerations=$(grep -sirhE --include=*.h --exclude=$3 --exclude-dir=$4 --regexp='((@interface[^:]+:\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${path});
 
-result=$(echo "${interfaceDeclerations}" | ${scriptDir}/${bootstrapper});
+result=$(echo "${interfaceDeclerations}" | ${scriptDir}/${bootstrapper} ${excludePrefixes});
 
 if [ "$2" ]; then
 	echo > $2;
