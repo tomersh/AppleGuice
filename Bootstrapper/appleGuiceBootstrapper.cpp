@@ -199,72 +199,77 @@ void parseLine(string &headerEntry,
 }
 
 void addBindToResultList(string &className,
-						 set<string> implementedProtocols,
-						 unordered_map<string, set<string> > &protocolToSuperProtocols, 
-						 unordered_map <string, set<string> > &protocolToImps) 
+                         set<string> implementedProtocols,
+                         unordered_map<string, set<string> > &protocolToSuperProtocols,
+                         unordered_map <string, set<string> > &protocolToImps)
 {
+    
+    while (implementedProtocols.size() > 0) {
+        set<string> nextRoundImplementedProtocols;
+        for(set<string>::const_iterator protocolNameIterator = implementedProtocols.begin(); protocolNameIterator != implementedProtocols.end(); protocolNameIterator++ ) {
+            
+            string protocolName = *protocolNameIterator;
+            
+            //cout << "className: [" <<  className <<  "] protocolName: [" << protocolName << "]" << endl;
+            
+            if (!contains(protocolToImps, protocolName)) {
+                set<string> protocolList;
+                protocolToImps[protocolName] = protocolList;
+            }
+            
+            protocolToImps[protocolName].insert(className);
+            
+            if (protocolName.find(appleGuice) == string::npos && contains(protocolToSuperProtocols, protocolName)) {
+                set<string> superProtocols = protocolToSuperProtocols[protocolName];
+                if (contains(superProtocols, NSObject)) {
+                    protocolToSuperProtocols[protocolName].erase(NSObject);
+                }
+                if (superProtocols.size() != 0) {
+                    nextRoundImplementedProtocols.insert(superProtocols.begin(), superProtocols.end());
+                }
+            }
+        }
+        implementedProtocols = nextRoundImplementedProtocols;
+    }
+}
 
-	for(set<string>::const_iterator protocolNameIterator = implementedProtocols.begin(); protocolNameIterator != implementedProtocols.end(); protocolNameIterator++ ) {
-		
-		string protocolName = *protocolNameIterator;
-		
-		//cout << "className: [" <<  className <<  "] protocolName: [" << protocolName << "]" << endl;
-
-		if (!contains(protocolToImps, protocolName)) {
-			set<string> protocolList;
-			protocolToImps[protocolName] = protocolList;
-		}
-
-		protocolToImps[protocolName].insert(className);
-
-		if (contains(protocolToSuperProtocols, protocolName)) {
-			set<string> superProtocols = protocolToSuperProtocols[protocolName];
-			addBindToResultList(className, superProtocols, protocolToSuperProtocols, protocolToImps);
-		}
-	}
+bool hasPrefixToIgnore(string className, set<string> prefixesToIgnore) {
+    for(set<string>::const_iterator prefixesToIgnoreIterator = prefixesToIgnore.begin(); prefixesToIgnoreIterator != prefixesToIgnore.end(); prefixesToIgnoreIterator++ ) {
+        if (isPrefix(*prefixesToIgnoreIterator, className)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 void protocolsImplementedByClass(string &className,
-				   unordered_map <string, string> &classToSuperClass,
-			   unordered_map <string, set<string> > &classToProtocols,
-			   set<string> &result) 
+                                 unordered_map <string, string> &classToSuperClass,
+                                 unordered_map <string, set<string> > &classToProtocols,
+                                 set<string> prefixesToIgnore,
+                                 set<string> &result)
 {
-
-	if (contains(classToProtocols, className)) {
-		set<string> implementedProtocols = classToProtocols[className];
-		//must be a better way to union sets
-		for(set<string>::const_iterator it = implementedProtocols.begin(); it != implementedProtocols.end(); it++ ) {
-			string protocolName = *it;
-			result.insert(protocolName);
-		}
-	}
-
-	if (contains(classToSuperClass, className)) {
-		string superClass = classToSuperClass[className];
-		protocolsImplementedByClass(superClass, classToSuperClass, classToProtocols, result);
-	}
-}	
-
-void travereOverClassHierarchAndAct(string &className, unordered_map<string, set<string> > &protocolToSuperProtocols, 
-			   unordered_map <string, string> &classToSuperClass,
-			   unordered_map <string, set<string> > &classToProtocols,
-			   unordered_map <string, set<string> > &protocolToImps) 
-{
-	
-	set<string> implementedProtocols;
-	protocolsImplementedByClass(className, classToSuperClass, classToProtocols, implementedProtocols);
-	
-	addBindToResultList(className, implementedProtocols, protocolToSuperProtocols, protocolToImps);
-	
-	//cout << ">> " << className << " ";
-	
-	if (!contains(classToSuperClass, className)) {
-		//cout << "||" << endl;
-		return;
-	}
-
-	string superClass = classToSuperClass[className];
-	travereOverClassHierarchAndAct(superClass, protocolToSuperProtocols, classToSuperClass, classToProtocols, protocolToImps);
+    
+    string curClassName = className;
+    
+    while (true) {
+        if (contains(classToProtocols, curClassName)) {
+            set<string> implementedProtocols = classToProtocols[curClassName];
+            result.insert(implementedProtocols.begin(), implementedProtocols.end());
+        }
+        
+        if (contains(classToSuperClass, curClassName)) {
+            string superClass = classToSuperClass[curClassName];
+            if (!isNSObject(superClass) && !hasPrefixToIgnore(superClass, prefixesToIgnore)) {
+                curClassName = superClass;
+            }
+            else {
+                break;
+            }
+        }
+        else {
+            break;
+        }
+    }
 }
 
 
@@ -341,43 +346,63 @@ string readFromStdin() {
     return stringBuilder.str();
 }
 
-unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntriesAsString) {
-    unordered_map<string, set<string> > protocolToSuperProtocols;
-    unordered_map<string, set<string> > classToProtocols;
-    unordered_map<string, string> classToSuperClass;
+unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntriesAsString, set<string> prefixesToIgnore) {
+	unordered_map<string, set<string> > protocolToSuperProtocols;
+	unordered_map<string, set<string> > classToProtocols;
+	unordered_map<string, string> classToSuperClass;
+
+	unordered_map<string, set<string> > protocolToImps;
     
-    unordered_map<string, set<string> > protocolToImps;
-    
-    vector<string> headerEntries = split(headerEntriesAsString, "\n");
-    
-    //parse
-    for(vector<string>::const_iterator headerEntriesIterator = headerEntries.begin(); headerEntriesIterator != headerEntries.end(); headerEntriesIterator++ ) {
-        string entry = *headerEntriesIterator;
-        entry = trim(entry);
-        parseLine(entry, protocolToSuperProtocols, classToSuperClass, classToProtocols);
-    }
-    
-    //build dictionary
+  	vector<string> headerEntries = split(headerEntriesAsString, "\n");
+
+  	//parse
+  	for(vector<string>::const_iterator headerEntriesIterator = headerEntries.begin(); headerEntriesIterator != headerEntries.end(); headerEntriesIterator++ ) {
+		string entry = *headerEntriesIterator;
+		entry = trim(entry);
+		parseLine(entry, protocolToSuperProtocols, classToSuperClass, classToProtocols);
+  	}
+
+  	//build dictionary
     for (unordered_map<string, string>::const_iterator it = classToSuperClass.begin(); it != classToSuperClass.end(); ++it) {
-        string className = it->first;
-        travereOverClassHierarchAndAct(className, protocolToSuperProtocols, classToSuperClass, classToProtocols, protocolToImps);
+    	string className = it->first;
+
+        set<string> implementedProtocols;
+        
+        protocolsImplementedByClass(className, classToSuperClass, classToProtocols, prefixesToIgnore, implementedProtocols);
+        
+        addBindToResultList(className, implementedProtocols, protocolToSuperProtocols, protocolToImps);
     }
     return protocolToImps;
 }
 
+set<string> getPrefixesToIgnore(string prefixesStr) {
+    set<string> prefixesToIgnore;
+    vector<string> prefixEntries = split(prefixesStr, ",");
+    
+    for(vector<string>::const_iterator prefixesIterator = prefixEntries.begin(); prefixesIterator != prefixEntries.end(); prefixesIterator++ ) {
+        string prefix = *prefixesIterator;
+        prefixesToIgnore.insert(trim(prefix));
+    }
+    return prefixesToIgnore;
+}
+
 int main(int argc, char* argv[])
 {
-        if(isatty(fileno(stdin)))
-        {
-            fprintf(stderr, "You need to pipe in some data!\n");
-            return 1;
-        }
-    
-        string headerEntriesAsString = readFromStdin();
+    if(isatty(fileno(stdin)))
+    {
+        fprintf(stderr, "You need to pipe in some data!\n");
+        return 1;
+    }
+
+    string headerEntriesAsString = readFromStdin();
     
     headerEntriesAsString = trim(headerEntriesAsString);
     
-    unordered_map<string, set<string> > protocolToImps = generateProtocolsToImpsMap(headerEntriesAsString);
+    set<string> prefixesToIgnore;
+    if (argc > 1) {
+        prefixesToIgnore = getPrefixesToIgnore(argv[1]);
+    }
+    unordered_map<string, set<string> > protocolToImps = generateProtocolsToImpsMap(headerEntriesAsString, prefixesToIgnore);
     
     //generate code
     string generatedCode = generateAppleGuiceCode(protocolToImps);

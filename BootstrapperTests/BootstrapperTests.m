@@ -21,7 +21,6 @@ EXPMatcherImplementationBegin(bindClassWithProtocol, (NSArray<NSString*>* classe
     for (NSString* className in classes) {
         [classesAsEscapedStrings addObject:[NSString stringWithFormat:@"@\"%@\"", className]];
     }
-    
     match(^BOOL {
         NSString* expected = [NSString stringWithFormat:@"[self.bindingService setImplementationsFromStrings:@[%@] withProtocolAsString:@\"%@\" withBindingType:appleGuiceBindingTypeUserBinding];", [classesAsEscapedStrings componentsJoinedByString:@", "], protocol];
         return [actual rangeOfString:expected].location != NSNotFound;
@@ -33,6 +32,31 @@ EXPMatcherImplementationBegin(bindClassWithProtocol, (NSArray<NSString*>* classe
     
     failureMessageForNotTo(^NSString * {
         return [NSString stringWithFormat:@"%@ should not bind %@", protocol, [classes componentsJoinedByString:@", "]];
+    });
+}
+EXPMatcherImplementationEnd
+
+EXPMatcherInterface(ignoreClassAndProtocolPrefixes, (NSArray<NSString*>* prefixesToIgnore));
+#define ignoreClassAndProtocolPrefixes ignoreClassAndProtocolPrefixes
+EXPMatcherImplementationBegin(ignoreClassAndProtocolPrefixes, (NSArray<NSString*>* prefixesToIgnore)) {
+    
+    match(^BOOL {
+        for (NSString *prefixToIgnore in prefixesToIgnore) {
+            NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"self.bindingService setImplementationsFromStrings:@\\[.*?@\"%@.*?\"\\]", prefixToIgnore] options:0 error:nil];
+            NSTextCheckingResult *match = [regExp firstMatchInString:actual options:0 range:NSMakeRange(0, ((NSString *)actual).length)];
+            if (match) {
+                return NO;
+            }
+        }
+        return YES;
+    });
+    
+    failureMessageForTo(^NSString * {
+        return [NSString stringWithFormat:@"classes with prefixes %@ are not bindable", [prefixesToIgnore componentsJoinedByString:@", "]];
+    });
+    
+    failureMessageForNotTo(^NSString * {
+        return [NSString stringWithFormat:@"classes with prefixes should not bind %@", [prefixesToIgnore componentsJoinedByString:@", "]];
     });
 }
 EXPMatcherImplementationEnd
@@ -50,6 +74,10 @@ struct CommandOutput {
 };
 
 -(struct CommandOutput) _runBootstrapper:(NSArray<NSString*>*) interfaceData {
+    return [self _runBootstrapper:interfaceData ignorePrefixes:nil];
+}
+
+-(struct CommandOutput) _runBootstrapper:(NSArray<NSString*>*) interfaceData ignorePrefixes:(NSArray<NSString *> *)ignoredPrefixes {
     
     NSPipe* resultPipe = [NSPipe pipe];
     NSPipe* errorPipe = [NSPipe pipe];
@@ -64,12 +92,16 @@ struct CommandOutput {
     task.standardOutput = resultPipe;
     task.standardError = errorPipe;
     
+    if (ignoredPrefixes.count > 0) {
+        [task setArguments:@[@"./tmpAgBindings", @"*.framework*", @"Pods", [ignoredPrefixes componentsJoinedByString:@","]]];
+    }
+    
     [task launch];
     
     NSString* dataAsString = [[interfaceData componentsJoinedByString:@"\n"] stringByAppendingString:@"\n"];
     [stdinPipe.fileHandleForWriting writeData:[dataAsString dataUsingEncoding:NSUTF8StringEncoding]];
     [stdinPipe.fileHandleForWriting closeFile];
-   
+    
     [task waitUntilExit];
     
     NSData *resultData = [resultPipe.fileHandleForReading readDataToEndOfFile];
@@ -212,6 +244,22 @@ struct CommandOutput {
     expect(res.result).to.bindClassWithProtocol(@[@"A", @"B"], @"T");
     expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"Q");
     expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"R");
+}
+
+- (void)test_classWithIgnoredPrefix_excludedFromMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"@interface A : UIViewController<T, AppleGuiceInjectable>"] ignorePrefixes:@[@"UI"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"T");
+    expect(res.result).to.ignoreClassAndProtocolPrefixes(@[@"UI"]);
+}
+
+- (void)test_classWithIgnoredStringNotPrefix_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"@interface A : CFMUIViewController", @"@interface CFMUIViewController : UIViewController<AppleGuiceInjectable>"] ignorePrefixes:@[@"UI"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"CFMUIViewController"], @"AppleGuiceInjectable");
+    expect(res.result).to.ignoreClassAndProtocolPrefixes(@[@"UI"]);
 }
 
 - (void)test_notInjectableClass_excludedFromMap {
