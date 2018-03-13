@@ -202,7 +202,7 @@ struct CommandOutput {
 }
 
 
-- (void)test_multipleinjectableInheritedClassOnONeClassDef_appearsOnMap {
+- (void)test_multipleinjectableInheritedClassOnOneClassDef_appearsOnMap {
     struct CommandOutput res = [self _runBootstrapper:
                                 @[@"@interface A : B",
                                   @"@interface B : C<X, Y,Z>",
@@ -268,6 +268,134 @@ struct CommandOutput {
     [self _assertFileHeaderAndFooter:res];
 }
 
+- (void)test_injectableSwiftClass_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : X, AppleGuiceInjectable", @"class X : NSObject"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"AppleGuiceInjectable");
+}
+
+- (void)test_injectableSwiftClassWithBraces_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : X, AppleGuiceInjectable {", @"class X : NSObject"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"AppleGuiceInjectable");
+}
+
+- (void)test_injectableSwiftClassNoNSObjectBaseClass_doesNotAppearOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : AppleGuiceInjectable"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).notTo.bindClassWithProtocol(@[@"A"], @"AppleGuiceInjectable");
+}
+
+- (void)test_nonInjectableSwiftClassWithoutProtocol_doesNotAppearOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).notTo.bindClassWithProtocol(@[@"A"], @"AppleGuiceInjectable");
+}
+
+- (void)test_nonInjectableSwiftClassWithProtocol_doesNotAppearOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"@interface A : X<SomeProtocol>"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).notTo.bindClassWithProtocol(@[@"A"], @"AppleGuiceInjectable");
+}
+
+- (void)test_multipleInjectableSwiftClass_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:
+                                @[@"class A : X, AppleGuiceInjectable",
+                                  @"class B : X, AppleGuiceInjectable",
+                                  @"class X : NSObject"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B"], @"AppleGuiceInjectable");
+}
+
+- (void)test_injectableInheritedSwiftClass_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:
+                                @[@"class A : B",
+                                  @"class B : C",
+                                  @"class C : X, AppleGuiceInjectable",
+                                  @"class X"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"AppleGuiceInjectable");
+}
+
+- (void)test_injectablePartialInheritedSwiftClass_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:
+                                @[@"class A : B",
+                                  @"class B : C, AppleGuiceInjectable",
+                                  @"class C : X"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B"], @"AppleGuiceInjectable");
+}
+
+- (void)test_multipleinjectableInheritedSwiftClass_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:
+                                @[@"class A : B",
+                                  @"class B : C, Y",
+                                  @"class C : X, AppleGuiceInjectable"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"AppleGuiceInjectable");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B"], @"Y");
+}
+
+
+- (void)test_multipleinjectableInheritedSwiftClassOnOneClassDef_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:
+                                @[@"class A : B",
+                                  @"class B : C, X, Y, Z",
+                                  @"class C : X, AppleGuiceInjectable"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"AppleGuiceInjectable");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B"], @"X");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B"], @"Y");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B"], @"Z");
+}
+
+- (void)test_injectableSwiftClassFromProtocol_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : X, P", @"protocol P: AppleGuiceInjectable"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"AppleGuiceInjectable");
+}
+
+- (void)test_injectableSwiftClassFromParentProtocol_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : X, P ,Q ,R", @"protocol P: Z", @"protocol Z: AppleGuiceInjectable"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"Z");
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"P");
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"AppleGuiceInjectable");
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"Q");
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"R");
+}
+
+- (void)test_injectableSwiftClassFromParentClass_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : B", @"class B : C, T", @"class C : X, P, Q, R",  @"protocol P: Z", @"protocol Z: AppleGuiceInjectable"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"Z");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"P");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"AppleGuiceInjectable");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B"], @"T");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"Q");
+    expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"R");
+}
+
+- (void)test_swiftClassWithIgnoredPrefix_excludedFromMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : UIViewController, T, AppleGuiceInjectable"] ignorePrefixes:@[@"UI"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"A"], @"T");
+    expect(res.result).to.ignoreClassAndProtocolPrefixes(@[@"UI"]);
+}
 
 -(void) _assertFileHeaderAndFooter:(struct CommandOutput) res {
     expect(res.result).to.beginWith(generatedHeader);

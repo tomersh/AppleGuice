@@ -37,8 +37,10 @@ using namespace std::tr1;
 
 using namespace std;
 
-const static string protocolLabel = "@protocol";
-const static string interfaceLabel = "@interface";
+const static string protocolLabelObjC = "@protocol";
+const static string protocolLabelSwift = "protocol";
+const static string interfaceLabelObjC = "@interface";
+const static string classLabelSwift = "class";
 const static string NSObject = "NSObject";
 const static string appleGuice = "AppleGuice";
 
@@ -114,37 +116,78 @@ set<string> parseProtocolListAsString(string &protocolListAsString)
 	return implementedProtocols;
 }
 
-void parseProtocolEntry(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols) 
-{ //@protocol protocolName <p1, p2 , ... , pn> 
-	
-	//cout << "parsing line: " << entry << " ";
-
-	unsigned long protocolLength = string(protocolLabel).length();
-	
-	size_t protocolNameEnd = entry.find('<');
-	if (protocolNameEnd == string::npos) return; // bad entry syntax
-	string protocolName = entry.substr(protocolLength + 1, protocolNameEnd - protocolLength - 1);
-	protocolName = trim(protocolName);
-
-	string protocolListAsString = entry.substr(protocolNameEnd + 1,entry.find('>') - protocolNameEnd - 1);
-
-	set<string> implementedProtocols = parseProtocolListAsString(protocolListAsString);
-
-	// 	set<string>::const_iterator implementedProtocolsIterator;
-	// for( implementedProtocolsIterator = implementedProtocols.begin(); implementedProtocolsIterator != implementedProtocols.end(); implementedProtocolsIterator++ ) {
-	// 	cout << "[" << *implementedProtocolsIterator << "] ";
-	// }
-	// cout << endl;
-
-	protocolToSuperProtocols[protocolName] = implementedProtocols;
+vector<string> parseSuperClassOrProtocolsListAsString(string &superClassOrProtocolListAsString) {
+    superClassOrProtocolListAsString = trim(superClassOrProtocolListAsString);
+    vector<string> implementedSuperClassOrProtocolList = split(superClassOrProtocolListAsString, ",");
+    vector<string> implementedSuperClassOrProtocolTrimmedList;
+    
+    for (vector<string>::const_iterator item = implementedSuperClassOrProtocolList.begin(); item != implementedSuperClassOrProtocolList.end(); item++ ) {
+        string itemName = *item;
+        itemName = trim(itemName);
+        implementedSuperClassOrProtocolTrimmedList.push_back(itemName);
+    }
+ 
+    return implementedSuperClassOrProtocolTrimmedList;
 }
 
-void parseInterfaceEntry(string &entry,unordered_map <string, string> &classToSuperClass, unordered_map <string, set<string> > &classToProtocols) 
+void parseProtocolEntry(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols, string protocolLabel, char endProtocolNameChar, char endProtocolListChar, bool shouldAddProtocolWithNoSuper) {
+    //cout << "parsing line: " << entry << " ";
+    size_t protocolStart = entry.find(protocolLabel);
+    if (protocolStart == string::npos) {
+        return;
+    }
+    unsigned long protocolLength = string(protocolLabel).length();
+    
+    size_t protocolNameEnd = entry.find(endProtocolNameChar);
+    bool noSuperProtocols = false;
+    if (protocolNameEnd == string::npos) {
+        noSuperProtocols = true;
+        
+        protocolNameEnd = entry.find(endProtocolListChar);
+        if (protocolNameEnd == string::npos) {
+            protocolNameEnd = entry.length();
+        }
+    }
+    size_t protocolNameStart = protocolStart + protocolLength + 1;
+    string protocolName = entry.substr(protocolStart + protocolLength + 1, protocolNameEnd - protocolNameStart);
+    protocolName = trim(protocolName);
+    
+    if (noSuperProtocols && shouldAddProtocolWithNoSuper) {
+        set<string> emptyImplementedProtocols;
+        protocolToSuperProtocols[protocolName] = emptyImplementedProtocols;
+        return;
+    }
+    
+    size_t relevantStringLengthToSearch = entry.find(endProtocolListChar) != string::npos ? entry.find(endProtocolListChar) : entry.length();
+    string protocolListAsString = entry.substr(protocolNameEnd + 1, relevantStringLengthToSearch - protocolNameEnd - 1);
+    
+    set<string> implementedProtocols = parseProtocolListAsString(protocolListAsString);
+    
+    //     set<string>::const_iterator implementedProtocolsIterator;
+    // for( implementedProtocolsIterator = implementedProtocols.begin(); implementedProtocolsIterator != implementedProtocols.end(); implementedProtocolsIterator++ ) {
+    //     cout << "[" << *implementedProtocolsIterator << "] ";
+    // }
+    // cout << endl;
+    
+    protocolToSuperProtocols[protocolName] = implementedProtocols;
+}
+
+void parseProtocolEntryObjC(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols) {
+    //@protocol protocolName <p1, p2 , ... , pn>
+    parseProtocolEntry(entry, protocolToSuperProtocols, protocolLabelObjC, '<', '>', false);
+}
+
+void parseProtocolEntrySwift(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols) {
+    //protocol protocolName: p1, p2, p3
+    parseProtocolEntry(entry, protocolToSuperProtocols, protocolLabelSwift, ':', '{', true);
+}
+
+void parseInterfaceEntryObjC(string &entry,unordered_map <string, string> &classToSuperClass, unordered_map <string, set<string> > &classToProtocols)
 { //@interface className : superClass <p1, p2 , ... , pn> 
 	
 	//cout << "parsing line: " << entry << " ";
 	
-	unsigned long interfaceLength = string(interfaceLabel).length();
+	unsigned long interfaceLength = string(interfaceLabelObjC).length();
 
 	size_t classNameEnd = entry.find(':');
 	if (classNameEnd == string::npos) return; // bad entry syntax
@@ -184,18 +227,129 @@ void parseInterfaceEntry(string &entry,unordered_map <string, string> &classToSu
 	classToProtocols[className] = implementedProtocols;
 }
 
+void parseClassEntrySwift(string &entry,unordered_map <string, string> &classToSuperClass, unordered_map <string, set<string> > &classToProtocols,
+    unordered_map<string, string> &swiftClassToUknownSuperClassOrProtocol)
+{ //class className : superClass, p1, p2 , ... , pn
+    
+    //cout << "parsing line: " << entry << " ";
+    
+    size_t classStart = entry.find(classLabelSwift);
+    unsigned long classLength = string(classLabelSwift).length();
+    
+    size_t classNameEnd = entry.find(':');
+    bool hasSuperClassOrProtocols = true;
+    if (classNameEnd == string::npos) { // no super class or protocols
+        hasSuperClassOrProtocols = false;
+        
+        classNameEnd = entry.find('{');
+        if (classNameEnd == string::npos) {
+            classNameEnd = entry.length();
+        }
+        
+    }
+    size_t classNameStart = classStart + classLength + 1;
+    string className = entry.substr(classNameStart, classNameEnd - classNameStart);
+    className = trim(className);
+    
+    if (hasSuperClassOrProtocols == false) {
+        //cout << "class name: " << className << " super: no, plist? no" << endl;
+        return;
+    }
+    
+    size_t startOfSuperClassOrProtocols = classNameEnd + 1;
+    size_t endOfSuperClassOrProtocols = entry.find('{') != string::npos ? entry.find('{') : entry.length() + 1;
+    string superClassOrProtocolListAsString = entry.substr(startOfSuperClassOrProtocols, endOfSuperClassOrProtocols - 1 - startOfSuperClassOrProtocols);
+    
+    vector<string> superClassOrProtocolList = parseSuperClassOrProtocolsListAsString(superClassOrProtocolListAsString);
+    
+    if (superClassOrProtocolList.size() == 0) { //If we enter this if, means the statement is malformed
+        return;
+    }
+    string superClassOrProtocol = superClassOrProtocolList.front();
+
+    swiftClassToUknownSuperClassOrProtocol[className] = superClassOrProtocol;
+
+    if (superClassOrProtocolList.size() > 1) { //We aren't sure if the first is class/protocol. The rest are definetly protocols!
+        set<string> implementedProtocols(superClassOrProtocolList.begin() + 1, superClassOrProtocolList.end());
+        classToProtocols[className] = implementedProtocols;
+    }
+}
+
+bool lineHasComponent(string &entry, string componentToFind) {
+    vector<string> lineComponents = split(entry, " ");
+    
+    for(vector<string>::const_iterator component = lineComponents.begin(); component != lineComponents.end(); component++ ) {
+        string componentName = *component;
+        componentName = trim(componentName);
+        if (componentName.compare(componentToFind) == 0) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+bool lineHasSwiftProtocol(string &entry) {
+    return lineHasComponent(entry, protocolLabelSwift);
+}
+
+bool lineHasSwiftClass(string &entry) {
+    return lineHasComponent(entry, classLabelSwift);
+}
+
+//TODO deal with extensions
+
 void parseLine(string &headerEntry, 
 			   unordered_map<string, set<string> > &protocolToSuperProtocols, 
 			   unordered_map <string, string> &classToSuperClass,
-			   unordered_map <string, set<string> > &classToProtocols) 
+			   unordered_map <string, set<string> > &classToProtocols,
+               unordered_map<string, string> &swiftClassToUknownSuperClassOrProtocol)
 {
 
-	if (isPrefix(protocolLabel, headerEntry)) {
-	  parseProtocolEntry(headerEntry, protocolToSuperProtocols);
+	if (isPrefix(protocolLabelObjC, headerEntry)) { //for Objective C
+	  parseProtocolEntryObjC(headerEntry, protocolToSuperProtocols);
 	}
-	else {
-	  parseInterfaceEntry(headerEntry, classToSuperClass, classToProtocols);
+	else if (isPrefix(interfaceLabelObjC, headerEntry)) { //for Objective C
+	  parseInterfaceEntryObjC(headerEntry, classToSuperClass, classToProtocols);
 	}
+    else if (lineHasSwiftProtocol(headerEntry)) {
+        parseProtocolEntrySwift(headerEntry, protocolToSuperProtocols);
+    }
+    else if (lineHasSwiftClass(headerEntry)) {
+        parseClassEntrySwift(headerEntry, classToSuperClass, classToProtocols, swiftClassToUknownSuperClassOrProtocol);
+    }
+}
+
+void resolveSwiftClassOrProtocolMap(unordered_map<string, set<string>>                          &protocolToSuperProtocols,
+                                    unordered_map <string, string> &classToSuperClass,
+                                    unordered_map <string, set<string> > &classToProtocols,
+                                    unordered_map<string, string> &swiftClassToUknownSuperClassOrProtocol) {
+    //build dictionary
+    for (unordered_map<string, string>::const_iterator it = swiftClassToUknownSuperClassOrProtocol.begin(); it != swiftClassToUknownSuperClassOrProtocol.end(); ++it) {
+        
+        string className = it->first;
+        string superClassOrProtocol = it->second;
+
+        unordered_map<string, set<string>>::const_iterator protocolFindIterator = protocolToSuperProtocols.find(superClassOrProtocol);
+        if (protocolFindIterator != protocolToSuperProtocols.end()) {
+            //This is a protocol
+            //Search in classToProtocols for key with className
+            if (contains(classToProtocols, className)) {
+                //If found add to set.
+                set<string> implementedProtocols = classToProtocols[className];
+                implementedProtocols.insert(superClassOrProtocol);
+            }
+            else {
+                //If no - create a new set
+                set<string> implementedProtocols;
+                implementedProtocols.insert(superClassOrProtocol);
+                classToProtocols[className] = implementedProtocols;
+            }
+        }
+        else { //if it's not a protocol - it means it's a class!
+            classToSuperClass[className] = superClassOrProtocol;
+        }
+    }
 }
 
 void addBindToResultList(string &className,
@@ -353,14 +507,21 @@ unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntr
 
 	unordered_map<string, set<string> > protocolToImps;
     
+    /*In Swift in case of class definition - class someClass: x, y, z
+     We don't know if "x" is a class, a protocol, a struct or an enum. So we will keep a map of
+     classes to their respective x's. Once we have the class and protocol list, we will check for each questionable case if it's a class or not. If it's in the class list, we will update the classToSuperClass map. If it's in the protocol list, we will update the classToProtocols map. Otherwise it's a class or a protocol not defined by us. So in these cases the Boostrapper will ignore it.*/
+    unordered_map<string, string> swiftClassToUknownSuperClassOrProtocol;
+    
   	vector<string> headerEntries = split(headerEntriesAsString, "\n");
 
   	//parse
   	for(vector<string>::const_iterator headerEntriesIterator = headerEntries.begin(); headerEntriesIterator != headerEntries.end(); headerEntriesIterator++ ) {
 		string entry = *headerEntriesIterator;
 		entry = trim(entry);
-		parseLine(entry, protocolToSuperProtocols, classToSuperClass, classToProtocols);
+		parseLine(entry, protocolToSuperProtocols, classToSuperClass, classToProtocols, swiftClassToUknownSuperClassOrProtocol);
   	}
+    
+    resolveSwiftClassOrProtocolMap(protocolToSuperProtocols, classToSuperClass, classToProtocols, swiftClassToUknownSuperClassOrProtocol);
 
   	//build dictionary
     for (unordered_map<string, string>::const_iterator it = classToSuperClass.begin(); it != classToSuperClass.end(); ++it) {

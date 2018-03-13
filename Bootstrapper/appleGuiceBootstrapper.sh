@@ -30,7 +30,14 @@ then
     make EXENAME=${bootstrapper} CXXFLAGS=-mios-version-min=7.0.0
 fi
 
-interfaceDeclerations=$(grep -sirhE --include=*.h --exclude=$3 --exclude-dir=$4 --regexp='((@interface[^:]+:\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${path});
+interfaceDeclerationsObjC=$(grep -sirhE --include=*.h --regexp='((@interface[^:]+:\s*[^>{}*/!]*>?)|(@protocol[^<]*<[^>]+>))' ${path});
+
+interfaceDeclerationsSwift=$(grep -sirhE --include=*.swift --regexp='((class|protocol)[^:()]+:\s*[^{]*{)' ${path});
+
+interfaceDeclerations=""
+
+interfaceDeclerations+=${interfaceDeclerationsObjC}
+interfaceDeclerations+=${interfaceDeclerationsSwift}
 
 result=$(echo "${interfaceDeclerations}" | ${scriptDir}/${bootstrapper} ${excludePrefixes});
 
