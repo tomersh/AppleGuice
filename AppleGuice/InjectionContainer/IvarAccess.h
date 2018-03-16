@@ -63,6 +63,8 @@
 #import <Cocoa/Cocoa.h>
 #endif
 
+#import <objc/runtime.h>
+
 @interface NSBlock : NSObject
 @end
 

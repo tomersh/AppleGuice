@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => 'https://github.com/tomersh/AppleGuice.git', :tag => 'v' + s.version.to_s }
   s.source_files  = 'AppleGuice/**/*.{h,m,mm}'
+  s.private_header_files = 'AppleGuice/InjectionContainer/IvarAccess.h'
   s.preserve_paths = 'Bootstrapper/*', 'AppleGuicePreCompileBinder/*'
   s.exclude_files = 'AppleGuice/AppleGuiceBindingBootstrapper.m'
 
