@@ -389,6 +389,22 @@ struct CommandOutput {
     expect(res.result).to.bindClassWithProtocol(@[@"A", @"B", @"C"], @"R");
 }
 
+- (void)test_injectableSwiftClassInModule_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : B, X, AppleGuiceInjectable, ModuleAppleGuiceModule", @"protocol X"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"Module.A"], @"X");
+    expect(res.result).to.bindClassWithProtocol(@[@"Module.A"], @"AppleGuiceInjectable");
+}
+
+- (void)test_injectableSwiftClassAndProtocolInModule_appearsOnMap {
+    struct CommandOutput res = [self _runBootstrapper:@[@"class A : B, X, AppleGuiceInjectable, ModuleAppleGuiceModule", @"protocol X : ModuleAppleGuiceModule"]];
+    
+    [self _assertFileHeaderAndFooter:res];
+    expect(res.result).to.bindClassWithProtocol(@[@"Module.A"], @"Module.X");
+    expect(res.result).to.bindClassWithProtocol(@[@"Module.A"], @"AppleGuiceInjectable");
+}
+
 - (void)test_swiftClassWithIgnoredPrefix_excludedFromMap {
     struct CommandOutput res = [self _runBootstrapper:@[@"class A : UIViewController, T, AppleGuiceInjectable"] ignorePrefixes:@[@"UI"]];
     

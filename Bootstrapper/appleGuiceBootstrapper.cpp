@@ -43,6 +43,7 @@ const static string interfaceLabelObjC = "@interface";
 const static string classLabelSwift = "class";
 const static string NSObject = "NSObject";
 const static string appleGuice = "AppleGuice";
+const static string appleGuiceModule = "AppleGuiceModule";
 
 template<class T>
 bool contains(set<T> container, string key) {
@@ -101,6 +102,24 @@ bool isPrefix(string const &s1, string const &s2)
 	return true;
 }
 
+string moduleNameFromProtocolsList(set<string> protocols) {
+    for (set<string>::const_iterator item = protocols.begin(); item != protocols.end(); item++ ) {
+        string protocolName = *item;
+        size_t protocolStart = protocolName.find(appleGuiceModule);
+        if (protocolStart != string::npos) {
+            return protocolName.substr(0, protocolStart);
+        }
+    }
+    return "";
+}
+
+void addClassOrProtocolToTheModuleMapIfNeeded(string classOrProtocol, set<string> protocols, unordered_map <string, string> &classOrProtocolToModule) {
+    string moduleNameForProtocol = moduleNameFromProtocolsList(protocols);
+    if (moduleNameForProtocol.length() > 0) {
+        classOrProtocolToModule[classOrProtocol] = moduleNameForProtocol;
+    }
+}
+
 set<string> parseProtocolListAsString(string &protocolListAsString) 
 {
 	protocolListAsString = trim(protocolListAsString);
@@ -130,7 +149,7 @@ vector<string> parseSuperClassOrProtocolsListAsString(string &superClassOrProtoc
     return implementedSuperClassOrProtocolTrimmedList;
 }
 
-void parseProtocolEntry(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols, string protocolLabel, char endProtocolNameChar, char endProtocolListChar, bool shouldAddProtocolWithNoSuper) {
+void parseProtocolEntry(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols, unordered_map <string, string> &classOrProtocolToModule, string protocolLabel, char endProtocolNameChar, char endProtocolListChar, bool shouldAddProtocolWithNoSuper) {
     //cout << "parsing line: " << entry << " ";
     size_t protocolStart = entry.find(protocolLabel);
     if (protocolStart == string::npos) {
@@ -162,6 +181,8 @@ void parseProtocolEntry(string &entry, unordered_map<string, set<string> > &prot
     string protocolListAsString = entry.substr(protocolNameEnd + 1, relevantStringLengthToSearch - protocolNameEnd - 1);
     
     set<string> implementedProtocols = parseProtocolListAsString(protocolListAsString);
+
+    addClassOrProtocolToTheModuleMapIfNeeded(protocolName, implementedProtocols, classOrProtocolToModule);
     
     //     set<string>::const_iterator implementedProtocolsIterator;
     // for( implementedProtocolsIterator = implementedProtocols.begin(); implementedProtocolsIterator != implementedProtocols.end(); implementedProtocolsIterator++ ) {
@@ -172,17 +193,17 @@ void parseProtocolEntry(string &entry, unordered_map<string, set<string> > &prot
     protocolToSuperProtocols[protocolName] = implementedProtocols;
 }
 
-void parseProtocolEntryObjC(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols) {
+void parseProtocolEntryObjC(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols, unordered_map <string, string> &classOrProtocolToModule) {
     //@protocol protocolName <p1, p2 , ... , pn>
-    parseProtocolEntry(entry, protocolToSuperProtocols, protocolLabelObjC, '<', '>', false);
+    parseProtocolEntry(entry, protocolToSuperProtocols, classOrProtocolToModule, protocolLabelObjC, '<', '>', false);
 }
 
-void parseProtocolEntrySwift(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols) {
+void parseProtocolEntrySwift(string &entry, unordered_map<string, set<string> > &protocolToSuperProtocols, unordered_map <string, string> &classOrProtocolToModule) {
     //protocol protocolName: p1, p2, p3
-    parseProtocolEntry(entry, protocolToSuperProtocols, protocolLabelSwift, ':', '{', true);
+    parseProtocolEntry(entry, protocolToSuperProtocols, classOrProtocolToModule, protocolLabelSwift, ':', '{', true);
 }
 
-void parseInterfaceEntryObjC(string &entry,unordered_map <string, string> &classToSuperClass, unordered_map <string, set<string> > &classToProtocols)
+void parseInterfaceEntryObjC(string &entry,unordered_map <string, string> &classToSuperClass, unordered_map <string, set<string> > &classToProtocols, unordered_map <string, string> &classOrProtocolToModule)
 { //@interface className : superClass <p1, p2 , ... , pn> 
 	
 	//cout << "parsing line: " << entry << " ";
@@ -219,7 +240,8 @@ void parseInterfaceEntryObjC(string &entry,unordered_map <string, string> &class
 	//cout << "protocolListAsString=[" << protocolListAsString << "]" << endl;
 
 	set<string> implementedProtocols = parseProtocolListAsString(protocolListAsString);
-
+    
+    addClassOrProtocolToTheModuleMapIfNeeded(className, implementedProtocols, classOrProtocolToModule);
 	// for(set<string>::const_iterator implementedProtocolsIterator = implementedProtocols.begin(); implementedProtocolsIterator != implementedProtocols.end(); implementedProtocolsIterator++ ) {
 	// 	cout << " [ " << *implementedProtocolsIterator << " ] ";
 	// }
@@ -228,7 +250,7 @@ void parseInterfaceEntryObjC(string &entry,unordered_map <string, string> &class
 }
 
 void parseClassEntrySwift(string &entry,unordered_map <string, string> &classToSuperClass, unordered_map <string, set<string> > &classToProtocols,
-    unordered_map<string, string> &swiftClassToUknownSuperClassOrProtocol)
+    unordered_map<string, string> &swiftClassToUknownSuperClassOrProtocol, unordered_map <string, string> &classOrProtocolToModule)
 { //class className : superClass, p1, p2 , ... , pn
     
     //cout << "parsing line: " << entry << " ";
@@ -265,12 +287,21 @@ void parseClassEntrySwift(string &entry,unordered_map <string, string> &classToS
     if (superClassOrProtocolList.size() == 0) { //If we enter this if, means the statement is malformed
         return;
     }
+    
     string superClassOrProtocol = superClassOrProtocolList.front();
 
+    /*if we find AppleGuice as a substring of the first item - it means
+       there is an attempt to inject a class that is not inheriting from NSObject - We don't support this case so we igonre this class.*/
+    if (superClassOrProtocol.find(appleGuice) != string::npos) {
+        return;
+    }
     swiftClassToUknownSuperClassOrProtocol[className] = superClassOrProtocol;
 
     if (superClassOrProtocolList.size() > 1) { //We aren't sure if the first is class/protocol. The rest are definetly protocols!
         set<string> implementedProtocols(superClassOrProtocolList.begin() + 1, superClassOrProtocolList.end());
+        
+        addClassOrProtocolToTheModuleMapIfNeeded(className, implementedProtocols, classOrProtocolToModule);
+        
         classToProtocols[className] = implementedProtocols;
     }
 }
@@ -300,23 +331,24 @@ bool lineHasSwiftClass(string &entry) {
 //TODO deal with extensions
 
 void parseLine(string &headerEntry, 
-			   unordered_map<string, set<string> > &protocolToSuperProtocols, 
+			   unordered_map <string, set<string> > &protocolToSuperProtocols,
 			   unordered_map <string, string> &classToSuperClass,
 			   unordered_map <string, set<string> > &classToProtocols,
-               unordered_map<string, string> &swiftClassToUknownSuperClassOrProtocol)
+               unordered_map <string, string> &swiftClassToUknownSuperClassOrProtocol,
+               unordered_map <string, string> &classOrProtocolToModule)
 {
 
 	if (isPrefix(protocolLabelObjC, headerEntry)) { //for Objective C
-	  parseProtocolEntryObjC(headerEntry, protocolToSuperProtocols);
+	  parseProtocolEntryObjC(headerEntry, protocolToSuperProtocols, classOrProtocolToModule);
 	}
 	else if (isPrefix(interfaceLabelObjC, headerEntry)) { //for Objective C
-	  parseInterfaceEntryObjC(headerEntry, classToSuperClass, classToProtocols);
+	  parseInterfaceEntryObjC(headerEntry, classToSuperClass, classToProtocols, classOrProtocolToModule);
 	}
     else if (lineHasSwiftProtocol(headerEntry)) {
-        parseProtocolEntrySwift(headerEntry, protocolToSuperProtocols);
+        parseProtocolEntrySwift(headerEntry, protocolToSuperProtocols, classOrProtocolToModule);
     }
     else if (lineHasSwiftClass(headerEntry)) {
-        parseClassEntrySwift(headerEntry, classToSuperClass, classToProtocols, swiftClassToUknownSuperClassOrProtocol);
+        parseClassEntrySwift(headerEntry, classToSuperClass, classToProtocols, swiftClassToUknownSuperClassOrProtocol, classOrProtocolToModule);
     }
 }
 
@@ -427,7 +459,7 @@ void protocolsImplementedByClass(string &className,
 }
 
 
-void generateAppleGuiceCodeForEntry(string &protocolName, set<string> &implementingClasses, stringstream &stringBuilder) {
+void generateAppleGuiceCodeForEntry(string &protocolName, set<string> &implementingClasses, unordered_map<string, string> &classOrProtocolToModule, stringstream &stringBuilder) {
 	const string classesDelimiter = ", ";
 
     stringBuilder << "[self.bindingService setImplementationsFromStrings:@[";
@@ -435,12 +467,20 @@ void generateAppleGuiceCodeForEntry(string &protocolName, set<string> &implement
     unsigned long setSize = implementingClasses.size();
     for(set<string>::const_iterator implementedProtocolsIterator = implementingClasses.begin(); implementedProtocolsIterator != implementingClasses.end(); implementedProtocolsIterator++ ) {
 		string implementationName = *implementedProtocolsIterator;
+        if (contains(classOrProtocolToModule, implementationName)) {
+            string moduleName = classOrProtocolToModule[implementationName];
+            implementationName = moduleName + "." + implementationName;
+        }
 		stringBuilder << "@\"" << implementationName << "\"";
 		--setSize;
 		if (setSize > 0) {
 			stringBuilder << classesDelimiter;
 		}
 	}
+    if (contains(classOrProtocolToModule, protocolName)) {
+        string moduleName = classOrProtocolToModule[protocolName];
+        protocolName = moduleName + "." + protocolName;
+    }
 	stringBuilder << "] withProtocolAsString:@\"" << protocolName << "\" withBindingType:appleGuiceBindingTypeUserBinding];" << endl;
 }
 
@@ -455,7 +495,7 @@ set<string> filterNonInjectableClasses(set<string> injectableClasses, set<string
 	return intersection;
 }
 
-string generateAppleGuiceCode(unordered_map <string, set<string> > &protocolToImps) 
+string generateAppleGuiceCode(unordered_map <string, set<string> > &protocolToImps, unordered_map<string, string> &classOrProtocolToModule)
 {
 	const string appleGuiceInjectable = appleGuice + "Injectable";
 
@@ -476,6 +516,12 @@ string generateAppleGuiceCode(unordered_map <string, set<string> > &protocolToIm
 	for (unordered_map<string, set<string> >::const_iterator it = protocolToImps.begin(); it != protocolToImps.end(); ++it) {
     	
     	string protocolName = it->first;
+        
+        //We want to disregard the module protocols
+        if (protocolName.find(appleGuiceModule) != string::npos) {
+            continue;
+        }
+        
     	set<string> implementingClasses = it->second;
 
     	if(isNSObject(protocolName)) continue;
@@ -484,7 +530,7 @@ string generateAppleGuiceCode(unordered_map <string, set<string> > &protocolToIm
 
     	if (filteredClasses.size() == 0) continue;
 
-    	generateAppleGuiceCodeForEntry(protocolName, filteredClasses, stringBuilder);
+    	generateAppleGuiceCodeForEntry(protocolName, filteredClasses, classOrProtocolToModule, stringBuilder);
     	
     }
     stringBuilder << footerCode << endl << endl;
@@ -500,7 +546,7 @@ string readFromStdin() {
     return stringBuilder.str();
 }
 
-unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntriesAsString, set<string> prefixesToIgnore) {
+unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntriesAsString, set<string> prefixesToIgnore, unordered_map<string, string> &classOrProtocolToModule) {
 	unordered_map<string, set<string> > protocolToSuperProtocols;
 	unordered_map<string, set<string> > classToProtocols;
 	unordered_map<string, string> classToSuperClass;
@@ -518,7 +564,7 @@ unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntr
   	for(vector<string>::const_iterator headerEntriesIterator = headerEntries.begin(); headerEntriesIterator != headerEntries.end(); headerEntriesIterator++ ) {
 		string entry = *headerEntriesIterator;
 		entry = trim(entry);
-		parseLine(entry, protocolToSuperProtocols, classToSuperClass, classToProtocols, swiftClassToUknownSuperClassOrProtocol);
+		parseLine(entry, protocolToSuperProtocols, classToSuperClass, classToProtocols, swiftClassToUknownSuperClassOrProtocol, classOrProtocolToModule);
   	}
     
     resolveSwiftClassOrProtocolMap(protocolToSuperProtocols, classToSuperClass, classToProtocols, swiftClassToUknownSuperClassOrProtocol);
@@ -533,6 +579,10 @@ unordered_map<string, set<string> > generateProtocolsToImpsMap(string headerEntr
         
         addBindToResultList(className, implementedProtocols, protocolToSuperProtocols, protocolToImps);
     }
+    ////
+    
+    
+    ////
     return protocolToImps;
 }
 
@@ -563,10 +613,13 @@ int main(int argc, char* argv[])
     if (argc > 1) {
         prefixesToIgnore = getPrefixesToIgnore(argv[1]);
     }
-    unordered_map<string, set<string> > protocolToImps = generateProtocolsToImpsMap(headerEntriesAsString, prefixesToIgnore);
+    /*When working with Dynamic Frameworks which have their own domain, we must know the class/protocol module when creating the bindings. If a swift protocol resides in a module, then on runtime it can only be identified as ${MODULE_NAME}.${PROTOCOL_NAME}. It's the responsibility of the user of AppleGuice to mark a protocol or class with the designated module. He can do it by creating a protocol named ${MODULE_NAME}AppleGuiceModule, and making sure that the protocol/class conforms to it.*/
+    unordered_map<string, string> classOrProtocolToModule;
+    
+    unordered_map<string, set<string> > protocolToImps = generateProtocolsToImpsMap(headerEntriesAsString, prefixesToIgnore, classOrProtocolToModule);
     
     //generate code
-    string generatedCode = generateAppleGuiceCode(protocolToImps);
+    string generatedCode = generateAppleGuiceCode(protocolToImps, classOrProtocolToModule);
     
     cout << generatedCode;
 }
