@@ -20,8 +20,8 @@
 #import "AppleGuiceOptional.h"
 #import "AppleGuiceSingleton.h"
 #import "AppleGuiceLazyLoad.h"
-
 #import <objc/runtime.h>
+#import "IvarAccess.h"
 
 @implementation AppleGuiceInjector
 
@@ -64,7 +64,7 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
     if (![self _isIOCIvar:ivarName]) return;
     
     id (^createInstanceBlock)(void) = ^id(void) {
-        return [self _getValueForIvar:ivar withName:ivarName];
+        return [self _getValueForIvar:ivar withName:ivarName class:[instance class]];
     };
     
     id ivarValue;
@@ -92,9 +92,9 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
 // id<injectable> ioc_xx
 // id<injectable, appleguicesingleton, etc> ioc_xx
 // NSArray ioc_injectable
--(id) _getValueForIvar:(Ivar)ivar withName:(NSString*) ivarName {
+-(id) _getValueForIvar:(Ivar)ivar withName:(NSString*) ivarName class:(Class)clazz {
     
-    const char* ivarTypeEncoding = ivar_getTypeEncoding(ivar);
+    const char* ivarTypeEncoding = ivar_getTypeEncodingSwift(ivar, clazz);
     
     if ([self _isPrimitiveType:ivarTypeEncoding]) {
         return nil;
@@ -197,7 +197,47 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
 
 -(NSMutableSet<NSString*>*) _protocolNamesFromType:(NSString*) iVarType {
     //<xxx><yyy>
-    return [NSMutableSet setWithArray:[[[iVarType substringFromIndex:1] substringToIndex:[iVarType length] - 2] componentsSeparatedByString:@"><"]];
+    NSUInteger lastClosingBracketIndex = [iVarType rangeOfString:@">" options:NSBackwardsSearch].location;
+    NSArray *protocolArr = [[[iVarType substringFromIndex:1] substringToIndex:lastClosingBracketIndex - 1] componentsSeparatedByString:@"><"];
+    NSMutableSet *mutableSet = [NSMutableSet set];
+    
+    for (NSString *protocolName in protocolArr) {
+        if ([self _shouldDemangle:protocolName]) {
+            protocolName = [self _primitiveDemangling:protocolName];
+        }
+        [mutableSet addObject:protocolName];
+    }
+    
+    return mutableSet;
+}
+
+- (BOOL)_shouldDemangle:(NSString *)protocol {
+    return [protocol containsString:@"_TtP"];
+}
+
+- (NSString *)_primitiveDemangling:(NSString *)mangledProtocol {
+    NSString *tempProtocol = [mangledProtocol stringByReplacingOccurrencesOfString:@"_TtP" withString:@""];
+    NSUInteger namespaceLength = 0;
+    NSUInteger index = 0;
+    
+    NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+
+    while ([[tempProtocol substringWithRange:NSMakeRange(index, 1)] rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
+        namespaceLength = namespaceLength * 10 + [[tempProtocol substringWithRange:NSMakeRange(index, 1)] integerValue];
+        index++;
+    }
+    
+    NSString *namespace = [tempProtocol substringWithRange:NSMakeRange(index, namespaceLength)];
+    
+    tempProtocol = [tempProtocol substringFromIndex:namespaceLength + index];
+    
+    index = 0;
+    while ([[tempProtocol substringWithRange:NSMakeRange(index, 1)] rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
+        index++;
+    }
+    
+    tempProtocol = [tempProtocol substringWithRange:NSMakeRange(index, tempProtocol.length - index - 1)];
+    return [NSString stringWithFormat:@"%@.%@", namespace, tempProtocol];
 }
 
 -(NSString*) _classNameFromType:(const char*) typeEncoding {

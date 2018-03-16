@@ -48,6 +48,7 @@
 		F1E33BEF1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BED1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m */; };
 		F1E33BF31A2495340083660E /* AppleGuiceMockProviderSelectorService.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BF11A2495340083660E /* AppleGuiceMockProviderSelectorService.m */; };
 		F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */; };
+		FAAFAD8E205C39AF003418E6 /* IvarAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAFAD8D205C39AF003418E6 /* IvarAccess.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		F1E33BF41A2495850083660E /* AppleGuiceMockProviderSelectorServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderSelectorServiceProtocol.h; sourceTree = "<group>"; };
 		F1FEDFB718D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepositoryTests.h; sourceTree = "<group>"; };
 		F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSingletonRepositoryTests.m; sourceTree = "<group>"; };
+		FAAFAD8D205C39AF003418E6 /* IvarAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IvarAccess.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 				F16B27F41D05D2CE0054DC44 /* AppleGuiceInstanceCreatorProtocol.h */,
 				F16B27F51D05D2CE0054DC44 /* AppleGuiceInvocationProxy.h */,
 				F16B27F61D05D2CE0054DC44 /* AppleGuiceInvocationProxy.m */,
+				FAAFAD8D205C39AF003418E6 /* IvarAccess.h */,
 			);
 			path = InjectionContainer;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAAFAD8E205C39AF003418E6 /* IvarAccess.h in Headers */,
 				F150E875170C57B900938549 /* AppleGuice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
