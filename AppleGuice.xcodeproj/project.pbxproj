@@ -49,6 +49,10 @@
 		F1E33BF31A2495340083660E /* AppleGuiceMockProviderSelectorService.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BF11A2495340083660E /* AppleGuiceMockProviderSelectorService.m */; };
 		F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */; };
 		FAAFAD8E205C39AF003418E6 /* IvarAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAFAD8D205C39AF003418E6 /* IvarAccess.h */; };
+		FADF8ACA205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h in Headers */ = {isa = PBXBuildFile; fileRef = FADF8AC8205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h */; };
+		FADF8ACB205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF8AC9205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m */; };
+		FADF8ACD205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = FADF8ACC205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h */; };
+		FADF8ACF205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF8ACE205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,6 +177,10 @@
 		F1FEDFB718D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepositoryTests.h; sourceTree = "<group>"; };
 		F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSingletonRepositoryTests.m; sourceTree = "<group>"; };
 		FAAFAD8D205C39AF003418E6 /* IvarAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IvarAccess.h; sourceTree = "<group>"; };
+		FADF8AC8205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSwiftProtocolDemangler.h; sourceTree = "<group>"; };
+		FADF8AC9205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSwiftProtocolDemangler.m; sourceTree = "<group>"; };
+		FADF8ACC205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSwiftProtocolDemanglerProtocol.h; sourceTree = "<group>"; };
+		FADF8ACE205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSwiftProtocolDemanglerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +259,7 @@
 				F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */,
 				F1777744191B85B2008CFEFD /* AppleGuiceClassGeneratorTests.m */,
 				F1777746191B94C6008CFEFD /* AppleGuiceProtocolToClassMapperTests.m */,
+				FADF8ACE205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m */,
 				F133DA7F18D0BDFE0050864F /* TestBase */,
 				F133DA7718D0BD420050864F /* Setup */,
 				F133DA6918D0BCE40050864F /* Supporting Files */,
@@ -336,6 +345,9 @@
 				F16B27F51D05D2CE0054DC44 /* AppleGuiceInvocationProxy.h */,
 				F16B27F61D05D2CE0054DC44 /* AppleGuiceInvocationProxy.m */,
 				FAAFAD8D205C39AF003418E6 /* IvarAccess.h */,
+				FADF8ACC205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h */,
+				FADF8AC8205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h */,
+				FADF8AC9205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m */,
 			);
 			path = InjectionContainer;
 			sourceTree = "<group>";
@@ -480,8 +492,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADF8ACA205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h in Headers */,
 				FAAFAD8E205C39AF003418E6 /* IvarAccess.h in Headers */,
 				F150E875170C57B900938549 /* AppleGuice.h in Headers */,
+				FADF8ACD205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +810,7 @@
 				F1777745191B85B2008CFEFD /* AppleGuiceClassGeneratorTests.m in Sources */,
 				F133DA8218D0BE130050864F /* TestBase.m in Sources */,
 				F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */,
+				FADF8ACF205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m in Sources */,
 				F133DA8F18D0BE2A0050864F /* AppleGuiceAutoInjectorTests.m in Sources */,
 				F133DA7A18D0BD570050864F /* AppleGuiceBindingBootstrapper.m in Sources */,
 				F133DA9018D0BE2A0050864F /* AppleGuiceBindingServiceTests.m in Sources */,
@@ -813,6 +828,7 @@
 				F1E33BE31A24810E0083660E /* AppleGuiceOCMockMockProvider.m in Sources */,
 				F19102451D136CB5005C2F09 /* AppleGuiceSettingsProvider.m in Sources */,
 				F16B280B1D05E9340054DC44 /* AppleGuiceInjectableImplementationNotFoundException.m in Sources */,
+				FADF8ACB205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m in Sources */,
 				F16B27FB1D05D2CE0054DC44 /* AppleGuiceInstanceCreator.m in Sources */,
 				F16B28031D05D35D0054DC44 /* AppleGuiceSingletonRepository.mm in Sources */,
 				F14FF19C18EC2F7400222D4F /* AppleGuiceClassGenerator.m in Sources */,

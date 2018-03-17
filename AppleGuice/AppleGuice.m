@@ -20,6 +20,7 @@
 #import "AppleGuiceSettingsProvider.h"
 #import "AppleGuiceSingletonRepository.h"
 #import "AppleGuiceInstanceCreator.h"
+#import "AppleGuiceSwiftProtocolDemangler.h"
 #import "AppleGuiceBindingBootstrapperProtocol.h"
 #import "AppleGuiceClassGenerator.h"
 
@@ -34,6 +35,7 @@ static AppleGuiceInjector* injector;
 static AppleGuiceSingletonRepository* singletonRepository;
 static AppleGuiceSettingsProvider* settingsProvider;
 static AppleGuiceInstanceCreator* instanceCreator;
+static AppleGuiceSwiftProtocolDemangler *swiftProtocolDemangler;
 
 static BOOL didStart;
 
@@ -50,6 +52,7 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     injector = [[AppleGuiceInjector alloc] init];
     singletonRepository = [[AppleGuiceSingletonRepository alloc] init];
     instanceCreator = [[AppleGuiceInstanceCreator alloc] init];
+    swiftProtocolDemangler = [[AppleGuiceSwiftProtocolDemangler alloc] init];
     
     bindingService.classGenerator = [[[AppleGuiceClassGenerator alloc] init] autorelease];
     
@@ -62,6 +65,7 @@ static id<AppleGuiceBindingBootstrapperProtocol> bootstrapper;
     
     injector.settingsProvider = settingsProvider;
     injector.instanceCreator = instanceCreator;
+    injector.swiftProtocolDemangler = swiftProtocolDemangler;
     
     Class bootstrapperClass = NSClassFromString(settingsProvider.bootstrapperClassName);
     bootstrapper = [[bootstrapperClass alloc] init];

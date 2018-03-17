@@ -16,6 +16,7 @@
 #import "AppleGuiceSettingsProviderProtocol.h"
 #import "AppleGuiceInvocationProxy.h"
 #import "AppleGuiceInstanceCreatorProtocol.h"
+#import "AppleGuiceSwiftProtocolDemanglerProtocol.h"
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
 #import "AppleGuiceOptional.h"
 #import "AppleGuiceSingleton.h"
@@ -202,42 +203,13 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
     NSMutableSet *mutableSet = [NSMutableSet set];
     
     for (NSString *protocolName in protocolArr) {
-        if ([self _shouldDemangle:protocolName]) {
-            protocolName = [self _primitiveDemangling:protocolName];
+        if ([self.swiftProtocolDemangler shouldDemangleProtocolWithName:protocolName]) {
+            protocolName = [self.swiftProtocolDemangler demangledSwiftProtocol:protocolName];
         }
         [mutableSet addObject:protocolName];
     }
     
     return mutableSet;
-}
-
-- (BOOL)_shouldDemangle:(NSString *)protocol {
-    return [protocol containsString:@"_TtP"];
-}
-
-- (NSString *)_primitiveDemangling:(NSString *)mangledProtocol {
-    NSString *tempProtocol = [mangledProtocol stringByReplacingOccurrencesOfString:@"_TtP" withString:@""];
-    NSUInteger namespaceLength = 0;
-    NSUInteger index = 0;
-    
-    NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-
-    while ([[tempProtocol substringWithRange:NSMakeRange(index, 1)] rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
-        namespaceLength = namespaceLength * 10 + [[tempProtocol substringWithRange:NSMakeRange(index, 1)] integerValue];
-        index++;
-    }
-    
-    NSString *namespace = [tempProtocol substringWithRange:NSMakeRange(index, namespaceLength)];
-    
-    tempProtocol = [tempProtocol substringFromIndex:namespaceLength + index];
-    
-    index = 0;
-    while ([[tempProtocol substringWithRange:NSMakeRange(index, 1)] rangeOfCharacterFromSet:notDigits].location == NSNotFound) {
-        index++;
-    }
-    
-    tempProtocol = [tempProtocol substringWithRange:NSMakeRange(index, tempProtocol.length - index - 1)];
-    return [NSString stringWithFormat:@"%@.%@", namespace, tempProtocol];
 }
 
 -(NSString*) _classNameFromType:(const char*) typeEncoding {
@@ -264,6 +236,7 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
 - (void) dealloc {
     [_settingsProvider release];
     [_instanceCreator release];
+    [_swiftProtocolDemangler release];
     [super dealloc];
 }
 
