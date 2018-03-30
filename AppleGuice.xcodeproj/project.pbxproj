@@ -48,6 +48,8 @@
 		F1E33BEF1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BED1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m */; };
 		F1E33BF31A2495340083660E /* AppleGuiceMockProviderSelectorService.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BF11A2495340083660E /* AppleGuiceMockProviderSelectorService.m */; };
 		F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */; };
+		FA6EB04F206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EB04E206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift */; };
+		FA6EB053206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EB052206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m */; };
 		FAAFAD8E205C39AF003418E6 /* IvarAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = FAAFAD8D205C39AF003418E6 /* IvarAccess.h */; };
 		FADF8ACA205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h in Headers */ = {isa = PBXBuildFile; fileRef = FADF8AC8205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h */; };
 		FADF8ACB205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF8AC9205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m */; };
@@ -176,6 +178,9 @@
 		F1E33BF41A2495850083660E /* AppleGuiceMockProviderSelectorServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderSelectorServiceProtocol.h; sourceTree = "<group>"; };
 		F1FEDFB718D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepositoryTests.h; sourceTree = "<group>"; };
 		F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSingletonRepositoryTests.m; sourceTree = "<group>"; };
+		FA6EB04D206E45780089DBD6 /* AppleGuiceUnitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuiceUnitTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA6EB04E206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleGuiceSwiftClassesToTestInjector.swift; sourceTree = "<group>"; };
+		FA6EB052206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInjectorTestsForSwift.m; sourceTree = "<group>"; };
 		FAAFAD8D205C39AF003418E6 /* IvarAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IvarAccess.h; sourceTree = "<group>"; };
 		FADF8AC8205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSwiftProtocolDemangler.h; sourceTree = "<group>"; };
 		FADF8AC9205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSwiftProtocolDemangler.m; sourceTree = "<group>"; };
@@ -251,6 +256,8 @@
 				F133DA8618D0BE2A0050864F /* AppleGuiceBindingServiceTests.m */,
 				F133DA8718D0BE2A0050864F /* AppleGuiceInjectorTests.h */,
 				F133DA8818D0BE2A0050864F /* AppleGuiceInjectorTests.m */,
+				FA6EB052206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m */,
+				FA6EB04E206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift */,
 				F133DA8918D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.h */,
 				F133DA8A18D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m */,
 				F133DA8D18D0BE2A0050864F /* AppleGuiceSanity.h */,
@@ -263,6 +270,7 @@
 				F133DA7F18D0BDFE0050864F /* TestBase */,
 				F133DA7718D0BD420050864F /* Setup */,
 				F133DA6918D0BCE40050864F /* Supporting Files */,
+				FA6EB04D206E45780089DBD6 /* AppleGuiceUnitTests-Bridging-Header.h */,
 			);
 			path = AppleGuiceUnitTests;
 			sourceTree = "<group>";
@@ -616,6 +624,7 @@
 				ORGANIZATIONNAME = "Tomer Shiri";
 				TargetAttributes = {
 					F133DA6118D0BCE40050864F = {
+						LastSwiftMigration = 0920;
 						TestTargetID = F18E722116F9135C000BD3CB;
 					};
 					F19102A91D141E4B005C2F09 = {
@@ -812,10 +821,12 @@
 				F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */,
 				FADF8ACF205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m in Sources */,
 				F133DA8F18D0BE2A0050864F /* AppleGuiceAutoInjectorTests.m in Sources */,
+				FA6EB04F206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift in Sources */,
 				F133DA7A18D0BD570050864F /* AppleGuiceBindingBootstrapper.m in Sources */,
 				F133DA9018D0BE2A0050864F /* AppleGuiceBindingServiceTests.m in Sources */,
 				F1777747191B94C6008CFEFD /* AppleGuiceProtocolToClassMapperTests.m in Sources */,
 				F133DA9418D0BE2A0050864F /* AppleGuiceSanity.m in Sources */,
+				FA6EB053206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m in Sources */,
 				F133DA9218D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -982,6 +993,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_PEDANTIC = NO;
@@ -990,6 +1002,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1000,6 +1013,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AppleGuice.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppleGuiceUnitTests/AppleGuiceUnitTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "$(inherited) i386 x86_64";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1019,6 +1035,7 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuiceUnitTests/AppleGuiceUnitTests-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_PEDANTIC = NO;
@@ -1027,6 +1044,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1037,6 +1055,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AppleGuice.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppleGuiceUnitTests/AppleGuiceUnitTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "$(inherited) i386 x86_64";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1126,6 +1146,7 @@
 				DSTROOT = /tmp/AppleGuice.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuice/AppleGuice-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1144,6 +1165,7 @@
 				DSTROOT = /tmp/AppleGuice.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuice/AppleGuice-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1180,6 +1202,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1227,6 +1250,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

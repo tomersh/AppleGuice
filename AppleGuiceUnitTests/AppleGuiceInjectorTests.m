@@ -18,9 +18,6 @@
 
 @end
 
-@protocol InjectedProtocol <NSObject>
-@end
-
 
 @interface ClassWithNoIvars : NSObject {
 }
