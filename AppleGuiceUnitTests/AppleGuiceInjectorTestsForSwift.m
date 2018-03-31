@@ -207,7 +207,7 @@
     settingsProvider.instanceCreateionPolicy = AppleGuiceInstanceCreationPolicyDefault;
     SwiftClassWithInjectableArray* instanceToInjectTo = [[SwiftClassWithInjectableArray alloc] init];
     
-    //InjectedProtocol is an ObjC protocol. Automatic array injection won't work for swift protocols.
+    //InjectedProtocol is an ObjC protocol. Automatic aarray injection won't work for swift protocols.
     [[[instanceCreator expect] andReturn:[NSArray array]] allInstancesForProtocol:@protocol(InjectedProtocol)];
     [[[instanceCreator expect] andReturn:[NSArray array]] allInstancesForProtocol:nil];
     [[instanceCreator reject] instanceForClass:OCMOCK_ANY];
