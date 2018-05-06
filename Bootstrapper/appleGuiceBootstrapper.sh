@@ -37,7 +37,7 @@ interfaceDeclerationsSwift=$(grep -sirhE --include=*.swift --regexp='((class|pro
 interfaceDeclerations=""
 
 interfaceDeclerations+=${interfaceDeclerationsObjC}
-interfaceDeclerations+="\n"
+interfaceDeclerations+=$'\n'
 interfaceDeclerations+=${interfaceDeclerationsSwift}
 
 result=$(echo "${interfaceDeclerations}" | ${scriptDir}/${bootstrapper} ${excludePrefixes});
