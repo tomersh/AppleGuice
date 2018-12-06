@@ -78,6 +78,38 @@ AppleGuice will automatically inject the proper implementation when calling the 
 ```
 AppleGuice initialized `_ioc_myService`  without any manual binding!
 
+#### Swift Support ####
+AppleGuice supports auto injection in Swift, but only for `@objc` protocols and classes inheriting from `NSObject`
+Using AppleGuice in Swift requires you to define  a protocol called ${MODULE_NAME}AppleGuiceModule . Each swift class or protocol in the module which uses  AppleGuice, must conform to this protocol.
+
+```swift
+
+
+import AppleGuice
+
+@objc protocol MyAwesomeFrameworkAppleGuiceModule : class {
+}
+
+@objc protocol MyServiceProtocol : MyAwesomeFrameworkAppleGuiceModule {
+    func doStuff()
+}
+
+class MyService : NSObject, MyServiceProtocol, AppleGuiceInjectable, MyAwesomeFrameworkAppleGuiceModule {
+    func doStuff() {
+        //Some awesome implementation
+    }
+}
+
+class MyClass : NSObject {
+    @objc var _ioc_myService: MyServiceProtocol?
+    
+    init() {
+        _ioc_myService.doStuff()
+    }
+}
+```
+
+
 #### Stub with ease while testing ####
 ```objectivec
 #import <AppleGuice/AppleGuice.h>
@@ -112,7 +144,7 @@ Injection comes in three flavours:
 @interface MyClass () {
     MyService* _ioc_MyService; //will create an instance of MyService.
     id<MyServiceProtocol> _ioc_MyService //will create an instance of the first class conforming to MyServiceProtocol.
-    NSArray* _ioc_MyProtocol //will return an array containing instances of all classes conforming to MyProtocol
+    NSArray* _ioc_MyProtocol //will return an array containing instances of all classes conforming to MyProtocol (Must be ObjC protocol)
 }
 ```
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C2839D1A7F58AC4717A6B33 /* libPods-BootstrapperTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BADD5BAB5136B586A8D97AE /* libPods-BootstrapperTests.a */; };
+		C1560F136D4FDFDFC6869026 /* libPods-AppleGuice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7224473AA71248DF669BDC34 /* libPods-AppleGuice.a */; };
 		CBF52252CCBF2C157EA875B1 /* libPods-AppleGuiceUnitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 392C9521977347E6A8A05659 /* libPods-AppleGuiceUnitTests.a */; };
 		F11242441FD833A800A276F8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F133DA6318D0BCE40050864F /* XCTest.framework */; };
 		F11242551FD8346E00A276F8 /* BootstrapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1CF54F41FD81093004DF674 /* BootstrapperTests.m */; };
@@ -48,6 +49,12 @@
 		F1E33BEF1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BED1A2490ED0083660E /* AppleGuiceOCMockitoMockProvider.m */; };
 		F1E33BF31A2495340083660E /* AppleGuiceMockProviderSelectorService.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E33BF11A2495340083660E /* AppleGuiceMockProviderSelectorService.m */; };
 		F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */; };
+		FA6EB04F206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6EB04E206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift */; };
+		FA6EB053206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6EB052206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m */; };
+		FADF8ACA205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h in Headers */ = {isa = PBXBuildFile; fileRef = FADF8AC8205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h */; };
+		FADF8ACB205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF8AC9205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m */; };
+		FADF8ACD205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = FADF8ACC205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h */; };
+		FADF8ACF205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FADF8ACE205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +91,11 @@
 		1BADD5BAB5136B586A8D97AE /* libPods-BootstrapperTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BootstrapperTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		392C9521977347E6A8A05659 /* libPods-AppleGuiceUnitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleGuiceUnitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BCB1DCB69D05BED2C1599A6 /* Pods-BootstrapperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BootstrapperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BootstrapperTests/Pods-BootstrapperTests.release.xcconfig"; sourceTree = "<group>"; };
+		48806483151717C543974AE7 /* Pods-AppleGuice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppleGuice/Pods-AppleGuice.debug.xcconfig"; sourceTree = "<group>"; };
+		7224473AA71248DF669BDC34 /* libPods-AppleGuice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleGuice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81FBD0AD1F8ED221E1DC8101 /* Pods-AppleGuiceUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		84973227AA693E29CBA3DE6C /* Pods-AppleGuiceUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuiceUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		DE8C2211E798B16FEE1F2376 /* Pods-AppleGuice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppleGuice.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppleGuice/Pods-AppleGuice.release.xcconfig"; sourceTree = "<group>"; };
 		F11242501FD833A800A276F8 /* BootstrapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BootstrapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11242571FD853E900A276F8 /* libExpecta-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libExpecta-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11242581FD857F500A276F8 /* BootstrapperTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BootstrapperTests-Info.plist"; sourceTree = "<group>"; };
@@ -171,6 +181,13 @@
 		F1E33BF41A2495850083660E /* AppleGuiceMockProviderSelectorServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceMockProviderSelectorServiceProtocol.h; sourceTree = "<group>"; };
 		F1FEDFB718D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSingletonRepositoryTests.h; sourceTree = "<group>"; };
 		F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSingletonRepositoryTests.m; sourceTree = "<group>"; };
+		FA6EB04D206E45780089DBD6 /* AppleGuiceUnitTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppleGuiceUnitTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA6EB04E206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleGuiceSwiftClassesToTestInjector.swift; sourceTree = "<group>"; };
+		FA6EB052206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceInjectorTestsForSwift.m; sourceTree = "<group>"; };
+		FADF8AC8205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSwiftProtocolDemangler.h; sourceTree = "<group>"; };
+		FADF8AC9205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSwiftProtocolDemangler.m; sourceTree = "<group>"; };
+		FADF8ACC205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppleGuiceSwiftProtocolDemanglerProtocol.h; sourceTree = "<group>"; };
+		FADF8ACE205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppleGuiceSwiftProtocolDemanglerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F18E722616F9135C000BD3CB /* Foundation.framework in Frameworks */,
+				C1560F136D4FDFDFC6869026 /* libPods-AppleGuice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +246,8 @@
 				84973227AA693E29CBA3DE6C /* Pods-AppleGuiceUnitTests.release.xcconfig */,
 				03F2C5CB32A5D5BC44513463 /* Pods-BootstrapperTests.debug.xcconfig */,
 				3BCB1DCB69D05BED2C1599A6 /* Pods-BootstrapperTests.release.xcconfig */,
+				48806483151717C543974AE7 /* Pods-AppleGuice.debug.xcconfig */,
+				DE8C2211E798B16FEE1F2376 /* Pods-AppleGuice.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -241,6 +261,8 @@
 				F133DA8618D0BE2A0050864F /* AppleGuiceBindingServiceTests.m */,
 				F133DA8718D0BE2A0050864F /* AppleGuiceInjectorTests.h */,
 				F133DA8818D0BE2A0050864F /* AppleGuiceInjectorTests.m */,
+				FA6EB052206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m */,
+				FA6EB04E206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift */,
 				F133DA8918D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.h */,
 				F133DA8A18D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m */,
 				F133DA8D18D0BE2A0050864F /* AppleGuiceSanity.h */,
@@ -249,9 +271,11 @@
 				F1FEDFB818D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m */,
 				F1777744191B85B2008CFEFD /* AppleGuiceClassGeneratorTests.m */,
 				F1777746191B94C6008CFEFD /* AppleGuiceProtocolToClassMapperTests.m */,
+				FADF8ACE205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m */,
 				F133DA7F18D0BDFE0050864F /* TestBase */,
 				F133DA7718D0BD420050864F /* Setup */,
 				F133DA6918D0BCE40050864F /* Supporting Files */,
+				FA6EB04D206E45780089DBD6 /* AppleGuiceUnitTests-Bridging-Header.h */,
 			);
 			path = AppleGuiceUnitTests;
 			sourceTree = "<group>";
@@ -333,6 +357,9 @@
 				F16B27F41D05D2CE0054DC44 /* AppleGuiceInstanceCreatorProtocol.h */,
 				F16B27F51D05D2CE0054DC44 /* AppleGuiceInvocationProxy.h */,
 				F16B27F61D05D2CE0054DC44 /* AppleGuiceInvocationProxy.m */,
+				FADF8ACC205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h */,
+				FADF8AC8205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h */,
+				FADF8AC9205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m */,
 			);
 			path = InjectionContainer;
 			sourceTree = "<group>";
@@ -372,6 +399,7 @@
 				F133DA6618D0BCE40050864F /* UIKit.framework */,
 				392C9521977347E6A8A05659 /* libPods-AppleGuiceUnitTests.a */,
 				1BADD5BAB5136B586A8D97AE /* libPods-BootstrapperTests.a */,
+				7224473AA71248DF669BDC34 /* libPods-AppleGuice.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -477,7 +505,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADF8ACA205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.h in Headers */,
 				F150E875170C57B900938549 /* AppleGuice.h in Headers */,
+				FADF8ACD205D831900F8D1E1 /* AppleGuiceSwiftProtocolDemanglerProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,10 +569,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F18E724716F9135C000BD3CB /* Build configuration list for PBXNativeTarget "AppleGuice" */;
 			buildPhases = (
+				BCF262AA704A04BF3CF2B76B /* [CP] Check Pods Manifest.lock */,
 				F172DD7916F924C500BA754E /* Bootstrap project */,
 				F18E721E16F9135C000BD3CB /* Sources */,
 				F18E721F16F9135C000BD3CB /* Frameworks */,
 				F150E874170C579E00938549 /* Headers */,
+				D0ABAD46CF95031946D293DF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -598,6 +630,7 @@
 				ORGANIZATIONNAME = "Tomer Shiri";
 				TargetAttributes = {
 					F133DA6118D0BCE40050864F = {
+						LastSwiftMigration = 0920;
 						TestTargetID = F18E722116F9135C000BD3CB;
 					};
 					F19102A91D141E4B005C2F09 = {
@@ -697,6 +730,39 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppleGuiceUnitTests/Pods-AppleGuiceUnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BCF262AA704A04BF3CF2B76B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppleGuice-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0ABAD46CF95031946D293DF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppleGuice/Pods-AppleGuice-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F11242361FD833A800A276F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -792,11 +858,14 @@
 				F1777745191B85B2008CFEFD /* AppleGuiceClassGeneratorTests.m in Sources */,
 				F133DA8218D0BE130050864F /* TestBase.m in Sources */,
 				F1FEDFB918D7A7740006D3B4 /* AppleGuiceSingletonRepositoryTests.m in Sources */,
+				FADF8ACF205D87CF00F8D1E1 /* AppleGuiceSwiftProtocolDemanglerTests.m in Sources */,
 				F133DA8F18D0BE2A0050864F /* AppleGuiceAutoInjectorTests.m in Sources */,
+				FA6EB04F206E45790089DBD6 /* AppleGuiceSwiftClassesToTestInjector.swift in Sources */,
 				F133DA7A18D0BD570050864F /* AppleGuiceBindingBootstrapper.m in Sources */,
 				F133DA9018D0BE2A0050864F /* AppleGuiceBindingServiceTests.m in Sources */,
 				F1777747191B94C6008CFEFD /* AppleGuiceProtocolToClassMapperTests.m in Sources */,
 				F133DA9418D0BE2A0050864F /* AppleGuiceSanity.m in Sources */,
+				FA6EB053206E71190089DBD6 /* AppleGuiceInjectorTestsForSwift.m in Sources */,
 				F133DA9218D0BE2A0050864F /* AppleGuiceInstanceCreatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,6 +878,7 @@
 				F1E33BE31A24810E0083660E /* AppleGuiceOCMockMockProvider.m in Sources */,
 				F19102451D136CB5005C2F09 /* AppleGuiceSettingsProvider.m in Sources */,
 				F16B280B1D05E9340054DC44 /* AppleGuiceInjectableImplementationNotFoundException.m in Sources */,
+				FADF8ACB205D82F200F8D1E1 /* AppleGuiceSwiftProtocolDemangler.m in Sources */,
 				F16B27FB1D05D2CE0054DC44 /* AppleGuiceInstanceCreator.m in Sources */,
 				F16B28031D05D35D0054DC44 /* AppleGuiceSingletonRepository.mm in Sources */,
 				F14FF19C18EC2F7400222D4F /* AppleGuiceClassGenerator.m in Sources */,
@@ -962,6 +1032,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_PEDANTIC = NO;
@@ -970,6 +1041,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -980,6 +1052,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AppleGuice.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppleGuiceUnitTests/AppleGuiceUnitTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "$(inherited) i386 x86_64";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -999,6 +1074,7 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuiceUnitTests/AppleGuiceUnitTests-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_PEDANTIC = NO;
@@ -1007,6 +1083,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "AppleGuiceUnitTests/AppleGuiceUnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1017,6 +1094,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AppleGuice.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppleGuiceUnitTests/AppleGuiceUnitTests-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "$(inherited) i386 x86_64";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1102,10 +1181,12 @@
 		};
 		F18E724816F9135C000BD3CB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48806483151717C543974AE7 /* Pods-AppleGuice.debug.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/AppleGuice.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuice/AppleGuice-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1120,10 +1201,12 @@
 		};
 		F18E724916F9135C000BD3CB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE8C2211E798B16FEE1F2376 /* Pods-AppleGuice.release.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/AppleGuice.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AppleGuice/AppleGuice-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_VERSION = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1160,6 +1243,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1207,6 +1291,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1261,7 +1346,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1303,7 +1388,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

@@ -16,12 +16,13 @@
 #import "AppleGuiceSettingsProviderProtocol.h"
 #import "AppleGuiceInvocationProxy.h"
 #import "AppleGuiceInstanceCreatorProtocol.h"
+#import "AppleGuiceSwiftProtocolDemanglerProtocol.h"
 #import "AppleGuiceInjectableImplementationNotFoundException.h"
 #import "AppleGuiceOptional.h"
 #import "AppleGuiceSingleton.h"
 #import "AppleGuiceLazyLoad.h"
-
 #import <objc/runtime.h>
+#import "IvarAccess.h"
 
 @implementation AppleGuiceInjector
 
@@ -29,6 +30,7 @@ static NSString* appleGuiceSingletonProtocolName;
 static NSString* appleGuiceLazyLoadProtocolName;
 static NSString* appleGuiceOptionalProtocolName;
 static NSSet<NSString*>* appleGuiceInstanceFlags;
+static const char * swiftClassVarPivotSubstring = ",N,&,V";
 
 +(void)initialize {
     appleGuiceSingletonProtocolName = [NSStringFromProtocol(@protocol(AppleGuiceSingleton)) retain];
@@ -64,7 +66,7 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
     if (![self _isIOCIvar:ivarName]) return;
     
     id (^createInstanceBlock)(void) = ^id(void) {
-        return [self _getValueForIvar:ivar withName:ivarName];
+        return [self _getValueForIvar:ivar withName:ivarName class:[instance class]];
     };
     
     id ivarValue;
@@ -92,10 +94,9 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
 // id<injectable> ioc_xx
 // id<injectable, appleguicesingleton, etc> ioc_xx
 // NSArray ioc_injectable
--(id) _getValueForIvar:(Ivar)ivar withName:(NSString*) ivarName {
+-(id) _getValueForIvar:(Ivar)ivar withName:(NSString*) ivarName class:(Class)clazz {
     
-    const char* ivarTypeEncoding = ivar_getTypeEncoding(ivar);
-    
+    char* ivarTypeEncoding = (char *)ivar_getTypeEncodingSwift(ivar, clazz);
     if ([self _isPrimitiveType:ivarTypeEncoding]) {
         return nil;
     }
@@ -106,8 +107,8 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
         NSMutableSet<NSString*>* protocolNames = [self _protocolNamesFromType:className];
         
         BOOL isSingleton = [protocolNames containsObject:appleGuiceSingletonProtocolName];
-        BOOL isOptional = [protocolNames containsObject:appleGuiceSingletonProtocolName];
-        BOOL shouldLazyLoad = [protocolNames containsObject:appleGuiceOptionalProtocolName];
+        BOOL isOptional = [protocolNames containsObject:appleGuiceOptionalProtocolName];
+        BOOL shouldLazyLoad = [protocolNames containsObject:appleGuiceLazyLoadProtocolName];
         if ([protocolNames count] > 1) {
             [protocolNames minusSet:appleGuiceInstanceFlags];
         }
@@ -116,7 +117,7 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
         return [self _valueForIvarNamed:ivarName withProtocolNamed:protocolNameToInject forceSingleton:isSingleton shouldLazyLoad:shouldLazyLoad isOptional:isOptional];
     }
     
-    if ([self _isArray:ivarTypeEncoding]) {
+    if ([self _isArray:className]) {
         return [self _allValuesForIvarNamed:ivarName];
     }
     
@@ -197,10 +198,25 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
 
 -(NSMutableSet<NSString*>*) _protocolNamesFromType:(NSString*) iVarType {
     //<xxx><yyy>
-    return [NSMutableSet setWithArray:[[[iVarType substringFromIndex:1] substringToIndex:[iVarType length] - 2] componentsSeparatedByString:@"><"]];
+    NSUInteger lastClosingBracketIndex = [iVarType rangeOfString:@">" options:NSBackwardsSearch].location;
+    NSArray *protocolArr = [[[iVarType substringFromIndex:1] substringToIndex:lastClosingBracketIndex - 1] componentsSeparatedByString:@"><"];
+    NSMutableSet *mutableSet = [NSMutableSet set];
+    
+    for (NSString *protocolName in protocolArr) {
+        if ([self.swiftProtocolDemangler shouldDemangleProtocolWithName:protocolName]) {
+            protocolName = [self.swiftProtocolDemangler demangledSwiftProtocol:protocolName];
+        }
+        [mutableSet addObject:protocolName];
+    }
+    
+    return mutableSet;
 }
 
--(NSString*) _classNameFromType:(const char*) typeEncoding {
+-(NSString*) _classNameFromType:(char*) typeEncoding {
+    //"@\"_TtC19AppleGuiceUnitTests21SwiftClassWithNoIvars\",N,&,V_test_injectableObject"
+    if (strstr(typeEncoding, swiftClassVarPivotSubstring) != NULL) {
+        typeEncoding = [self _removeVarNameIfNeeded:typeEncoding pivot:(char *)swiftClassVarPivotSubstring];
+    }
     //@"xxx"
     size_t objectNameLength = strlen(typeEncoding) - 2;
     char* classNameAsCString = malloc(sizeof(char) * strlen(typeEncoding));
@@ -211,19 +227,30 @@ static NSSet<NSString*>* appleGuiceInstanceFlags;
     return classNameAsNSString;
 }
 
+- (char *)_removeVarNameIfNeeded:(char*) typeEncoding pivot:(char *)pivot {
+    NSString *pivotAsNSString = [NSString stringWithUTF8String:pivot];
+    NSString* typeEncodingAsNSString = [NSString stringWithUTF8String:typeEncoding];
+    if (![typeEncodingAsNSString containsString:pivotAsNSString]) {
+        return typeEncoding;
+    }
+    typeEncodingAsNSString = [typeEncodingAsNSString componentsSeparatedByString:pivotAsNSString][0];
+    char *normalizedTypeEncoding = (char *)[typeEncodingAsNSString UTF8String];
+    return normalizedTypeEncoding;
+}
+
 -(BOOL) _isPrimitiveType:(const char*) ivarTypeEncoding {
     const char* objectEncoding = @encode(id);
     return strncmp(ivarTypeEncoding, objectEncoding, strlen(objectEncoding)) != 0;
 }
 
--(BOOL) _isArray:(const char*) ivarTypeEncoding {
-    const char* arrayEncoding = "@\"NSArray\"\0";
-    return strcmp(ivarTypeEncoding, arrayEncoding) == 0;
+-(BOOL) _isArray:(NSString *) ivarType {
+    return [ivarType isEqualToString:@"NSArray"];
 }
 
 - (void) dealloc {
     [_settingsProvider release];
     [_instanceCreator release];
+    [_swiftProtocolDemangler release];
     [super dealloc];
 }
 

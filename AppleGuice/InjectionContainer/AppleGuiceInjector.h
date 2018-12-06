@@ -16,9 +16,14 @@
 
 @protocol AppleGuiceSettingsProviderProtocol;
 @protocol AppleGuiceInstanceCreatorProtocol;
+@protocol AppleGuiceSwiftProtocolDemanglerProtocol;
+
+@protocol InjectedProtocol <NSObject>
+@end
 
 @interface AppleGuiceInjector : NSObject<AppleGuiceInjectorProtocol>
 
 @property (nonatomic, retain) id<AppleGuiceInstanceCreatorProtocol> instanceCreator;
 @property (nonatomic, retain) id<AppleGuiceSettingsProviderProtocol> settingsProvider;
+@property (nonatomic, retain) id<AppleGuiceSwiftProtocolDemanglerProtocol> swiftProtocolDemangler;
 @end

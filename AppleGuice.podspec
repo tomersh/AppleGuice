@@ -9,16 +9,19 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
   s.author       = { 'Tomer Shiri' => 'appleguice@shiri.info' }
   
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.7'
   s.tvos.deployment_target = '9.0'
 
   s.source       = { :git => 'https://github.com/tomersh/AppleGuice.git', :tag => 'v' + s.version.to_s }
   s.source_files  = 'AppleGuice/**/*.{h,m,mm}'
+  s.private_header_files = 'AppleGuice/InjectionContainer/IvarAccess.h'
   s.preserve_paths = 'Bootstrapper/*', 'AppleGuicePreCompileBinder/*'
   s.exclude_files = 'AppleGuice/AppleGuiceBindingBootstrapper.m'
 
   s.requires_arc = false
   s.libraries = 'c++'
   s.prepare_command = 'make -C ./Bootstrapper'
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-ObjC' }
+  s.dependency 'SwiftIvarAccess'
 end
