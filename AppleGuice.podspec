@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
   s.requires_arc = false
   s.libraries = 'c++'
   s.prepare_command = 'make -C ./Bootstrapper'
-  s.xcconfig = { 'OTHER_LDFLAGS' => '-lObjC' }
+  s.xcconfig = { 'OTHER_LDFLAGS' => '-ObjC' }
   s.dependency 'SwiftIvarAccess'
 end
