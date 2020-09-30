@@ -1,7 +1,7 @@
-AppleGuice
+AppleGuice:
 ==========
 
-Effortless dependency injection framework for Objective-C
+Effortless dependency injection framework for Objective-C:
 
 [![Build Status](https://img.shields.io/travis/tomersh/AppleGuice/master.svg?style=flat)](https://travis-ci.org/tomersh/AppleGuice)
 [![Coverage Status](https://img.shields.io/coveralls/tomersh/AppleGuice/master.svg?style=flat)](https://coveralls.io/r/tomersh/AppleGuice?branch=master)
